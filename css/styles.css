@@ -1,3 +1,172 @@
-body {
-    background-color: #191919;
+/* Font Style CDN */
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&display=swap");
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  outline: 0;
+  line-height: 1.1;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+  font-optical-sizing: auto;
+  box-sizing: border-box;
+  list-style: none;
+  align-items: center;
+  text-decoration: none;
+  align-items: center;
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+
+/* Font Style */
+  font-family: "Josefin Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--text_color);
 }
+
+/* Variables */
+:root {
+  /* Bg Colors */
+  --default_bg: #1b1b1b;
+  --deep_bg: #111111;
+  --light_bg: #1e1d1d;
+  --default_btn: #6c63ff;
+  --danger_btn: #f75842;
+  --danger_variant_btn: #f36a58;
+  --color_success: #24e7b6;
+  --color_warning: #f7c94b;
+  --text_color: #f8fafc;
+
+  --transition: all 300ms ease;
+  --box_shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.4);
+  --opacity: 0.9;
+
+  --border_radius: 0.5rem;
+}
+
+/* General Font Styles */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+}
+
+p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-align: justify;
+  }  
+
+
+  #default_btn {
+    background-color: var(--color_success);
+    padding: .3rem;
+    border-radius: var(--border_radius);
+    -webkit-border-radius: var(--border_radius);
+    -moz-border-radius: var(--border_radius);
+    -ms-border-radius: var(--border_radius);
+    -o-border-radius: var(--border_radius);
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+    -moz-transition: var(--transition);
+    -ms-transition: var(--transition);
+    -o-transition: var(--transition);
+    color: var(--deep_bg);
+    font-weight: 900;
+}
+
+#default_btn:hover {
+    background-color: var(--text_color);
+    color: var(--default_bg);
+    cursor: pointer;
+}
+
+
+
+#danger_btn {
+    background-color: var(--danger_btn);
+    padding: .3rem;
+    border-radius: var(--border_radius);
+    -webkit-border-radius: var(--border_radius);
+    -moz-border-radius: var(--border_radius);
+    -ms-border-radius: var(--border_radius);
+    -o-border-radius: var(--border_radius);
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+    -moz-transition: var(--transition);
+    -ms-transition: var(--transition);
+    -o-transition: var(--transition);
+    font-weight: 500;
+}
+
+#danger_btn:hover {
+    background-color: var(--danger_variant_btn);
+    cursor: pointer;
+    font-weight: 900;
+}
+
+nav {
+    background-color: var(--deep_bg);
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem 10rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+
+
+body {
+  background-color: var(--default_bg);
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Footer */
+footer {
+    background: var(--deep_bg);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 0.3rem;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
