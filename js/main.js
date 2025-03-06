@@ -1,5 +1,5 @@
 // Title Bar Text Animation
-const defaultTitleText = "From Void To Signals ...";
+const defaultTitleText = "From Void To Signal ...";
 const animatedText = "Be Heard!";
 let isAnimating = true;
 

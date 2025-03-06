@@ -59,28 +59,29 @@ h5 {
 }
 
 h1 {
-  font-size: 3rem;
-}
-
-h2 {
-  font-size: 2.5rem;
-}
-
-h3 {
   font-size: 1.8rem;
 }
 
-h4 {
+h2 {
+  font-size: 1.6rem;
+}
+
+h3 {
   font-size: 1.3rem;
 }
 
+h4 {
+  font-size: 1rem;
+}
+
 p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 400;
     text-align: justify;
   }  
 
 
+/* Button Styles */
   #default_btn {
     background-color: var(--color_success);
     padding: .3rem;
@@ -104,8 +105,6 @@ p {
     cursor: pointer;
 }
 
-
-
 #danger_btn {
     background-color: var(--danger_btn);
     padding: .3rem;
@@ -128,11 +127,13 @@ p {
     font-weight: 900;
 }
 
+
+/* Nav Styles */
 nav {
     background-color: var(--deep_bg);
     display: flex;
     justify-content: space-between;
-    padding: 0.2rem 10rem;
+    padding: 0.2rem 25rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -142,19 +143,148 @@ nav {
     -webkit-backdrop-filter: blur(20px);
   }
 
-
-
-body {
-  background-color: var(--default_bg);
-  
+  .user_details a {
+    display: flex;
+    gap: .5rem;
 }
 
+  .user_details a:hover {
+    transform: translateX(.2rem);
+    -webkit-transform: translateX(.2rem);
+    -moz-transform: translateX(.2rem);
+    -ms-transform: translateX(.2rem);
+    -o-transform: translateX(.2rem);
+}
 
+  .user_profile_pic {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    overflow: hidden;
+    border: .09rem solid var(--danger_btn);
+  }
 
+  .user_profile_pic:hover {
+    border: .09rem solid var(--color_warning);
 
+  }
 
+  .user_profile_pic img {
+    width: 100%;
+    height: 100%;
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+    -moz-transition: var(--transition);
+    -ms-transition: var(--transition);
+    -o-transition: var(--transition);
+}
 
+.user_profile_pic img:hover {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  filter: saturate(0);
+  -webkit-filter: saturate(0);
+}
 
+.user_name {
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+
+.user_name:hover h4 {
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  color: var(--color_warning);
+}
+
+  .nav_logo a {
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+    -moz-transition: var(--transition);
+    -ms-transition: var(--transition);
+    -o-transition: var(--transition);
+}
+
+  .nav_logo a:hover {
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+}
+
+  .nav_logo a p {
+    font-size: .6rem;
+  }
+
+  .nav_items {
+    display: flex;
+    gap: .9rem;
+  }
+
+  .nav_items ul {
+    display: flex;
+    gap: .5rem;
+  }
+
+  #login {
+    display: none;
+  }
+
+  #logout {
+    background-color: var(--danger_btn);
+    padding: .1rem .1rem;
+    border-radius: .2rem;
+    -webkit-border-radius: .2rem;
+    -moz-border-radius: .2rem;
+    -ms-border-radius: .2rem;
+    -o-border-radius: .2rem;
+}
+
+.nav_items li:hover {
+  transform: translate(-.2rem);
+  -webkit-transform: translate(-.2rem);
+  -moz-transform: translate(-.2rem);
+  -ms-transform: translate(-.2rem);
+  -o-transform: translate(-.2rem);
+}
+
+.nav_items ul li a:hover {
+  color: var(--color_warning);
+}
+
+  span {
+    background-color: var(--danger_btn);
+    padding: .1rem .1rem;
+    border-radius: .2rem;
+    -webkit-border-radius: .2rem;
+    -moz-border-radius: .2rem;
+    -ms-border-radius: .2rem;
+    -o-border-radius: .2rem;
+}
+
+/* Body Styles */
+body {
+  background-color: var(--default_bg);
+  padding: 0.2rem 25rem;
+}
+
+/* Profile Section Styles */
 
 
 
@@ -166,7 +296,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    padding: 0.3rem;
+    padding: 0.5rem;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     transition: var(--transition);
