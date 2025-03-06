@@ -169,4 +169,32 @@ footer {
     padding: 0.3rem;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-  }
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+    -moz-transition: var(--transition);
+    -ms-transition: var(--transition);
+    -o-transition: var(--transition);
+}
+
+  footer:hover {
+    transform: translateX(.5rem);
+    -webkit-transform: translateX(.5rem);
+    -moz-transform: translateX(.5rem);
+    -ms-transform: translateX(.5rem);
+    -o-transform: translateX(.5rem);
+}
+
+  footer a {
+    font-size: .7rem;
+    transition: var(--transition);
+    -webkit-transition: var(--transition);
+    -moz-transition: var(--transition);
+    -ms-transition: var(--transition);
+    -o-transition: var(--transition);
+}
+
+  footer a:hover {
+    color: var(--color_warning);
+    filter: saturate(.7);
+    -webkit-filter: saturate(.7);
+}
