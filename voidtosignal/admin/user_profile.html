@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>From Void To Signal ...</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/styles.css" />
+
+    <script src="/js/main.js" defer></script>
+  </head>
+  
+  <body>
+    <nav>
+      <div class="user_details">
+        <a href="#">
+          <div class="user_profile_pic">
+            <img
+              src="/images/profile_pic.png"
+              alt="User's profile picture."
+            />
+          </div>
+
+          <div class="user_name">
+            <h4>Khadi Khole</h4>
+          </div>
+        </a>
+      </div>
+
+      <div class="nav_logo">
+        <a href="#"
+          ><p>From</p>
+          <h4>VoidTo<span>Signal</span></h4>
+          </a>
+      </div>
+
+      <div class="nav_items">
+        <ul>
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+
+          <li>
+            <a href="#">Contact Us</a>
+          </li>
+        </ul>
+
+        <div class="nav_access">
+          <ul>
+            <li id="login">
+              <a href="#">Login</a>
+            </li>
+
+            <li id="logout">
+              <a href="#">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <main>
+      <div class="user_section">
+        <div class="user_information">
+          <div class="user_picture">
+            <img src="/images/profile_pic.png" alt="My profile picture.">
+          </div>
+
+          <div class="user_info">
+            <div class="name">
+              <h3>Khadi Khole</h3> 
+
+              <div class="verified">
+                <div class="verified_icon">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="verified_desc">
+                  <p>Verified</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="email">
+              <a href="mailto:khadi@ole.com">khadi@khole.com</a>
+            </div>
+
+            <div class="about">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, harum provident dolor velit doloribus corrupti saepe exercitationem mollitia quae numquam architecto ipsam maiores voluptatibus voluptate facilis fuga laboriosam. Accusantium aperiam, sequi odio ut eius, eos eaque obcaecati natus qui dolorum facere nobis incidunt culpa, necessitatibus ea excepturi! Nemo a, omnis atque maiores at fuga sapiente dolorum, vero soluta, voluptate qui.</p>
+            </div>
+
+            <div class="user_action_buttons">
+              <div class="follow">
+                <a href="#" id="default_btn">Follow</a>
+                <a href="#" id="danger_btn" style="display: none;">Following</a>
+              </div>
+
+              <div class="post_reaction">
+                <div class="post_reaction_icon">
+                  <i class="fa-solid fa-pen" id="edit_icon"></i>
+                </div>
+                <div class="post_reaction_desc">
+                  <p>Edit</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <section class="dashboard">
+        <div class="my_dashboard">
+          <div class="my_dashboard_title">
+            <div class="dashboard_small_titles">
+              <div class="my_posts_links">
+                  <a href="#" id="my_posts" style="color: var(--color_warning);">My Posts</a>
+                  <a href="#">Following</a>
+                  <a href="#">Liked Posts</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="my_posts_contents">
+          <div class="search_box">
+            <center>
+              <input type="text" placeholder="Search" id="my_post_search_box">
+            </center>
+          </div>
+
+          <div class="my_posts">
+            <div class="post">
+              <div class="user_details">
+                <a href="#">
+                  <div class="user_profile_pic">
+                    <img
+                      src="/images/profile_pic.png"
+                      alt="User's profile picture."
+                    />
+                  </div>
+        
+                  <div class="user_name">
+                    <h4>Khadi Khole</h4>
+                  </div>
+
+                  <div class="verified">
+                    <div class="verified_icon">
+                      <i class="fa-solid fa-check"></i>
+                    </div>
+                    <div class="verified_desc">
+                      <p>Verified</p>
+                    </div>
+                  </div>
+                </a>
+
+                <div class="user_details_post_time">
+                  <div class="post_date">
+                    <p>Thurs 12th Dec, 2024</p> 
+                  </div>
+                  <div class="post_time">
+                  <p>01:32pm</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="post_text">
+               <a href="#">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic debitis doloribus maiores blanditiis beatae nesciunt inventore vero voluptatum harum molestias dicta mollitia eveniet aspernatur voluptatibus quia porro possimus optio aliquid ullam neque obcaecati, fugit ipsum quidem nisi. Repudiandae quos sit illum facilis nihil blanditiis illo mollitia dicta? Officiis, aliquam quod!...
+                </p>
+               </a>
+              </div>
+
+              <div class="post_reactions">
+                <div class="post_reaction">
+                  <div class="post_reaction_icon">
+                    <div class="like_icons">
+                      <div class="like_icon">
+                        <i class="fa-regular fa-heart"></i>
+                      </div>
+
+                      <div class="like_icon_is_clicked">
+                        <i class="fa-regular fa-heart" ></i>
+                      </div>
+                    </div>
+                 
+                    <p id="like_count">102</p>
+                  </div>
+
+                  <div class="post_reaction_desc">
+                    <p>Like</p>
+                  </div>
+                </div>
+
+                <div class="post_reaction">
+                  <div class="post_reaction_icon" id="comment_icon">
+                    <i class="fa-regular fa-comment"  id="comment_icon"></i>
+                    <p id="comment_count">21</p>
+                  </div>
+                  <div class="post_reaction_desc">
+                    <p>Comment</p>
+                  </div>
+                </div>
+
+                <div class="post_reaction">
+                  <div class="post_reaction_icon">
+                    <i class="fa-solid fa-retweet" id="repost_icon"></i>
+                    <p id="repost_count">98</p>
+                  </div>
+                  <div class="post_reaction_desc">
+                    <p>Repost</p>
+                  </div>
+                </div>
+
+                <div class="post_reaction">
+                  <div class="post_reaction_icon">
+                    <i class="fa-solid fa-share" id="share_icon"></i>
+                    <p id="share_count">12</p>
+                  </div>
+                  <div class="post_reaction_desc">
+                    <p>Share</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="post">
+              <div class="user_details">
+                <a href="#">
+                  <div class="user_profile_pic">
+                    <img
+                      src="/images/profile_pic.png"
+                      alt="User's profile picture."
+                    />
+                  </div>
+        
+                  <div class="user_name">
+                    <h4>Khadi Khole</h4>
+                  </div>
+                  
+                  <div class="verified">
+                    <div class="verified_icon">
+                      <i class="fa-solid fa-check"></i>
+                    </div>
+                    <div class="verified_desc">
+                      <p>Verified</p>
+                    </div>
+                  </div>
+                </a>
+
+                <div class="user_details_post_time">
+                  <div class="post_date">
+                    <p>Thurs 12th Dec, 2024</p> 
+                  </div>
+                  <div class="post_time">
+                  <p>01:32pm</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="post_text">
+               <a href="#">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic debitis doloribus maiores blanditiis beatae nesciunt inventore vero voluptatum harum molestias dicta mollitia eveniet aspernatur voluptatibus quia porro possimus optio aliquid ullam neque obcaecati, fugit ipsum quidem nisi. Repudiandae quos sit illum facilis nihil blanditiis illo mollitia dicta? Officiis, aliquam quod!...
+                </p>
+               </a>
+              </div>
+
+              <div class="post_images_container">
+                <div class="post_images">
+                  <img src="../../images/profile_pic.png" alt="Post's image.">
+                  <img src="../../images/profile_pic.png" alt="Post's image.">
+                  <img src="../../images/profile_pic.png" alt="Post's image.">
+                  <img src="../../images/profile_pic.png" alt="Post's image.">
+                  <img src="../../images/profile_pic.png" alt="Post's image.">
+                </div>
+              </div>
+
+              <div class="post_reactions">
+                <div class="post_reaction">
+                  <div class="post_reaction_icon">
+                    <div class="like_icons">
+                      <div class="like_icon">
+                        <i class="fa-regular fa-heart"></i>
+                      </div>
+
+                      <div class="like_icon_is_clicked">
+                        <i class="fa-regular fa-heart"></i>
+                      </div>
+                    </div>
+                 
+                    <p id="like_count">102</p>
+                  </div>
+
+                  <div class="post_reaction_desc">
+                    <p>Like</p>
+                  </div>
+                </div>
+                
+
+                <div class="post_reaction">
+                  <div class="post_reaction_icon" id="comment_icon">
+                    <i class="fa-regular fa-comment"  id="comment_icon"></i>
+                    <p id="comment_count">21</p>
+                  </div>
+                  <div class="post_reaction_desc">
+                    <p>Comment</p>
+                  </div>
+                </div>
+
+                <div class="post_reaction">
+                  <div class="post_reaction_icon">
+                    <i class="fa-solid fa-retweet" id="repost_icon"></i>
+                    <p id="repost_count">98</p>
+                  </div>
+                  <div class="post_reaction_desc">
+                    <p>Repost</p>
+                  </div>
+                </div>
+
+                <div class="post_reaction">
+                  <div class="post_reaction_icon">
+                    <i class="fa-solid fa-share" id="share_icon"></i>
+                    <p id="share_count">12</p>
+                  </div>
+                  <div class="post_reaction_desc">
+                    <p>Share</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </section>
+
+
+
+
+    </main>
+
+
+
+
+
+
+    <section class="footer">
+      <center>
+        <footer>
+          <a href="#">VoidToSignal&trade; v1.0 Copyright &copy2025</a>
+        </footer>
+      </center>
+    </section>
+
+    
+  </body>
+
+
+</html>
