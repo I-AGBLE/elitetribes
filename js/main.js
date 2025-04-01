@@ -47,7 +47,6 @@ like_containers.forEach(function(like_container) {
   // Get the like and unlike icons within the current like_container
   const likeIcon = like_container.querySelector('.like_icon');
   const unlikeIcon = like_container.querySelector('.like_icon_is_clicked');
-  const likeCount = like_container.closest('.post_reaction_icon').querySelector('.like_count'); // Find like_count in the same like_container
 
   // Handle the like icon click event
   likeIcon.addEventListener('click', function(event) {
@@ -67,6 +66,17 @@ like_containers.forEach(function(like_container) {
     likeIcon.style.display = 'inline-block';  // Show the like icon
   });
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 

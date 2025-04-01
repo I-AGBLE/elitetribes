@@ -29,6 +29,20 @@
   color: var(--text_color);
 }
 
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--danger_variant_btn);
+  border-radius: 50%;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+
 /* Variables */
 :root {
   /* Bg Colors */
@@ -488,8 +502,7 @@ main {
   align-items: center;
 }
 
-.my_posts a:hover {
-  }
+
 
 .search_box input {
   width: 25rem;
@@ -686,8 +699,110 @@ main {
 }
 
 
+.comment_field {
+  display: flex;
+  align-items: flex-end;
+  margin-left: 17%;
+  gap: 1rem;
+  margin-bottom: .5rem;
+}
+
+.comment_field textarea {
+  min-height: 5rem;
+  width: 70%;
+  resize: none;
+  color: var(--text_color);
+  background-color: var(--default_bg);
+  font-size: .9rem;
+  padding: .2rem;
+  border-radius: var(--border_radius);
+  -webkit-border-radius: var(--border_radius);
+  -moz-border-radius: var(--border_radius);
+  -ms-border-radius: var(--border_radius);
+  -o-border-radius: var(--border_radius);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
 
 
+
+
+input[type="submit"] {
+  background-color: var(--color_warning);
+  color: var(--deep_bg);
+  padding: .2rem;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--border_radius);
+  font-size: .9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  -webkit-border-radius: var(--border_radius);
+  -moz-border-radius: var(--border_radius);
+  -ms-border-radius: var(--border_radius);
+  -o-border-radius: var(--border_radius);
+}
+
+input[type="submit"]:hover {
+  background-color: var(--text_color);
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+}
+
+
+
+
+
+.comment_section {
+  display: grid;
+  gap: .2rem;
+  max-height: 30rem;
+  overflow-y: scroll;
+  border-radius: var(--border_radius);
+  -webkit-border-radius: var(--border_radius);
+  -moz-border-radius: var(--border_radius);
+  -ms-border-radius: var(--border_radius);
+  -o-border-radius: var(--border_radius);
+  margin-bottom: 1rem;
+}
+
+
+
+
+
+/* post review */
+.comment {
+  background-color: var(--default_bg);
+  width: 80%;
+  margin-left: 10%;
+  padding: .2rem;
+  border-radius: var(--border_radius);
+  -webkit-border-radius: var(--border_radius);
+  -moz-border-radius: var(--border_radius);
+  -ms-border-radius: var(--border_radius);
+  -o-border-radius: var(--border_radius);
+  opacity: .7;
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+
+.comment:hover {
+  opacity: 1;
+  transform: scale(1.04);
+  -webkit-transform: scale(1.04);
+  -moz-transform: scale(1.04);
+  -ms-transform: scale(1.04);
+  -o-transform: scale(1.04);
+}
 
 
 
