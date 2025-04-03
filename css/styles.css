@@ -34,7 +34,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--danger_variant_btn);
+  background: var(--color_success);
   border-radius: 50%;
 }
 
@@ -651,7 +651,9 @@ main {
 }
 
 
-
+.post_text {
+  margin-top: .5rem;
+}
 
 
 
@@ -733,8 +735,8 @@ main {
 input[type="submit"] {
   background-color: var(--color_warning);
   color: var(--deep_bg);
-  padding: .2rem;
-  font-weight: 500;
+  padding: .2rem 1rem;
+  font-weight: 800;
   border: none;
   border-radius: var(--border_radius);
   font-size: .9rem;
@@ -802,6 +804,74 @@ input[type="submit"]:hover {
   -moz-transform: scale(1.04);
   -ms-transform: scale(1.04);
   -o-transform: scale(1.04);
+}
+
+
+.comment_text {
+  margin-left: 3.5rem;
+}
+
+
+.post_input {
+  border-bottom: 1px solid var(--text_color);
+  margin-bottom: 2rem;
+}
+
+.post_field {
+  display: grid;
+  gap: .5rem;
+  margin: 1rem 0;
+}
+
+.post_field:hover {
+  transform: scale(1.04);
+  -webkit-transform: scale(1.04);
+  -moz-transform: scale(1.04);
+  -ms-transform: scale(1.04);
+  -o-transform: scale(1.04);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+
+.post_field textarea {
+  min-height: 8rem;
+  max-height: 15rem;
+  width: 100%;
+  resize: none; /* Disable manual resizing */
+  color: var(--text_color);
+  background-color: var(--light_bg);
+  font-size: .9rem;
+  padding: .2rem;
+  border-radius: var(--border_radius);
+  -webkit-border-radius: var(--border_radius);
+  -moz-border-radius: var(--border_radius);
+  -ms-border-radius: var(--border_radius);
+  -o-border-radius: var(--border_radius);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+  overflow-y: auto; /* Add scroll when content exceeds max-height */
+}
+
+.post_actions {
+  display: flex;
+  justify-content: flex-start;
+  justify-content: space-between;
+}
+
+.post_actions i {
+  font-size: 1.5rem;
+}
+
+
+
+.dashboard {
+  display: inline-block;
 }
 
 
