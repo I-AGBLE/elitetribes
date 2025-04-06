@@ -95,6 +95,11 @@ p {
   }  
 
 
+  textarea:focus {
+    border: 1px solid var(--text_color);
+  }
+
+
 /* Button Styles */
   #default_btn {
     background-color: var(--color_success);
@@ -289,12 +294,12 @@ nav {
 /* Body Styles */
 body {
   background-color: var(--default_bg);
-  padding: 0.2rem 20rem;
 }
 
 /* Main Section Styles */
 main {
-  margin: 3rem 0;
+  margin: 3rem 20rem;
+  padding: 0.2rem 0;
 }
 
 /* Profile Section Styles */
@@ -478,8 +483,11 @@ main {
 
 
 .dashboard {
-  padding-top: 1rem;
+  padding: 1rem 0 0 0; /* keeps the padding */
+  width: 100%; /* ensures the container takes up full width of the parent */
+  box-sizing: border-box; /* ensures padding is included in the width calculation */
 }
+
 
 
 .my_posts_links {
@@ -516,7 +524,7 @@ main {
   -moz-border-radius: .5rem;
   -ms-border-radius: .5rem;
   -o-border-radius: .5rem;
-  background-color: black;
+  background-color: var(--deep_bg);
   font-size: 1rem;
   transition: var(--transition);
   -webkit-transition: var(--transition);
@@ -533,6 +541,12 @@ main {
   -o-transform: scale(1.1);
 }
 
+.search_box input:focus {
+  border: 1px solid var(--text_color);
+}
+
+
+
 .post {
   display: grid;
   gap: .3rem;
@@ -542,6 +556,8 @@ main {
   -moz-border-radius: var(--border_radius);
   -ms-border-radius: var(--border_radius);
   -o-border-radius: var(--border_radius);
+
+
 }
 
 
@@ -759,8 +775,6 @@ input[type="submit"]:hover {
 
 
 
-
-
 .comment_section {
   display: grid;
   gap: .2rem;
@@ -777,12 +791,10 @@ input[type="submit"]:hover {
 
 
 
-
 /* post review */
 .comment {
   background-color: var(--default_bg);
-  width: 80%;
-  margin-left: 10%;
+  margin: .2rem;
   padding: .2rem;
   border-radius: var(--border_radius);
   -webkit-border-radius: var(--border_radius);
@@ -799,11 +811,7 @@ input[type="submit"]:hover {
 
 .comment:hover {
   opacity: 1;
-  transform: scale(1.04);
-  -webkit-transform: scale(1.04);
-  -moz-transform: scale(1.04);
-  -ms-transform: scale(1.04);
-  -o-transform: scale(1.04);
+
 }
 
 
@@ -815,6 +823,7 @@ input[type="submit"]:hover {
 .post_input {
   border-bottom: 1px solid var(--text_color);
   margin-bottom: 2rem;
+  margin-top: 1.5rem;
 }
 
 .post_field {
@@ -824,11 +833,11 @@ input[type="submit"]:hover {
 }
 
 .post_field:hover {
-  transform: scale(1.04);
-  -webkit-transform: scale(1.04);
-  -moz-transform: scale(1.04);
-  -ms-transform: scale(1.04);
-  -o-transform: scale(1.04);
+  transform: scale(1.01);
+  -webkit-transform: scale(1.01);
+  -moz-transform: scale(1.01);
+  -ms-transform: scale(1.01);
+  -o-transform: scale(1.01);
   transition: var(--transition);
   -webkit-transition: var(--transition);
   -moz-transition: var(--transition);
@@ -869,13 +878,22 @@ input[type="submit"]:hover {
 }
 
 
+.followings {
+  display: grid;
+  gap: .2rem;
+  max-height: 30rem;
+  overflow: scroll;
+  scroll-behavior: smooth;
+}
 
-.dashboard {
-  display: inline-block;
+.followings .user_details a {
+  gap: 1.5rem;
 }
 
 
-
+.followings .verified {
+  margin-left: -2rem;
+}
 
 
 /* Footer */
