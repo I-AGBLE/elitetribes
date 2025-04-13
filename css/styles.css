@@ -820,7 +820,7 @@ input[type="submit"]:hover {
 }
 
 
-.post_input {
+.post_input, floating_post_input {
   border-bottom: 1px solid var(--text_color);
   margin-bottom: 2rem;
   margin-top: 1.5rem;
@@ -894,6 +894,70 @@ input[type="submit"]:hover {
 .followings .verified {
   margin-left: -2rem;
 }
+
+
+
+
+.floating_input {
+  position: fixed;
+  bottom: 5rem; /* 2rem above the bottom of the viewport */
+  right: 20rem;
+  margin-bottom: 0; /* margin-bottom is unnecessary when using fixed positioning */
+  display: flex;
+  justify-content: flex-end;
+  z-index: 999; /* Ensure it's above other content */
+}
+
+
+.floating_input .post_field {
+  margin-bottom: -1rem;
+  width: 30rem;
+  margin-right: 2rem;
+}
+
+.floating_input .post_input {
+  border: none;
+}
+
+
+.floating_post_input textarea {
+  background-color: var(--deep_bg);
+}
+
+.floating_post_input textarea:hover {
+  box-shadow: var(--box_shadow);
+}
+
+
+.floating_icons {
+  position: absolute;
+  display: inline-block;
+  bottom: 0; /* Align to the bottom of the parent container */
+}
+
+.floating_icons:hover {
+  cursor: pointer;
+}
+
+
+.floating_icons i {
+  background-color: var(--danger_btn);
+  padding: .3rem .5rem .3rem .6rem;
+  border-top-left-radius: .5rem;
+  border-bottom-left-radius: .5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Footer */
