@@ -949,13 +949,109 @@ input[type="submit"]:hover {
 
 
 
+.main_log {
+  background-color: var(--deep_bg);
+  padding: 5rem;
+  border-radius: var(--border_radius);
+  -webkit-border-radius: var(--border_radius);
+  -moz-border-radius: var(--border_radius);
+  -ms-border-radius: var(--border_radius);
+  -o-border-radius: var(--border_radius);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+
+.main_log:hover {
+  box-shadow: var(--box_shadow);
+}
+
+.hero_section {
+  display: grid;
+  gap: .5rem;
+}
 
 
+.hero_title h1 {
+  font-size: 2.7rem;
+}
 
 
+.log_session {
+  margin: 2rem;
+}
 
 
+.log_container {
+  display: grid;
+  gap: .5rem;
+  margin: 4rem 0;
+}
 
+
+.log_container span {
+  background-color: transparent;
+  
+}
+
+
+.google,.apple {
+  background-color: var(--default_bg);
+  width: 15rem;
+  align-items: center;
+  padding: .5rem;
+  border-radius: var(--border_radius);
+  -webkit-border-radius: var(--border_radius);
+  -moz-border-radius: var(--border_radius);
+  -ms-border-radius: var(--border_radius);
+  -o-border-radius: var(--border_radius);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+
+.google:hover,.apple:hover {
+  transform: translateX(1rem);
+  -webkit-transform: translateX(1rem);
+  -moz-transform: translateX(1rem);
+  -ms-transform: translateX(1rem);
+  -o-transform: translateX(1rem);
+  background-color: var(--light_bg);
+}
+
+.loginorout {
+  display: flex;
+  gap: .5rem;
+}
+
+.loginorout p {
+  opacity: 0.5;
+}
+
+.loginorout a {
+  color: var(--color_warning);
+}
+
+
+.loginorout a:hover {
+  transform: translateX(.5rem);
+  -webkit-transform: translateX(.5rem);
+  -moz-transform: translateX(.5rem);
+  -ms-transform: translateX(.5rem);
+  -o-transform: translateX(.5rem);
+}
+
+.extras p {
+  font-size: .8rem;
+}
+
+.extras a {
+  color: var(--danger_btn);
+}
 
 
 
