@@ -34,7 +34,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color_success);
+  background: var(--danger_variant_btn);
   border-radius: 50%;
 }
 
@@ -820,7 +820,7 @@ input[type="submit"]:hover {
 }
 
 
-.post_input, floating_post_input {
+.post_input, .floating_post_input {
   border-bottom: 1px solid var(--text_color);
   margin-bottom: 2rem;
   margin-top: 1.5rem;
@@ -928,15 +928,30 @@ input[type="submit"]:hover {
   box-shadow: var(--box_shadow);
 }
 
-
+.floating_post_input {
+  border-bottom: none;
+}
 .floating_icons {
   position: absolute;
   display: inline-block;
-  bottom: 0; /* Align to the bottom of the parent container */
+  bottom: 0;
+  opacity: .5;
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
 }
 
 .floating_icons:hover {
   cursor: pointer;
+  box-shadow: var(--box_shadow);
+  opacity: 1;
+  transform: translateX(-.3rem);
+  -webkit-transform: translateX(-.3rem);
+  -moz-transform: translateX(-.3rem);
+  -ms-transform: translateX(-.3rem);
+  -o-transform: translateX(-.3rem);
 }
 
 
@@ -952,6 +967,7 @@ input[type="submit"]:hover {
 .main_log {
   background-color: var(--deep_bg);
   padding: 5rem;
+  margin-top: 3rem;
   border-radius: var(--border_radius);
   -webkit-border-radius: var(--border_radius);
   -moz-border-radius: var(--border_radius);
@@ -1053,6 +1069,26 @@ input[type="submit"]:hover {
   color: var(--danger_btn);
 }
 
+.post_field input {
+  background-color: var(--default_bg);
+  padding: .5rem;
+  border-radius: var(--border_radius);
+  -webkit-border-radius: var(--border_radius);
+  -moz-border-radius: var(--border_radius);
+  -ms-border-radius: var(--border_radius);
+  -o-border-radius: var(--border_radius);
+}
+
+.post_field input:focus {
+  border: 1px solid var(--text_color);
+}
+
+.editing_profile {
+  display: grid;
+  gap: .5rem;
+  margin-bottom: 3rem;
+}
+
 
 
 
@@ -1094,4 +1130,14 @@ footer {
     color: var(--color_warning);
     filter: saturate(.7);
     -webkit-filter: saturate(.7);
+}
+
+
+
+
+
+
+
+@media only screen and (min-width: 600px) and (max-width: 1024px) {
+  /* Styles for all tablets */
 }
