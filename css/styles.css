@@ -310,8 +310,7 @@ main {
 }
 
 .user_information {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   gap: 1rem;
   align-items: flex-start;
 
@@ -1138,6 +1137,305 @@ footer {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (min-width: 600px) and (max-width: 1024px) {
-  /* Styles for all tablets */
+ /* General Font Styles */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+h4 {
+  font-size: .9rem;
+}
+
+p {
+    font-size: .9rem;
+    font-weight: 400;
+    text-align: justify;
+  }  
+
+
+  textarea:focus {
+    border: .8px solid var(--text_color);
+  }
+
+
+/* Button Styles */
+  #default_btn {
+    font-weight: 800;
+}
+
+
+#danger_btn {
+    font-weight: 800;
+}
+
+
+
+/* Nav Styles */
+nav {
+    padding: 0.2rem .5rem;
+  }
+
+
+  .user_profile_pic {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: .06rem solid var(--danger_btn);
+  }
+
+
+
+/* Main Section Styles */
+main {
+  margin: 3rem .5rem;
+  padding: 0.2rem 0;
+}
+
+/* Profile Section Styles */
+.user_section {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: .08px solid var(--text_color);
+}
+
+
+.user_picture {
+  width: 15rem;
+  height: 15rem;
+}
+
+
+
+.my_posts_links {
+  gap: 1.5rem;
+}
+
+
+
+.search_box input {
+  width: 35rem;
+}
+
+.user_details_post_time p {
+  opacity: .7;
+}
+
+
+
+.post_images img {
+  max-height: 25rem;
+  max-width: 25rem;
+}
+
+
+.comment_input {
+  margin-bottom: 1rem;
+}
+
+.comment_field {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .5rem;
+  margin-bottom: .5rem;
+  margin: 0 .5rem;
+}
+
+.comment_field textarea {
+  width: 100%;
+}
+
+
+
+
+input[type="submit"] {
+  color: var(--deep_bg);
+  padding: .2rem .5rem;
+}
+
+
+
+
+.comment_section {
+  max-height: 50rem;
+}
+
+
+
+
+.comment_text {
+  margin-left: 3rem;
+}
+
+
+.post_input, .floating_post_input {
+  border-bottom: 1px solid var(--text_color);
+  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+}
+
+
+
+.post_field textarea {
+  min-height: 10rem;
+  max-height: 20rem;
+}
+
+
+
+.post_actions i {
+  font-size: 1.5rem;
+}
+
+
+.followings {
+  max-height: 50rem;
+}
+
+.followings .user_details a {
+  gap: 1rem;
+}
+
+
+.followings .verified {
+  margin-left: -1rem;
+}
+
+
+
+
+.floating_input {
+  position: fixed;
+  bottom: 3rem; /* 2rem above the bottom of the viewport */
+  right: 0rem;
+}
+
+
+.floating_input .post_field {
+  margin-bottom: -1rem;
+  width: 30rem;
+  margin-right: 2rem;
+}
+
+
+
+.floating_post_input textarea:hover {
+  box-shadow: var(--box_shadow);
+}
+
+.floating_post_input {
+  border-bottom: none;
+}
+
+
+
+.main_log {
+  padding: 3rem;
+  margin: 2rem .5rem;
+}
+
+
+
+
+.hero_title h1 {
+  font-size: 2.5rem;
+}
+
+
+.log_session {
+  margin: 1rem;
+}
+
+
+.log_container {
+  display: grid;
+  gap: .5rem;
+  margin: 3rem 0;
+}
+
+
+
+.editing_profile {
+  margin-bottom: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
