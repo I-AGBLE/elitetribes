@@ -28,7 +28,7 @@
   
 
       <div class="nav_logo">
-        <a href="index.html"
+        <a href="index.php"
           ><p>From</p>
           <h4>VoidTo<span>Signal</span></h4>
           </a>
@@ -37,7 +37,7 @@
       <div class="nav_items">
         <ul>
           <li>
-            <a href="contact.html">Contact Us</a>
+            <a href="contact.php">Contact Us</a>
           </li>
         </ul>
       </div>
@@ -72,7 +72,7 @@
         <div class="log_session">
             <div class="log_container">
               <div class="google">
-                <a href="admin/index.html">
+                <a href="admin/index.php">
                   <span><i class="fa-brands fa-google"></i></span>
                   Log in with Google
                 </a>
@@ -87,7 +87,7 @@
 
               <div class="loginorout">
                 <p>Don't have an account with us?</p>
-                <a href="signup.html">Sign Up Today!</a>
+                <a href="signup.php">Sign Up Today!</a>
               </div>
           </div>
 
@@ -98,7 +98,7 @@
   
         <div class="extras">
           <p>
-          Lorem ipsum dolor sit <a href="about.html">About Us</a> amet consectetur adipisicing elit. Esse deleniti provident eveniet! <a href="tnc.html">Terms And Conditions</a> Porro quasi omnis recusandae rem, unde ab ipsum.
+          Lorem ipsum dolor sit <a href="about.php">About Us</a> amet consectetur adipisicing elit. Esse deleniti provident eveniet! <a href="tnc.php">Terms And Conditions</a> Porro quasi omnis recusandae rem, unde ab ipsum.
           </p>
         </div>
       </div>

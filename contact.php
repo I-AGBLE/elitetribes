@@ -28,7 +28,7 @@
   
 
       <div class="nav_logo">
-        <a href="index.html"
+        <a href="index.php"
           ><p>From</p>
           <h4>VoidTo<span>Signal</span></h4>
           </a>
@@ -37,7 +37,7 @@
       <div class="nav_items">
         <ul>
           <li>
-            <a href="about.html">About Us</a>
+            <a href="about.php">About Us</a>
           </li>
         </ul>
 

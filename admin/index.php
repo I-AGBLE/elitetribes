@@ -26,7 +26,7 @@
   <body>
     <nav>
       <div class="user_details">
-        <a href="user_profile.html#my_posts">
+        <a href="user_profile.php#my_posts">
           <div class="user_profile_pic">
             <img
               src="../images/profile_pic.png"
@@ -41,7 +41,7 @@
       </div>
 
       <div class="nav_logo">
-        <a href="index.html#open_scrolls_contents"
+        <a href="index.php#open_scrolls_contents"
           ><p>From</p>
           <h4>VoidTo<span>Signal</span></h4>
           </a>
@@ -50,7 +50,7 @@
       <div class="nav_items">
         <ul>
           <li>
-            <a href="index.html">Home</a>
+            <a href="index.php">Home</a>
           </li>
 
           <li>
@@ -65,7 +65,7 @@
             </li>
 
             <li id="logout">
-              <a href="../index.html">Logout</a>
+              <a href="../index.php">Logout</a>
             </li>
           </ul>
         </div>
@@ -126,7 +126,7 @@
           <div class="my_posts">
             <div class="post">
               <div class="user_details">
-                <a href="user_profile.html">
+                <a href="user_profile.php">
                   <div class="user_profile_pic">
                     <img
                       src="../images/profile_pic.png"
@@ -159,7 +159,7 @@
               </div>
 
               <div class="post_text">
-               <a href="post_preview.html">
+               <a href="post_preview.php">
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic debitis doloribus maiores blanditiis beatae nesciunt inventore vero voluptatum harum molestias dicta mollitia eveniet aspernatur voluptatibus quia porro possimus optio aliquid ullam neque obcaecati, fugit ipsum quidem nisi. Repudiandae quos sit illum facilis nihil blanditiis illo mollitia dicta? Officiis, aliquam quod!...
                 </p>
@@ -188,7 +188,7 @@
                 </div>
 
                 <div class="post_reaction">
-                  <a href="post_preview.html">
+                  <a href="post_preview.php">
                     <div class="post_reaction_icon" id="comment_icon">
                       <i class="fa-regular fa-comment"  id="comment_icon"></i>
                       <p id="comment_count">21</p>
@@ -225,7 +225,7 @@
 
             <div class="post">
               <div class="user_details">
-                <a href="user_profile.html">
+                <a href="user_profile.php">
                   <div class="user_profile_pic">
                     <img
                       src="../images/profile_pic.png"
@@ -258,7 +258,7 @@
               </div>
 
               <div class="post_text">
-               <a href="post_preview.html">
+               <a href="post_preview.php">
                 <p>
                   Lorem ipsum dolor s!...
                 </p>
@@ -298,7 +298,7 @@
                 
 
                 <div class="post_reaction">
-                  <a href="post_preview.html">
+                  <a href="post_preview.php">
                     <div class="post_reaction_icon" id="comment_icon">
                       <i class="fa-regular fa-comment"  id="comment_icon"></i>
                       <p id="comment_count">21</p>
@@ -359,7 +359,7 @@
           <div class="my_posts">
             <div class="post">
               <div class="user_details">
-                <a href="user_profile.html">
+                <a href="user_profile.php">
                   <div class="user_profile_pic">
                     <img
                       src="../images/profile_pic.png"
@@ -392,7 +392,7 @@
               </div>
 
               <div class="post_text">
-               <a href="post_preview.html">
+               <a href="post_preview.php">
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic debitis doloribus maiores blanditiis beatae nesciunt inventore vero voluptatum harum molestias dicta mollitia eveniet aspernatur voluptatibus quia porro possimus optio aliquid ullam neque obcaecati, fugit ipsum quidem nisi. Repudiandae quos sit illum facilis nihil blanditiis illo mollitia dicta? Officiis, aliquam quod!...
                 </p>
@@ -421,7 +421,7 @@
                 </div>
 
                 <div class="post_reaction">
-                  <a href="post_preview.html">
+                  <a href="post_preview.php">
                     <div class="post_reaction_icon" id="comment_icon">
                       <i class="fa-regular fa-comment"  id="comment_icon"></i>
                       <p id="comment_count">21</p>
@@ -458,7 +458,7 @@
 
             <div class="post">
               <div class="user_details">
-                <a href="user_profile.html">
+                <a href="user_profile.php">
                   <div class="user_profile_pic">
                     <img
                       src="../images/profile_pic.png"
@@ -491,7 +491,7 @@
               </div>
 
               <div class="post_text">
-               <a href="post_preview.html">
+               <a href="post_preview.php">
                 <p>
                   Lorem ipsum dolor s!...
                 </p>
@@ -531,7 +531,7 @@
                 
 
                 <div class="post_reaction">
-                  <a href="post_preview.html">
+                  <a href="post_preview.php">
                     <div class="post_reaction_icon" id="comment_icon">
                       <i class="fa-regular fa-comment"  id="comment_icon"></i>
                       <p id="comment_count">21</p>

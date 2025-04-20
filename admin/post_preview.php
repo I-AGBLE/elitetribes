@@ -26,7 +26,7 @@
   <body>
     <nav>
       <div class="user_details">
-        <a href="user_profile.html#my_posts">
+        <a href="user_profile.php#my_posts">
           <div class="user_profile_pic">
             <img
               src="../images/profile_pic.png"
@@ -41,7 +41,7 @@
       </div>
 
       <div class="nav_logo">
-        <a href="index.html"
+        <a href="index.php"
           ><p>From</p>
           <h4>VoidTo<span>Signal</span></h4>
         </a>
@@ -50,7 +50,7 @@
       <div class="nav_items">
         <ul>
           <li>
-            <a href="index.html">Home</a>
+            <a href="index.php">Home</a>
           </li>
 
           <li>
@@ -65,7 +65,7 @@
             </li>
 
             <li id="logout">
-              <a href="../index.html">Logout</a>
+              <a href="../index.php">Logout</a>
             </li>
           </ul>
         </div>
@@ -80,7 +80,7 @@
           <div class="my_posts">
             <div class="post">
               <div class="user_details">
-                <a href="user_profile.html#my_posts">
+                <a href="user_profile.php#my_posts">
                   <div class="user_profile_pic">
                     <img
                       src="../images/profile_pic.png"
@@ -194,7 +194,7 @@
               <div class="comment_section">
                 <div class="comment">
                   <div class="user_details">
-                    <a href="user_profile.html#my_posts">
+                    <a href="user_profile.php#my_posts">
                       <div class="user_profile_pic">
                         <img
                           src="../images/profile_pic.png"
