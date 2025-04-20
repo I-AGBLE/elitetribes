@@ -155,10 +155,12 @@ nav {
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     width: 100%;
     z-index: 200;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(20px);
+    height: 4rem;
   }
 
   .user_details a {
@@ -748,7 +750,6 @@ main {
 
 
 input[type="submit"] {
-  background-color: var(--color_warning);
   color: var(--deep_bg);
   padding: .2rem 1rem;
   font-weight: 800;
@@ -761,6 +762,7 @@ input[type="submit"] {
   -moz-border-radius: var(--border_radius);
   -ms-border-radius: var(--border_radius);
   -o-border-radius: var(--border_radius);
+  
 }
 
 input[type="submit"]:hover {
@@ -995,14 +997,14 @@ input[type="submit"]:hover {
 
 
 .log_session {
-  margin: 2rem;
+  margin: 1rem;
 }
 
 
 .log_container {
   display: grid;
   gap: .5rem;
-  margin: 4rem 0;
+  margin: 2.5rem 0;
 }
 
 
@@ -1058,6 +1060,11 @@ input[type="submit"]:hover {
   -moz-transform: translateX(.5rem);
   -ms-transform: translateX(.5rem);
   -o-transform: translateX(.5rem);
+}
+
+
+.extras {
+  margin-top: 7rem;
 }
 
 .extras p {
@@ -1236,6 +1243,17 @@ p {
 /* Nav Styles */
 nav {
     padding: 0.2rem .5rem;
+    height: 3rem;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 200;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(20px);
+    height: 4rem;
   }
 
 
@@ -1249,7 +1267,7 @@ nav {
 
 /* Main Section Styles */
 main {
-  margin: 3rem .5rem;
+  margin: 4.5rem .5rem;
   padding: 0.2rem 0;
 }
 
@@ -1262,20 +1280,31 @@ main {
 
 
 .user_picture {
-  width: 15rem;
-  height: 15rem;
+  width: 20rem;
+  height: 20rem;
 }
 
 
 
 .my_posts_links {
   gap: 1.5rem;
+  margin: .5rem 0 0 0;
 }
 
 
 
 .search_box input {
   width: 35rem;
+  margin: 1.5rem 0;
+}
+
+
+.search_box input:hover {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
 }
 
 .user_details_post_time p {
@@ -1291,7 +1320,7 @@ main {
 
 
 .comment_input {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .comment_field {
@@ -1312,6 +1341,8 @@ main {
 input[type="submit"] {
   color: var(--deep_bg);
   padding: .2rem .5rem;
+  background-color: var(--color_warning);
+  
 }
 
 
@@ -1336,6 +1367,10 @@ input[type="submit"] {
 }
 
 
+.post_input {
+  margin-bottom: -.09rem;
+}
+
 
 .post_field textarea {
   min-height: 10rem;
@@ -1348,6 +1383,14 @@ input[type="submit"] {
   font-size: 1.5rem;
 }
 
+
+.post_field:hover {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+}
 
 .followings {
   max-height: 50rem;
@@ -1374,7 +1417,7 @@ input[type="submit"] {
 
 .floating_input .post_field {
   margin-bottom: -1rem;
-  width: 30rem;
+  width: 40rem;
   margin-right: 2rem;
 }
 
@@ -1382,6 +1425,7 @@ input[type="submit"] {
 
 .floating_post_input textarea:hover {
   box-shadow: var(--box_shadow);
+
 }
 
 .floating_post_input {
@@ -1421,6 +1465,14 @@ input[type="submit"] {
 
 
 
+.extras {
+  margin-top: 6rem;
+}
+
+
+.extras p  {
+  font-size: .7rem;
+}
 
 
 
@@ -1524,7 +1576,18 @@ p {
 
 /* Nav Styles */
 nav {
-    padding: 0.2rem .5rem;
+  padding: 0.2rem .5rem;
+  height: 3rem;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 200;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(20px);
+  height: 3rem;
   }
 
 
@@ -1542,13 +1605,13 @@ nav {
 
 /* Main Section Styles */
 main {
-  margin: 2rem .5rem;
+  margin: 3.5rem .5rem;
 }
 
 /* Profile Section Styles */
 .user_section {
-  padding-top: .5rem;
-  padding-bottom: .5rem;
+  padding: .5rem 0;
+  margin-bottom: .5rem;
 }
 
 
@@ -1561,21 +1624,33 @@ main {
 .user_picture {
   width: 15rem;
   height: 15rem;
-  margin: 0 3rem;
+  margin: 0 3.2rem;
 }
 
 
 
 .my_posts_links {
   gap: 1rem;
+  margin-bottom: .7rem;
 }
 
 
+
+.search_box {
+  margin-bottom: .5rem;
+}
 
 .search_box input {
   width: 100%;
 }
 
+.search_box input:hover {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+}
 
 
 .post_images img {
@@ -1682,7 +1757,7 @@ input[type="submit"] {
 
 .main_log {
   padding: .5rem;
-  margin: 5rem .1rem;
+  margin: 3rem .1rem;
 }
 
 
@@ -1707,6 +1782,14 @@ input[type="submit"] {
 
 .editing_profile {
   margin-bottom: 1rem;
+}
+
+.extras {
+  margin-top: 8rem;
+}
+
+.extras p  {
+  font-size: .7rem;
 }
 
 
