@@ -312,6 +312,7 @@ body {
 main {
   margin: 3rem 20rem;
   padding: 0.2rem 0;
+  padding-top: calc(4rem + env(safe-area-inset-top));
 }
 
 /* Profile Section Styles */
