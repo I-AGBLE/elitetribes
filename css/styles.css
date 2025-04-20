@@ -27,6 +27,9 @@
   font-weight: 400;
   font-style: normal;
   color: var(--text_color);
+
+  padding-top: env(safe-area-inset-top); /* Push content below the status bar */
+
 }
 
 ::-webkit-scrollbar {
@@ -165,6 +168,9 @@ nav {
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(20px);
     height: 4rem;
+
+    padding-top: env(safe-area-inset-top); /* This makes your nav account for the notch/status bar */
+  height: calc(4rem + env(safe-area-inset-top));
   }
 
   .user_details a {
