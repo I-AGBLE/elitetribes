@@ -1,3 +1,7 @@
+setTimeout(() => {
+  alert_message.remove();
+}, 10000);
+  
   document.addEventListener("DOMContentLoaded", function () {
     const openFloatingInputBtn = document.querySelector('.open_floating_input');
     const closeFloatingInputBtn = document.querySelector('.close_floating_input');
@@ -88,6 +92,8 @@ like_containers.forEach(function(like_container) {
     likeIcon.style.display = 'inline-block';  // Show the like icon
   });
 });
+
+
 
 
 
