@@ -319,6 +319,7 @@ main {
 .alert_message {
   margin-top: 1rem;
   z-index: 999;
+  opacity: .8;
   width: 20rem;
   padding: .2rem 1rem;
   display: flex;

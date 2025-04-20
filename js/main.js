@@ -2,7 +2,6 @@ setTimeout(() => {
   // Play sound
   const sound = new Audio('../sounds/notification.mp3'); // Use a short .mp3 or .wav
   sound.play();
-
   // Remove the alert
   alert_message.remove();
 }, 10000);
