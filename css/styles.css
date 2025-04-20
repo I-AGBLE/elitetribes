@@ -1080,6 +1080,60 @@ input[type="submit"]:hover {
 }
 
 
+
+.standard_login {
+  display: grid;
+  gap: .5rem;
+  margin: 1rem;
+}
+
+.standard_login input, select {
+  height: 2rem;
+  border-radius: var(--border_radius);
+  border: none;
+  background-color: var(--light_bg);
+  padding: .5rem;
+  width: 25rem;
+}
+
+
+.standard_login input:focus, select:focus {
+  border: 1px solid var(--text_color);
+  transform: translateX(.5rem);
+  -webkit-transform: translateX(.5rem);
+  -moz-transform: translateX(.5rem);
+  -ms-transform: translateX(.5rem);
+  -o-transform: translateX(.5rem);
+}
+
+.standard_login input:hover, select:hover {
+  background-color: var(--default_bg);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+
+
+input[type="submit"][value="Login"] {
+background-color: var(--color_warning);
+color: var(--deep_bg);
+cursor: pointer;
+transition: var(--transition);
+width: 3rem;
+margin-top: .5rem;
+font-weight: 700;
+}
+
+input[type="submit"][value="Login"]:hover {
+background-color: var(--text_color);
+}
+
+.confirm_human {
+display: none;
+}
+
 .log_session {
   margin: 1rem;
 }

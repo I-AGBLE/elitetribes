@@ -1,120 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<?php
+include 'partials/header.php';
+
+?>
 
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="theme-color" content="#111111"> <!-- Or your navbar color -->
-
-    <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 
-    <title>From Void To Signal ...</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
 
-    <link rel="stylesheet" href="css/styles.css" />
 
-    <script src="js/main.js" defer></script>
-  </head>
 
-  <body>
-    <nav>
-  
 
-      <div class="nav_logo">
-        <a href="index.php"
-          ><p>From</p>
-          <h4>VoidTo<span>Signal</span></h4>
-          </a>
+
+
+
+
+
+
+
+<main>
+
+  <div class="alert_message error" id="alert_message">
+    <p>
+      This is error!
+    </p>
+  </div>
+
+
+
+  <div class="main_log">
+    <div class="hero_section">
+      <div class="hero_title">
+        <h1>Let Us Hear From You!</h1>
       </div>
 
-      <div class="nav_items">
-        <ul>
-          <li>
-            <a href="contact.php">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-
-    <main>
-
-      <div class="alert_message error" id="alert_message">
+      <div class="hero_sub">
         <p>
-            This is error!
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste est exercitationem placeat accusantium dolore molestiae distinctio quod cum eaque vitae.
         </p>
+      </div>
+    </div>
+
+
+    <div class="standard_login">
+      <input type="tel" name="telephone" id="telephone" placeholder="Telephone" autofocus>
+      <input type="password" name="password" id="password" placeholder="Password">
+      <input type="text" name="confirm_human" id="confirm_human" placeholder="confirm_human" class="confirm_human">
+      <input type="submit" name="submit" value="Login">
     </div>
 
 
 
-      <div class="main_log">
-        <div class="hero_section">
-          <div class="hero_title">
-            <h1>Let Us Hear From You!</h1>
-          </div>
-  
-          <div class="hero_sub">
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste est exercitationem placeat accusantium dolore molestiae distinctio quod cum eaque vitae.
-            </p>
-          </div>
-        </div>
-  
-  
-  
-        <div class="log_session">
-            <div class="log_container">
-              <div class="google">
-                <a href="admin/index.php">
-                  <span><i class="fa-brands fa-google"></i></span>
-                  Log in with Google
-                </a>
-              </div>
-    
-              <div class="apple">
-                <a href="">
-                  <span><i class="fa-brands fa-apple"></i></span>
-                  Log in with Apple
-                </a>
-              </div>
 
-              <div class="loginorout">
-                <p>Don't have an account with us?</p>
-                <a href="signup.php">Sign Up Today!</a>
-              </div>
-          </div>
 
-     
+    <div class="log_session">
+      <div class="log_container">
+        <div class="google">
+          <a href="admin/index.php">
+            <span><i class="fa-brands fa-google"></i></span>
+            Log in with Google
+          </a>
         </div>
-  
-  
-  
-        <div class="extras">
-          <p>
-          Lorem ipsum dolor sit <a href="about.php">About Us</a> amet consectetur adipisicing elit. Esse deleniti provident eveniet! <a href="tnc.php">Terms And Conditions</a> Porro quasi omnis recusandae rem, unde ab ipsum.
-          </p>
+
+        <div class="apple">
+          <a href="">
+            <span><i class="fa-brands fa-apple"></i></span>
+            Log in with Apple
+          </a>
+        </div>
+
+        <div class="loginorout">
+          <p>Don't have an account with us?</p>
+          <a href="signup.php">Sign Up Today!</a>
         </div>
       </div>
-    </main>
+
+
+    </div>
+
+
+
+    <div class="extras">
+      <p>
+        Lorem ipsum dolor sit <a href="about.php">About Us</a> amet consectetur adipisicing elit. Esse deleniti provident eveniet! <a href="tnc.php">Terms And Conditions</a> Porro quasi omnis recusandae rem, unde ab ipsum.
+      </p>
+    </div>
+  </div>
+</main>
 
 
 
 
 
-
-    <section class="footer">
-      <center>
-        <footer>
-          <a href="#">VoidToSignal&trade; v1.0 Copyright &copy2025</a>
-        </footer>
-      </center>
-    </section>
-  </body>
-</html>
+<?php
+include 'partials/footer.php';
+?>

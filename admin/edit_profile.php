@@ -1,128 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<?php
+include 'partials/header.php';
+?>
 
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="theme-color" content="#111111"> <!-- Or your navbar color -->
-
-    <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 
-    <title>From Void To Signal ...</title>
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
-
-    <link rel="stylesheet" href="../css/styles.css" />
-
-    <script src="../js/main.js" defer></script>
-  </head>
-
-  <body>
-    <nav>
-        <div class="user_details">
-          <a href="user_profile.php#my_posts">
-            <div class="user_profile_pic">
-              <img
-                src="../images/profile_pic.png"
-                alt="User's profile picture."
-              />
-            </div>
-  
-            <div class="user_name">
-              <h4>Khadi Khole</h4>
-            </div>
-          </a>
-        </div>
-  
-        <div class="nav_logo">
-          <a href="index.php#open_scrolls_contents"
-            ><p>From</p>
-            <h4>VoidTo<span>Signal</span></h4>
-            </a>
-        </div>
-  
-        <div class="nav_items">
-          <ul>
-            <li>
-              <a href="index.php">Home</a>
-            </li>
-  
-            <li>
-              <a href="#">Contact Us</a>
-            </li>
-          </ul>
-  
-          <div class="nav_access">
-            <ul>
-              <li id="login">
-                <a href="#">Login</a>
-              </li>
-  
-              <li id="logout">
-                <a href="../index.php">Logout</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
 
 
-    <main>
 
 
-      <div class="alert_message error" id="alert_message">
-        <p>
-            Update Failed!
-        </p>
+
+
+
+<main>
+
+
+  <div class="alert_message error" id="alert_message">
+    <p>
+      Update Failed!
+    </p>
+  </div>
+
+
+
+  <div class="main_log">
+
+    <div class="editing_profile">
+      <div class="editing_title">
+        <h2>Editing Profile For Good.</h2>
+      </div>
+
+      <div class="editing_sub">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore magni consectetur tempora vel aspernatur illum!</p>
+      </div>
     </div>
 
 
+    <div class="post_field">
 
-      <div class="main_log">
+      <input type="text" name="" id="" placeholder="Username" autofocus>
 
-        <div class="editing_profile">
-            <div class="editing_title">
-                <h2>Editing Profile For Good.</h2>
-            </div>
+      <textarea name="" id="" placeholder="About me."></textarea>
 
-            <div class="editing_sub">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore magni consectetur tempora vel aspernatur illum!</p>
-            </div>
-        </div>
+      <input type="file" name="">
+    </div>
 
-        
-        <div class="post_field">
+    <input type="submit" name="Post" value="Update">
 
-            <input type="text" name="" id="" placeholder="Username" autofocus>
 
-            <textarea name="" id="" placeholder="About me."></textarea>
-
-            <input type="file" name="">
-        </div>
-
-        <input type="submit" name="Post" value="Update">
-
-    
-      </div>
-    </main>
+  </div>
+</main>
 
 
 
 
 
 
-    <section class="footer">
-      <center>
-        <footer>
-          <a href="#">VoidToSignal&trade; v1.0 Copyright &copy2025</a>
-        </footer>
-      </center>
-    </section>
-  </body>
-</html>
+
+
+
+<?php
+include '../partials/footer.php';
+?>
