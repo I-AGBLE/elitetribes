@@ -28,8 +28,7 @@
   font-style: normal;
   color: var(--text_color);
 
-  padding-top: env(safe-area-inset-top); /* Push content below the status bar */
-
+  
 }
 
 ::-webkit-scrollbar {
@@ -51,6 +50,7 @@
   /* Bg Colors */
   --default_bg: #171717;
   --deep_bg: #111111;
+  --nav_bg: #111111;
   --light_bg: #1e1d1d;
   --default_btn: #6c63ff;
   --danger_btn: #f75842;
@@ -59,7 +59,7 @@
   --color_warning: #f7c94b;
   --text_color: #f8fafc;
 
-  --deep_bg: rgba(0, 0, 0, 0.1); /* adds transparency so blur can show through */
+  --nav_bg: rgba(0, 0, 0, 0.2); /* adds transparency so blur can show through */
   
   
 
@@ -155,7 +155,7 @@ p {
 
 /* Nav Styles */
 nav {
-    background-color: var(--deep_bg);
+    background-color: var(--nav_bg);
     display: flex;
     justify-content: space-between;
     padding: 0.2rem 20rem;
@@ -168,9 +168,6 @@ nav {
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(20px);
     height: 4rem;
-
-    padding-top: env(safe-area-inset-top); /* This makes your nav account for the notch/status bar */
-  height: calc(4rem + env(safe-area-inset-top));
   }
 
   .user_details a {
@@ -312,7 +309,6 @@ body {
 main {
   margin: 3rem 20rem;
   padding: 0.2rem 0;
-  padding-top: calc(4rem + env(safe-area-inset-top));
 }
 
 /* Profile Section Styles */
@@ -1115,7 +1111,7 @@ input[type="submit"]:hover {
 
 /* Footer */
 footer {
-    background: var(--deep_bg);
+    background: var(--nav_bg);
     position: fixed;
     left: 0;
     bottom: 0;
