@@ -1,6 +1,15 @@
 <?php
 require 'config/database.php';
 
+
+header('Cache-Control: no-cache, no-store, must-revalidate'); // HTTP 1.1
+header('Pragma: no-cache'); // HTTP 1.0
+header('Expires: 0'); // Proxies
+
+if(!isset($_SESSION['user_id'])) {
+    header('location: ' . ROOT_URL);
+    die(); 
+}
 ?>
 
 
@@ -65,7 +74,7 @@ require 'config/database.php';
         
         <div class="nav_logo">
             <a href="<?= ROOT_URL ?>admin#open_scrolls_contents">
-                <h4>ellite<span>Tribes</span></h4>
+                <h4>elite<span>Tribes</span></h4>
             </a>
         </div>
 
@@ -87,7 +96,7 @@ require 'config/database.php';
             <div class="nav_access">
                 <ul>
                     <li id="logout">
-                        <a href="../index.php">Logout</a>
+                        <a href="../logout_logic.php">Logout</a>
                     </li>
                 </ul>
             </div>

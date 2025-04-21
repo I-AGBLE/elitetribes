@@ -9,11 +9,15 @@ include 'partials/header.php';
 <main>
 
 
-  <div class="alert_message success" id="alert_message">
-    <p>
-      Login Success.
-    </p>
-  </div>
+<?php if (isset($_SESSION['signin_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
+      <p>
+        <?= $_SESSION['signin_success'];
+        unset($_SESSION['signin_success']);
+        ?>
+      </p>
+    </div>
+  <?php endif ?>
 
 
   <div class="post_input">

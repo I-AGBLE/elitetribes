@@ -1,6 +1,13 @@
 <?php
 include 'partials/header.php';
 
+
+// get inputs from failed login
+$telephone_or_username = $_SESSION['signin_data']['telephone_or_username'] ?? null;
+$password = $_SESSION['signin_data']['password'] ?? null;;
+$confirm_human = $_SESSION['signin_data']['confirm_human'] ?? null;;
+
+
 ?>
 
 
@@ -20,11 +27,11 @@ include 'partials/header.php';
 
 <main>
 
-  <?php if (isset($_SESSION['signup'])) : ?>
+<?php if (isset($_SESSION['signin'])) : ?>
     <div class="alert_message error" id="alert_message">
       <p>
-        <?= $_SESSION['signup'];
-        unset($_SESSION['signup']);
+        <?= $_SESSION['signin'];
+        unset($_SESSION['signin']);
         ?>
       </p>
     </div>
@@ -51,9 +58,9 @@ include 'partials/header.php';
     <form action="<?= ROOT_URL ?>index_logic.php" method="POST" >
 
     <div class="standard_login">
-      <input type="text" name="telephone_or_username"  placeholder="Telephone or Username" autofocus>
-      <input type="password" name="password"  placeholder="Password">
-      <input type="text" name="confirm_human" placeholder="confirm_human" class="confirm_human">
+      <input type="text" name="telephone_or_username"  value="<?= $telephone_or_username ?>"   placeholder="Telephone or Username" autofocus>
+      <input type="password" name="password"  value="<?= $password ?>"   placeholder="Password">
+      <input type="text" name="confirm_human"  value="<?= $confirm_human ?>"  placeholder="confirm_human" class="confirm_human">
       <input type="submit" name="submit" value="Login">
     </div>
 

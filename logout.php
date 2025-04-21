@@ -25,31 +25,18 @@ $confirm_human = $_SESSION['signin_data']['confirm_human'] ?? null;;
 
 <main>
 
-<?php if (isset($_SESSION['signup_success'])) : ?>
     <div class="alert_message success" id="alert_message">
       <p>
-        <?= $_SESSION['signup_success'];
-        unset($_SESSION['signup_success']);
-        ?>
+        You're Logged Out Successfully.
       </p>
     </div>
-
-    <?php elseif (isset($_SESSION['signin'])) : ?>
-    <div class="alert_message error" id="alert_message">
-      <p>
-        <?= $_SESSION['signin'];
-        unset($_SESSION['signin']);
-        ?>
-      </p>
-    </div>
-  <?php endif ?>
 
 
 
   <div class="main_log">
     <div class="hero_section">
       <div class="hero_title">
-        <h1>You Are Welcome!</h1>
+        <h1>We hope to see you soon!</h1>
       </div>
 
       <div class="hero_sub">
