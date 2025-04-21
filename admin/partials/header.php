@@ -10,6 +10,16 @@ if(!isset($_SESSION['user_id'])) {
     header('location: ' . ROOT_URL);
     die(); 
 }
+
+
+// fetch user details 
+if (isset($_SESSION['user_id'])) {
+    $id = filter_var($_SESSION['user_id'], FILTER_SANITIZE_NUMBER_INT);
+    $query = "SELECT username, avatar FROM tribesmen WHERE id=$id";
+    $result = mysqli_query($connection, $query);
+    $user_detail = mysqli_fetch_assoc($result);
+}
+
 ?>
 
 
@@ -59,13 +69,12 @@ if(!isset($_SESSION['user_id'])) {
         <div class="user_details">
             <a href="user_profile.php#my_posts">
                 <div class="user_profile_pic">
-                    <img
-                        src="../images/profile_pic.png"
-                        alt="User's profile picture." />
+                <img src="../images/<?= htmlspecialchars($user_detail['avatar']) ?>" alt="User's profile picture" />
+
                 </div>
 
                 <div class="user_name">
-                    <h4>Khadi Khole</h4>
+                    <h4><?= $user_detail['username'] ?></h4>
                 </div>
             </a>
         </div>
