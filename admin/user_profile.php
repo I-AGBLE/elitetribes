@@ -1,5 +1,16 @@
 <?php
 include 'partials/header.php';
+
+
+
+// fetch user details 
+if (isset($_SESSION['user_id'])) {
+  $id = filter_var($_SESSION['user_id'], FILTER_SANITIZE_NUMBER_INT);
+  $query = "SELECT * FROM tribesmen WHERE id=$id";
+  $result = mysqli_query($connection, $query);
+  $user_detail = mysqli_fetch_assoc($result);
+}
+
 ?>
 
 
@@ -18,29 +29,32 @@ include 'partials/header.php';
   <div class="user_section">
     <div class="user_information">
       <div class="user_picture">
-        <img src="../images/profile_pic.png" alt="My profile picture.">
+        <img src="../images/<?= htmlspecialchars($user_detail['avatar']) ?>" alt="User's profile picture" />
       </div>
 
       <div class="user_info">
         <div class="name">
-          <h3>Khadi Khole</h3>
+          <h3><?= $user_detail['username'] ?></h3>
 
-          <div class="verified">
-            <div class="verified_icon">
-              <i class="fa-solid fa-check"></i>
+          
+          <?php if ($user_detail['followers'] > 20): ?>
+            <div class="verified">
+              <div class="verified_icon">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="verified_desc">
+                <p>Verified</p>
+              </div>
             </div>
-            <div class="verified_desc">
-              <p>Verified</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="email">
-          <a href="mailto:khadi@ole.com">khadi@khole.com</a>
+          <?php endif; ?>
         </div>
 
         <div class="about">
-          <p>Lorem ipsum dolor sit.</p>
+          <p><?= $user_detail['about'] ?></p>
+        </div>
+
+        <div class="followers_and_posts">
+          <p>Followers: <span> <?= $user_detail['followers'] ?></span></p>
         </div>
 
         <div class="user_action_buttons">

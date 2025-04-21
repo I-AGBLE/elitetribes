@@ -43,12 +43,12 @@ if (isset($_SESSION['user_id'])) {
 
     <!-- browser title -->
     <title>From Void To Signal ...</title>
+    
+    <!-- styles -->
+    <link rel="stylesheet" href="../css/styles.css" />
 
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-
-    <!-- styles -->
-    <link rel="stylesheet" href="../css/styles.css" />
 
     <!-- js -->
     <script src="../js/main.js" defer></script>
