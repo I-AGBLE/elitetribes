@@ -33,7 +33,6 @@ require 'config/database.php';
 
     <!-- js -->
     <script src="js/main.js" defer></script>
-
 </head>
 
 
@@ -46,36 +45,18 @@ require 'config/database.php';
 
 <body>
     <nav>
-        <div class="user_details">
-            <a href="user_profile.php#my_posts">
-                <div class="user_profile_pic">
-                    <img
-                        src="../images/profile_pic.png"
-                        alt="User's profile picture." />
-                </div>
-
-                <div class="user_name">
-                    <h4>Khadi Khole</h4>
-                </div>
-            </a>
-        </div>
-
-
-
         <div class="nav_logo">
-            <a href="index.php#open_scrolls_contents">
+            <a href="<?= ROOT_URL ?>">
                 <h4>ellite<span>Tribes</span></h4>
             </a>
         </div>
 
 
 
-
-
         <div class="nav_items">
             <ul>
                 <li>
-                    <a href="#">Contact Us</a>
+                    <a href="<?= ROOT_URL ?>contact.php">Contact Us</a>
                 </li>
             </ul>
         </div>

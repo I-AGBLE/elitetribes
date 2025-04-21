@@ -35,7 +35,6 @@ require 'config/database.php';
     <script src="../js/main.js" defer></script>
     <script src="../js/user_profile.js" defer></script>
     <script src="../js/index.js" defer></script>
-
 </head>
 
 
@@ -65,7 +64,7 @@ require 'config/database.php';
 
         
         <div class="nav_logo">
-            <a href="index.php#open_scrolls_contents">
+            <a href="<?= ROOT_URL ?>admin#open_scrolls_contents">
                 <h4>ellite<span>Tribes</span></h4>
             </a>
         </div>
@@ -77,20 +76,16 @@ require 'config/database.php';
         <div class="nav_items">
             <ul>
                 <li>
-                    <a href="index.php">Home</a>
+                    <a href="<?= ROOT_URL ?>admin">Home</a>
                 </li>
 
                 <li>
-                    <a href="#">Contact Us</a>
+                    <a href="<?= ROOT_URL ?>/contact.php">Contact Us</a>
                 </li>
             </ul>
 
             <div class="nav_access">
                 <ul>
-                    <li id="login">
-                        <a href="#">Login</a>
-                    </li>
-
                     <li id="logout">
                         <a href="../index.php">Logout</a>
                     </li>

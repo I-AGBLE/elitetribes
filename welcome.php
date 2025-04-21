@@ -20,11 +20,11 @@ include 'partials/header.php';
 
 <main>
 
-  <?php if (isset($_SESSION['signup'])) : ?>
-    <div class="alert_message error" id="alert_message">
+<?php if (isset($_SESSION['signup_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
       <p>
-        <?= $_SESSION['signup'];
-        unset($_SESSION['signup']);
+        <?= $_SESSION['signup_success'];
+        unset($_SESSION['signup_success']);
         ?>
       </p>
     </div>
@@ -33,7 +33,7 @@ include 'partials/header.php';
   <div class="main_log">
     <div class="hero_section">
       <div class="hero_title">
-        <h1>Let Us Hear From You!</h1>
+        <h1>You Are Welcome!</h1>
       </div>
 
       <div class="hero_sub">
@@ -44,21 +44,12 @@ include 'partials/header.php';
     </div>
 
 
-
-
-
-
-    <form action="<?= ROOT_URL ?>index_logic.php" method="POST" >
-
     <div class="standard_login">
-      <input type="text" name="telephone_or_username"  placeholder="Telephone or Username" autofocus>
-      <input type="password" name="password"  placeholder="Password">
-      <input type="text" name="confirm_human" placeholder="confirm_human" class="confirm_human">
+      <input type="tel" name="telephone" id="telephone" placeholder="Telephone" autofocus>
+      <input type="password" name="password" id="password" placeholder="Password">
+      <input type="text" name="confirm_human" id="confirm_human" placeholder="confirm_human" class="confirm_human">
       <input type="submit" name="submit" value="Login">
     </div>
-
-    </form>
-
 
 
 
@@ -78,11 +69,6 @@ include 'partials/header.php';
             <span><i class="fa-brands fa-apple"></i></span>
             Log in with Apple
           </a>
-        </div>
-
-        <div class="loginorout">
-          <p>Don't have an account with us?</p>
-          <a href="signup.php">Sign Up Today!</a>
         </div>
       </div>
 

@@ -264,9 +264,6 @@ nav {
     gap: .5rem;
   }
 
-  #login {
-    display: none;
-  }
 
   #logout {
     background-color: var(--danger_btn);
@@ -310,7 +307,6 @@ main {
   margin: 3rem 20rem;
   padding: 0.2rem 0;
 }
-
 
 
 
@@ -1081,7 +1077,7 @@ input[type="submit"]:hover {
 
 
 
-.standard_login {
+.standard_login  {
   display: grid;
   gap: .5rem;
   margin: 1rem;
@@ -1126,13 +1122,32 @@ margin-top: .5rem;
 font-weight: 700;
 }
 
+
 input[type="submit"][value="Login"]:hover {
 background-color: var(--text_color);
 }
 
+input[type="submit"][value="Register"] {
+  background-color: var(--color_warning);
+  color: var(--deep_bg);
+  cursor: pointer;
+  transition: var(--transition);
+  width: 4rem;
+  margin-top: .5rem;
+  font-weight: 700;
+  }
+
+  input[type="submit"][value="Register"]:hover {
+    background-color: var(--text_color);
+    }
+
+
+/*
 .confirm_human {
 display: none;
 }
+
+*/
 
 .log_session {
   margin: 1rem;

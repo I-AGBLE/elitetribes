@@ -22,9 +22,19 @@ include 'partials/header.php';
 
       <div class="post_actions">
 
-        <label for="image-upload" style="cursor: pointer;">
+        <label for="image-upload">
           <i class="fa-solid fa-image"></i> </label>
         <input type="file" id="image-upload" name="images[]" accept="image/*" multiple style="display: none;" />
+        <style>
+        label i {
+          font-size: 1.5rem;
+          cursor: pointer;
+        }
+        label i:hover {
+          color: var(--color_warning);
+        }
+      </style>
+
 
         <input type="submit" name="Post" value="Post">
       </div>
