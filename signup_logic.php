@@ -2,7 +2,7 @@
 require 'config/database.php';
 
 
-// if submit button 
+// if submit button is clicked
 if (isset($_POST['submit'])) {
     //sanitize user input 
     $username = filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS);

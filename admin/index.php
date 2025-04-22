@@ -1,5 +1,17 @@
 <?php
 include 'partials/header.php';
+
+
+// get input from failed post 
+$user_post = $_SESSION['add_post_data']['user_post'] ?? null;
+$confirm_human = $_SESSION['add_post_data']['confirm_human'] ?? null;;
+
+
+// if all is fine
+unset($_SESSION['add_post_data']);
+
+
+
 ?>
 
 
@@ -7,9 +19,7 @@ include 'partials/header.php';
 
 
 <main>
-
-
-<?php if (isset($_SESSION['signin_success'])) : ?>
+  <?php if (isset($_SESSION['signin_success'])) : ?>
     <div class="alert_message success" id="alert_message">
       <p>
         <?= $_SESSION['signin_success'];
@@ -17,33 +27,51 @@ include 'partials/header.php';
         ?>
       </p>
     </div>
+
+  <?php elseif (isset($_SESSION['add_post'])) : ?>
+    <div class="alert_message error" id="alert_message">
+      <p>
+        <?= $_SESSION['add_post'];
+        unset($_SESSION['add_post']);
+        ?>
+      </p>
+    </div>
   <?php endif ?>
 
 
-  <div class="post_input">
-    <div class="post_field">
-      <textarea name="user_post" placeholder="Share your thoughts here!"></textarea>
-
-      <div class="post_actions">
-
-        <label for="image-upload">
-          <i class="fa-solid fa-image"></i> </label>
-        <input type="file" id="image-upload" name="images[]" accept="image/*" multiple style="display: none;" />
-        <style>
-        label i {
-          font-size: 1.5rem;
-          cursor: pointer;
-        }
-        label i:hover {
-          color: var(--color_warning);
-        }
-      </style>
 
 
-        <input type="submit" name="Post" value="Post">
+
+  <form action="<?= ROOT_URL ?>admin/add_post_logic.php" enctype="multipart/form-data" method="POST">
+    <div class="post_input">
+      <div class="post_field">
+        <textarea name="user_post" placeholder="Share your thoughts here!"><?= htmlspecialchars($user_post) ?></textarea>
+
+        <div class="post_actions">
+
+          <label for="image-upload">
+            <i class="fa-solid fa-image"></i> </label>
+          <input type="file" id="image-upload" name="images[]" accept="image/*" multiple style="display: none;" />
+
+          <input type="text" name="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human">
+
+          <input type="submit" name="submit" value="Post">
+
+          <style>
+            label i {
+              font-size: 1.5rem;
+              cursor: pointer;
+            }
+
+            label i:hover {
+              color: var(--color_warning);
+            }
+          </style>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
+
 
 
 

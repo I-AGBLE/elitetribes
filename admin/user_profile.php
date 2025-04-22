@@ -19,11 +19,15 @@ if (isset($_SESSION['user_id'])) {
 
 <main>
 
-  <div class="alert_message success" id="alert_message">
-    <p>
-      Update Successful.
-    </p>
-  </div>
+<?php if (isset($_SESSION['add_post_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
+      <p>
+        <?= $_SESSION['add_post_success'];
+        unset($_SESSION['add_post_success']);
+        ?>
+      </p>
+    </div>
+  <?php endif ?>
 
 
   <div class="user_section">
