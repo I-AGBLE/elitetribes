@@ -86,8 +86,8 @@ if (isset($_POST['submit'])) {
     } else {
         // insert data into db
         $insert_tribesmen_query = "INSERT INTO tribesmen (username, telephone,
-        gender, email, password, confirm_human, avatar, is_admin)
-        VALUES('$username', '$telephone', '$gender', '$email', '$hashed_password', '$confirm_human', 
+        gender, email, password,  avatar, is_admin)
+        VALUES('$username', '$telephone', '$gender', '$email', '$hashed_password', 
         '$avatar_name', 0)";
 
         $insert_tribesmen_result = mysqli_query($connection, $insert_tribesmen_query);

@@ -65,17 +65,19 @@
                         </a>
                     </div>
 
-                    <div class="post_images_container">
-                        <div class="post_images">
-                            <?php
-                            $images = explode(',', $scroll['images']); // Split comma-separated string into an array
-                            foreach ($images as $image) :
-                            ?>
-                                <img src="../images/<?= trim($image) ?>" alt="Post's image.">
-                            <?php endforeach; ?>
-
+                    <?php
+                    $images = array_filter(array_map('trim', explode(',', $scroll['images']))); // Remove empty/whitespace-only values
+                    if (!empty($images)) :
+                    ?>
+                        <div class="post_images_container">
+                            <div class="post_images">
+                                <?php foreach ($images as $image) : ?>
+                                    <img src="../images/<?= htmlspecialchars($image) ?>" alt="Post's image.">
+                                <?php endforeach; ?>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
+
 
                     <div class="post_reactions">
                         <div class="post_reaction">

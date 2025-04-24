@@ -92,6 +92,12 @@ if (isset($_POST['submit'])) {
             }
         }
     }
+
+
+    if (isset($_SESSION ["add_post"])) {
+        header("location: " . ROOT_URL . "admin/");
+        die();
+    }
 } else {
     header('location: ' . ROOT_URL . 'admin/');
 }
