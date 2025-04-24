@@ -4,6 +4,7 @@ require 'config/database.php';
 
 // if submit button is clicked
 if (isset($_POST['submit'])) {
+
     //sanitize user input 
     $username = filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS);
     $telephone = filter_var($_POST['telephone'], FILTER_SANITIZE_SPECIAL_CHARS);
@@ -26,7 +27,7 @@ if (isset($_POST['submit'])) {
     } else if (strlen($password) < 4 || strlen($confirm_password) < 4) {
         $_SESSION['signup'] = 'Password Should Be More Than 4 Characters!';
     } elseif (!empty($confirm_human)) {
-        $_SESSION['signup'] = 'Somethings Are Made For Humans Only!';
+        $_SESSION['signup'] = 'Somethings Are For Humans Only!';
     } else if (!$avatar['name']) {
         $_SESSION['signup'] = 'Select Profile Picture!';
     } else {
