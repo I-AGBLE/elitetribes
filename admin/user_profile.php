@@ -73,7 +73,7 @@ $scrolls = mysqli_query($connection, $query);
 
           <div class="post_reaction">
             <div class="post_reaction_icon">
-              <a href="edit_profile.php">
+              <a href="<?= ROOT_URL ?>admin/edit_profile.php?id=<?= $user_detail['id']?> ">
                 <i class="fa-solid fa-pen" id="edit_icon"></i>
               </a>
             </div>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // get input from failed post 
 $user_post = $_SESSION['add_post_data']['user_post'] ?? null;
@@ -18,14 +18,14 @@ unset($_SESSION['add_post_data']);
 
 
 
-<div class="floating_input">
-      <div class="floating_post_input" style="display: none;">
-        <div class="post_field">
+  <div class="floating_input">
+    <div class="floating_post_input" style="display: none;">
+      <div class="post_field">
         <textarea name="user_post" placeholder="Share your thoughts here!"><?= htmlspecialchars($user_post) ?></textarea>
-          
-            <div class="post_actions">
-           
-            <label for="image-upload">
+
+        <div class="post_actions">
+
+          <label for="image-upload">
             <i class="fa-solid fa-image"></i> </label>
           <input type="file" id="image-upload" name="images[]" accept="image/*" multiple style="display: none;" />
 
@@ -35,7 +35,7 @@ unset($_SESSION['add_post_data']);
 
 
 
-              <style>
+          <style>
             label i {
               font-size: 1.5rem;
               cursor: pointer;
@@ -46,21 +46,21 @@ unset($_SESSION['add_post_data']);
             }
           </style>
 
-            </div>
-        </div>
-      </div>
-      </form>
-
-
-      <div class="floating_icons">
-        <div class="open_floating_input">
-          <i class="fa-solid fa-plus"></i>
-        </div>
-
-        <div class="close_floating_input" style="display: none;">
-          <div class="close">
-            <i class="fa-solid fa-minus"></i>
-          </div>
         </div>
       </div>
     </div>
+</form>
+
+
+<div class="floating_icons">
+  <div class="open_floating_input">
+    <i class="fa-solid fa-plus"></i>
+  </div>
+
+  <div class="close_floating_input" style="display: none;">
+    <div class="close">
+      <i class="fa-solid fa-minus"></i>
+    </div>
+  </div>
+</div>
+</div>

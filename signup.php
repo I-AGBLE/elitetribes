@@ -6,6 +6,7 @@ include 'partials/header.php';
 $username = $_SESSION['signup_data']['username'] ?? null;
 $telephone = $_SESSION['signup_data']['telephone'] ?? null;;
 $gender = $_SESSION['signup_data']['gender'] ?? null;;
+$about = $_SESSION['signup_data']['about'] ?? null;;
 $email = $_SESSION['signup_data']['email'] ?? null;;
 $password = $_SESSION['signup_data']['password'] ?? null;;
 $confirm_password = $_SESSION['signup_data']['confirm_password'] ?? null;;
@@ -21,7 +22,7 @@ unset($_SESSION['signup_data']);
 
 
 
- 
+
 
 
 
@@ -33,7 +34,7 @@ unset($_SESSION['signup_data']);
 
 <main>
 
-<?php if (isset($_SESSION['signup'])) : ?>
+  <?php if (isset($_SESSION['signup'])) : ?>
     <div class="alert_message error" id="alert_message">
       <p>
         <?= $_SESSION['signup'];
@@ -60,45 +61,47 @@ unset($_SESSION['signup_data']);
 
 
 
-<form action="<?= ROOT_URL ?>signup_logic.php" enctype="multipart/form-data" method="POST">
-<div class="standard_login">
-    
-    <input type="text" name="username" value="<?= $username ?>"  placeholder="Username" autofocus>
-    <input type="tel" name="telephone" value="<?= $telephone ?>"   placeholder="Telephone">
+    <form action="<?= ROOT_URL ?>signup_logic.php" enctype="multipart/form-data" method="POST">
+      <div class="standard_login">
 
-    <select name="gender">
-  <option value="" disabled <?= $gender == '' ? 'selected' : '' ?>>Gender</option>
-  <option value="male" <?= $gender == 'male' ? 'selected' : '' ?>>Male</option>
-  <option value="female" <?= $gender == 'female' ? 'selected' : '' ?>>Female</option>
-  <option value="non-binary" <?= $gender == 'non-binary' ? 'selected' : '' ?>>Non-binary</option>
-  <option value="prefer-not-to-say" <?= $gender == 'prefer-not-to-say' ? 'selected' : '' ?>>Prefer not to say</option>
-</select>
+        <input type="text" name="username" value="<?= $username ?>" placeholder="Username" autofocus>
+        <input type="tel" name="telephone" value="<?= $telephone ?>" placeholder="Telephone">
 
+        <select name="gender">
+          <option value="" disabled <?= $gender == '' ? 'selected' : '' ?>>Gender</option>
+          <option value="Male" <?= $gender == 'Male' ? 'selected' : '' ?>>Male</option>
+          <option value="Female" <?= $gender == 'Female' ? 'selected' : '' ?>>Female</option>
+          <option value="Non-binary" <?= $gender == 'Non-binary' ? 'selected' : '' ?>>Non-binary</option>
+          <option value="Prefer not to say" <?= $gender == 'Prefer not to say' ? 'selected' : '' ?>>Prefer not to say</option>
+        </select>
 
-    <input type="email" name="email" value="<?= $email ?>"  placeholder="Email">
-    <input type="password" name="password" value="<?= $password ?>"   placeholder="Password">
-    <input type="password" name="confirm_password" value="<?= $confirm_password ?>"  placeholder="Confirm Password">
+        <textarea name="about" placeholder="Tell us about yourself."><?= htmlspecialchars($about) ?></textarea>
 
-    <label for="avatar">
+        <input type="email" name="email" value="<?= $email ?>" placeholder="Email">
+        <input type="password" name="password" value="<?= $password ?>" placeholder="Password">
+        <input type="password" name="confirm_password" value="<?= $confirm_password ?>" placeholder="Confirm Password">
+
+        <label for="avatar">
           <i class="fa-solid fa-image"></i> </label>
         <input type="file" id="avatar" name="avatar" accept="image/*" multiple style="display: none;" />
-        
-    <style>
-      label i {
-        font-size: 1.5rem;
-        cursor: pointer;
-      }
 
-      label i:hover {
-        color: var(--color_warning);
-      }
-    </style>
+        <style>
+          label i {
+            font-size: 1.5rem;
+            cursor: pointer;
+          }
 
-    <input type="text" name="confirm_human" value="<?= $confirm_human ?>"  placeholder="confirm_human" >
-    <input type="submit" name="submit" value="Register">
-  </div>
-</form>
- 
+          label i:hover {
+            color: var(--color_warning);
+          }
+        </style>
+
+        <input type="text" name="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human">
+       
+        <input type="submit" name="submit" value="Register">
+      </div>
+    </form>
+
 
 
 
