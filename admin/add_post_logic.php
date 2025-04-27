@@ -100,4 +100,5 @@ if (isset($_POST['submit'])) {
     }
 } else {
     header('location: ' . ROOT_URL . 'admin/');
+    die();
 }

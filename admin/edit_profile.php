@@ -14,11 +14,16 @@ if (isset($_GET['id'])) {
 
   $about = $tribesmen['about'];
   $gender = $tribesmen['gender'];
+  $confirm_human = $tribesmen['confirm_human'];
+
 
 } else {
   header("location: . 'admin/' ");
   die();
 }
+
+
+
 
 ?>
 
@@ -35,11 +40,15 @@ if (isset($_GET['id'])) {
 <main>
 
 
-  <div class="alert_message error" id="alert_message">
-    <p>
-      Update Failed!
-    </p>
-  </div>
+<?php if (isset($_SESSION['edit_profile'])) : ?>
+    <div class="alert_message error" id="alert_message">
+      <p>
+        <?= $_SESSION['edit_profile'];
+        unset($_SESSION['edit_profile']);
+        ?>
+      </p>
+    </div>
+  <?php endif ?>
 
 
 
@@ -63,6 +72,9 @@ if (isset($_GET['id'])) {
     <form action="<?= ROOT_URL?>admin/edit_profile_logic.php" enctype="multipart/form-data" method="post">
       <div class="post_field">
 
+      <input type="hidden" name="id" value="<?= $tribesmen['id'] ?>">
+      <input type="hidden" name="previous_avatar" value="<?= $tribesmen['avatar'] ?>">
+
         <input type="text" name="username" value="<?= $tribesmen['username'] ?>" placeholder="Username" autofocus>
 
         <input type="tel" name="telephone" value="<?= $tribesmen['telephone'] ?>" placeholder="Telephone">
@@ -75,11 +87,16 @@ if (isset($_GET['id'])) {
           <option value="Prefer not to say" <?= $gender == 'Prefer not to say' ? 'selected' : '' ?>>Prefer not to say</option>
         </select>
 
+        <input type="email" name="email"  value="<?= $tribesmen['email'] ?>" placeholder="Email">
+
+
         <textarea name="about" placeholder="About me."><?= htmlspecialchars($about) ?></textarea>
         
         <label for="avatar">
           <i class="fa-solid fa-image"></i> </label>
-        <input type="file" id="avatar" name="avatar" accept="image/*" multiple style="display: none;" />
+        <input type="file" id="avatar" name="avatar" multiple style="display: none;" />
+
+        <input type="text" name="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human">
 
       </div>
 

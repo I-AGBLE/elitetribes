@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['signup'] = 'Select Gender!';
     } else if (!$about) {
         $_SESSION['signup'] = 'Tell Us About Yourself!';
-    }  else if (!$email) {
+    } else if (!$email) {
         $_SESSION['signup'] = 'Enter Valid Email!';
     } else if (strlen($password) < 4 || strlen($confirm_password) < 4) {
         $_SESSION['signup'] = 'Password Should Be More Than 4 Characters!';
