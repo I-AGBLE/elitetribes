@@ -36,7 +36,7 @@
                         $tribesmen = mysqli_fetch_assoc($tribesmen_result);
                         ?>
 
-                        <a href="user_profile.php#my_posts">
+                        <a href="user_profile.php?id=<?= $tribesmen['id'] ?>">
                             <div class="user_profile_pic">
                                 <img
                                     src="../images/<?= htmlspecialchars($tribesmen['avatar']) ?>"
@@ -78,7 +78,7 @@
                     </div>
 
                     <div class="post_text">
-                        <a href="post_preview.php">
+                        <a href="post_preview.php?id=<?= $scroll['id']?>">
                             <p>
                                 <?= $scroll['user_post'] ?>
                             </p>
@@ -150,6 +150,15 @@
                             </div>
                             <div class="post_reaction_desc">
                                 <p>Share</p>
+                            </div>
+                        </div>
+
+                        <div class="post_reaction">
+                            <div class="post_reaction_icon">
+                            <i class="fa-solid fa-trash" id="delete_icon"></i>
+                            </div>
+                            <div class="post_reaction_desc">
+                                <p>Delete</p>
                             </div>
                         </div>
                     </div>

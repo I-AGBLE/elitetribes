@@ -1,5 +1,31 @@
 <?php
 include 'partials/header.php';
+
+
+// fetch scroll if id is inclusive in link
+if (isset($_GET['id'])) {
+
+  // sanitize id
+  $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+
+  // fetch scroll
+  $query = "SELECT * FROM scrolls WHERE id=$id";
+  $result = mysqli_query($connection, $query);
+  $scroll =  mysqli_fetch_assoc($result);
+} else {
+  header('location: ' . ROOT_URL . 'admin/');
+  die();
+}
+
+
+
+// fetch user details 
+$tribesmen_id = $scroll['created_by'];
+$tribesmen_query = "SELECT * FROM tribesmen WHERE id=$tribesmen_id";
+$tribesmen_result = mysqli_query($connection, $tribesmen_query);
+$tribesmen = mysqli_fetch_assoc($tribesmen_result);
+
+
 ?>
 
 
@@ -8,56 +34,74 @@ include 'partials/header.php';
 
 
 <main>
+
+
+
   <section class="dashboard">
     <div class="my_posts_contents">
       <div class="my_posts">
         <div class="post">
           <div class="user_details">
-            <a href="user_profile.php#my_posts">
+            <a href="profiles.php?id=<?= $tribesmen['id'] ?>">
               <div class="user_profile_pic">
                 <img
-                  src="../images/profile_pic.png"
+                  src="../images/<?= htmlspecialchars($tribesmen['avatar']) ?>"
                   alt="User's profile picture." />
               </div>
 
               <div class="user_name">
-                <h4>Khadi Khole</h4>
+                <h4>
+                  <?= $tribesmen['username'] ?>
+                </h4>
               </div>
 
-              <div class="verified">
-                <div class="verified_icon">
-                  <i class="fa-solid fa-check"></i>
+              <?php if ($tribesmen['followers'] > 20): ?>
+                <div class="verified">
+                  <div class="verified_icon">
+                    <i class="fa-solid fa-check"></i>
+                  </div>
+                  <div class="verified_desc">
+                    <p>Verified</p>
+                  </div>
                 </div>
-                <div class="verified_desc">
-                  <p>Verified</p>
-                </div>
-              </div>
+              <?php endif; ?>
             </a>
 
             <div class="user_details_post_time">
               <div class="post_date">
-                <p>Thurs 12th Dec, 2024</p>
+                <p>
+                  <?= date("M d, Y", strtotime($scroll['created_at'])) ?>
+
+                </p>
               </div>
               <div class="post_time">
-                <p>01:32pm</p>
+                <p>
+                  <?= date("H:i", strtotime($scroll['created_at'])) ?>
+                </p>
               </div>
             </div>
           </div>
 
 
 
-          <div class="post_images_container">
-            <div class="post_images">
-              <img src="../images/profile_pic.png" alt="Post's image." />
-              <img src="../images/pic.png" alt="Post's image." />
-              <img src="../images/pic1.png" alt="Post's image." />
-              <img src="../images/profile_pic.png" alt="Post's image." />
-              <img src="../images/pic.png" alt="Post's image." />
+          <?php
+          $images = array_filter(array_map('trim', explode(',', $scroll['images']))); // Remove empty/whitespace-only values
+          if (!empty($images)) :
+          ?>
+            <div class="post_images_container">
+              <div class="post_images">
+                <?php foreach ($images as $image) : ?>
+                  <img src="../images/<?= htmlspecialchars($image) ?>" alt="Post's image.">
+                <?php endforeach; ?>
+              </div>
             </div>
-          </div>
+          <?php endif; ?>
 
           <div class="post_text">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam a dolorum amet totam explicabo dolor voluptatum iusto blanditiis consequuntur. Sint molestiae similique esse dolor neque corporis necessitatibus amet modi ipsam tempora eligendi consequuntur natus, quas, optio placeat? Asperiores facilis incidunt provident exercitationem impedit saepe quisquam aut similique excepturi at laboriosam neque, autem error pariatur itaque, dolores fuga minus sunt voluptatum.</p>
+            <p>
+            <?= $scroll['user_post'] ?>
+
+            </p>
           </div>
 
           <div class="post_reactions">
@@ -159,7 +203,7 @@ include 'partials/header.php';
 
               <div class="comment_text">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id adipisci aut doloremque.
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci pariatur error, hic aliquam deleniti consequuntur corporis amet quasi aut officia.
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci pariatur success, hic aliquam deleniti consequuntur corporis amet quasi aut officia.
                 </p>
               </div>
             </div>

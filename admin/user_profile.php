@@ -31,6 +31,16 @@ $scrolls = mysqli_query($connection, $query);
         ?>
       </p>
     </div>
+
+    
+<?php elseif (isset($_SESSION['edit_profile_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
+      <p>
+        <?= $_SESSION['edit_profile_success'];
+        unset($_SESSION['edit_profile_success']);
+        ?>
+      </p>
+    </div>
   <?php endif ?>
 
 

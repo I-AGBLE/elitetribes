@@ -781,6 +781,14 @@ main {
   color: var(--danger_variant_btn);
 }
 
+#delete_icon {
+  color: var(--danger_btn);
+}
+
+#delete_icon:hover {
+  color: var(--text_color);
+}
+
 
 .like_icons {
   display: inline-block;
@@ -1295,6 +1303,20 @@ label i:hover {
   cursor: pointer;
 }
 
+
+main .my_posts_contents {
+  margin-top: 2rem;
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+
+
+main .my_posts_contents:hover {
+  box-shadow: var(--box_shadow);
+}
 
 
 /* Footer */
