@@ -66,7 +66,7 @@ if (isset($_SESSION['user_id'])) {
 
 <body>
     <nav>
-        <div class="user_details">
+        <div class="user_details" style="background-color: transparent;">
             <a href="user_profile.php#my_posts">
                 <div class="user_profile_pic">
                     <img src="../images/<?= htmlspecialchars($user_detail['avatar']) ?>" alt="User's profile picture" />

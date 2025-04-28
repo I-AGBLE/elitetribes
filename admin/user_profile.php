@@ -32,12 +32,21 @@ $scrolls = mysqli_query($connection, $query);
       </p>
     </div>
 
-    
-<?php elseif (isset($_SESSION['edit_profile_success'])) : ?>
+
+  <?php elseif (isset($_SESSION['edit_profile_success'])) : ?>
     <div class="alert_message success" id="alert_message">
       <p>
         <?= $_SESSION['edit_profile_success'];
         unset($_SESSION['edit_profile_success']);
+        ?>
+      </p>
+    </div>
+
+  <?php elseif (isset($_SESSION['delete_scroll_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
+      <p>
+        <?= $_SESSION['delete_scroll_success'];
+        unset($_SESSION['delete_scroll_success']);
         ?>
       </p>
     </div>
@@ -83,7 +92,7 @@ $scrolls = mysqli_query($connection, $query);
 
           <div class="post_reaction">
             <div class="post_reaction_icon">
-              <a href="<?= ROOT_URL ?>admin/edit_profile.php?id=<?= $user_detail['id']?> ">
+              <a href="<?= ROOT_URL ?>admin/edit_profile.php?id=<?= $user_detail['id'] ?> ">
                 <i class="fa-solid fa-pen" id="edit_icon"></i>
               </a>
             </div>

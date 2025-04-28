@@ -78,11 +78,22 @@
                     </div>
 
                     <div class="post_text">
-                        <a href="post_preview.php?id=<?= $scroll['id']?>">
                             <p>
-                                <?= $scroll['user_post'] ?>
-                            </p>
+                        <a href="post_preview.php?id=<?= $scroll['id'] ?>">
+
+                        <?php
+                                $text = $scroll['user_post'];
+                                $maxLength = 500;
+                                if (strlen($text) > $maxLength) {
+                                    echo substr($text, 0, $maxLength) . '<p>Read More...</p>';
+                                } else {
+                                    echo $text;
+                                }
+                                ?>
                         </a>
+
+                            </p>
+                       
                     </div>
 
                     <?php
@@ -92,8 +103,12 @@
                         <div class="post_images_container">
                             <div class="post_images">
                                 <?php foreach ($images as $image) : ?>
+                        <a href="post_preview.php?id=<?= $scroll['id'] ?>">
+
                                     <img src="../images/<?= htmlspecialchars($image) ?>" alt="Post's image.">
-                                <?php endforeach; ?>
+                        </a>
+                                
+                                    <?php endforeach; ?>
                             </div>
                         </div>
                     <?php endif; ?>
@@ -155,7 +170,9 @@
 
                         <div class="post_reaction">
                             <div class="post_reaction_icon">
-                            <i class="fa-solid fa-trash" id="delete_icon"></i>
+                                <a href="delete_post_logic.php?id=<?= $scroll['id'] ?>">
+                                    <i class="fa-solid fa-trash" id="delete_icon"></i>
+                                </a>
                             </div>
                             <div class="post_reaction_desc">
                                 <p>Delete</p>

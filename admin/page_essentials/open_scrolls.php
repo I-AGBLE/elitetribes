@@ -79,11 +79,21 @@
                     </div>
 
                     <div class="post_text">
-                        <a href="<?= ROOT_URL ?>admin/post_preview.php?id=<?= $scroll['id']?>">
-                            <p>
-                                <?= substr($scroll['user_post'], 0, 300) . '...' ?>
-                            </p>
-                        </a>
+                        <p>
+                            <a href="<?= ROOT_URL ?>admin/post_preview.php?id=<?= $scroll['id'] ?>">
+
+                                <?php
+                                $text = $scroll['user_post'];
+                                $maxLength = 500;
+                                if (strlen($text) > $maxLength) {
+                                    echo substr($text, 0, $maxLength) . '<p>Read More...</p>';
+                                } else {
+                                    echo $text;
+                                }
+                                ?>
+                            </a>
+
+                        </p>
                     </div>
 
                     <?php
@@ -93,7 +103,11 @@
                         <div class="post_images_container">
                             <div class="post_images">
                                 <?php foreach ($images as $image) : ?>
-                                    <img src="../images/<?= htmlspecialchars($image) ?>" alt="Post's image.">
+                                    <a href="<?= ROOT_URL ?>admin/post_preview.php?id=<?= $scroll['id'] ?>">
+
+                                        <img src="../images/<?= htmlspecialchars($image) ?>" alt="Post's image.">
+                                    </a>
+
                                 <?php endforeach; ?>
                             </div>
                         </div>
