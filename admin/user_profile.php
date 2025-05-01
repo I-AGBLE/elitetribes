@@ -15,6 +15,8 @@ if (isset($_SESSION['user_id'])) {
 $current_user_id = $_SESSION['user_id'];
 $query  = "SELECT * FROM scrolls  WHERE scrolls.created_by=$current_user_id ORDER BY scrolls.id DESC";
 $scrolls = mysqli_query($connection, $query);
+
+
 ?>
 
 
@@ -53,6 +55,25 @@ $scrolls = mysqli_query($connection, $query);
   <?php endif ?>
 
 
+  <?php
+  // Get the list of users this user is following along with their follower count
+  $query = "
+    SELECT t.id, t.username, t.avatar, t.id,
+           (SELECT COUNT(*) FROM followers WHERE followed = t.id) AS followers_count
+    FROM followers f
+    JOIN tribesmen t ON f.followed = t.id
+    WHERE f.follower = $id
+";
+
+  $result = mysqli_query($connection, $query);
+
+  while ($row = mysqli_fetch_assoc($result)) {
+    $followers_count = $row["followers_count"];
+  }
+  ?>
+
+
+
   <div class="user_section">
     <div class="user_information">
       <div class="user_picture">
@@ -64,7 +85,7 @@ $scrolls = mysqli_query($connection, $query);
           <h3><?= $user_detail['username'] ?></h3>
 
 
-          <?php if ($user_detail['followers'] > 20): ?>
+          <?php if ($followers_count >= 20): ?>
             <div class="verified">
               <div class="verified_icon">
                 <i class="fa-solid fa-check"></i>
@@ -80,16 +101,25 @@ $scrolls = mysqli_query($connection, $query);
           <p><?= $user_detail['about'] ?></p>
         </div>
 
+
+
+
+
+
         <div class="followers_and_posts">
-          <p>Followers: <span> <?= $user_detail['followers'] ?></span></p>
+          <p>Followers: <span> <?= $followers_count ?></span></p>
         </div>
 
+
+
+
         <div class="user_action_buttons">
+          <!--
           <div class="follow">
             <a href="#" id="default_btn">Follow</a>
             <a href="#" id="danger_btn" style="display: none;">Following</a>
           </div>
-
+          -->
           <div class="post_reaction">
             <div class="post_reaction_icon">
               <a href="<?= ROOT_URL ?>admin/edit_profile.php?id=<?= $user_detail['id'] ?> ">
@@ -365,50 +395,9 @@ $scrolls = mysqli_query($connection, $query);
         </div>
       </div>
 
-
-      <div class="search_box">
-        <center>
-          <input type="text" placeholder="Search Following" id="my__following_box">
-        </center>
-      </div>
-
-
-
-      <div class="followings">
-        <div class="post">
-          <div class="user_details">
-            <a href="">
-              <div class="user_profile_pic">
-                <img
-                  src="../images/profile_pic.png"
-                  alt="User's profile picture." />
-              </div>
-
-              <div class="user_name">
-                <h4>Khadi Khole</h4>
-              </div>
-
-              <div class="verified">
-                <div class="verified_icon">
-                  <i class="fa-solid fa-check"></i>
-                </div>
-                <div class="verified_desc">
-                  <p>Verified</p>
-                </div>
-              </div>
-            </a>
-
-
-
-
-
-          </div>
-
-        </div>
-
-
-
-      </div>
+          <?php 
+      include'page_essentials/followings.php';
+          ?>
 
 
     </div>

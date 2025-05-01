@@ -18,6 +18,27 @@ if (isset($_GET['id'])) {
   header("Location: " . ROOT_URL . "index.php");
   exit();
 }
+
+
+
+// display the follow or unfollow button based on the follow state in the db
+$loggedInUserId = $_SESSION['user_id']; // follower
+$profileUserId = $id; // followed, assuming this is already set
+
+// Check if user is already following
+$checkFollowQuery = "SELECT * FROM followers WHERE follower = $loggedInUserId AND followed = $profileUserId";
+$checkFollowResult = mysqli_query($connection, $checkFollowQuery);
+$isFollowing = mysqli_num_rows($checkFollowResult) > 0;
+
+
+
+// Count followers of the current user
+$countFollowersQuery = "SELECT COUNT(*) AS total_followers FROM followers WHERE followed = $profileUserId";
+$countFollowersResult = mysqli_query($connection, $countFollowersQuery);
+$followersData = mysqli_fetch_assoc($countFollowersResult);
+$followersCount = $followersData['total_followers'];
+
+
 ?>
 
 
@@ -36,12 +57,30 @@ if (isset($_GET['id'])) {
       </p>
     </div>
 
-    
-<?php elseif (isset($_SESSION['edit_profile_success'])) : ?>
+
+  <?php elseif (isset($_SESSION['edit_profile_success'])) : ?>
     <div class="alert_message success" id="alert_message">
       <p>
         <?= $_SESSION['edit_profile_success'];
         unset($_SESSION['edit_profile_success']);
+        ?>
+      </p>
+    </div>
+
+  <?php elseif (isset($_SESSION['follow'])) : ?>
+    <div class="alert_message error" id="alert_message">
+      <p>
+        <?= $_SESSION['follow'];
+        unset($_SESSION['follow']);
+        ?>
+      </p>
+    </div>
+
+  <?php elseif (isset($_SESSION['follow_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
+      <p>
+        <?= $_SESSION['follow_success'];
+        unset($_SESSION['follow_success']);
         ?>
       </p>
     </div>
@@ -75,16 +114,30 @@ if (isset($_GET['id'])) {
           <p><?= $user_detail['about'] ?></p>
         </div>
 
+
+
         <div class="followers_and_posts">
-          <p>Followers: <span> <?= $user_detail['followers'] ?></span></p>
+          <p>Followers: <span><?= $followersCount ?></span></p>
         </div>
+
+
+
+
 
         <div class="user_action_buttons">
           <div class="follow">
-            <a href="#" id="default_btn">Follow</a>
-            <a href="#" id="danger_btn" style="display: none;">Following</a>
+            <?php if ($isFollowing): ?>
+              <!-- User is following, show "Following" button -->
+              <a href="follow_logic.php?id=<?= $profileUserId ?>" id="danger_btn">Following</a>
+            <?php else: ?>
+              <!-- User is not following, show "Follow" button -->
+              <a href="follow_logic.php?id=<?= $profileUserId ?>" id="default_btn">Follow</a>
+            <?php endif; ?>
           </div>
         </div>
+
+
+
       </div>
     </div>
   </div>
@@ -103,7 +156,7 @@ if (isset($_GET['id'])) {
 
 
     <div class="feed" id="feed" style="display: none;">
- 
+
     </div>
 
 
@@ -125,53 +178,12 @@ if (isset($_GET['id'])) {
       </div>
 
 
-      <div class="search_box">
-        <center>
-          <input type="text" placeholder="Search Following" id="my__following_box">
-        </center>
-      </div>
 
+      <?php 
+include'page_essentials/followings.php';
+      ?>
 
-
-      <div class="followings">
-        <div class="post">
-          <div class="user_details">
-            <a href="">
-              <div class="user_profile_pic">
-                <img
-                  src="../images/profile_pic.png"
-                  alt="User's profile picture." />
-              </div>
-
-              <div class="user_name">
-                <h4>Khadi Khole</h4>
-              </div>
-
-              <div class="verified">
-                <div class="verified_icon">
-                  <i class="fa-solid fa-check"></i>
-                </div>
-                <div class="verified_desc">
-                  <p>Verified</p>
-                </div>
-              </div>
-            </a>
-
-
-
-
-
-          </div>
-
-        </div>
-
-
-
-      </div>
-
-
-    </div>
-  </section>
+        </section>
 
 
 

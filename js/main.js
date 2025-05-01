@@ -49,25 +49,25 @@ setInterval(variantTitleText, 6000);
 
 
 // Select the buttons
-const followBtn = document.getElementById("default_btn");
-const followingBtn = document.getElementById("danger_btn");
+//const followBtn = document.getElementById("default_btn");
+//const followingBtn = document.getElementById("danger_btn");
 
 // Toggle function to switch between Follow and Following
-followBtn.addEventListener("click", function (event) {
-  event.preventDefault(); // Prevent default link behavior
+//followBtn.addEventListener("click", function (event) {
+  //event.preventDefault(); // Prevent default link behavior
   
   // Hide the follow button and show the following button
-  followBtn.style.display = "none";
-  followingBtn.style.display = "inline-block";
-});
+  //followBtn.style.display = "none";
+  //followingBtn.style.display = "inline-block";
+//});
 
-followingBtn.addEventListener("click", function (event) {
-  event.preventDefault(); // Prevent default link behavior
+//followingBtn.addEventListener("click", function (event) {
+  //event.preventDefault(); // Prevent default link behavior
   
   // Hide the following button and show the follow button
-  followingBtn.style.display = "none";
-  followBtn.style.display = "inline-block";
-});
+  //followingBtn.style.display = "none";
+  //followBtn.style.display = "inline-block";
+//});
 
 
 
