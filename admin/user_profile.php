@@ -67,6 +67,8 @@ $scrolls = mysqli_query($connection, $query);
 
   $result = mysqli_query($connection, $query);
 
+  $followers_count = 0;
+  
   while ($row = mysqli_fetch_assoc($result)) {
     $followers_count = $row["followers_count"];
   }
@@ -107,19 +109,15 @@ $scrolls = mysqli_query($connection, $query);
 
 
         <div class="followers_and_posts">
-          <p>Followers: <span> <?= $followers_count ?></span></p>
+        <p>Followers: <span><?= $followers_count ?? 0 ?></span></p>
+
         </div>
 
 
 
 
         <div class="user_action_buttons">
-          <!--
-          <div class="follow">
-            <a href="#" id="default_btn">Follow</a>
-            <a href="#" id="danger_btn" style="display: none;">Following</a>
-          </div>
-          -->
+        
           <div class="post_reaction">
             <div class="post_reaction_icon">
               <a href="<?= ROOT_URL ?>admin/edit_profile.php?id=<?= $user_detail['id'] ?> ">

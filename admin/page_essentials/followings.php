@@ -27,6 +27,10 @@
                 $username = htmlspecialchars($row['username']);
                 $avatar = !empty($row['avatar']) ? $row['avatar'] : 'profile_pic.png';
                 $followers_count = intval($row['followers_count']);
+
+                // set default value for the followers count
+                $followers_count = 0;
+
             ?>
                 <div class="post">
                     <div class="user_details">
@@ -38,7 +42,7 @@
                                 <h4><?= $username ?></h4>
                             </div>
 
-                            <?php if ($followers_count > 20): ?>
+                            <?php if ($followers_count >= 20): ?>
                                 <div class="verified">
                                     <div class="verified_icon">
                                         <i class="fa-solid fa-check"></i>
