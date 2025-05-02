@@ -105,9 +105,6 @@ $scrolls = mysqli_query($connection, $query);
 
 
 
-
-
-
         <div class="followers_and_posts">
         <p>Followers: <span><?= $followers_count ?? 0 ?></span></p>
 
@@ -117,7 +114,6 @@ $scrolls = mysqli_query($connection, $query);
 
 
         <div class="user_action_buttons">
-        
           <div class="post_reaction">
             <div class="post_reaction_icon">
               <a href="<?= ROOT_URL ?>admin/edit_profile.php?id=<?= $user_detail['id'] ?> ">

@@ -87,6 +87,27 @@ $followersCount = $followersData['total_followers'];
   <?php endif ?>
 
 
+
+  
+  <?php
+  // Get the list of users this user is following along with their follower count
+  $query = "
+    SELECT t.id, t.username, t.avatar, t.id,
+           (SELECT COUNT(*) FROM followers WHERE followed = t.id) AS followers_count
+    FROM followers f
+    JOIN tribesmen t ON f.followed = t.id
+    WHERE f.follower = $id
+";
+
+  $result = mysqli_query($connection, $query);
+
+  $followers_count = 0;
+  
+  while ($row = mysqli_fetch_assoc($result)) {
+    $followers_count = $row["followers_count"];
+  }
+  ?>
+
   <div class="user_section">
     <div class="user_information">
       <div class="user_picture">
@@ -98,7 +119,7 @@ $followersCount = $followersData['total_followers'];
           <h3><?= $user_detail['username'] ?></h3>
 
 
-          <?php if ($user_detail['followers'] > 20): ?>
+          <?php if ($followers_count >= 20): ?>
             <div class="verified">
               <div class="verified_icon">
                 <i class="fa-solid fa-check"></i>

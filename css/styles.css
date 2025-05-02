@@ -159,7 +159,7 @@ nav {
     background-color: var(--nav_bg);
     display: flex;
     justify-content: space-between;
-    padding: 0.2rem 20rem;
+    padding: 0.2rem 25rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -305,7 +305,7 @@ body {
 
 /* Main Section Styles */
 main {
-  margin: 3rem 20rem;
+  margin: 4rem 25rem;
   padding: 0.2rem 0;
   transition: all 1s ease-in-out;
   -webkit-transition: all 1s ease-in-out;
@@ -401,7 +401,7 @@ main {
 }
 
 .user_picture {
-  width: 17rem;
+  width: 17rem !important;
   height: 16.5rem;
   border-radius: 1rem;
   -webkit-border-radius: 1rem;
@@ -426,6 +426,7 @@ main {
 .user_info {
   display: grid;
   gap: .5rem;
+  width: 30rem;
 }
 
 .name {
@@ -1009,7 +1010,7 @@ input[type="submit"]:hover {
 .floating_input {
   position: fixed;
   bottom: 5rem; /* 2rem above the bottom of the viewport */
-  right: 20rem;
+  right: 25rem;
   margin-bottom: 0; /* margin-bottom is unnecessary when using fixed positioning */
   display: flex;
   justify-content: flex-end;
@@ -1019,7 +1020,7 @@ input[type="submit"]:hover {
 
 .floating_input .post_field {
   margin-bottom: -1rem;
-  width: 30rem;
+  width: 40rem;
   margin-right: 2rem;
 }
 
@@ -1030,6 +1031,7 @@ input[type="submit"]:hover {
 
 .floating_post_input textarea {
   background-color: var(--deep_bg);
+  height: 30rem;
 }
 
 .floating_post_input textarea:hover {

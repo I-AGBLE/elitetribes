@@ -55,7 +55,27 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
                 </h4>
               </div>
 
-              <?php if ($tribesmen['followers'] > 20): ?>
+              <?php
+              // Get the list of users this user is following along with their follower count
+              $query = "
+    SELECT t.id, t.username, t.avatar, t.id,
+           (SELECT COUNT(*) FROM followers WHERE followed = t.id) AS followers_count
+    FROM followers f
+    JOIN tribesmen t ON f.followed = t.id
+    WHERE f.follower = $id
+";
+
+              $result = mysqli_query($connection, $query);
+
+              $followers_count = 0;
+
+              while ($row = mysqli_fetch_assoc($result)) {
+                $followers_count = $row["followers_count"];
+              }
+              ?>
+
+
+              <?php if ($followers_count >= 20): ?>
                 <div class="verified">
                   <div class="verified_icon">
                     <i class="fa-solid fa-check"></i>
@@ -99,7 +119,7 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 
           <div class="post_text">
             <p>
-            <?= $scroll['user_post'] ?>
+              <?= $scroll['user_post'] ?>
 
             </p>
           </div>
