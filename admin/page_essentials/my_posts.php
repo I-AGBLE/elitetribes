@@ -3,7 +3,7 @@
     <div class="my_dashboard">
         <div class="my_dashboard_title">
             <div class="dashboard_small_titles">
-                <div class="my_posts_links">
+                <div class="my_posts_links"  style="margin-top: -1rem;">
                     <a href="#my_posts" id="my_posts" style="color: var(--color_warning);">My Posts</a>
                     <a href="#feed" id="my_feed">My Timeline</a>
                     <a href="#following" id="my_following">Following</a>

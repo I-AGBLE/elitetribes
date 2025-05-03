@@ -389,7 +389,7 @@ main {
 /* Profile Section Styles */
 .user_section {
   padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   border-bottom: .1px solid var(--text_color);
 }
 
@@ -510,63 +510,6 @@ main {
 
 
 
-
-
-.tag_section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-
-.tag-list {
-  width: 50rem;
-  max-width: 90vw;
-  display: flex;
-  flex-shrink: 0;
-  flex-direction: column;
-  gap: .3rem 0;
-  position: relative;
-  padding: .5rem 0;
-  overflow: hidden;
-}
-
-.loop-slider {
-  .inner {
-    display: flex;
-    animation-name: loop;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: var(--direction);
-    animation-duration: var(--duration);
-  }
-}
-
-.tag {
-  display: flex;
-  align-items: center;
-  gap: 0 .2rem;
-  color: var(--text_color);
-  font-size: .8rem;
-  background-color: var(--deep_bg);
-  border-radius: var(--border_radius);
-  padding: .2rem .5rem;
-  margin-right: 1rem;
-
-}
-
-
-@keyframes loop {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-
 .dashboard {
   padding: 1rem 0 0 0; /* keeps the padding */
   width: 100%; /* ensures the container takes up full width of the parent */
@@ -578,6 +521,7 @@ main {
 .my_posts_links {
   display: flex;
   gap: 1rem;
+  margin-top: 1rem;
 }
 
 .my_posts_links a:hover {
@@ -594,6 +538,21 @@ main {
   gap: .5rem;
   align-items: center;
 }
+
+
+input[type="submit"][value="Post"] {
+  background-color: var(--color_warning);
+  color: var(--deep_bg);
+  cursor: pointer;
+  padding: .3rem .5rem;
+  transition: var(--transition);
+  font-weight: 700;
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+}
+
 
 
 
@@ -938,7 +897,6 @@ input[type="submit"]:hover {
 .post_field {
   display: grid;
   gap: .5rem;
-  margin: 1rem 0;
 }
 
 .post_field:hover {
@@ -1478,9 +1436,8 @@ p {
 
 /* Nav Styles */
 nav {
-    padding: 0.2rem .5rem;
+    padding: 0.2rem .2rem;
     height: 3rem;
-
     position: fixed;
     top: 0;
     left: 0;
@@ -1512,7 +1469,7 @@ nav {
 
 /* Main Section Styles */
 main {
-  margin: 4.5rem .5rem;
+  margin: 4.5rem .2rem;
   padding: 0.2rem 0;
 }
 
@@ -1533,8 +1490,10 @@ main {
 
 .my_posts_links {
   gap: 1.5rem;
-  margin: .5rem 0 0 0;
+  margin-bottom: .7rem;
+  margin-top: 1rem;
 }
+
 
 
 
@@ -1645,7 +1604,7 @@ input[type="submit"] {
 }
 
 .followings {
-  max-height: 50rem;
+  max-height: 90rem;
 }
 
 .followings .user_details a {
@@ -1673,6 +1632,11 @@ input[type="submit"] {
   margin-right: 2rem;
 }
 
+
+
+.floating_post_input textarea {
+  height: 25rem;
+}
 
 
 .floating_post_input textarea:hover {
@@ -1828,7 +1792,7 @@ p {
 
 /* Nav Styles */
 nav {
-  padding: 0.2rem .5rem;
+  padding: 0.2rem .2rem;
   height: 3rem;
 
   position: fixed;
@@ -1857,7 +1821,7 @@ nav {
 
 /* Main Section Styles */
 main {
-  margin: 3.5rem .5rem;
+  margin: 3.5rem .2rem;
 }
 
 
@@ -1892,6 +1856,7 @@ main {
 .my_posts_links {
   gap: 1rem;
   margin-bottom: .7rem;
+  margin-top: 1rem;
 }
 
 
@@ -2018,7 +1983,9 @@ input[type="submit"] {
   margin: auto 1rem;
 }
 
-
+.floating_post_input textarea {
+  height: 20rem;
+}
 
 .floating_post_input {
   border-bottom: none;

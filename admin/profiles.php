@@ -88,7 +88,7 @@ $followersCount = $followersData['total_followers'];
 
 
 
-  
+
   <?php
   // Get the list of users this user is following along with their follower count
   $query = "
@@ -102,7 +102,7 @@ $followersCount = $followersData['total_followers'];
   $result = mysqli_query($connection, $query);
 
   $followers_count = 0;
-  
+
   while ($row = mysqli_fetch_assoc($result)) {
     $followers_count = $row["followers_count"];
   }
@@ -200,11 +200,11 @@ $followersCount = $followersData['total_followers'];
 
 
 
-      <?php 
-include'page_essentials/followings.php';
+      <?php
+      include 'page_essentials/followings.php';
       ?>
 
-        </section>
+  </section>
 
 
 
