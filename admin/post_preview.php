@@ -35,6 +35,27 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 
 <main>
 
+  <?php if (isset($_SESSION['comment'])) : ?>
+    <div class="alert_message error" id="alert_message">
+      <p>
+        <?= $_SESSION['comment'];
+        unset($_SESSION['comment']);
+        ?>
+      </p>
+    </div>
+
+  <?php elseif (isset($_SESSION['comment_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
+      <p>
+        <?= $_SESSION['comment_success'];
+        unset($_SESSION['comment_success']);
+        ?>
+      </p>
+    </div>
+  <?php endif ?>
+
+
+
 
 
   <section class="dashboard">
@@ -178,58 +199,100 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 
 
 
-          <div class="comment_input">
-            <div class="comment_field">
-              <textarea name="user_comment" placeholder="Share your thoughts here!"></textarea>
-              <input type="submit" name="Comment" value="Comment">
+          <form action="<?= ROOT_URL ?>admin/comment_logic.php?id=<?= $id ?>" method="post">
+            <div class="comment_input">
+              <div class="comment_field">
+                <textarea name="user_comment" placeholder="Share your thoughts on this!"></textarea>
+                <input type="text" name="confirm_human" placeholder="confirm_human" class="confirm_human">
+                <input type="submit" name="Comment" value="Comment">
+              </div>
             </div>
-          </div>
+          </form>
 
 
 
-          <div class="comment_section">
-            <div class="comment">
-              <div class="user_details">
-                <a href="user_profile.php#my_posts">
-                  <div class="user_profile_pic">
-                    <img
-                      src="../images/profile_pic.png"
-                      alt="User's profile picture." />
-                  </div>
 
-                  <div class="user_name">
-                    <h4>Khadi Khole</h4>
-                  </div>
 
-                  <div class="verified">
-                    <div class="verified_icon">
-                      <i class="fa-solid fa-check"></i>
+
+
+
+
+          <?php
+
+          if (isset($_GET['id'])) {
+            $scroll_id = $_GET['id'];
+            $scroll_id = mysqli_real_escape_string($connection, $scroll_id);
+
+            $query = "
+          SELECT c.*, t.username AS author_name, t.avatar AS author_avatar
+          FROM comments c
+          JOIN tribesmen t ON c.tribesmen_id = t.id
+          WHERE c.scroll_id = '$scroll_id'
+          ORDER BY c.created_at DESC
+          ";
+
+            $result = mysqli_query($connection, $query);
+
+            if ($result && mysqli_num_rows($result) > 0) :
+              while ($comment = mysqli_fetch_assoc($result)) :
+                $comment_date = date('D jS M, Y', strtotime($comment['created_at']));
+                $comment_time = date('h:ia', strtotime($comment['created_at']));
+
+          ?>
+
+
+                <div class="comment_section">
+                  <div class="comment">
+                    <div class="user_details">
+                      <a href="user_profile.php#my_posts">
+                        <div class="user_profile_pic">
+                          <img
+                            src="<?= ROOT_URL . 'images/' . $comment['author_avatar'] ?>"
+                            alt="User's profile picture." />
+                        </div>
+
+                        <div class="user_name">
+                          <h4><?= htmlspecialchars($comment['author_name']) ?></h4>
+
+                        </div>
+
+                        <div class="verified">
+                          <div class="verified_icon">
+                            <i class="fa-solid fa-check"></i>
+                          </div>
+                          <div class="verified_desc">
+                            <p>Verified</p>
+                          </div>
+                        </div>
+                      </a>
+
+                      <div class="user_details_post_time">
+                        <div class="post_date">
+                          <p><?= $comment_date ?></p>
+                        </div>
+                        <div class="post_time">
+                          <p><?= $comment_time ?></p>
+                        </div>
+                      </div>
                     </div>
-                    <div class="verified_desc">
-                      <p>Verified</p>
-                    </div>
-                  </div>
-                </a>
 
-                <div class="user_details_post_time">
-                  <div class="post_date">
-                    <p>Thurs 12th Dec, 2024</p>
-                  </div>
-                  <div class="post_time">
-                    <p>01:32pm</p>
+                    <div class="comment_text">
+                      <p><?= nl2br(htmlspecialchars($comment['user_comment'])) ?></p>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div class="comment_text">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id adipisci aut doloremque.
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci pariatur success, hic aliquam deleniti consequuntur corporis amet quasi aut officia.
-                </p>
-              </div>
-            </div>
 
 
-          </div>
+          <?php
+              endwhile;
+            else :
+              echo "<p>No comments yet.</p>";
+            endif;
+          } else {
+            echo "<p>Invalid scroll ID.</p>";
+          }
+          ?>
+
         </div>
 
 

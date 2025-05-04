@@ -3,7 +3,6 @@ require 'config/database.php';
 
 
 if (isset($_GET['id'])) {
-    session_start(); // Ensure session is started
 
     $follower = $_SESSION['user_id']; // The one doing the following
     $followed = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT); // The one being followed

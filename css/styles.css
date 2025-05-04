@@ -845,7 +845,7 @@ input[type="submit"]:hover {
 
 .comment_section {
   display: grid;
-  gap: .2rem;
+  gap: 2px;
   max-height: 30rem;
   overflow-y: scroll;
   border-radius: var(--border_radius);
@@ -853,7 +853,7 @@ input[type="submit"]:hover {
   -moz-border-radius: var(--border_radius);
   -ms-border-radius: var(--border_radius);
   -o-border-radius: var(--border_radius);
-  margin-bottom: 1rem;
+  margin-bottom: -.2rem;
 }
 
 
@@ -862,7 +862,7 @@ input[type="submit"]:hover {
 /* post review */
 .comment {
   background-color: var(--default_bg);
-  margin: .2rem;
+  margin: .1rem;
   padding: .2rem;
   border-radius: var(--border_radius);
   -webkit-border-radius: var(--border_radius);
@@ -879,7 +879,6 @@ input[type="submit"]:hover {
 
 .comment:hover {
   opacity: 1;
-
 }
 
 

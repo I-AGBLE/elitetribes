@@ -48,6 +48,8 @@
                                 </h4>
                             </div>
 
+                            
+
                             <?php if ($tribesmen['followers'] > 20): ?>
                                 <div class="verified">
                                     <div class="verified_icon">
