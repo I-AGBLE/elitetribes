@@ -18,6 +18,12 @@
 ";
 
     $result = mysqli_query($connection, $query);
+    $followers_count = 0;
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $followers_count = $row['followers_count'];
+    }
     ?>
 
     <?php if (mysqli_num_rows($result) > 0): ?>
@@ -29,7 +35,6 @@
                 $followers_count = intval($row['followers_count']);
 
                 // set default value for the followers count
-                $followers_count = 0;
 
             ?>
                 <div class="post">

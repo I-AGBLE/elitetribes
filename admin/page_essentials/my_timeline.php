@@ -47,21 +47,9 @@
                   <h4><?= $feed['username'] ?></h4>
                 </div>
 
-                <?php
-                $followers_count = $feed['author_followers_count'];
-                $followers_count = 0;
-
-                ?>
-                <?php if ($followers_count >= 20): ?>
-                  <div class="verified">
-                    <div class="verified_icon">
-                      <i class="fa-solid fa-check"></i>
-                    </div>
-                    <div class="verified_desc">
-                      <p>Verified</p>
-                    </div>
-                  </div>
-                <?php endif; ?>
+                <?php 
+                        include 'followers_count.php';
+                    ?>
               </a>
 
               <div class="user_details_post_time">

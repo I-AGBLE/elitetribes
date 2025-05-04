@@ -52,32 +52,11 @@
                                 </h4>
                             </div>
 
-                            <?php
-
-                            // Get the list of users this user is following along with their follower count
-                            $query = "
-    SELECT  t.id,
-           (SELECT COUNT(*) FROM followers WHERE followed = t.id) AS followers_count
-    FROM followers f
-    JOIN tribesmen t ON f.followed = t.id
-    WHERE f.follower = $id
-";
-
-                            $result = mysqli_query($connection, $query);
-
-                            $followers_count = 0;
-                            ?>
-
-                            <?php if ($followers_count >= 20): ?>
-                                <div class="verified">
-                                    <div class="verified_icon">
-                                        <i class="fa-solid fa-check"></i>
-                                    </div>
-                                    <div class="verified_desc">
-                                        <p>Verified</p>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
+                           
+                    <?php 
+                        include 'followers_count.php';
+                    ?>
+                    
                         </a>
 
                         <div class="user_details_post_time">
@@ -154,17 +133,18 @@
                         </div>
 
 
+                        
+                        
                         <div class="post_reaction">
-                            <a href="post_preview.php">
-                                <div class="post_reaction_icon" id="comment_icon">
-                                    <i class="fa-regular fa-comment" id="comment_icon"></i>
-                                    <p id="comment_count">21</p>
-                                </div>
-                            </a>
+                            <div class="post_reaction_icon">
+                            <i class="fa-regular fa-comment" id="comment_icon"></i>
+                                <p id="comment_count">98</p>
+                            </div>
                             <div class="post_reaction_desc">
                                 <p>Comment</p>
                             </div>
                         </div>
+
 
                         <div class="post_reaction">
                             <div class="post_reaction_icon">
@@ -175,6 +155,7 @@
                                 <p>Repost</p>
                             </div>
                         </div>
+
 
                         <div class="post_reaction">
                             <div class="post_reaction_icon">

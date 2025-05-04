@@ -216,29 +216,44 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 
 
 
-
           <?php
 
-          if (isset($_GET['id'])) {
-            $scroll_id = $_GET['id'];
-            $scroll_id = mysqli_real_escape_string($connection, $scroll_id);
+if (isset($_GET['id'])) {
+    $scroll_id = $_GET['id'];
+    $scroll_id = mysqli_real_escape_string($connection, $scroll_id);
 
-            $query = "
-          SELECT c.*, t.username AS author_name, t.avatar AS author_avatar
-          FROM comments c
-          JOIN tribesmen t ON c.tribesmen_id = t.id
-          WHERE c.scroll_id = '$scroll_id'
-          ORDER BY c.created_at DESC
-          ";
+    // Fetch comment count
+    $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = '$scroll_id'";
+    $count_result = mysqli_query($connection, $count_query);
 
-            $result = mysqli_query($connection, $query);
+    $comment_count = 0;
+    if ($count_result) {
+        $count_row = mysqli_fetch_assoc($count_result);
+        $comment_count = $count_row['comment_count'];
+    }
 
-            if ($result && mysqli_num_rows($result) > 0) :
-              while ($comment = mysqli_fetch_assoc($result)) :
-                $comment_date = date('D jS M, Y', strtotime($comment['created_at']));
-                $comment_time = date('h:ia', strtotime($comment['created_at']));
+    // Fetch actual comment details
+    $query = "
+        SELECT c.*, t.username AS author_name, t.avatar AS author_avatar
+        FROM comments c
+        JOIN tribesmen t ON c.tribesmen_id = t.id
+        WHERE c.scroll_id = '$scroll_id'
+        ORDER BY c.created_at DESC
+    ";
 
-          ?>
+    $result = mysqli_query($connection, $query);
+
+    // Display comment count
+    echo "<p>Total Comments: $comment_count</p>";
+
+    if ($result && mysqli_num_rows($result) > 0) :
+        while ($comment = mysqli_fetch_assoc($result)) :
+            $comment_date = date('D jS M, Y', strtotime($comment['created_at']));
+            $comment_time = date('h:ia', strtotime($comment['created_at']));
+
+            // Render individual comments below as usual
+?>
+        
 
 
                 <div class="comment_section">

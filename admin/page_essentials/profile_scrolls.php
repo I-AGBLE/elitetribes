@@ -48,9 +48,26 @@
                                 </h4>
                             </div>
 
-                            
 
-                            <?php if ($tribesmen['followers'] > 20): ?>
+
+                            <?php
+                            $query = "
+SELECT COUNT(*) AS followers_count 
+FROM followers 
+WHERE followed = $id
+";
+
+                            $result = mysqli_query($connection, $query);
+                            $followers_count = 0;
+
+                            if ($result && mysqli_num_rows($result) > 0) {
+                                $row = mysqli_fetch_assoc($result);
+                                $followers_count = $row['followers_count'];
+                            }
+                            ?>
+
+
+                            <?php if ($followers_count > 20): ?>
                                 <div class="verified">
                                     <div class="verified_icon">
                                         <i class="fa-solid fa-check"></i>
@@ -60,6 +77,7 @@
                                     </div>
                                 </div>
                             <?php endif; ?>
+
                         </a>
 
                         <div class="user_details_post_time">
@@ -82,7 +100,7 @@
                         <p>
                             <a href="post_preview.php?id=<?= $scroll['id'] ?>">
 
-                            <?php
+                                <?php
                                 $text = $scroll['user_post'];
                                 $maxLength = 500;
                                 if (strlen($text) > $maxLength) {
