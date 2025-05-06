@@ -3,7 +3,7 @@
     <div class="my_dashboard">
         <div class="my_dashboard_title">
             <div class="dashboard_small_titles">
-                <div class="my_posts_links"  style="margin-top: -1rem;">
+                <div class="my_posts_links" style="margin-top: -1rem;">
                     <a href="#my_posts" id="my_posts" style="color: var(--color_warning);">My Posts</a>
                     <a href="#feed" id="my_feed">My Timeline</a>
                     <a href="#following" id="my_following">Following</a>
@@ -78,10 +78,10 @@
                     </div>
 
                     <div class="post_text">
-                            <p>
-                        <a href="post_preview.php?id=<?= $scroll['id'] ?>">
+                        <p>
+                            <a href="post_preview.php?id=<?= $scroll['id'] ?>">
 
-                        <?php
+                                <?php
                                 $text = $scroll['user_post'];
                                 $maxLength = 500;
                                 if (strlen($text) > $maxLength) {
@@ -90,10 +90,10 @@
                                     echo $text;
                                 }
                                 ?>
-                        </a>
+                            </a>
 
-                            </p>
-                       
+                        </p>
+
                     </div>
 
                     <?php
@@ -103,12 +103,12 @@
                         <div class="post_images_container">
                             <div class="post_images">
                                 <?php foreach ($images as $image) : ?>
-                        <a href="post_preview.php?id=<?= $scroll['id'] ?>">
+                                    <a href="post_preview.php?id=<?= $scroll['id'] ?>">
 
-                                    <img src="../images/<?= htmlspecialchars($image) ?>" alt="Post's image.">
-                        </a>
-                                
-                                    <?php endforeach; ?>
+                                        <img src="../images/<?= htmlspecialchars($image) ?>" alt="Post's image.">
+                                    </a>
+
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     <?php endif; ?>
@@ -137,10 +137,28 @@
 
 
                         <div class="post_reaction">
+
+                        <?php
+// Assuming $scroll['id'] is already available and $connection is the DB connection
+$comment_count = 0;
+
+if (isset($scroll['id'])) {
+    $scroll_id = mysqli_real_escape_string($connection, $scroll['id']);
+
+    // Fetch comment count where scroll_id matches this post's ID
+    $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = '$scroll_id'";
+    $count_result = mysqli_query($connection, $count_query);
+
+    if ($count_result) {
+        $count_row = mysqli_fetch_assoc($count_result);
+        $comment_count = $count_row['comment_count'];
+    }
+}
+?>
                             <a href="post_preview.php">
                                 <div class="post_reaction_icon" id="comment_icon">
                                     <i class="fa-regular fa-comment" id="comment_icon"></i>
-                                    <p id="comment_count">21</p>
+                                    <p id="comment_count"><?= $comment_count ?></p>
                                 </div>
                             </a>
                             <div class="post_reaction_desc">

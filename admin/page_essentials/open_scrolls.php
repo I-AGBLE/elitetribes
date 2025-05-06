@@ -52,11 +52,11 @@
                                 </h4>
                             </div>
 
-                           
-                    <?php 
-                        include 'followers_count.php';
-                    ?>
-                    
+
+                            <?php
+                            include 'followers_count.php';
+                            ?>
+
                         </a>
 
                         <div class="user_details_post_time">
@@ -133,13 +133,33 @@
                         </div>
 
 
-                        
-                        
+
+
                         <div class="post_reaction">
-                            <div class="post_reaction_icon">
-                            <i class="fa-regular fa-comment" id="comment_icon"></i>
-                                <p id="comment_count">98</p>
-                            </div>
+
+                            <?php
+                            // Assuming $scroll['id'] is already available and $connection is the DB connection
+                            $comment_count = 0;
+
+                            if (isset($scroll['id'])) {
+                                $scroll_id = mysqli_real_escape_string($connection, $scroll['id']);
+
+                                // Fetch comment count where scroll_id matches this post's ID
+                                $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = '$scroll_id'";
+                                $count_result = mysqli_query($connection, $count_query);
+
+                                if ($count_result) {
+                                    $count_row = mysqli_fetch_assoc($count_result);
+                                    $comment_count = $count_row['comment_count'];
+                                }
+                            }
+                            ?>
+                            <a href="post_preview.php">
+                                <div class="post_reaction_icon" id="comment_icon">
+                                    <i class="fa-regular fa-comment" id="comment_icon"></i>
+                                    <p id="comment_count"><?= $comment_count ?></p>
+                                </div>
+                            </a>
                             <div class="post_reaction_desc">
                                 <p>Comment</p>
                             </div>

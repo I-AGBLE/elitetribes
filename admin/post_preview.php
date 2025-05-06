@@ -166,15 +166,10 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
               </div>
             </div>
 
-            <div class="post_reaction">
-              <div class="post_reaction_icon" id="comment_icon">
-                <i class="fa-regular fa-comment"></i>
-                <p id="comment_count">21</p>
-              </div>
-              <div class="post_reaction_desc">
-                <p>Comment</p>
-              </div>
-            </div>
+
+           <?php 
+            include 'page_essentials/comment_count.php';
+           ?>
 
             <div class="post_reaction">
               <div class="post_reaction_icon">
@@ -218,49 +213,37 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 
           <?php
 
-if (isset($_GET['id'])) {
-    $scroll_id = $_GET['id'];
-    $scroll_id = mysqli_real_escape_string($connection, $scroll_id);
+          if (isset($_GET['id'])) {
+            $scroll_id = $_GET['id'];
+            $scroll_id = mysqli_real_escape_string($connection, $scroll_id);
 
-    // Fetch comment count
-    $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = '$scroll_id'";
-    $count_result = mysqli_query($connection, $count_query);
 
-    $comment_count = 0;
-    if ($count_result) {
-        $count_row = mysqli_fetch_assoc($count_result);
-        $comment_count = $count_row['comment_count'];
-    }
-
-    // Fetch actual comment details
-    $query = "
-        SELECT c.*, t.username AS author_name, t.avatar AS author_avatar
-        FROM comments c
-        JOIN tribesmen t ON c.tribesmen_id = t.id
-        WHERE c.scroll_id = '$scroll_id'
-        ORDER BY c.created_at DESC
-    ";
-
-    $result = mysqli_query($connection, $query);
-
-    // Display comment count
-    echo "<p>Total Comments: $comment_count</p>";
-
-    if ($result && mysqli_num_rows($result) > 0) :
-        while ($comment = mysqli_fetch_assoc($result)) :
-            $comment_date = date('D jS M, Y', strtotime($comment['created_at']));
-            $comment_time = date('h:ia', strtotime($comment['created_at']));
-
-            // Render individual comments below as usual
-?>
+            $query = "
+            SELECT c.*, t.id AS author_id, t.username AS author_name, t.avatar AS author_avatar
+            FROM comments c
+            JOIN tribesmen t ON c.tribesmen_id = t.id
+            WHERE c.scroll_id = '$scroll_id'
+            ORDER BY c.created_at DESC
+        ";
         
+            $result = mysqli_query($connection, $query);
+
+            if ($result && mysqli_num_rows($result) > 0) :
+              while ($comment = mysqli_fetch_assoc($result)) :
+                $comment_date = date('D jS M, Y', strtotime($comment['created_at']));
+                $comment_time = date('h:ia', strtotime($comment['created_at']));
+
+                // Render individual comments below as usual
+          ?>
+
 
 
                 <div class="comment_section">
                   <div class="comment">
                     <div class="user_details">
-                      <a href="user_profile.php#my_posts">
-                        <div class="user_profile_pic">
+                    <a href="<?= ROOT_URL ?>admin/profiles.php?id=<?= $comment['author_id'] ?>">
+
+                    <div class="user_profile_pic">
                           <img
                             src="<?= ROOT_URL . 'images/' . $comment['author_avatar'] ?>"
                             alt="User's profile picture." />
