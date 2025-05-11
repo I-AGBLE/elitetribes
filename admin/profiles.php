@@ -190,7 +190,7 @@ $followersCount = $followersData['total_followers'];
         <div class="my_dashboard_title">
           <div class="dashboard_small_titles">
             <div class="my_posts_links">
-              <a href="#my_posts" id="my_posts">My Posts</a>
+              <a href="#my_posts" id="my_posts"> Posts</a>
               <a href="#feed" id="my_feed" style="display: none;">My Timeline</a>
               <a href="#following" id="my_following" style="color: var(--color_warning);">Following</a>
             </div>

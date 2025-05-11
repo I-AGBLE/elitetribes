@@ -4,7 +4,7 @@
         <div class="my_dashboard_title">
             <div class="dashboard_small_titles">
                 <div class="my_posts_links">
-                    <a href="#my_posts" id="my_posts" style="color: var(--color_warning);">My Posts</a>
+                    <a href="#my_posts" id="my_posts" style="color: var(--color_warning);">Posts</a>
                     <a href="#following" id="my_following">Following</a>
                 </div>
             </div>
@@ -154,37 +154,37 @@ WHERE followed = $id
                         </div>
 
 
-                    
-                        
+
+
                         <div class="post_reaction">
 
-<?php
-// Assuming $scroll['id'] is already available and $connection is the DB connection
-$comment_count = 0;
+                            <?php
+                            // Assuming $scroll['id'] is already available and $connection is the DB connection
+                            $comment_count = 0;
 
-if (isset($scroll['id'])) {
-    $scroll_id = mysqli_real_escape_string($connection, $scroll['id']);
+                            if (isset($scroll['id'])) {
+                                $scroll_id = mysqli_real_escape_string($connection, $scroll['id']);
 
-    // Fetch comment count where scroll_id matches this post's ID
-    $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = '$scroll_id'";
-    $count_result = mysqli_query($connection, $count_query);
+                                // Fetch comment count where scroll_id matches this post's ID
+                                $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = '$scroll_id'";
+                                $count_result = mysqli_query($connection, $count_query);
 
-    if ($count_result) {
-        $count_row = mysqli_fetch_assoc($count_result);
-        $comment_count = $count_row['comment_count'];
-    }
-}
-?>
-<a href="post_preview.php">
-    <div class="post_reaction_icon" id="comment_icon">
-        <i class="fa-regular fa-comment" id="comment_icon"></i>
-        <p id="comment_count"><?= $comment_count ?></p>
-    </div>
-</a>
-<div class="post_reaction_desc">
-    <p>Comment</p>
-</div>
-</div>
+                                if ($count_result) {
+                                    $count_row = mysqli_fetch_assoc($count_result);
+                                    $comment_count = $count_row['comment_count'];
+                                }
+                            }
+                            ?>
+                            <a href="post_preview.php">
+                                <div class="post_reaction_icon" id="comment_icon">
+                                    <i class="fa-regular fa-comment" id="comment_icon"></i>
+                                    <p id="comment_count"><?= $comment_count ?></p>
+                                </div>
+                            </a>
+                            <div class="post_reaction_desc">
+                                <p>Comment</p>
+                            </div>
+                        </div>
 
 
                         <div class="post_reaction">

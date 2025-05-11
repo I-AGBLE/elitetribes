@@ -7,35 +7,27 @@
 
 <div class='followings'>
 
-    <?php
-    // Get the list of users this user is following along with their follower count
-    $query = "
-    SELECT t.id, t.username, t.avatar, t.id,
+
+<?php
+
+$query = "
+    SELECT t.id, t.username, t.avatar, 
            (SELECT COUNT(*) FROM followers WHERE followed = t.id) AS followers_count
     FROM followers f
-    JOIN tribesmen t ON f.followed = t.id
+        JOIN tribesmen t ON f.followed = t.id
     WHERE f.follower = $id
 ";
 
-    $result = mysqli_query($connection, $query);
-    $followers_count = 0;
-
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $followers_count = $row['followers_count'];
-    }
-    ?>
+$result = mysqli_query($connection, $query);
+?>
 
     <?php if (mysqli_num_rows($result) > 0): ?>
         <div class="followings">
-            <?php while ($row = mysqli_fetch_assoc($result)) :
-                $profile_id = $row["id"];
-                $username = htmlspecialchars($row['username']);
-                $avatar = !empty($row['avatar']) ? $row['avatar'] : 'profile_pic.png';
-                $followers_count = intval($row['followers_count']);
-
-                // set default value for the followers count
-
+            <?php while ($followers_row = mysqli_fetch_assoc($result)) :
+                $profile_id = $followers_row["id"];
+                $username = htmlspecialchars($followers_row['username']);
+                $avatar = !empty($followers_row['avatar']) ? $followers_row['avatar'] : 'profile_pic.png';
+                $followers_count = intval($followers_row['followers_count']);
             ?>
                 <div class="post">
                     <div class="user_details">
@@ -62,6 +54,7 @@
                 </div>
             <?php endwhile; ?>
         </div>
+
     <?php else: ?>
         <p>This user is not following anyone yet.</p>
     <?php endif; ?>

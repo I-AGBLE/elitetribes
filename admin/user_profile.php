@@ -17,9 +17,6 @@ $query  = "SELECT * FROM scrolls  WHERE scrolls.created_by=$current_user_id ORDE
 $scrolls = mysqli_query($connection, $query);
 
 
-
-
-
 ?>
 
 
@@ -59,23 +56,19 @@ $scrolls = mysqli_query($connection, $query);
 
 
   <?php
-  // Get the list of users this user is following along with their follower count
-  $query = "
-    SELECT t.id, t.username, t.avatar, t.id,
-           (SELECT COUNT(*) FROM followers WHERE followed = t.id) AS followers_count
-    FROM followers f
-    JOIN tribesmen t ON f.followed = t.id
-    WHERE f.follower = $id
-";
+$user_id = $_SESSION['user_id'];
 
-  $result = mysqli_query($connection, $query);
+$query = "SELECT COUNT(*) AS follower_count FROM followers WHERE followed = $user_id";
+$result = mysqli_query($connection, $query);
+$follower_count = 0;
 
-  $followers_count = 0;
+if ($result && $row = mysqli_fetch_assoc($result)) {
+    $follower_count = $row['follower_count'];
+}
 
-  while ($row = mysqli_fetch_assoc($result)) {
-    $followers_count = $row["followers_count"];
-  }
-  ?>
+?>
+
+
 
 
 

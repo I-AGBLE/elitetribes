@@ -27,10 +27,7 @@ $result = mysqli_query($connection, $feed_query);
 
 <div class="my_posts">
 
-<?php
-$row_count = mysqli_num_rows($result);
-echo "<p>Number of posts: $row_count</p>";
-?>
+
 
   <?php while ($feed = mysqli_fetch_assoc($result)) : ?>
 
