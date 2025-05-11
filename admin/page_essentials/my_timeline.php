@@ -27,13 +27,19 @@ $result = mysqli_query($connection, $feed_query);
 
 <div class="my_posts">
 
+<?php
+$row_count = mysqli_num_rows($result);
+echo "<p>Number of posts: $row_count</p>";
+?>
+
   <?php while ($feed = mysqli_fetch_assoc($result)) : ?>
 
     <div class="post">
 
 
+
       <div class="user_details">
-        <a href="<?= ROOT_URL ?>admin/post_preview.php?id=<?= $feed['id'] ?>">
+      <a href="profiles.php?id=<?= $feed['created_by'] ?>">
           <div class="user_profile_pic">
             <img
               src="../images/<?= htmlspecialchars($feed['avatar']) ?>"
@@ -45,9 +51,10 @@ $result = mysqli_query($connection, $feed_query);
           </div>
 
           <?php
-          include 'followers_count.php';
+          // include 'followers_count.php';
           ?>
         </a>
+
 
         <div class="user_details_post_time">
           <div class="post_date">
@@ -66,7 +73,7 @@ $result = mysqli_query($connection, $feed_query);
       </div>
 
       <div class="post_text">
-        <a href="post_preview.php">
+        <a href="<?= ROOT_URL ?>admin/post_preview.php?id=<?= $feed['id'] ?>">
           <p>
             <?= $feed['user_post'] ?>
           </p>

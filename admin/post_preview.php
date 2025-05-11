@@ -167,9 +167,9 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
             </div>
 
 
-           <?php 
+            <?php
             include 'page_essentials/comment_count.php';
-           ?>
+            ?>
 
             <div class="post_reaction">
               <div class="post_reaction_icon">
@@ -225,7 +225,7 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
             WHERE c.scroll_id = '$scroll_id'
             ORDER BY c.created_at DESC
         ";
-        
+
             $result = mysqli_query($connection, $query);
 
             if ($result && mysqli_num_rows($result) > 0) :
@@ -241,9 +241,9 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
                 <div class="comment_section">
                   <div class="comment">
                     <div class="user_details">
-                    <a href="<?= ROOT_URL ?>admin/profiles.php?id=<?= $comment['author_id'] ?>">
+                      <a href="<?= ROOT_URL ?>admin/profiles.php?id=<?= $comment['author_id'] ?>">
 
-                    <div class="user_profile_pic">
+                        <div class="user_profile_pic">
                           <img
                             src="<?= ROOT_URL . 'images/' . $comment['author_avatar'] ?>"
                             alt="User's profile picture." />
