@@ -52,6 +52,25 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
         ?>
       </p>
     </div>
+
+
+    <?php elseif (isset($_SESSION['delete_comment'])) : ?>
+    <div class="alert_message error" id="alert_message">
+      <p>
+        <?= $_SESSION['delete_comment'];
+        unset($_SESSION['delete_comment']);
+        ?>
+      </p>
+    </div>
+
+    <?php elseif (isset($_SESSION['delete_comment_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
+      <p>
+        <?= $_SESSION['delete_comment_success'];
+        unset($_SESSION['delete_comment_success']);
+        ?>
+      </p>
+    </div>
   <?php endif ?>
 
 
@@ -190,6 +209,7 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
                 <p>Share</p>
               </div>
             </div>
+
           </div>
 
 
@@ -276,6 +296,22 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 
                     <div class="comment_text">
                       <p><?= nl2br(htmlspecialchars($comment['user_comment'])) ?></p>
+
+
+                      <?php if ($_SESSION['user_id'] == $comment['tribesmen_id']): ?>
+                        <div class="post_reaction">
+                          <div class="post_reaction_icon">
+                            <a href="delete_comment_logic.php?id=<?= $comment['id'] ?>">
+                              <i class="fa-solid fa-trash" id="delete_icon"></i>
+                            </a>
+                          </div>
+                          <div class="post_reaction_desc">
+                            <p>Delete</p>
+                          </div>
+                        </div>
+                      <?php endif; ?>
+
+
                     </div>
                   </div>
                 </div>

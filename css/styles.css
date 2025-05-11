@@ -887,6 +887,26 @@ input[type="submit"]:hover {
 }
 
 
+
+
+
+
+.comment_text {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  gap: .5rem; 
+}
+
+
+.comment_text .post_reaction {
+  margin-left: 0;
+}
+
+
+
+
 .post_input, .floating_post_input {
   border-bottom: 1px solid var(--text_color);
   margin-bottom: 2rem;
@@ -1480,11 +1500,12 @@ main {
 }
 
 
-.user_picture {
-  width: 20rem;
-  height: 20rem;
-}
 
+.user_picture {
+  width: 17rem !important;
+  height: 16.5rem;
+
+}
 
 
 .my_posts_links {
@@ -1543,6 +1564,17 @@ main {
 
 .comment_field textarea {
   width: 100%;
+}
+
+
+
+
+.comment_text {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  gap: .5rem; /* Space between comment and delete button */
 }
 
 
