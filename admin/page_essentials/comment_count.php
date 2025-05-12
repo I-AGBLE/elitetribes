@@ -17,6 +17,8 @@
     }
     ?>
 
+
+
     <div class="post_reaction_icon" id="comment_icon">
         <i class="fa-regular fa-comment"></i>
         <p id="comment_count"><?= $comment_count ?></p>

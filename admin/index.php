@@ -57,7 +57,7 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
             <i class="fa-solid fa-image"></i> </label>
           <input type="file" id="image-upload" name="images[]" accept="image/*" multiple style="display: none;" />
 
-          <input type="text" name="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human">
+          <input type="text" name="confirm_human" class="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human">
 
           <input type="submit" name="submit" value="Post">
 

@@ -22,7 +22,6 @@ $scrolls = mysqli_query($connection, $query);
 
 
 
-
 <main>
 
   <?php if (isset($_SESSION['add_post_success'])) : ?>

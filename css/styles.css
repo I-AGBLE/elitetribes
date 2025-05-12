@@ -1172,13 +1172,11 @@ input[type="submit"][value="Register"] {
     background-color: var(--text_color);
     }
 
-
-/*
+ 
 .confirm_human {
 display: none;
 }
 
-*/
 
 .log_session {
   margin: 1rem;

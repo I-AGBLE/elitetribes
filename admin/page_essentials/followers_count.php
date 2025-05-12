@@ -15,7 +15,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 ?>
 
 
-<?php if ($followers_count > 1): ?>
+<?php if ($followers_count > 20): ?>
     <div class="verified">
         <div class="verified_icon">
             <i class="fa-solid fa-check"></i>
