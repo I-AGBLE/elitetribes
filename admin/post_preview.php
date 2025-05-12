@@ -54,7 +54,7 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
     </div>
 
 
-    <?php elseif (isset($_SESSION['delete_comment'])) : ?>
+  <?php elseif (isset($_SESSION['delete_comment'])) : ?>
     <div class="alert_message error" id="alert_message">
       <p>
         <?= $_SESSION['delete_comment'];
@@ -63,11 +63,29 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
       </p>
     </div>
 
-    <?php elseif (isset($_SESSION['delete_comment_success'])) : ?>
+  <?php elseif (isset($_SESSION['delete_comment_success'])) : ?>
     <div class="alert_message success" id="alert_message">
       <p>
         <?= $_SESSION['delete_comment_success'];
         unset($_SESSION['delete_comment_success']);
+        ?>
+      </p>
+    </div>
+
+  <?php elseif (isset($_SESSION['like'])) : ?>
+    <div class="alert_message error" id="alert_message">
+      <p>
+        <?= $_SESSION['like'];
+        unset($_SESSION['like']);
+        ?>
+      </p>
+    </div>
+
+  <?php elseif (isset($_SESSION['like_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
+      <p>
+        <?= $_SESSION['like_success'];
+        unset($_SESSION['like_success']);
         ?>
       </p>
     </div>
@@ -165,16 +183,47 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
           </div>
 
           <div class="post_reactions">
+
+
             <div class="post_reaction">
               <div class="post_reaction_icon">
                 <div class="like_icons">
+
+                  <?php
+                  // Check if the user has already liked the post
+                  $liked = false;
+                  if (isset($_SESSION['user_id'])) {
+                    $tribesmen_id = $_SESSION['user_id'];
+                    $scroll_id = $scroll['id']; // Assuming $scroll is defined somewhere
+
+                    // Check if this user has already liked the post
+                    $query_check = "SELECT * FROM likes WHERE scroll_id = $scroll_id AND tribesmen_id = $tribesmen_id";
+                    $result = mysqli_query($connection, $query_check);
+                    if (mysqli_num_rows($result) > 0) {
+                      $liked = true; // User has liked the post
+                    }
+                  }
+                  ?>
+
                   <div class="like_icon">
-                    <i class="fa-regular fa-heart"></i>
+                    <a href="like_logic.php?id=<?= $scroll['id'] ?>">
+                      <i class="fa-regular fa-heart <?= $liked ? 'liked' : 'default' ?>"></i>
+                    </a>
                   </div>
 
-                  <div class="like_icon_is_clicked">
-                    <i class="fa-regular fa-heart"></i>
-                  </div>
+                  <style>
+                    /* Default icon color */
+                    .fa-heart.default {
+                      color: #ccc;
+                      /* Light gray or default color */
+                    }
+
+                    /* Liked icon color */
+                    .fa-heart.liked {
+                      color: red;
+                      /* Red when liked */
+                    }
+                  </style>
                 </div>
 
                 <p id="like_count">102</p>
@@ -336,7 +385,7 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 </main>
 
 
-
+TODO:Insert floating_input into main.
 <?php
 include 'partials/floating_input.php';
 

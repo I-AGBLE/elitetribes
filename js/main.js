@@ -74,31 +74,31 @@ setInterval(variantTitleText, 6000);
 
 
 // Select all like_containers that hold the like/unlike icons
-const like_containers = document.querySelectorAll('.like_icons');
+// const like_containers = document.querySelectorAll('.like_icons');
 
-like_containers.forEach(function(like_container) {
+// like_containers.forEach(function(like_container) {
   // Get the like and unlike icons within the current like_container
-  const likeIcon = like_container.querySelector('.like_icon');
-  const unlikeIcon = like_container.querySelector('.like_icon_is_clicked');
+ // const likeIcon = like_container.querySelector('.like_icon');
+ // const unlikeIcon = like_container.querySelector('.like_icon_is_clicked');
 
   // Handle the like icon click event
-  likeIcon.addEventListener('click', function(event) {
-    event.preventDefault();
+  //likeIcon.addEventListener('click', function(event) {
+   // event.preventDefault();
     
     // Toggle the icons: hide like, show unlike
-    likeIcon.style.display = 'none';
-    unlikeIcon.style.display = 'inline-block';  // Show the unlike icon
- });
+  //  likeIcon.style.display = 'none';
+   // unlikeIcon.style.display = 'inline-block';  // Show the unlike icon
+ //});
 
   // Handle the unlike icon click event
-  unlikeIcon.addEventListener('click', function(event) {
-    event.preventDefault();
+  //unlikeIcon.addEventListener('click', function(event) {
+   // event.preventDefault();
     
     // Toggle the icons: hide unlike, show like
-    unlikeIcon.style.display = 'none';
-    likeIcon.style.display = 'inline-block';  // Show the like icon
-  });
-});
+   // unlikeIcon.style.display = 'none';
+   // likeIcon.style.display = 'inline-block';  // Show the like icon
+ // });
+//});
 
 
 

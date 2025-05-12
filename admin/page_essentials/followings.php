@@ -1,6 +1,6 @@
 <div class="search_box">
     <center>
-        <input type="text" placeholder="Search Following" id="my__following_box">
+        <input type="text" placeholder="Search Following" id="my_following_box">
     </center>
 </div>
 
