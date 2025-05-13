@@ -108,13 +108,14 @@ $result = mysqli_query($connection, $feed_query);
               </div>
             </div>
 
-            <p id="like_count">102</p>
+            <p id="like_count">10ddd2</p>
           </div>
 
           <div class="post_reaction_desc">
             <p>Like</p>
           </div>
         </div>
+
 
 
         <div class="post_reaction">
@@ -135,12 +136,10 @@ $result = mysqli_query($connection, $feed_query);
             }
           }
           ?>
-          <a href="post_preview.php">
             <div class="post_reaction_icon" id="comment_icon">
               <i class="fa-regular fa-comment" id="comment_icon"></i>
               <p id="comment_count"><?= $comment_count ?></p>
             </div>
-          </a>
           <div class="post_reaction_desc">
             <p>Comment</p>
           </div>

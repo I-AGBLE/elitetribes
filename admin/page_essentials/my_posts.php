@@ -115,27 +115,15 @@
 
 
                     <div class="post_reactions">
-                        <div class="post_reaction">
-                            <div class="post_reaction_icon">
-                                <div class="like_icons">
-                                    <div class="like_icon">
-                                        <i class="fa-regular fa-heart"></i>
-                                    </div>
-
-                                    <div class="like_icon_is_clicked">
-                                        <i class="fa-regular fa-heart"></i>
-                                    </div>
-                                </div>
-
-                                <p id="like_count">102</p>
-                            </div>
-
-                            <div class="post_reaction_desc">
-                                <p>Like</p>
-                            </div>
-                        </div>
+                        <?php 
+                            include 'page_essentials/like_n_like_count.php';
+                        ?>
 
 
+
+
+
+                        
                         <div class="post_reaction">
 
                         <?php
@@ -155,12 +143,10 @@ if (isset($scroll['id'])) {
     }
 }
 ?>
-                            <a href="post_preview.php">
                                 <div class="post_reaction_icon" id="comment_icon">
                                     <i class="fa-regular fa-comment" id="comment_icon"></i>
                                     <p id="comment_count"><?= $comment_count ?></p>
                                 </div>
-                            </a>
                             <div class="post_reaction_desc">
                                 <p>Comment</p>
                             </div>
