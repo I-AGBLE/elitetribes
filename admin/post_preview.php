@@ -378,7 +378,6 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 </main>
 
 
-TODO:Insert floating_input into main.
 <?php
 include 'partials/floating_input.php';
 

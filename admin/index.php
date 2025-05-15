@@ -129,7 +129,6 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
 </main>
 
 
-TODO:Insert floating_input into main.
 <?php
 include 'partials/floating_input.php';
 

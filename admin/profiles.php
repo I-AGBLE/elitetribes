@@ -214,7 +214,6 @@ $followersCount = $followersData['total_followers'];
 
 
 
-TODO:Insert floating_input into main.
 <?php
 include 'partials/floating_input.php';
 

@@ -95,6 +95,7 @@ $result = mysqli_query($connection, $feed_query);
         </div>
       <?php endif; ?>
 
+
       <div class="post_reactions">
         <div class="post_reaction">
           <div class="post_reaction_icon">

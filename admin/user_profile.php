@@ -197,7 +197,6 @@ if ($result && $row = mysqli_fetch_assoc($result)) {
 
 
 
-TODO:Insert floating_input into main.
 <?php
 include 'partials/floating_input.php';
 
