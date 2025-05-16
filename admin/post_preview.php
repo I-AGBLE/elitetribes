@@ -89,6 +89,26 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
         ?>
       </p>
     </div>
+
+    
+
+     <?php elseif (isset($_SESSION['share'])) : ?>
+    <div class="alert_message error" id="alert_message">
+      <p>
+        <?= $_SESSION['share'];
+        unset($_SESSION['share']);
+        ?>
+      </p>
+    </div>
+
+     <?php elseif (isset($_SESSION['share_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
+      <p>
+        <?= $_SESSION['share_success'];
+        unset($_SESSION['share_success']);
+        ?>
+      </p>
+    </div>
   <?php endif ?>
 
 
@@ -242,15 +262,7 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
               </div>
             </div>
 
-            <div class="post_reaction">
-              <div class="post_reaction_icon">
-                <i class="fa-solid fa-share" id="share_icon"></i>
-                <p id="share_count">12</p>
-              </div>
-              <div class="post_reaction_desc">
-                <p>Share</p>
-              </div>
-            </div>
+           
 
           </div>
 

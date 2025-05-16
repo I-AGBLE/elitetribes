@@ -162,15 +162,7 @@ if (isset($scroll['id'])) {
                             </div>
                         </div>
 
-                        <div class="post_reaction">
-                            <div class="post_reaction_icon">
-                                <i class="fa-solid fa-share" id="share_icon"></i>
-                                <p id="share_count">12</p>
-                            </div>
-                            <div class="post_reaction_desc">
-                                <p>Share</p>
-                            </div>
-                        </div>
+              
 
                         <div class="post_reaction">
                             <div class="post_reaction_icon">

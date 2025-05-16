@@ -112,9 +112,9 @@
 
 
                     <div class="post_reactions">
-                       <?php 
+                        <?php
                         include 'page_essentials/like_n_like_count.php';
-                       ?>
+                        ?>
 
 
 
@@ -138,10 +138,10 @@
                                 }
                             }
                             ?>
-                                <div class="post_reaction_icon" id="comment_icon">
-                                    <i class="fa-regular fa-comment" id="comment_icon"></i>
-                                    <p id="comment_count"><?= $comment_count ?></p>
-                                </div>
+                            <div class="post_reaction_icon" id="comment_icon">
+                                <i class="fa-regular fa-comment" id="comment_icon"></i>
+                                <p id="comment_count"><?= $comment_count ?></p>
+                            </div>
                             <div class="post_reaction_desc">
                                 <p>Comment</p>
                             </div>
@@ -159,15 +159,32 @@
                         </div>
 
 
+
+
+
+                        <!--
                         <div class="post_reaction">
                             <div class="post_reaction_icon">
-                                <i class="fa-solid fa-share" id="share_icon"></i>
-                                <p id="share_count">12</p>
+                                <a href="page_essentials/share_scroll_logic.php?id=<?= $scroll['id'] ?>" id="share_icon">
+                                    <i class="fa-solid fa-share" id="share_icon"></i>
+                                </a>
+                                <p class="share_count">12</p>
                             </div>
                             <div class="post_reaction_desc">
                                 <p>Share</p>
                             </div>
                         </div>
+
+                        -->
+
+
+
+
+
+
+
+
+
                     </div>
                 </div>
             <?php endwhile ?>
