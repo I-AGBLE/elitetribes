@@ -27,9 +27,9 @@ if (isset($_GET['id'])) {
 
             $query_insert = "
                 INSERT INTO reposts 
-                (repost_id, user_post, images, original_creator, created_by, created_at) 
+                (repost_id, original_creator, created_by, created_at) 
                 VALUES 
-                ($repost_id, '$user_post', '$images', $original_creator, $created_by, '$created_at')
+                ($repost_id, $original_creator, $created_by, '$created_at')
             ";
 
             if (mysqli_query($connection, $query_insert)) {

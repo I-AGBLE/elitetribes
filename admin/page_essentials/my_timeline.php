@@ -146,6 +146,8 @@ $result = mysqli_query($connection, $feed_query);
           </div>
         </div>
 
+
+        <!--
         <div class="post_reaction">
           <div class="post_reaction_icon">
             <i class="fa-solid fa-retweet" id="repost_icon"></i>
@@ -155,7 +157,7 @@ $result = mysqli_query($connection, $feed_query);
             <p>Repost</p>
           </div>
         </div>
-
+        -->
     
       </div>
     </div>

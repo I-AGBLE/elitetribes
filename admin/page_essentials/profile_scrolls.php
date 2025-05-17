@@ -168,7 +168,7 @@ WHERE followed = $id
                             </div>
                         </div>
 
-
+<!--
                         <div class="post_reaction">
                             <div class="post_reaction_icon">
                                 <i class="fa-solid fa-retweet" id="repost_icon"></i>
@@ -188,6 +188,8 @@ WHERE followed = $id
                                 <p>Share</p>
                             </div>
                         </div>
+
+                        --> 
                     </div>
                 </div>
 

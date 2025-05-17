@@ -148,6 +148,7 @@
                         </div>
 
 
+                        <!--
                         <div class="post_reaction">
                             <div class="post_reaction_icon">
                                 <a href="repost_logic.php?id=<?= $scroll['id'] ?>" onclick="saveScroll()">
@@ -160,7 +161,7 @@
                             </div>
                         </div>
 
-
+-->
 
 
 

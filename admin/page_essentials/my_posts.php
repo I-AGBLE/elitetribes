@@ -152,6 +152,8 @@ if (isset($scroll['id'])) {
                             </div>
                         </div>
 
+
+                        <!--
                         <div class="post_reaction">
                             <div class="post_reaction_icon">
                                 <i class="fa-solid fa-retweet" id="repost_icon"></i>
@@ -161,7 +163,7 @@ if (isset($scroll['id'])) {
                                 <p>Repost</p>
                             </div>
                         </div>
-
+-->
               
 
                         <div class="post_reaction">

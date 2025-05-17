@@ -90,9 +90,9 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
       </p>
     </div>
 
-    
 
-     <?php elseif (isset($_SESSION['share'])) : ?>
+
+  <?php elseif (isset($_SESSION['share'])) : ?>
     <div class="alert_message error" id="alert_message">
       <p>
         <?= $_SESSION['share'];
@@ -101,7 +101,7 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
       </p>
     </div>
 
-     <?php elseif (isset($_SESSION['share_success'])) : ?>
+  <?php elseif (isset($_SESSION['share_success'])) : ?>
     <div class="alert_message success" id="alert_message">
       <p>
         <?= $_SESSION['share_success'];
@@ -111,7 +111,7 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
     </div>
 
 
-       <?php elseif (isset($_SESSION['repost'])) : ?>
+  <?php elseif (isset($_SESSION['repost'])) : ?>
     <div class="alert_message error" id="alert_message">
       <p>
         <?= $_SESSION['repost'];
@@ -120,7 +120,7 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
       </p>
     </div>
 
-     <?php elseif (isset($_SESSION['repost_success'])) : ?>
+  <?php elseif (isset($_SESSION['repost_success'])) : ?>
     <div class="alert_message success" id="alert_message">
       <p>
         <?= $_SESSION['repost_success'];
@@ -254,7 +254,7 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 
                   <div class="like_icon">
                     <a href="like_logic.php?id=<?= $scroll['id'] ?>">
-                      <i class="fa-regular fa-heart <?= $liked ? 'liked' : 'default' ?>"  id="like_icon"></i>
+                      <i class="fa-regular fa-heart <?= $liked ? 'liked' : 'default' ?>" id="like_icon"></i>
                     </a>
                   </div>
                 </div>
@@ -271,6 +271,8 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
             include 'page_essentials/comment_count.php';
             ?>
 
+
+<!--
             <div class="post_reaction">
               <div class="post_reaction_icon">
                 <i class="fa-solid fa-retweet" id="repost_icon"></i>
@@ -280,8 +282,8 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
                 <p>Repost</p>
               </div>
             </div>
+                -->
 
-           
 
           </div>
 
