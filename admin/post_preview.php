@@ -109,6 +109,25 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
         ?>
       </p>
     </div>
+
+
+       <?php elseif (isset($_SESSION['repost'])) : ?>
+    <div class="alert_message error" id="alert_message">
+      <p>
+        <?= $_SESSION['repost'];
+        unset($_SESSION['repost']);
+        ?>
+      </p>
+    </div>
+
+     <?php elseif (isset($_SESSION['repost_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
+      <p>
+        <?= $_SESSION['repost_success'];
+        unset($_SESSION['repost_success']);
+        ?>
+      </p>
+    </div>
   <?php endif ?>
 
 

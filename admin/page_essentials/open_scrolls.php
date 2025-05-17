@@ -150,8 +150,10 @@
 
                         <div class="post_reaction">
                             <div class="post_reaction_icon">
-                                <i class="fa-solid fa-retweet" id="repost_icon"></i>
-                                <p id="repost_count">98</p>
+                                <a href="repost_logic.php?id=<?= $scroll['id'] ?>" onclick="saveScroll()">
+                                    <i class="fa-solid fa-retweet" id="repost_icon"></i>
+                                </a>
+                                <p id="repost_count">0</p>
                             </div>
                             <div class="post_reaction_desc">
                                 <p>Repost</p>
