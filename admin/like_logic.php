@@ -21,6 +21,8 @@ if (isset($_GET['id'])) {
 
         // Set session message for unliking
         $_SESSION['like'] = 'You Unliked This Post';
+          header('Location: ' . ROOT_URL . 'admin/post_preview.php?id=' . $scroll_id);
+        exit();
 
     } else {
         // No existing entry – insert new like
@@ -30,6 +32,8 @@ if (isset($_GET['id'])) {
 
         // Set session message for liking
         $_SESSION['like_success'] = 'You liked this post';
+          header('Location: ' . ROOT_URL . 'admin/post_preview.php?id=' . $scroll_id);
+        exit();
 
     }
 

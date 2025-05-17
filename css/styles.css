@@ -737,10 +737,9 @@ input[type="submit"][value="Post"] {
 }
 
 .comment_field {
-  display: flex;
-  align-items: flex-end;
+  display: grid;
   margin-left: 17%;
-  gap: 1rem;
+  gap: .5rem;
   margin-bottom: 0.5rem;
 }
 
@@ -1058,6 +1057,18 @@ input[type="submit"][value="Login"] {
   margin-top: 0.5rem;
   font-weight: 700;
 }
+
+input[type="submit"][value="Comment"] {
+  background-color: var(--color_warning);
+  color: var(--deep_bg);
+  cursor: pointer;
+  transition: var(--transition);
+  width: 5.6rem;
+  margin-top: 0.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 
 input[type="submit"][value="Update"] {
   background-color: var(--color_warning);
