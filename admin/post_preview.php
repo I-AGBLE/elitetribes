@@ -235,7 +235,7 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 
                   <div class="like_icon">
                     <a href="like_logic.php?id=<?= $scroll['id'] ?>">
-                      <i class="fa-regular fa-heart <?= $liked ? 'liked' : 'default' ?>"></i>
+                      <i class="fa-regular fa-heart <?= $liked ? 'liked' : 'default' ?>"  id="like_icon"></i>
                     </a>
                   </div>
                 </div>
