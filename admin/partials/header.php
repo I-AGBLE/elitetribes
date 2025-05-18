@@ -50,10 +50,14 @@ if (isset($_SESSION['user_id'])) {
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
-    <!-- js -->
+  
+
+        <!-- js -->
     <script src="../js/main.js" defer></script>
     <script src="../js/user_profile.js" defer></script>
     <script src="../js/index.js" defer></script>
+    <script src="../js/image_grab_n_scroll.js" defer></script>
+
 </head>
 
 
@@ -77,11 +81,11 @@ if (isset($_SESSION['user_id'])) {
                     <h4><?= $user_detail['username'] ?></h4>
                 </div>
 
-            
-                <?php 
-                    include'./page_essentials/followers_count.php';
+
+                <?php
+                include './page_essentials/followers_count.php';
                 ?>
-            
+
             </a>
         </div>
 

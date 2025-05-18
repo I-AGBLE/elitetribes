@@ -95,7 +95,7 @@
                     $images = array_filter(array_map('trim', explode(',', $scroll['images']))); // Remove empty/whitespace-only values
                     if (!empty($images)) :
                     ?>
-                        <div class="post_images_container">
+                        <div class="post_images_container ">
                             <div class="post_images">
                                 <?php foreach ($images as $image) : ?>
                                     <a href="<?= ROOT_URL ?>admin/post_preview.php?id=<?= $scroll['id'] ?>">

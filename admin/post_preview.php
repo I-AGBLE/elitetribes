@@ -214,6 +214,17 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
             </div>
           <?php endif; ?>
 
+
+
+
+          
+
+
+
+
+
+
+
           <div class="post_text">
             <p>
               <?= $scroll['user_post'] ?>

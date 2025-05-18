@@ -1,5 +1,4 @@
-    
- document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
   const openScrollsLink = document.getElementById('open_scrolls');
   const myTimelineLink = document.getElementById('timeline');
 
