@@ -53,9 +53,16 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
 
         <div class="post_actions">
 
-          <label for="image-upload">
-            <i class="fa-solid fa-image"></i> </label>
+          <label for="image-upload" style="cursor: pointer;">
+            <i class="fa-solid fa-image" style="font-size: 24px;"></i>
+          </label>
+
           <input type="file" id="image-upload" name="images[]" accept="image/*" multiple style="display: none;" />
+
+          <!-- Where the selected file names will be shown -->
+          <div id="file-names"></div>
+
+        
 
           <input type="text" name="confirm_human" class="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human">
 
@@ -84,11 +91,11 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
 
 
 
-  
+
 
 
     <?php
-      include 'page_essentials/open_scrolls.php';
+    include 'page_essentials/open_scrolls.php';
     ?>
 
 
@@ -110,17 +117,17 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
         </div>
       </div>
 
- 
-      
-      <?php 
-    include'page_essentials/my_timeline.php';
+
+
+      <?php
+      include 'page_essentials/my_timeline.php';
       ?>
 
-    
+
     </div>
 
 
-    
+
   </section>
 
 

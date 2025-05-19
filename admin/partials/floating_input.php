@@ -25,9 +25,17 @@ unset($_SESSION['add_post_data']);
 
         <div class="post_actions">
 
-          <label for="image-upload">
-            <i class="fa-solid fa-image"></i> </label>
+            <label for="image-upload" style="cursor: pointer;">
+            <i class="fa-solid fa-image" style="font-size: 24px;"></i>
+          </label>
+
           <input type="file" id="image-upload" name="images[]" accept="image/*" multiple style="display: none;" />
+
+          <!-- Where the selected file names will be shown -->
+          <div id="file-names-floating-input"></div>
+
+
+
 
           <input type="text" name="confirm_human" class="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human">
 
