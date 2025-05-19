@@ -641,6 +641,8 @@ input[type="submit"][value="Post"] {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
    cursor: grab;
+   padding-right: 9rem;
+   padding-left: 9rem;
 }
 
 
@@ -657,7 +659,10 @@ input[type="submit"][value="Post"] {
   scroll-snap-type: x mandatory;
   width: fit-content;
   scroll-behavior: smooth;
+
+
 }
+
 
 .post_images img {
   max-height: 30rem;
