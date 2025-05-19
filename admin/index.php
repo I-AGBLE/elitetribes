@@ -137,7 +137,7 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
 
 
 <?php
-include 'partials/floating_input.php';
+// include './partials/floating_input.php';
 
 
 include '../partials/footer.php';
