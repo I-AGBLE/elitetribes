@@ -101,7 +101,7 @@ WHERE followed = $id
                             <a href="post_preview.php?id=<?= $scroll['id'] ?>">
 
                                 <?php
-                                $text = $scroll['user_post'];
+                                $text = nl2br($scroll['user_post']) ;
                                 $maxLength = 500;
                                 if (strlen($text) > $maxLength) {
                                     echo substr($text, 0, $maxLength) . '<p>Read More...</p>';
@@ -134,7 +134,7 @@ WHERE followed = $id
 
                     <div class="post_reactions">
                         <?php
-                            include 'page_essentials/like_n_like_count.php';
+                        include 'page_essentials/like_n_like_count.php';
                         ?>
 
 
@@ -159,16 +159,16 @@ WHERE followed = $id
                                 }
                             }
                             ?>
-                                <div class="post_reaction_icon" id="comment_icon">
-                                    <i class="fa-regular fa-comment" id="comment_icon"></i>
-                                    <p id="comment_count"><?= $comment_count ?></p>
-                                </div>
+                            <div class="post_reaction_icon" id="comment_icon">
+                                <i class="fa-regular fa-comment" id="comment_icon"></i>
+                                <p id="comment_count"><?= $comment_count ?></p>
+                            </div>
                             <div class="post_reaction_desc">
                                 <p>Comment</p>
                             </div>
                         </div>
 
-<!--
+                        <!--
                         <div class="post_reaction">
                             <div class="post_reaction_icon">
                                 <i class="fa-solid fa-retweet" id="repost_icon"></i>
@@ -189,7 +189,7 @@ WHERE followed = $id
                             </div>
                         </div>
 
-                        --> 
+                        -->
                     </div>
                 </div>
 

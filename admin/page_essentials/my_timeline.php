@@ -48,7 +48,7 @@ $result = mysqli_query($connection, $feed_query);
 
       <div class="post_text">
         <a href="<?= ROOT_URL ?>admin/post_preview.php?id=<?= $feed['id'] ?>">
-          <p><?= $feed['user_post'] ?></p>
+          <p><?= nl2br($feed['user_post'] ) ?></p>
         </a>
       </div>
 

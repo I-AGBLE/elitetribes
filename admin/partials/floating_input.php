@@ -25,7 +25,7 @@ unset($_SESSION['add_post_data']);
 
         <div class="post_actions">
 
-            <label for="image-upload" style="cursor: pointer;">
+          <label for="image-upload" style="cursor: pointer;">
             <i class="fa-solid fa-image" style="font-size: 24px;"></i>
           </label>
 

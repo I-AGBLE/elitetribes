@@ -227,7 +227,7 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 
           <div class="post_text">
             <p>
-              <?= $scroll['user_post'] ?>
+              <?= nl2br( $scroll['user_post'] )?>
 
             </p>
           </div>

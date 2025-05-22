@@ -82,7 +82,7 @@
                             <a href="post_preview.php?id=<?= $scroll['id'] ?>">
 
                                 <?php
-                                $text = $scroll['user_post'];
+                                $text = nl2br($scroll['user_post']) ;
                                 $maxLength = 500;
                                 if (strlen($text) > $maxLength) {
                                     echo substr($text, 0, $maxLength) . '<p>Read More...</p>';
