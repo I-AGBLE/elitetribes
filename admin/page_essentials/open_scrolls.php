@@ -139,7 +139,9 @@
                             }
                             ?>
                             <div class="post_reaction_icon" id="comment_icon">
-                                <i class="fa-regular fa-comment" id="comment_icon"></i>
+                                <a href="<?= ROOT_URL ?>admin/post_preview.php?id=<?= $scroll['id'] ?>">
+                                    <i class="fa-regular fa-comment" id="comment_icon"></i>
+                                </a>
                                 <p id="comment_count"><?= $comment_count ?></p>
                             </div>
                             <div class="post_reaction_desc">

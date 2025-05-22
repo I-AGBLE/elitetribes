@@ -98,7 +98,7 @@ p {
 }
 
 textarea:focus {
-  border: 1px solid var(--text_color);
+  border: .5px solid var(--text_color);
 }
 
 /* Button Styles */
@@ -742,14 +742,6 @@ input[type="submit"][value="Post"] {
   color: var(--color_success);
 }
 
-#repost_icon:hover {
-  color: var(--default_btn);
-}
-
-#share_icon:hover {
-  color: var(--danger_variant_btn);
-}
-
 #delete_icon {
   color: var(--danger_btn);
 }
@@ -1317,6 +1309,33 @@ footer a:hover {
   /* Red when liked */
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (min-width: 600px) and (max-width: 1024px) {
   /* General Font Styles */
   h1,
@@ -1328,15 +1347,15 @@ footer a:hover {
   }
 
   h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 
   h2 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   h4 {
@@ -1350,7 +1369,7 @@ footer a:hover {
   }
 
   textarea:focus {
-    border: 0.8px solid var(--text_color);
+    border: 0.2px solid var(--text_color);
   }
 
   /* Button Styles */
@@ -1427,6 +1446,14 @@ footer a:hover {
   .user_details_post_time p {
     opacity: 0.7;
   }
+
+
+
+  .post_images_container {
+   padding-right: 12rem;
+   padding-left: 7rem;
+}
+
 
   .post_images {
     display: flex;
@@ -1532,7 +1559,7 @@ footer a:hover {
   }
 
   .floating_post_input textarea {
-    height: 25rem;
+    height: 20rem;
   }
 
   .floating_post_input textarea:hover {
@@ -1585,7 +1612,42 @@ footer a:hover {
     color: red;
     /* Red when liked */
   }
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media only screen and (max-width: 599px) {
   h1,
@@ -1691,6 +1753,13 @@ footer a:hover {
     -ms-transform: scale(1);
     -o-transform: scale(1);
   }
+
+
+    .post_images_container {
+   padding-right: 12rem;
+   padding-left: 10rem;
+}
+
 
   .post_images {
     display: flex;

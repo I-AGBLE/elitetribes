@@ -115,38 +115,40 @@
 
 
                     <div class="post_reactions">
-                        <?php 
-                            include 'page_essentials/like_n_like_count.php';
+                        <?php
+                        include 'page_essentials/like_n_like_count.php';
                         ?>
 
 
 
 
 
-                        
+
                         <div class="post_reaction">
 
-                        <?php
-// Assuming $scroll['id'] is already available and $connection is the DB connection
-$comment_count = 0;
+                            <?php
+                            // Assuming $scroll['id'] is already available and $connection is the DB connection
+                            $comment_count = 0;
 
-if (isset($scroll['id'])) {
-    $scroll_id = mysqli_real_escape_string($connection, $scroll['id']);
+                            if (isset($scroll['id'])) {
+                                $scroll_id = mysqli_real_escape_string($connection, $scroll['id']);
 
-    // Fetch comment count where scroll_id matches this post's ID
-    $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = '$scroll_id'";
-    $count_result = mysqli_query($connection, $count_query);
+                                // Fetch comment count where scroll_id matches this post's ID
+                                $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = '$scroll_id'";
+                                $count_result = mysqli_query($connection, $count_query);
 
-    if ($count_result) {
-        $count_row = mysqli_fetch_assoc($count_result);
-        $comment_count = $count_row['comment_count'];
-    }
-}
-?>
-                                <div class="post_reaction_icon" id="comment_icon">
+                                if ($count_result) {
+                                    $count_row = mysqli_fetch_assoc($count_result);
+                                    $comment_count = $count_row['comment_count'];
+                                }
+                            }
+                            ?>
+                            <div class="post_reaction_icon" id="comment_icon">
+                                <a href="post_preview.php?id=<?= $scroll['id'] ?>">
                                     <i class="fa-regular fa-comment" id="comment_icon"></i>
-                                    <p id="comment_count"><?= $comment_count ?></p>
-                                </div>
+                                </a>
+                                <p id="comment_count"><?= $comment_count ?></p>
+                            </div>
                             <div class="post_reaction_desc">
                                 <p>Comment</p>
                             </div>
@@ -164,7 +166,7 @@ if (isset($scroll['id'])) {
                             </div>
                         </div>
 -->
-              
+
 
                         <div class="post_reaction">
                             <div class="post_reaction_icon">
