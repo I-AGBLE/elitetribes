@@ -69,6 +69,8 @@ document.querySelectorAll(".post_images_container").forEach((container) => {
   window.addEventListener("load", updateActiveImage);
 });
 
+
+
 // File upload functionality
 // This code will display the names of the selected files in a div with id "file-names"
 const fileInput = document.getElementById("image-upload");
