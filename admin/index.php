@@ -26,7 +26,7 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
 <main>
 
 <section class="main_left">
-  <h2>left</h2>
+<!--Update -->
 </section>
 
 
@@ -145,7 +145,7 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
 
 
 <section class="main_right">
-  <h2>right</h2>
+ <!--Update -->
 </section>
 </main>
 

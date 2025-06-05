@@ -307,7 +307,7 @@ body {
 
 /* Main Section Styles */
 main {
-  margin: 4rem 10rem;
+  margin: 4rem 2rem;
   display: flex;
   justify-content: space-around;
   padding: 0.2rem 0;
@@ -316,10 +316,17 @@ main {
   -moz-transition: all 1s ease-in-out;
   -ms-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
+  align-items: flex-start;
+
 }
 
 .main_content {
   width: 45rem;
+}
+
+main .main_left, .main_right {
+  display: none;
+  
 }
 
 #public_main {
@@ -1443,6 +1450,15 @@ footer a:hover {
     padding: 0.2rem 0;
   }
 
+.main_content {
+  width: 100%;
+}
+
+  
+main .main_left, .main_right {
+  display: none;
+}
+
   
 #public_main {
   margin: 4rem 5rem;
@@ -1504,6 +1520,8 @@ footer a:hover {
     max-height: 25rem;
     max-width: 25rem;
   }
+
+
 
   .comment_input {
     margin-bottom: 2rem;
@@ -1771,6 +1789,16 @@ select {
     margin: 3.5rem 0.2rem;
     overflow-x: hidden;
   }
+
+
+  .main_content {
+  width: 100%;
+}
+
+  
+main .main_left, .main_right {
+  display: none;
+}
 
 
   #public_main {
