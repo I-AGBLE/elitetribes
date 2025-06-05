@@ -523,9 +523,9 @@ input[type="submit"][value="Post"] {
 }
 
 .search_box input {
-  width: 25rem;
+  width: 90%;
   align-items: center;
-  margin: 0.5rem 0;
+  margin: 1rem 0;
   height: 2rem;
   padding: 0.5rem;
   margin-bottom: 0.9rem;
@@ -871,13 +871,21 @@ input[type="submit"]:hover {
 .post_input,
 .floating_post_input {
   border-bottom: 1px solid var(--text_color);
-  margin-bottom: 2rem;
   margin-top: 1.5rem;
+}
+
+.post_input {
+  width: 100%;
+}
+
+.floating_post_input {
+  margin-bottom: 2rem;
 }
 
 .post_field {
   display: grid;
   gap: 0.5rem;
+  width: 100%;
 }
 
 .post_field:hover {
@@ -1431,7 +1439,7 @@ footer a:hover {
   }
 
   .search_box input {
-    width: 35rem;
+    width: 85%;
     margin: 1.5rem 0;
   }
 
