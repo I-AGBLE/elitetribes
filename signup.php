@@ -32,7 +32,7 @@ unset($_SESSION['signup_data']);
 
 
 
-<main>
+<main  id="public_main">
 
   <?php if (isset($_SESSION['signup'])) : ?>
     <div class="alert_message error" id="alert_message">

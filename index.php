@@ -25,7 +25,7 @@ $confirm_human = $_SESSION['signin_data']['confirm_human'] ?? null;;
 
 
 
-<main>
+<main id="public_main">
 
 <?php if (isset($_SESSION['signin'])) : ?>
     <div class="alert_message error" id="alert_message">

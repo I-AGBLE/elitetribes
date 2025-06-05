@@ -322,6 +322,11 @@ main {
   width: 45rem;
 }
 
+#public_main {
+  margin: 4rem 15rem;
+  min-width: 40rem;
+}
+
 .alert_message {
   margin-top: 1rem;
   z-index: 999;
@@ -1438,6 +1443,12 @@ footer a:hover {
     padding: 0.2rem 0;
   }
 
+  
+#public_main {
+  margin: 4rem 5rem;
+  min-width: 30rem;
+}
+
   /* Profile Section Styles */
   .user_section {
     padding-top: 1rem;
@@ -1760,6 +1771,12 @@ select {
     margin: 3.5rem 0.2rem;
     overflow-x: hidden;
   }
+
+
+  #public_main {
+  margin: 3rem .2rem;
+ min-width: 10rem;
+}
 
   .alert_message {
     margin-top: -0.5rem;

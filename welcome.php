@@ -23,7 +23,7 @@ $confirm_human = $_SESSION['signin_data']['confirm_human'] ?? null;;
 
 
 
-<main>
+<main  id="public_main">
 
 <?php if (isset($_SESSION['signup_success'])) : ?>
     <div class="alert_message success" id="alert_message">
