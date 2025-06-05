@@ -35,7 +35,14 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 
 <main>
 
-  <?php if (isset($_SESSION['comment'])) : ?>
+<section class="main_left">
+<!--Update -->
+</section>
+
+
+
+<section class="main_content">
+    <?php if (isset($_SESSION['comment'])) : ?>
     <div class="alert_message error" id="alert_message">
       <p>
         <?= $_SESSION['comment'];
@@ -283,19 +290,6 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
             ?>
 
 
-<!--
-            <div class="post_reaction">
-              <div class="post_reaction_icon">
-                <i class="fa-solid fa-retweet" id="repost_icon"></i>
-                <p id="repost_count">98</p>
-              </div>
-              <div class="post_reaction_desc">
-                <p>Repost</p>
-              </div>
-            </div>
-                -->
-
-
           </div>
 
 
@@ -419,6 +413,14 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
       </div>
     </div>
   </section>
+
+</section>
+
+
+  <section class="main_right">
+ <!--Update -->
+</section>
+
 </main>
 
 

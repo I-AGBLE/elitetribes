@@ -794,18 +794,19 @@ input[type="submit"][value="Post"] {
 
 .comment_input {
   margin-bottom: 1.5rem;
+  width: 100%;
 }
 
 .comment_field {
   display: grid;
-  margin-left: 17%;
   gap: 0.02rem;
   margin-bottom: 0.5rem;
 }
 
 .comment_field textarea {
   min-height: 5rem;
-  width: 85%;
+  width: 99%;
+  margin: auto .2rem;
   resize: none;
   color: var(--text_color);
   background-color: var(--default_bg);
@@ -1536,7 +1537,7 @@ main .main_left, .main_right {
   }
 
   .comment_field textarea {
-    width: 100%;
+    width: 99%;
   }
 
   .comment_text {
@@ -1882,7 +1883,7 @@ main .main_left, .main_right {
   }
 
   .comment_field textarea {
-    width: 100%;
+    width: 99%;
   }
 
   input[type="submit"] {
