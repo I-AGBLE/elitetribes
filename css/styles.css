@@ -146,12 +146,15 @@ textarea:focus {
   cursor: pointer;
 }
 
+
+
+
 /* Nav Styles */
 nav {
   background-color: var(--nav_bg);
   display: flex;
   justify-content: space-between;
-  padding: 0.2rem 25rem;
+  padding: 0.2rem 15rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -160,7 +163,12 @@ nav {
   z-index: 200;
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(20px);
-  height: 4rem;
+  height: 3rem;
+  transition: var(--transition);
+}
+
+nav:hover {
+  box-shadow: var(--box_shadow);
 }
 
 .user_details a {
@@ -229,6 +237,10 @@ nav {
   color: var(--color_warning);
 }
 
+/* .nav_logo {
+width: 45rem;
+} */
+
 .nav_logo a {
   display: flex;
   align-items: center;
@@ -295,13 +307,19 @@ body {
 
 /* Main Section Styles */
 main {
-  margin: 4rem 25rem;
+  margin: 4rem 10rem;
+  display: flex;
+  justify-content: space-around;
   padding: 0.2rem 0;
   transition: all 1s ease-in-out;
   -webkit-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
   -ms-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
+}
+
+.main_content {
+  width: 45rem;
 }
 
 .alert_message {
@@ -775,7 +793,7 @@ input[type="submit"][value="Post"] {
 
 .comment_field textarea {
   min-height: 5rem;
-  width: 70%;
+  width: 85%;
   resize: none;
   color: var(--text_color);
   background-color: var(--default_bg);

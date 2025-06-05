@@ -22,8 +22,16 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
 
 
 
+
 <main>
-  <?php if (isset($_SESSION['signin_success'])) : ?>
+
+<section class="main_left">
+  <h2>left</h2>
+</section>
+
+
+<section class="main_content">
+ <?php if (isset($_SESSION['signin_success'])) : ?>
     <div class="alert_message success" id="alert_message">
       <p>
         <?= $_SESSION['signin_success'];
@@ -132,7 +140,13 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
 
 
 
+</section>
+ 
 
+
+<section class="main_right">
+  <h2>right</h2>
+</section>
 </main>
 
 
