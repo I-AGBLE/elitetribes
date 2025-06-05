@@ -983,7 +983,7 @@ input[type="submit"]:hover {
 .floating_input {
   position: fixed;
   bottom: 5rem; /* 2rem above the bottom of the viewport */
-  right: 25rem;
+  right: 18rem;
   margin-bottom: 0; /* margin-bottom is unnecessary when using fixed positioning */
   display: flex;
   justify-content: flex-end;
