@@ -1044,7 +1044,7 @@ input[type="submit"]:hover {
   border: none;
   background-color: var(--light_bg);
   padding: 0.5rem;
-  width: 25rem;
+  width: 100%;
   resize: none;
 }
 
@@ -1055,7 +1055,7 @@ select {
   border: none;
   background-color: var(--light_bg);
   padding: 0.5rem;
-  width: 25rem;
+  width: 100%;
 }
 
 .standard_login input:focus,
@@ -1615,6 +1615,30 @@ footer a:hover {
 
 
 
+  
+.standard_login textarea {
+  height: 6rem;
+  border-radius: var(--border_radius);
+  border: none;
+  background-color: var(--light_bg);
+  padding: 0.5rem;
+  width: 70%;
+  resize: none;
+}
+
+
+  
+.standard_login input,
+select {
+  height: 2rem;
+  border-radius: var(--border_radius);
+  border: none;
+  background-color: var(--light_bg);
+  padding: 0.5rem;
+  width: 70%;
+}
+
+
 
 }
 
@@ -1892,4 +1916,27 @@ footer a:hover {
     color: red;
     /* Red when liked */
   }
+
+
+  
+.standard_login textarea {
+  height: 6rem;
+  border-radius: var(--border_radius);
+  border: none;
+  background-color: var(--light_bg);
+  padding: 0.5rem;
+  width: 100%;
+  resize: none;
+}
+
+  .standard_login input,
+select {
+  height: 2rem;
+  border-radius: var(--border_radius);
+  border: none;
+  background-color: var(--light_bg);
+  padding: 0.5rem;
+  width: 100%;
+}
+
 }
