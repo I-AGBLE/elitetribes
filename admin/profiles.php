@@ -48,6 +48,13 @@ $followersCount = $followersData['total_followers'];
 
 <main>
 
+
+<section class="main_left">
+<!--Update -->
+</section>
+
+<section class="main_content">
+  
   <?php if (isset($_SESSION['add_post_success'])) : ?>
     <div class="alert_message success" id="alert_message">
       <p>
@@ -206,7 +213,13 @@ $followersCount = $followersData['total_followers'];
 
   </section>
 
+  
+</section>
 
+
+<section class="main_right">
+ <!--Update -->
+</section>
 
 
 </main>
