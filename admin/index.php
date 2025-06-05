@@ -147,6 +147,7 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
 <section class="main_right">
  <!--Update -->
 </section>
+
 </main>
 
 

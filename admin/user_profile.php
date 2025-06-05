@@ -24,6 +24,13 @@ $scrolls = mysqli_query($connection, $query);
 
 <main>
 
+<section class="main_left">
+<!--Update -->
+</section>
+
+
+<section class="main_content">
+
   <?php if (isset($_SESSION['add_post_success'])) : ?>
     <div class="alert_message success" id="alert_message">
       <p>
@@ -190,7 +197,12 @@ if ($result && $row = mysqli_fetch_assoc($result)) {
   </section>
 
 
+</section>
 
+
+<section class="main_right">
+ <!--Update -->
+</section>
 
 </main>
 
