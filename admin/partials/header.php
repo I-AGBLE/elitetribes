@@ -50,13 +50,14 @@ if (isset($_SESSION['user_id'])) {
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
-  
 
-        <!-- js -->
+
+    <!-- js -->
     <script src="../js/main.js" defer></script>
     <script src="../js/user_profile.js" defer></script>
     <script src="../js/index.js" defer></script>
     <script src="../js/image_grab_n_scroll.js" defer></script>
+    <script src="../js/header_menu.js" defer></script>
 
 </head>
 
@@ -86,33 +87,37 @@ if (isset($_SESSION['user_id'])) {
                 include './page_essentials/followers_count.php';
                 ?>
 
-               
+
 
             </a>
         </div>
 
 
-
-       <div class="nav_logo" id="main_nav_logo">
-    <a href="<?= ROOT_URL ?>admin#open_scrolls_contents" class="logo">
-        <h4>elite<span>Tribes</span></h4>
-    </a>
+<div class="nav_logo" id="main_nav_logo">
+  <div class="logo_wrapper">
+    <div class="logo">
+      <h4>elite<span>Tribes</span></h4>
+</div>
 
     <div class="header_menus">
-        <div class="header_menu_items">
-            <ul>
-                <li><a href="<?= ROOT_URL ?>admin#open_scrolls_contents">Home</a></li>
-                <li><a href="user_profile.php#my_posts">My Profile</a></li>
-                <li><a href="">Elite Market</a></li>
-                <li><a href="">Asigame</a></li>
-                <li><a href="">Privacy Policy</a></li>
-                <li><a href="">Terms and Condition</a></li>
-                <li><a href="">About Us</a></li>
-                <li><a href="<?= ROOT_URL ?>/contact.php">Contact Us</a></li>
-                <li><a href="../logout_logic.php" id="logout">Logout</a></li>
-            </ul>
-        </div>
+      <div class="header_menu_items">
+        <ul>
+          <li><a href="<?= ROOT_URL ?>admin#open_scrolls_contents">Home</a></li>
+          <li><a href="user_profile.php#my_posts">My Profile</a></li>
+          <li><a href="#">Elite Market</a></li>
+          <li><a href="#">Asigame</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms and Condition</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="<?= ROOT_URL ?>/contact.php">Contact Us</a></li>
+          <li><a href="../logout_logic.php" id="logout">Logout</a></li>
+        </ul>
+      </div>
     </div>
+  </div>
 </div>
+
+
+
 
     </nav>
