@@ -87,10 +87,10 @@
                                 }
                                 ?>
                             </a>
-
                         </p>
                     </div>
 
+                    <!-- display scroll  image(s) if any -->
                     <?php
                     $images = array_filter(array_map('trim', explode(',', $scroll['images']))); // Remove empty/whitespace-only values
                     if (!empty($images)) :
@@ -148,48 +148,6 @@
                                 <p>Comment</p>
                             </div>
                         </div>
-
-
-                        <!--
-                        <div class="post_reaction">
-                            <div class="post_reaction_icon">
-                                <a href="repost_logic.php?id=<?= $scroll['id'] ?>" onclick="saveScroll()">
-                                    <i class="fa-solid fa-retweet" id="repost_icon"></i>
-                                </a>
-                                <p id="repost_count">0</p>
-                            </div>
-                            <div class="post_reaction_desc">
-                                <p>Repost</p>
-                            </div>
-                        </div>
-
--->
-
-
-
-                        <!--
-                        <div class="post_reaction">
-                            <div class="post_reaction_icon">
-                                <a href="page_essentials/share_scroll_logic.php?id=<?= $scroll['id'] ?>" id="share_icon">
-                                    <i class="fa-solid fa-share" id="share_icon"></i>
-                                </a>
-                                <p class="share_count">12</p>
-                            </div>
-                            <div class="post_reaction_desc">
-                                <p>Share</p>
-                            </div>
-                        </div>
-
-                        -->
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
             <?php endwhile ?>

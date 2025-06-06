@@ -87,18 +87,6 @@ if ($result && $row = mysqli_fetch_assoc($result)) {
       <div class="user_info">
         <div class="name">
           <h3><?= $user_detail['username'] ?></h3>
-
-
-          <?php if ($followers_count >= 20): ?>
-            <div class="verified">
-              <div class="verified_icon">
-                <i class="fa-solid fa-check"></i>
-              </div>
-              <div class="verified_desc">
-                <p>Verified</p>
-              </div>
-            </div>
-          <?php endif; ?>
         </div>
 
         <div class="about">
