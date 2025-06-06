@@ -86,38 +86,33 @@ if (isset($_SESSION['user_id'])) {
                 include './page_essentials/followers_count.php';
                 ?>
 
+               
+
             </a>
         </div>
 
 
 
-        <div class="nav_logo">
-            <a href="<?= ROOT_URL ?>admin#open_scrolls_contents">
-                <h4>elite<span>Tribes</span></h4>
-            </a>
-        </div>
+       <div class="nav_logo" id="main_nav_logo">
+    <a href="<?= ROOT_URL ?>admin#open_scrolls_contents" class="logo">
+        <h4>elite<span>Tribes</span></h4>
+    </a>
 
-
-
-
-
-        <div class="nav_items">
+    <div class="header_menus">
+        <div class="header_menu_items">
             <ul>
-                <li>
-                    <a href="<?= ROOT_URL ?>admin">Home</a>
-                </li>
-
-                <li>
-                    <a href="<?= ROOT_URL ?>/contact.php">Contact Us</a>
-                </li>
+                <li><a href="<?= ROOT_URL ?>admin#open_scrolls_contents">Home</a></li>
+                <li><a href="user_profile.php#my_posts">My Profile</a></li>
+                <li><a href="">Elite Market</a></li>
+                <li><a href="">Asigame</a></li>
+                <li><a href="">Privacy Policy</a></li>
+                <li><a href="">Terms and Condition</a></li>
+                <li><a href="">About Us</a></li>
+                <li><a href="<?= ROOT_URL ?>/contact.php">Contact Us</a></li>
+                <li><a href="../logout_logic.php" id="logout">Logout</a></li>
             </ul>
-
-            <div class="nav_access">
-                <ul>
-                    <li id="logout">
-                        <a href="../logout_logic.php">Logout</a>
-                    </li>
-                </ul>
-            </div>
         </div>
+    </div>
+</div>
+
     </nav>
