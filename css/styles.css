@@ -173,10 +173,9 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  text-align: right;
+  text-align: left;
   margin-top:1rem;
   direction: rtl;
-
 }
 
 /* logo styling */
@@ -186,6 +185,8 @@ nav {
   z-index: 1;
   background-color: inherit;
   text-align: right;
+  display: flex;
+  gap: .5rem;
 }
 
 .logo:hover{
@@ -199,6 +200,28 @@ nav {
   position: relative;
   display: inline-block;
 }
+
+.menu_icon i {
+  font-size: .7rem;
+  transition: var(--transition);
+  animation: zoomPulse 2.5s infinite ease-in-out;
+}
+
+.menu_icon i:hover {
+  color: var(--color_warning);
+}
+
+@keyframes zoomPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+    color: var(--color_warning);
+  }
+}
+
+
 
 /* Hide menu by default */
 .header_menus {
@@ -258,7 +281,6 @@ nav {
   font-weight: bolder;
   opacity: .8;
   display: block;
-  transition: all 0.3s ease;
 }
 
 .header_menu_items ul li a:hover {
@@ -1559,6 +1581,24 @@ footer a:hover {
     -webkit-backdrop-filter: blur(20px);
   }
 
+
+
+/* Menu items */
+.header_menu_items ul {
+  margin: .1rem;
+}
+
+.header_menu_items ul li {
+  margin: .1rem 0;
+}
+
+
+/* Link styling */
+.header_menu_items ul li a {
+padding: .3rem 0.1rem;
+}
+
+
   .user_profile_pic {
     width: 2.5rem;
     height: 2.5rem;
@@ -1904,6 +1944,14 @@ select {
   .nav_items {
     display: none;
   }
+
+
+
+/* Link styling */
+.header_menu_items ul li a {
+padding: .2rem 0.1rem;
+}
+
 
   .user_profile_pic {
     width: 2rem;
