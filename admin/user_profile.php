@@ -24,12 +24,6 @@ $scrolls = mysqli_query($connection, $query);
 
 <main>
 
-<section class="main_left">
-<!--Update -->
-</section>
-
-
-<section class="main_content">
 
   <?php if (isset($_SESSION['add_post_success'])) : ?>
     <div class="alert_message success" id="alert_message">
@@ -59,6 +53,17 @@ $scrolls = mysqli_query($connection, $query);
       </p>
     </div>
   <?php endif ?>
+
+
+
+  
+<section class="main_left">
+<!--Update -->
+</section>
+
+
+<section class="main_content">
+
 
 
   <?php

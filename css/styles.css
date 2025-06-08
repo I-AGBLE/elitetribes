@@ -204,7 +204,7 @@ nav {
 .menu_icon i {
   font-size: .7rem;
   transition: var(--transition);
-  animation: zoomPulse 2.5s infinite ease-in-out;
+  animation: zoomPulse 3.5s infinite ease-in-out;
 }
 
 .menu_icon i:hover {
@@ -269,7 +269,6 @@ nav {
 .header_menu_items ul li:nth-child(6) { transition-delay: 0.6s; }
 .header_menu_items ul li:nth-child(7) { transition-delay: 0.7s; }
 .header_menu_items ul li:nth-child(8) { transition-delay: 0.8s; }
-.header_menu_items ul li:nth-child(9) { transition-delay: 0.9s; }
 
 /* Link styling */
 .header_menu_items ul li a {

@@ -82,7 +82,7 @@
                             <a href="post_preview.php?id=<?= $scroll['id'] ?>">
 
                                 <?php
-                                $text = nl2br($scroll['user_post']) ;
+                                $text = nl2br($scroll['user_post']);
                                 $maxLength = 500;
                                 if (strlen($text) > $maxLength) {
                                     echo substr($text, 0, $maxLength) . '<p>Read More...</p>';
@@ -153,19 +153,6 @@
                                 <p>Comment</p>
                             </div>
                         </div>
-
-
-                        <!--
-                        <div class="post_reaction">
-                            <div class="post_reaction_icon">
-                                <i class="fa-solid fa-retweet" id="repost_icon"></i>
-                                <p id="repost_count">98</p>
-                            </div>
-                            <div class="post_reaction_desc">
-                                <p>Repost</p>
-                            </div>
-                        </div>
--->
 
 
                         <div class="post_reaction">
