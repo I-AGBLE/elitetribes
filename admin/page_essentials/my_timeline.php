@@ -48,7 +48,16 @@ $result = mysqli_query($connection, $feed_query);
 
       <div class="post_text">
         <a href="<?= ROOT_URL ?>admin/post_preview.php?id=<?= $feed['id'] ?>">
-          <p><?= nl2br($feed['user_post'] ) ?></p>
+
+          <?php
+          $text = nl2br($feed['user_post']);
+          $maxLength = 500;
+          if (strlen($text) > $maxLength) {
+            echo substr($text, 0, $maxLength) . '<p>Read More...</p>';
+          } else {
+            echo $text;
+          }
+          ?>
         </a>
       </div>
 
