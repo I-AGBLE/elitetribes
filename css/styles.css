@@ -1929,6 +1929,10 @@ footer a:hover {
     height: 2rem;
   }
 
+  #dashboard {
+    margin-top: 3rem;
+  }
+
   /* Main Section Styles */
   main {
     margin: 3.5rem 0.2rem;

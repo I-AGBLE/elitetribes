@@ -53,12 +53,27 @@ if ($result && $result->num_rows > 0) {
 $stmt->close();
 ?>
 
+
+
 <main>
     <section class="main_left">
         <!--Update -->
     </section>
 
     <section class="main_content">
+
+            <div class="my_dashboard"  id="dashboard">
+            <div class="my_dashboard_title">
+                <div class="dashboard_small_titles">
+                    <div class="my_posts_links">
+                        <a href="index.php">All Scrolls</a>
+                        <a href="all_tribesmen.php" style="color: var(--color_warning);">All Tribesmen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="search_box">
             <center>
                 <input type="text" placeholder="Search A Tribesman" id="my_following_box">
