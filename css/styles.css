@@ -290,6 +290,10 @@ cursor: pointer;
   transition-delay: 0.4s;
 }
 
+.header_menu_items ul li:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
 /* Link styling */
 .header_menu_items ul li a {
   text-decoration: none;
@@ -306,6 +310,10 @@ cursor: pointer;
   opacity: 1;
   box-shadow: var(--box_shadow);
   transform: translateX(-0.5rem);
+}
+
+.header_menu_items ul li a#dev_mod {
+  background-color: var(--color_success);
 }
 
 nav:hover {

@@ -15,7 +15,7 @@ if (!isset($_SESSION['user_id'])) {
 // fetch user details 
 if (isset($_SESSION['user_id'])) {
   $id = filter_var($_SESSION['user_id'], FILTER_SANITIZE_NUMBER_INT);
-  $query = "SELECT username, avatar, followers FROM tribesmen WHERE id=$id";
+  $query = "SELECT username, avatar, followers, is_admin FROM tribesmen WHERE id = $id";
   $result = mysqli_query($connection, $query);
   $user_detail = mysqli_fetch_assoc($result);
 }
@@ -110,6 +110,13 @@ if (isset($_SESSION['user_id'])) {
               <li><a href="<?= ROOT_URL ?>admin#open_scrolls_contents">Home</a></li>
               <li><a href="user_profile.php#my_posts">My Profile</a></li>
               <li><a href="#">About Us</a></li>
+
+              <?php if (isset($user_detail['is_admin']) && $user_detail['is_admin'] == 1): ?>
+                <li><a href="<?= ROOT_URL ?>admin/dev_mod/"  id="dev_mod">Dev Mod</a></li>
+              <?php endif; ?>
+
+
+
               <li><a href="../logout_logic.php" id="logout">Logout</a></li>
             </ul>
           </div>
