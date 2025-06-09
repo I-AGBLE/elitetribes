@@ -34,7 +34,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--danger_variant_btn);
+  background: var(--color_warning);
   border-radius: 50%;
 }
 
@@ -88,17 +88,17 @@ h3 {
 }
 
 h4 {
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
-p {
+p, a {
   font-size: 1rem;
   font-weight: 400;
   text-align: justify;
 }
 
 textarea:focus {
-  border: .5px solid var(--text_color);
+  border: 0.5px solid var(--text_color);
 }
 
 /* Button Styles */
@@ -146,9 +146,6 @@ textarea:focus {
   cursor: pointer;
 }
 
-
-
-
 /* Nav Styles */
 nav {
   background-color: var(--nav_bg);
@@ -167,14 +164,12 @@ nav {
   transition: var(--transition);
 }
 
-
-
 #main_nav_logo {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: left;
-  margin-top:1rem;
+  margin-top: 1rem;
   direction: rtl;
 }
 
@@ -186,12 +181,12 @@ nav {
   background-color: inherit;
   text-align: right;
   display: flex;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
-.logo:hover{
+.logo:hover {
   cursor: pointer;
-  transform: translateX(-.3rem);
+  transform: translateX(-0.3rem);
   box-shadow: var(--box_shadow);
 }
 
@@ -202,7 +197,7 @@ nav {
 }
 
 .menu_icon i {
-  font-size: .7rem;
+  font-size: 0.7rem;
   transition: var(--transition);
   animation: zoomPulse 3.5s infinite ease-in-out;
 }
@@ -212,7 +207,8 @@ nav {
 }
 
 @keyframes zoomPulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -220,8 +216,6 @@ nav {
     color: var(--color_warning);
   }
 }
-
-
 
 /* Hide menu by default */
 .header_menus {
@@ -233,6 +227,7 @@ nav {
   visibility: hidden;
   transform: translateY(-10px);
   pointer-events: none;
+  direction: ltr;
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
@@ -243,56 +238,54 @@ nav {
   pointer-events: auto;
 }
 
-
 /* Menu items */
 .header_menu_items ul {
   list-style: none;
   padding: 0;
-  margin: .5rem;
+  margin: 0.5rem;
 }
 
 .header_menu_items ul li {
   z-index: 1000;
   opacity: 0;
   transform: translateY(-10px);
-  margin: .2rem 0;
-  border: .2px solid var(--deep_bg);
+  margin: 0.2rem 0;
+  border: 0.2px solid var(--deep_bg);
   border-radius: 2px;
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 /* Staggered delays */
-.header_menu_items ul li:nth-child(1) { transition-delay: 0.1s; }
-.header_menu_items ul li:nth-child(2) { transition-delay: 0.2s; }
-.header_menu_items ul li:nth-child(3) { transition-delay: 0.3s; }
-.header_menu_items ul li:nth-child(4) { transition-delay: 0.4s; }
+.header_menu_items ul li:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.header_menu_items ul li:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.header_menu_items ul li:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.header_menu_items ul li:nth-child(4) {
+  transition-delay: 0.4s;
+}
 
 /* Link styling */
 .header_menu_items ul li a {
   text-decoration: none;
   background-color: var(--color_warning);
-  padding: .5rem 3.5rem;
+  padding: 0.5rem 3.5rem;
   border-radius: 0.2rem;
   color: var(--deep_bg);
   font-weight: bolder;
-  opacity: .8;
+  opacity: 0.8;
   display: block;
 }
 
 .header_menu_items ul li a:hover {
   opacity: 1;
   box-shadow: var(--box_shadow);
-  transform: translateX(-.5rem);
+  transform: translateX(-0.5rem);
 }
-
-
-
-
-
-
-
-
-
 
 nav:hover {
   box-shadow: var(--box_shadow);
@@ -356,7 +349,7 @@ nav:hover {
 }
 
 .user_name h4 {
-  font-weight: bold;
+  font-weight:500 ;
 }
 
 .user_name:hover h4 {
@@ -367,10 +360,6 @@ nav:hover {
   -o-transform: scale(1.05);
   color: var(--color_warning);
 }
-
-/* .nav_logo {
-width: 45rem;
-} */
 
 .nav_logo a {
   display: flex;
@@ -448,16 +437,15 @@ main {
   -ms-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
   align-items: flex-start;
-
 }
 
 .main_content {
   width: 45rem;
 }
 
-main .main_left, .main_right {
+main .main_left,
+.main_right {
   display: none;
-  
 }
 
 #public_main {
@@ -580,12 +568,12 @@ main .main_left, .main_right {
 }
 
 .about p {
- font-size: 1rem;
+  font-size: 1rem;
 }
 
 .followers_and_posts p {
   color: var(--color_warning);
-  font-size: .9rem;
+  font-size: 0.8rem;
 }
 
 .verified {
@@ -754,7 +742,8 @@ input[type="submit"][value="Post"] {
   display: flex;
   justify-content: space-between;
   justify-items: flex-start;
-  background-color: var(--bg_variant);
+  background-color: rgb(26, 26, 24);
+  padding: .3rem 0;
   border-top-right-radius: var(--border_radius);
   border-top-left-radius: var(--border_radius);
 }
@@ -807,25 +796,21 @@ input[type="submit"][value="Post"] {
   padding: 0.2rem 0.3rem;
 }
 
-
 .post_images_container {
   overflow: hidden;
   width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-   cursor: grab;
-   padding-right: 15rem !important;
-   padding-left: 5rem !important;
+  cursor: grab;
+  padding-right: 15rem !important;
+  padding-left: 5rem !important;
 }
-
-
 
 .post_images_container.dragging {
   cursor: grabbing;
   user-select: none;
 }
-
 
 .post_images {
   display: flex;
@@ -833,10 +818,7 @@ input[type="submit"][value="Post"] {
   scroll-snap-type: x mandatory;
   width: fit-content;
   scroll-behavior: smooth;
-
-
 }
-
 
 .post_images img {
   max-height: 30rem;
@@ -880,8 +862,6 @@ input[type="submit"][value="Post"] {
   cursor: grabbing;
 }
 
-
-
 .post_images img.active:hover {
   transform: scale(1.05);
   -webkit-transform: scale(1.05);
@@ -890,7 +870,6 @@ input[type="submit"][value="Post"] {
   -o-transform: scale(1.05);
   box-shadow: var(--box_shadow);
 }
-
 
 .post_images_container::-webkit-scrollbar {
   display: none;
@@ -951,7 +930,7 @@ input[type="submit"][value="Post"] {
 .comment_field textarea {
   min-height: 5rem;
   width: 99%;
-  margin: auto .2rem;
+  margin: auto 0.2rem;
   resize: none;
   color: var(--text_color);
   background-color: var(--default_bg);
@@ -1081,10 +1060,10 @@ input[type="submit"]:hover {
   min-height: 8rem;
   max-height: 15rem;
   width: 100%;
+  font-size: 1rem;
   resize: none; /* Disable manual resizing */
   color: var(--text_color);
   background-color: var(--light_bg);
-  font-size: 0.9rem;
   padding: 0.2rem;
   border-radius: var(--border_radius);
   -webkit-border-radius: var(--border_radius);
@@ -1519,6 +1498,16 @@ footer a:hover {
 
 
 
+
+
+
+
+
+
+
+
+/* ---------------------------------- TABLET -------------------------------------- */
+
 @media only screen and (min-width: 600px) and (max-width: 1024px) {
   /* General Font Styles */
   h1,
@@ -1530,30 +1519,25 @@ footer a:hover {
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   h3 {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   h4 {
+    font-size: 1rem;
+  }
+
+  p, a {
     font-size: 0.9rem;
   }
 
-  p {
-    font-size: 0.9rem;
-    font-weight: 400;
-    text-align: justify;
-  }
-
-  textarea:focus {
-    border: 0.2px solid var(--text_color);
-  }
 
   /* Button Styles */
   #default_btn {
@@ -1578,23 +1562,19 @@ footer a:hover {
     -webkit-backdrop-filter: blur(20px);
   }
 
+  /* Menu items */
+  .header_menu_items ul {
+    margin: 0.1rem;
+  }
 
+  .header_menu_items ul li {
+    margin: 0.1rem 0;
+  }
 
-/* Menu items */
-.header_menu_items ul {
-  margin: .1rem;
-}
-
-.header_menu_items ul li {
-  margin: .1rem 0;
-}
-
-
-/* Link styling */
-.header_menu_items ul li a {
-padding: .6rem 3rem;
-}
-
+  /* Link styling */
+  .header_menu_items ul li a {
+    padding: 0.6rem 3rem;
+  }
 
   .user_profile_pic {
     width: 2.5rem;
@@ -1612,20 +1592,19 @@ padding: .6rem 3rem;
     padding: 0.2rem 0;
   }
 
-.main_content {
-  width: 100%;
-}
+  .main_content {
+    width: 100%;
+  }
 
-  
-main .main_left, .main_right {
-  display: none;
-}
+  main .main_left,
+  .main_right {
+    display: none;
+  }
 
-  
-#public_main {
-  margin: 4rem 5rem;
-  min-width: 30rem;
-}
+  #public_main {
+    margin: 4rem 5rem;
+    min-width: 30rem;
+  }
 
   /* Profile Section Styles */
   .user_section {
@@ -1639,6 +1618,17 @@ main .main_left, .main_right {
     height: 17rem;
   }
 
+
+.about p {
+  font-size: 1rem;
+}
+
+.followers_and_posts p {
+  color: var(--color_warning);
+  font-size: 0.8rem;
+}
+
+
   .my_posts_links {
     gap: 1.5rem;
     margin-bottom: 0.7rem;
@@ -1647,7 +1637,7 @@ main .main_left, .main_right {
 
   .search_box input {
     width: 85%;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     margin-bottom: 1.5rem;
   }
 
@@ -1663,13 +1653,10 @@ main .main_left, .main_right {
     opacity: 0.7;
   }
 
-
-
   .post_images_container {
-   padding-right: 10rem !important;
-   padding-left: 10rem !important;
-}
-
+    padding-right: 10rem !important;
+    padding-left: 10rem !important;
+  }
 
   .post_images {
     display: flex;
@@ -1685,8 +1672,6 @@ main .main_left, .main_right {
     min-width: 20rem;
   }
 
-
-
   .comment_input {
     margin-bottom: 2rem;
   }
@@ -1694,7 +1679,7 @@ main .main_left, .main_right {
   .comment_field {
     flex-direction: column;
     align-items: flex-start;
-     gap: 0.02rem;
+    gap: 0.02rem;
     margin-bottom: 0.5rem;
     margin: 0 0.2rem;
   }
@@ -1739,6 +1724,7 @@ main .main_left, .main_right {
   .post_field textarea {
     min-height: 10rem;
     max-height: 20rem;
+    font-size: .95rem;
   }
 
   .post_actions i {
@@ -1817,7 +1803,7 @@ main .main_left, .main_right {
   }
 
   .extras p {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   /* Default icon color */
@@ -1832,33 +1818,25 @@ main .main_left, .main_right {
     /* Red when liked */
   }
 
+  .standard_login textarea {
+    height: 6rem;
+    border-radius: var(--border_radius);
+    border: none;
+    background-color: var(--light_bg);
+    padding: 0.5rem;
+    width: 70%;
+    resize: none;
+  }
 
-
-  
-.standard_login textarea {
-  height: 6rem;
-  border-radius: var(--border_radius);
-  border: none;
-  background-color: var(--light_bg);
-  padding: 0.5rem;
-  width: 70%;
-  resize: none;
-}
-
-
-  
-.standard_login input,
-select {
-  height: 2rem;
-  border-radius: var(--border_radius);
-  border: none;
-  background-color: var(--light_bg);
-  padding: 0.5rem;
-  width: 70%;
-}
-
-
-
+  .standard_login input,
+  select {
+    height: 2rem;
+    border-radius: var(--border_radius);
+    border: none;
+    background-color: var(--light_bg);
+    padding: 0.5rem;
+    width: 70%;
+  }
 }
 
 
@@ -1886,11 +1864,7 @@ select {
 
 
 
-
-
-
-
-
+/* ---------------------------------- MOBILE  -------------------------------------- */
 
 @media only screen and (max-width: 599px) {
   h1,
@@ -1898,29 +1872,27 @@ select {
   h3,
   h4,
   h5 {
-    line-height: 0.9;
+    line-height: 1;
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   h3 {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   h4 {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
-  p {
-    font-size: 0.8rem;
-    font-weight: 400;
-    text-align: justify;
+  p, a {
+    font-size: .9rem;
   }
 
   /* Nav Styles */
@@ -1943,13 +1915,10 @@ select {
     display: none;
   }
 
-
-
-/* Link styling */
-.header_menu_items ul li a {
-padding: .6rem 3rem;
-}
-
+  /* Link styling */
+  .header_menu_items ul li a {
+    padding: 0.6rem 3rem;
+  }
 
   .user_profile_pic {
     width: 2rem;
@@ -1962,21 +1931,19 @@ padding: .6rem 3rem;
     overflow-x: hidden;
   }
 
-
   .main_content {
-  width: 100%;
-}
+    width: 100%;
+  }
 
-  
-main .main_left, .main_right {
-  display: none;
-}
-
+  main .main_left,
+  .main_right {
+    display: none;
+  }
 
   #public_main {
-  margin: 3rem .2rem;
- min-width: 10rem;
-}
+    margin: 3rem 0.2rem;
+    min-width: 10rem;
+  }
 
   .alert_message {
     margin-top: -0.5rem;
@@ -1994,10 +1961,22 @@ main .main_left, .main_right {
   }
 
   .user_picture {
-    width: 13.5rem;
+    width: 14.5rem !important;
     height: 15rem;
     margin: 0 2.55rem;
   }
+
+  
+.about p {
+  font-size: 1rem;
+}
+
+.followers_and_posts p {
+  color: var(--color_warning);
+  font-size: 0.8rem;
+}
+
+
 
   .my_posts_links {
     gap: 1rem;
@@ -2021,11 +2000,10 @@ main .main_left, .main_right {
     -o-transform: scale(1);
   }
 
-.post_images_container {
-   padding-right: 7rem !important;
-   padding-left: 7rem !important;
-}
-
+  .post_images_container {
+    padding-right: 7rem !important;
+    padding-left: 7rem !important;
+  }
 
   .post_images {
     display: flex;
@@ -2049,7 +2027,7 @@ main .main_left, .main_right {
   .comment_field {
     flex-direction: column;
     align-items: flex-start;
-      gap: 0.02rem;
+    gap: 0.02rem;
     margin: 1rem 0.2rem;
   }
 
@@ -2082,6 +2060,7 @@ main .main_left, .main_right {
   .post_field textarea {
     min-height: 10rem;
     max-height: 30rem;
+    font-size: .9rem;
   }
 
   .followings {
@@ -2141,11 +2120,11 @@ main .main_left, .main_right {
   }
 
   .extras {
-    margin-top: 8rem;
+    margin-top: .9rem;
   }
 
   .extras p {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   /* Default icon color */
@@ -2160,26 +2139,23 @@ main .main_left, .main_right {
     /* Red when liked */
   }
 
-
-  
-.standard_login textarea {
-  height: 6rem;
-  border-radius: var(--border_radius);
-  border: none;
-  background-color: var(--light_bg);
-  padding: 0.5rem;
-  width: 100%;
-  resize: none;
-}
+  .standard_login textarea {
+    height: 6rem;
+    border-radius: var(--border_radius);
+    border: none;
+    background-color: var(--light_bg);
+    padding: 0.5rem;
+    width: 100%;
+    resize: none;
+  }
 
   .standard_login input,
-select {
-  height: 2rem;
-  border-radius: var(--border_radius);
-  border: none;
-  background-color: var(--light_bg);
-  padding: 0.5rem;
-  width: 100%;
-}
-
+  select {
+    height: 2rem;
+    border-radius: var(--border_radius);
+    border: none;
+    background-color: var(--light_bg);
+    padding: 0.5rem;
+    width: 100%;
+  }
 }
