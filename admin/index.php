@@ -1,76 +1,81 @@
 <?php
+// Start session securely
+
+
 include 'partials/header.php';
 
+// Validate and sanitize input from failed post 
+$user_post = isset($_SESSION['add_post_data']['user_post']) ? 
+    htmlspecialchars($_SESSION['add_post_data']['user_post'], ENT_QUOTES, 'UTF-8') : 
+    null;
 
-// get input from failed post 
-$user_post = $_SESSION['add_post_data']['user_post'] ?? null;
-$confirm_human = $_SESSION['add_post_data']['confirm_human'] ?? null;;
+$confirm_human = isset($_SESSION['add_post_data']['confirm_human']) ? 
+    htmlspecialchars($_SESSION['add_post_data']['confirm_human'], ENT_QUOTES, 'UTF-8') : 
+    null;
 
-// if all is fine
+// Clear the session data
 unset($_SESSION['add_post_data']);
 
+// Database connection should be established with proper error handling
+if (!isset($connection) || !($connection instanceof mysqli)) {
+    die("Database connection error");
+}
 
-
-
-// fetch data from scrolls for open_scrolls page 
+// Prepare statement for fetching scrolls
 $open_scrolls_query = "SELECT * FROM scrolls ORDER BY created_at DESC";
 $open_scrolls = mysqli_query($connection, $open_scrolls_query);
 
+// Verify query was successful
+if (!$open_scrolls) {
+    die("Database query error: " . mysqli_error($connection));
+}
+
+// CSRF token generation for forms
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 ?>
 
-
-
-
-
-
 <main>
-
 <section class="main_left">
 <!--Update -->
 </section>
 
-
 <section class="main_content">
- <?php if (isset($_SESSION['signin_success'])) : ?>
+  <?php if (isset($_SESSION['signin_success'])) : ?>
     <div class="alert_message success" id="alert_message">
       <p>
-        <?= $_SESSION['signin_success'];
+        <?= htmlspecialchars($_SESSION['signin_success'], ENT_QUOTES, 'UTF-8');
         unset($_SESSION['signin_success']);
         ?>
       </p>
     </div>
-
   <?php elseif (isset($_SESSION['add_post'])) : ?>
     <div class="alert_message error" id="alert_message">
       <p>
-        <?= $_SESSION['add_post'];
+        <?= htmlspecialchars($_SESSION['add_post'], ENT_QUOTES, 'UTF-8');
         unset($_SESSION['add_post']);
         ?>
       </p>
     </div>
   <?php endif ?>
 
-
-
-
-
-  <form action="<?= ROOT_URL ?>admin/add_post_logic.php" enctype="multipart/form-data" method="POST">
+  <form action="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/add_post_logic.php" enctype="multipart/form-data" method="POST">
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+    
     <div class="post_input">
       <div class="post_field">
-        <textarea name="user_post" placeholder="Share your thoughts here!"><?= htmlspecialchars($user_post) ?></textarea>
+        <textarea name="user_post" placeholder="Share your thoughts here!"><?= $user_post ?></textarea>
 
         <div class="post_actions">
-
           <label for="image-upload" style="cursor: pointer;">
             <i class="fa-solid fa-image" style="font-size: 24px;"></i>
           </label>
 
-          <input type="file" id="image-upload" name="images[]" accept="image/*" multiple style="display: none;" />
+          <input type="file" id="image-upload" name="images[]" accept="image/jpeg,image/png,image/gif" multiple style="display: none;" />
 
           <!-- Where the selected file names will be shown -->
           <div id="file-names"></div>
-
-        
 
           <input type="text" name="confirm_human" class="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human">
 
@@ -91,29 +96,13 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
     </div>
   </form>
 
-
-
-
-
   <section class="dashboard">
-
-
-
-
-
-
     <?php
-    include 'page_essentials/open_scrolls.php';
+    // Use include_once to prevent multiple inclusions
+    include_once 'page_essentials/open_scrolls.php';
     ?>
 
-
-
-
-
-
-
     <div class="my_timeline" id="my_timeline" style="display: none;">
-
       <div class="my_dashboard">
         <div class="my_dashboard_title">
           <div class="dashboard_small_titles">
@@ -125,35 +114,18 @@ $open_scrolls = mysqli_query($connection, $open_scrolls_query);
         </div>
       </div>
 
-
-
       <?php
-      include 'page_essentials/my_timeline.php';
+      include_once 'page_essentials/my_timeline.php';
       ?>
-
-
     </div>
-
-
-
   </section>
-
-
-
 </section>
  
-
-
 <section class="main_right">
  <!--Update -->
 </section>
-
 </main>
 
-
 <?php
-// include './partials/floating_input.php';
-
-
 include '../partials/footer.php';
 ?>
