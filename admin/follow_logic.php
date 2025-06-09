@@ -2,10 +2,24 @@
 require 'config/database.php';
 
 
-if (isset($_GET['id'])) {
+// Verify user is logged in
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['follow'] = 'You must be logged in to follow someone!';
+    header('Location: ' . ROOT_URL . 'signin.php');
+    exit();
+}
 
-    $follower = $_SESSION['user_id']; // The one doing the following
-    $followed = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT); // The one being followed
+if (isset($_GET['id'])) {
+    // Validate and sanitize inputs
+    $follower = $_SESSION['user_id']; // Already from session
+    $followed = filter_var($_GET['id'], FILTER_VALIDATE_INT);
+    
+    // Validate the ID
+    if ($followed === false || $followed <= 0) {
+        $_SESSION['follow'] = 'Invalid user ID!';
+        header('Location: ' . ROOT_URL . 'admin/');
+        exit();
+    }
 
     // Prevent self-following
     if ($follower == $followed) {
@@ -14,39 +28,34 @@ if (isset($_GET['id'])) {
         exit();
     }
 
-    // Check if already following
-    $check_query = "SELECT * FROM followers WHERE follower=$follower AND followed=$followed";
-    $check_result = mysqli_query($connection, $check_query);
+    // Check if already following using prepared statement
+    $check_query = "SELECT * FROM followers WHERE follower=? AND followed=?";
+    $stmt = mysqli_prepare($connection, $check_query);
+    mysqli_stmt_bind_param($stmt, "ii", $follower, $followed);
+    mysqli_stmt_execute($stmt);
+    $check_result = mysqli_stmt_get_result($stmt);
 
     if (mysqli_num_rows($check_result) > 0) {
         // Already following, so unfollow
-        $delete_query = "DELETE FROM followers WHERE follower=$follower AND followed=$followed";
-        mysqli_query($connection, $delete_query);
+        $delete_query = "DELETE FROM followers WHERE follower=? AND followed=?";
+        $stmt = mysqli_prepare($connection, $delete_query);
+        mysqli_stmt_bind_param($stmt, "ii", $follower, $followed);
+        mysqli_stmt_execute($stmt);
         $_SESSION['follow'] = 'You Have Unfollowed!';
     } else {
         // Not following yet, so follow
-        $insert_query = "INSERT INTO followers (follower, followed) VALUES ($follower, $followed)";
-        mysqli_query($connection, $insert_query);
+        $insert_query = "INSERT INTO followers (follower, followed) VALUES (?, ?)";
+        $stmt = mysqli_prepare($connection, $insert_query);
+        mysqli_stmt_bind_param($stmt, "ii", $follower, $followed);
+        mysqli_stmt_execute($stmt);
         $_SESSION['follow_success'] = 'You Have Followed Successfully.';
-
     }
 
-    // Redirect back to profile or scrolls page
+    // Redirect back to profile page
     header('Location: ' . ROOT_URL . 'admin/profiles.php?id=' . $followed . '#my_posts');
     exit();
 
 } else {
-    header('location: ' . ROOT_URL . 'admin/');
+    header('Location: ' . ROOT_URL . 'admin/');
     exit();
 }
-
-
-
-
-
-
-
-
-
-
-
