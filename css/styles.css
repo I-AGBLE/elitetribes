@@ -252,6 +252,7 @@ nav {
 }
 
 .header_menu_items ul li {
+  z-index: 1000;
   opacity: 0;
   transform: translateY(-10px);
   margin: .2rem 0;
@@ -265,16 +266,12 @@ nav {
 .header_menu_items ul li:nth-child(2) { transition-delay: 0.2s; }
 .header_menu_items ul li:nth-child(3) { transition-delay: 0.3s; }
 .header_menu_items ul li:nth-child(4) { transition-delay: 0.4s; }
-.header_menu_items ul li:nth-child(5) { transition-delay: 0.5s; }
-.header_menu_items ul li:nth-child(6) { transition-delay: 0.6s; }
-.header_menu_items ul li:nth-child(7) { transition-delay: 0.7s; }
-.header_menu_items ul li:nth-child(8) { transition-delay: 0.8s; }
 
 /* Link styling */
 .header_menu_items ul li a {
   text-decoration: none;
   background-color: var(--color_warning);
-  padding: .5rem 0.1rem;
+  padding: .5rem 3.5rem;
   border-radius: 0.2rem;
   color: var(--deep_bg);
   font-weight: bolder;
@@ -818,8 +815,8 @@ input[type="submit"][value="Post"] {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
    cursor: grab;
-   padding-right: 15rem;
-   padding-left: 9rem;
+   padding-right: 15rem !important;
+   padding-left: 5rem !important;
 }
 
 
@@ -844,6 +841,7 @@ input[type="submit"][value="Post"] {
 .post_images img {
   max-height: 30rem;
   max-width: 30rem;
+  min-width: 18rem;
   object-fit: cover;
   scroll-snap-align: center;
   flex-shrink: 0;
@@ -1594,7 +1592,7 @@ footer a:hover {
 
 /* Link styling */
 .header_menu_items ul li a {
-padding: .3rem 0.1rem;
+padding: .6rem 3rem;
 }
 
 
@@ -1668,8 +1666,8 @@ main .main_left, .main_right {
 
 
   .post_images_container {
-   padding-right: 20rem;
-   padding-left: 7rem;
+   padding-right: 10rem !important;
+   padding-left: 10rem !important;
 }
 
 
@@ -1684,6 +1682,7 @@ main .main_left, .main_right {
   .post_images img {
     max-height: 25rem;
     max-width: 25rem;
+    min-width: 20rem;
   }
 
 
@@ -1948,7 +1947,7 @@ select {
 
 /* Link styling */
 .header_menu_items ul li a {
-padding: .2rem 0.1rem;
+padding: .6rem 3rem;
 }
 
 
@@ -2022,10 +2021,9 @@ main .main_left, .main_right {
     -o-transform: scale(1);
   }
 
-
-    .post_images_container {
-   padding-right: 12rem;
-   padding-left: 10rem;
+.post_images_container {
+   padding-right: 7rem !important;
+   padding-left: 7rem !important;
 }
 
 
@@ -2040,6 +2038,7 @@ main .main_left, .main_right {
   .post_images img {
     max-height: 20rem;
     max-width: 20rem;
+    min-width: 10rem;
   }
 
   .comment_input {

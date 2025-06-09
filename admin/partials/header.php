@@ -109,11 +109,7 @@ if (isset($_SESSION['user_id'])) {
             <ul>
               <li><a href="<?= ROOT_URL ?>admin#open_scrolls_contents">Home</a></li>
               <li><a href="user_profile.php#my_posts">My Profile</a></li>
-              <li><a href="#">Asigame</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms and Condition</a></li>
               <li><a href="#">About Us</a></li>
-              <li><a href="<?= ROOT_URL ?>/contact.php">Contact Us</a></li>
               <li><a href="../logout_logic.php" id="logout">Logout</a></li>
             </ul>
           </div>
