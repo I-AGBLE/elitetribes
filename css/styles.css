@@ -173,6 +173,10 @@ nav {
   direction: rtl;
 }
 
+#all_tribesmen_list:hover {
+  box-shadow: var(--box_shadow);
+}
+
 /* logo styling */
 .logo {
   margin-bottom: 1rem;
@@ -1091,7 +1095,7 @@ input[type="submit"]:hover {
 .followings {
   display: grid;
   gap: 0.2rem;
-  max-height: 30rem;
+  max-height: 50rem;
   overflow: scroll;
   scroll-behavior: smooth;
 }
