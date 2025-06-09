@@ -17,13 +17,14 @@ if (mysqli_num_rows($result) == 1) {
     // Get the images stored for the scroll
     $image_names = explode(',', $scroll["images"]);  // Assuming multiple images are stored as a comma-separated list
 
-    // Delete each image if it exists on the server
-    foreach ($image_names as $image_name) {
-        $image_path = '../images/' . trim($image_name);  // Ensure no extra spaces
-        if (file_exists($image_path)) {
-            unlink($image_path);  // Delete the image from the server
-        }
+// Delete each image if it exists on the server
+foreach ($image_names as $image_name) {
+    $image_path = '../images/' . trim($image_name);  // Ensure no extra spaces
+    if (is_file($image_path)) {
+        unlink($image_path);  // Delete the image from the server
     }
+}
+
 
     // Delete the scroll record from the database
     $delete_scroll_query = "DELETE FROM scrolls WHERE id=$id LIMIT 1";
