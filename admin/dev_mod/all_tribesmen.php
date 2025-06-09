@@ -85,7 +85,7 @@ $stmt->close();
                     <div class="post">
                         <?php foreach ($users as $user): ?>
                             <div class="user_details" id="all_tribesmen_list">
-                                <a href="<?= ROOT_URL ?>admin/profiles.php?id=<?= (int) $user['id'] ?>">
+                                <a href="all_user_details.php?id=<?= (int) $user['id'] ?>">
                                     <div class="user_profile_pic">
                                         <img src="<?= ROOT_URL ?>images/<?= htmlspecialchars($user['avatar'], ENT_QUOTES, 'UTF-8') ?>" 
                                              alt="<?= htmlspecialchars($user['username'], ENT_QUOTES, 'UTF-8') ?>'s profile picture." />

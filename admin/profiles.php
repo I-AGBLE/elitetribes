@@ -131,9 +131,6 @@ $followersCount = $followersData['total_followers'];
               <div class="verified_icon">
                 <i class="fa-solid fa-check"></i>
               </div>
-              <div class="verified_desc">
-                <p>Verified</p>
-              </div>
             </div>
           <?php endif; ?>
         </div>

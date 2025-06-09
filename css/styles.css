@@ -177,6 +177,23 @@ nav {
   box-shadow: var(--box_shadow);
 }
 
+
+.user_meta {
+  display: grid;
+  gap: .5rem;
+  margin: .7rem 0;
+  transition: var(--transition);
+}
+
+.user_meta p:hover {
+  transform: translateX(.5rem);
+}
+.user_meta span:hover {
+cursor: pointer;
+  box-shadow: var(--box_shadow);
+
+}
+
 /* logo styling */
 .logo {
   margin-bottom: 1rem;

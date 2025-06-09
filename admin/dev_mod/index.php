@@ -152,7 +152,9 @@ $stmt->close();
                     <?php endif; ?>
 
                     <div class="post_reactions">
-                        <?php include '../page_essentials/like_n_like_count.php'; ?>
+                        <?php include 'like_n_like_count.php'; ?>
+
+
 
                         <div class="post_reaction">
                             <?php
