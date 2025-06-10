@@ -1,34 +1,60 @@
+<?php
+
+
+// Validate and sanitize user ID
+$user_id = filter_var($_SESSION['user_id'], FILTER_VALIDATE_INT);
+if ($user_id === false) {
+    die("Invalid user ID");
+}
+
+// CSRF token generation (for any future forms)
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+?>
+
 <div class="search_box">
   <center>
-    <input type="text" placeholder="Search Timeline" id="my_feed_search_box">
+    <input type="text" placeholder="Search Timeline" id="my_feed_search_box" 
+           oninput="sanitizeSearchInput(this)">
   </center>
 </div>
 
 <?php
-$user_id = (int) $_SESSION['user_id'];
-
+// Secure database query with prepared statement
 $feed_query = "
     SELECT s.*, t.username, t.avatar,
            (SELECT COUNT(*) FROM followers WHERE followed = s.created_by) AS author_followers_count
     FROM scrolls AS s
     INNER JOIN tribesmen AS t ON t.id = s.created_by
     WHERE s.created_by IN (
-        SELECT followed FROM followers WHERE follower = $user_id
+        SELECT followed FROM followers WHERE follower = ?
     )
     ORDER BY s.created_at DESC
 ";
 
-$result = mysqli_query($connection, $feed_query);
+$stmt = mysqli_prepare($connection, $feed_query);
+mysqli_stmt_bind_param($stmt, "i", $user_id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 ?>
 
 <div class="my_posts">
-  <?php while ($feed = mysqli_fetch_assoc($result)) : ?>
+  <?php while ($feed = mysqli_fetch_assoc($result)) : 
+    // Validate feed data
+    $feed_id = filter_var($feed['id'], FILTER_VALIDATE_INT);
+    if ($feed_id === false) continue;
+    
+    $creator_id = filter_var($feed['created_by'], FILTER_VALIDATE_INT);
+    if ($creator_id === false) continue;
+  ?>
     <div class="post">
-
       <div class="user_details">
-        <a href="profiles.php?id=<?= $feed['created_by'] ?>">
+        <a href="profiles.php?id=<?= urlencode($creator_id) ?>">
           <div class="user_profile_pic">
-            <img src="../images/<?= htmlspecialchars($feed['avatar']) ?>" alt="User's profile picture." />
+            <img src="../images/<?= htmlspecialchars(basename($feed['avatar'])) ?>" 
+                 alt="User's profile picture."
+                 onerror="this.src='../images/default_avatar.png'" />
           </div>
 
           <div class="user_name">
@@ -38,19 +64,18 @@ $result = mysqli_query($connection, $feed_query);
 
         <div class="user_details_post_time">
           <div class="post_date">
-            <p><?= date("M d, Y", strtotime($feed['created_at'])) ?></p>
+            <p><?= htmlspecialchars(date("M d, Y", strtotime($feed['created_at']))) ?></p>
           </div>
           <div class="post_time">
-            <p><?= date("H:i", strtotime($feed['created_at'])) ?></p>
+            <p><?= htmlspecialchars(date("H:i", strtotime($feed['created_at']))) ?></p>
           </div>
         </div>
       </div>
 
       <div class="post_text">
-        <a href="<?= ROOT_URL ?>admin/post_preview.php?id=<?= $feed['id'] ?>">
-
+        <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">
           <?php
-          $text = nl2br($feed['user_post']);
+          $text = nl2br(htmlspecialchars($feed['user_post']));
           $maxLength = 500;
           if (strlen($text) > $maxLength) {
             echo substr($text, 0, $maxLength) . '<p>Read More...</p>';
@@ -62,14 +87,17 @@ $result = mysqli_query($connection, $feed_query);
       </div>
 
       <?php
+      // Secure image handling
       $images = array_filter(array_map('trim', explode(',', $feed['images'])));
+      $images = array_map('htmlspecialchars', array_map('basename', $images));
       if (!empty($images)) :
       ?>
         <div class="post_images_container">
           <div class="post_images">
             <?php foreach ($images as $image) : ?>
-              <a href="<?= ROOT_URL ?>admin/post_preview.php?id=<?= $feed['id'] ?>">
-                <img src="../images/<?= htmlspecialchars($image) ?>" alt="Post's image.">
+              <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">
+                <img src="../images/<?= $image ?>" alt="Post's image." 
+                     onerror="this.style.display='none'">
               </a>
             <?php endforeach; ?>
           </div>
@@ -78,32 +106,44 @@ $result = mysqli_query($connection, $feed_query);
 
       <div class="post_reactions">
         <?php
+        // Secure like check with prepared statement
         $liked = false;
         $like_count = 0;
-        $feed_id = $feed['id'];
-
+        
         if (isset($_SESSION['user_id'])) {
-          $tribesmen_id = $_SESSION['user_id'];
-
-          $query_check = "SELECT * FROM likes WHERE scroll_id = $feed_id AND tribesmen_id = $tribesmen_id";
-          $like_result = mysqli_query($connection, $query_check);
-          if (mysqli_num_rows($like_result) > 0) {
-            $liked = true;
-          }
+            $tribesmen_id = filter_var($_SESSION['user_id'], FILTER_VALIDATE_INT);
+            if ($tribesmen_id !== false) {
+                $query_check = "SELECT * FROM likes WHERE scroll_id = ? AND tribesmen_id = ?";
+                $stmt_check = mysqli_prepare($connection, $query_check);
+                mysqli_stmt_bind_param($stmt_check, "ii", $feed_id, $tribesmen_id);
+                mysqli_stmt_execute($stmt_check);
+                $like_result = mysqli_stmt_get_result($stmt_check);
+                
+                if (mysqli_num_rows($like_result) > 0) {
+                    $liked = true;
+                }
+                mysqli_stmt_close($stmt_check);
+            }
         }
 
-        $query_like_count = "SELECT COUNT(*) AS total_likes FROM likes WHERE scroll_id = $feed_id";
-        $result_count = mysqli_query($connection, $query_like_count);
+        // Secure like count with prepared statement
+        $query_like_count = "SELECT COUNT(*) AS total_likes FROM likes WHERE scroll_id = ?";
+        $stmt_count = mysqli_prepare($connection, $query_like_count);
+        mysqli_stmt_bind_param($stmt_count, "i", $feed_id);
+        mysqli_stmt_execute($stmt_count);
+        $result_count = mysqli_stmt_get_result($stmt_count);
+        
         if ($row = mysqli_fetch_assoc($result_count)) {
-          $like_count = $row['total_likes'];
+            $like_count = (int)$row['total_likes'];
         }
+        mysqli_stmt_close($stmt_count);
         ?>
 
         <div class="post_reaction">
           <div class="post_reaction_icon">
             <div class="like_icons">
               <div class="like_icon">
-                <a href="like_logic.php?id=<?= $feed_id ?>" onclick="saveScroll()">
+                <a href="like_logic.php?id=<?= urlencode($feed_id) ?>&csrf=<?= $_SESSION['csrf_token'] ?>">
                   <i class="fa-regular fa-heart <?= $liked ? 'liked' : 'default' ?>" id="like_icon"></i>
                 </a>
               </div>
@@ -117,18 +157,22 @@ $result = mysqli_query($connection, $feed_query);
 
         <div class="post_reaction">
           <?php
+          // Secure comment count with prepared statement
           $comment_count = 0;
-          $scroll_id = mysqli_real_escape_string($connection, $feed_id);
-
-          $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = '$scroll_id'";
-          $count_result = mysqli_query($connection, $count_query);
-
+          
+          $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = ?";
+          $stmt_comment = mysqli_prepare($connection, $count_query);
+          mysqli_stmt_bind_param($stmt_comment, "i", $feed_id);
+          mysqli_stmt_execute($stmt_comment);
+          $count_result = mysqli_stmt_get_result($stmt_comment);
+          
           if ($count_row = mysqli_fetch_assoc($count_result)) {
-            $comment_count = $count_row['comment_count'];
+              $comment_count = (int)$count_row['comment_count'];
           }
+          mysqli_stmt_close($stmt_comment);
           ?>
           <div class="post_reaction_icon" id="comment_icon">
-            <a href="<?= ROOT_URL ?>admin/post_preview.php?id=<?= $feed['id'] ?>">
+            <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">
               <i class="fa-regular fa-comment" id="comment_icon"></i>
             </a>
             <p id="comment_count"><?= $comment_count ?></p>
@@ -137,8 +181,24 @@ $result = mysqli_query($connection, $feed_query);
             <p>Comment</p>
           </div>
         </div>
-
       </div>
     </div>
   <?php endwhile; ?>
+  
+  <?php mysqli_stmt_close($stmt); ?>
 </div>
+
+<script>
+// Client-side input sanitization
+function sanitizeSearchInput(input) {
+    // Remove potentially harmful characters
+    input.value = input.value.replace(/[<>"'`\\]/g, '');
+    
+    // Limit length if needed
+    if (input.value.length > 100) {
+        input.value = input.value.substring(0, 100);
+    }
+}
+
+
+</script>
