@@ -58,7 +58,7 @@ $result = mysqli_stmt_get_result($stmt);
           </div>
 
           <div class="user_name">
-            <h4><?= htmlspecialchars($feed['username']) ?></h4>
+            <h4><?= $feed['username'] ?></h4>
           </div>
         </a>
 
@@ -75,7 +75,7 @@ $result = mysqli_stmt_get_result($stmt);
       <div class="post_text">
         <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">
           <?php
-          $text = nl2br(htmlspecialchars($feed['user_post']));
+          $text = nl2br($feed['user_post']);
           $maxLength = 500;
           if (strlen($text) > $maxLength) {
             echo substr($text, 0, $maxLength) . '<p>Read More...</p>';

@@ -65,7 +65,7 @@ if (!isset($_SESSION['csrf_token'])) {
 
                             <div class="user_name">
                                 <h4>
-                                    <?= htmlspecialchars($tribesmen['username']) ?>
+                                    <?= $tribesmen['username'] ?>
                                 </h4>
                             </div>
 
@@ -93,7 +93,7 @@ if (!isset($_SESSION['csrf_token'])) {
                         <p>
                             <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
                                 <?php
-                                $text = nl2br(htmlspecialchars($scroll['user_post']));
+                                $text = nl2br($scroll['user_post']);
                                 $maxLength = 500;
                                 if (strlen($text) > $maxLength) {
                                     echo substr($text, 0, $maxLength) . '<p>Read More...</p>';

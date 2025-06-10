@@ -1,5 +1,4 @@
 <?php
-// Start session securely
 
 
 include 'partials/header.php';
@@ -36,10 +35,23 @@ if (!isset($_SESSION['csrf_token'])) {
 }
 ?>
 
+
+
+
+
+
+
+
 <main>
 <section class="main_left">
 <!--Update -->
 </section>
+
+
+
+
+
+
 
 <section class="main_content">
   <?php if (isset($_SESSION['signin_success'])) : ?>
@@ -59,6 +71,13 @@ if (!isset($_SESSION['csrf_token'])) {
       </p>
     </div>
   <?php endif ?>
+
+
+
+
+
+
+
 
   <form action="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/add_post_logic.php" enctype="multipart/form-data" method="POST">
     <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
@@ -96,6 +115,10 @@ if (!isset($_SESSION['csrf_token'])) {
     </div>
   </form>
 
+
+
+
+  
   <section class="dashboard">
     <?php
     // Use include_once to prevent multiple inclusions

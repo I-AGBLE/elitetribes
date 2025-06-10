@@ -111,14 +111,14 @@ mysqli_stmt_close($stmt);
 
                 <div class="user_info">
                     <div class="name">
-                        <h3><?= htmlspecialchars($user_detail['username']) ?></h3>
+                        <h3><?= $user_detail['username']?></h3>
                         <?php if ($user_detail['is_admin']): ?>
                             <span class="admin-badge">Admin</span>
                         <?php endif; ?>
                     </div>
 
                     <div class="about">
-                        <p><?= !empty($user_detail['about']) ? nl2br(htmlspecialchars($user_detail['about'])) : 'This user hasn\'t written anything about themselves yet.' ?></p>
+                        <p><?= !empty($user_detail['about']) ? nl2br($user_detail['about']) : 'This user hasn\'t written anything about themselves yet.' ?></p>
                     </div>
 
                     <div class="user_meta">
@@ -127,7 +127,7 @@ mysqli_stmt_close($stmt);
                                 E-mail:
                                 <span>
                                     <a href="mailto:<?= htmlspecialchars($user_detail['email']) ?>">
-                                        <?= htmlspecialchars($user_detail['email']) ?>
+                                        <?= $user_detail['email'] ?>
                                     </a>
                                 </span>
                             </p>
@@ -138,7 +138,7 @@ mysqli_stmt_close($stmt);
                                 Telephone:
                                 <span>
                                     <a href="tel:<?= htmlspecialchars($user_detail['telephone']) ?>">
-                                        <?= htmlspecialchars($user_detail['telephone']) ?>
+                                        <?= $user_detail['telephone'] ?>
                                     </a>
                                 </span>
                             </p>

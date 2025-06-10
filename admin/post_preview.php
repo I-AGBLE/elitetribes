@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
         die();
     }
 
-    // fetch scroll using prepared statement
+    // fetch scroll
     $query = "SELECT * FROM scrolls WHERE id=?";
     $stmt = mysqli_prepare($connection, $query);
     mysqli_stmt_bind_param($stmt, "i", $id);
@@ -157,6 +157,9 @@ if (!$tribesmen) {
     </div>
   <?php endif ?>
 
+
+
+
   <section class="dashboard">
     <div class="my_posts_contents">
       <div class="my_posts">
@@ -176,7 +179,7 @@ if (!$tribesmen) {
 
               <div class="user_name">
                 <h4>
-                  <?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?>
+                  <?=$tribesmen['username'] ?>
                 </h4>
               </div>
 
@@ -198,17 +201,6 @@ if (!$tribesmen) {
                 $followers_count = $row["followers_count"];
               }
               ?>
-
-              <?php if ($followers_count >= 20): ?>
-                <div class="verified">
-                  <div class="verified_icon">
-                    <i class="fa-solid fa-check"></i>
-                  </div>
-                  <div class="verified_desc">
-                    <p>Verified</p>
-                  </div>
-                </div>
-              <?php endif; ?>
             </a>
 
             <div class="user_details_post_time">
@@ -245,7 +237,7 @@ if (!$tribesmen) {
 
           <div class="post_text">
             <p>
-              <?= nl2br(htmlspecialchars($scroll['user_post'], ENT_QUOTES, 'UTF-8')) ?>
+              <?= nl2br($scroll['user_post']) ?>
             </p>
           </div>
 
@@ -342,7 +334,7 @@ if (!$tribesmen) {
                 </div>
 
                 <div class="user_name">
-                    <h4><?= htmlspecialchars($comment['author_name'], ENT_QUOTES, 'UTF-8') ?></h4>
+                    <h4><?=$comment['author_name'] ?></h4>
                 </div>
 
                 <?php
@@ -377,7 +369,7 @@ if (!$tribesmen) {
         </div>
 
         <div class="comment_text">
-            <p><?= nl2br(htmlspecialchars($comment['user_comment'], ENT_QUOTES, 'UTF-8')) ?></p>
+            <p><?= nl2br($comment['user_comment']) ?></p>
 
             <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $comment['tribesmen_id']): ?>
                 <div class="post_reaction">
@@ -409,6 +401,9 @@ if (!$tribesmen) {
     </div>
   </section>
 </section>
+
+
+
 
 <section class="main_right">
  <!--Update -->

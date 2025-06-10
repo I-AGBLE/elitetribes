@@ -75,7 +75,7 @@ $stmt->close();
                                          alt="<?= htmlspecialchars($user['username'], ENT_QUOTES, 'UTF-8') ?>'s profile picture." />
                                 </div>
                                 <div class="username">
-                                    <h4><?= htmlspecialchars($user['username'], ENT_QUOTES, 'UTF-8') ?></h4>
+                                    <h4><?=$user['username']?></h4>
                                 </div>
                             </a>
 

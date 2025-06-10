@@ -1,8 +1,7 @@
 <?php
 
-// Validate the current user has permission to view this content
+// Validate the current user 
 $current_user_id = $_SESSION['user_id'];
-// Add any additional permission checks here if needed
 ?>
 
 <div class="my_posts_contents" id="my_posts_contents" style="display: block;">
@@ -62,7 +61,7 @@ $current_user_id = $_SESSION['user_id'];
 
                             <div class="user_name">
                                 <h4>
-                                    <?= htmlspecialchars($tribesmen['username']) ?>
+                                    <?=$tribesmen['username'] ?>
                                 </h4>
                             </div>
 
@@ -82,16 +81,7 @@ $current_user_id = $_SESSION['user_id'];
                             mysqli_stmt_close($stmt);
                             ?>
 
-                            <?php if ($followers_count > 20): ?>
-                                <div class="verified">
-                                    <div class="verified_icon">
-                                        <i class="fa-solid fa-check"></i>
-                                    </div>
-                                    <div class="verified_desc">
-                                        <p>Verified</p>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
+                          
                         </a>
 
                         <div class="user_details_post_time">
@@ -112,7 +102,7 @@ $current_user_id = $_SESSION['user_id'];
                         <p>
                             <a href="post_preview.php?id=<?= urlencode($scroll_id) ?>">
                                 <?php
-                                $text = nl2br(htmlspecialchars($scroll['user_post']));
+                                $text = nl2br($scroll['user_post']);
                                 $maxLength = 500;
                                 if (strlen($text) > $maxLength) {
                                     echo substr($text, 0, $maxLength) . '<p>Read More...</p>';

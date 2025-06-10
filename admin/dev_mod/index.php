@@ -101,7 +101,7 @@ $stmt->close();
                                      onerror="this.src='../../images/default.png'">
                             </div>
                             <div class="user_name">
-                                <h4><?= htmlspecialchars($tribesmen['username']) ?></h4>
+                                <h4><?= $tribesmen['username'] ?></h4>
                             </div>
                         </a>
 
@@ -119,7 +119,7 @@ $stmt->close();
                         <p>
                             <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= $scroll_id ?>">
                                 <?php
-                                $text = htmlspecialchars($scroll['user_post']);
+                                $text = $scroll['user_post'];
                                 $text = nl2br($text);
                                 $maxLength = 500;
                                 echo strlen($text) > $maxLength 

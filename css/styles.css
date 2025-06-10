@@ -771,7 +771,7 @@ input[type="submit"][value="Post"] {
   display: flex;
   justify-content: space-between;
   justify-items: flex-start;
-  background-color: rgb(26, 26, 24);
+  background-color: #1c1b1b;
   padding: .3rem 0;
   border-top-right-radius: var(--border_radius);
   border-top-left-radius: var(--border_radius);

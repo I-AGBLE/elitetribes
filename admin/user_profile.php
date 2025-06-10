@@ -27,27 +27,41 @@ $stmt->close();
 ?>
 
 <main>
+
+  <!-- notifications  -->
   <?php if (!empty($_SESSION['add_post_success'])): ?>
     <div class="alert_message success" id="alert_message">
-      <p><?= htmlspecialchars($_SESSION['add_post_success']); unset($_SESSION['add_post_success']); ?></p>
+      <p><?= htmlspecialchars($_SESSION['add_post_success']);
+          unset($_SESSION['add_post_success']); ?></p>
     </div>
+
   <?php elseif (!empty($_SESSION['edit_profile_success'])): ?>
     <div class="alert_message success" id="alert_message">
-      <p><?= htmlspecialchars($_SESSION['edit_profile_success']); unset($_SESSION['edit_profile_success']); ?></p>
+      <p><?= htmlspecialchars($_SESSION['edit_profile_success']);
+          unset($_SESSION['edit_profile_success']); ?></p>
     </div>
+
   <?php elseif (!empty($_SESSION['delete_scroll_success'])): ?>
     <div class="alert_message success" id="alert_message">
-      <p><?= htmlspecialchars($_SESSION['delete_scroll_success']); unset($_SESSION['delete_scroll_success']); ?></p>
+      <p><?= htmlspecialchars($_SESSION['delete_scroll_success']);
+          unset($_SESSION['delete_scroll_success']); ?></p>
     </div>
   <?php endif; ?>
+
+
+
+
 
   <section class="main_left">
     <!--Update -->
   </section>
 
+
+
+
   <section class="main_content">
     <?php
-    // Securely fetch follower count
+    //  fetch follower count
     $stmt = $connection->prepare("SELECT COUNT(*) AS follower_count FROM followers WHERE followed = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -57,6 +71,8 @@ $stmt->close();
     $stmt->close();
     ?>
 
+
+
     <div class="user_section">
       <div class="user_information">
         <div class="user_picture">
@@ -65,14 +81,17 @@ $stmt->close();
 
         <div class="user_info">
           <div class="name">
-            <h3><?= htmlspecialchars($user_detail['username']) ?></h3>
+            <h3><?= $user_detail['username'] ?></h3>
           </div>
+
           <div class="about">
-            <p><?= htmlspecialchars($user_detail['about']) ?></p>
+            <p><?= $user_detail['about'] ?></p>
           </div>
+
           <div class="followers_and_posts">
             <p>Followers: <span><?= (int) $follower_count ?></span></p>
           </div>
+
 
           <div class="user_action_buttons">
             <div class="post_reaction">
@@ -125,10 +144,16 @@ $stmt->close();
     </section>
   </section>
 
+
+
+
+
+
   <section class="main_right">
     <!--Update -->
   </section>
 </main>
+
 
 <?php
 include 'partials/floating_input.php';

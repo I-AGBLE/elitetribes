@@ -7,10 +7,11 @@
 <div class='followings'>
 
 <?php
-// ✅ Ensure $id is safe (e.g., logged-in user ID or other trusted input)
+// sanitize id
 $id = isset($id) ? (int)$id : 0;
 
-// ✅ Use prepared statement to prevent SQL injection
+
+
 $stmt = mysqli_prepare($connection, "
     SELECT t.id, t.username, t.avatar, 
            (SELECT COUNT(*) FROM followers WHERE followed = t.id) AS followers_count
@@ -41,22 +42,15 @@ $result = mysqli_stmt_get_result($stmt);
                             <h4><?= $username ?></h4>
                         </div>
 
-                        <?php if ($followers_count >= 20): ?>
-                            <div class="verified">
-                                <div class="verified_icon">
-                                    <i class="fa-solid fa-check"></i>
-                                </div>
-                                <div class="verified_desc">
-                                    <p>Verified</p>
-                                </div>
-                            </div>
-                        <?php endif; ?>
                     </a>
                 </div>
             </div>
         <?php endwhile; ?>
     </div>
 
+
+
+    
 <?php else: ?>
     <p>This user is not following anyone yet.</p>
 <?php endif; ?>

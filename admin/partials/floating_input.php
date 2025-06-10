@@ -27,7 +27,7 @@ $csrf_token = $_SESSION['csrf_token'];
       <div class="post_field">
 
         <!-- Escape any special characters in user input -->
-        <textarea name="user_post" placeholder="Share your thoughts here!"><?= $user_post ?></textarea>
+        <textarea name="user_post" placeholder="Share your thoughts here!" autofocus><?= $user_post ?></textarea>
 
         <div class="post_actions">
 

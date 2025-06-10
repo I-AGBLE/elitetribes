@@ -75,9 +75,9 @@ if (isset($_GET['id'])) {
             <input type="hidden" name="previous_avatar" value="<?= htmlspecialchars($tribesmen['avatar'], ENT_QUOTES, 'UTF-8') ?>">
 
             <div class="post_field">
-                <input type="text" name="username" value="<?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?>" placeholder="Username" autofocus>
+                <input type="text" name="username" value="<?= $tribesmen['username'] ?>" placeholder="Username" autofocus>
 
-                <input type="tel" name="telephone" value="<?= htmlspecialchars($tribesmen['telephone'], ENT_QUOTES, 'UTF-8') ?>" placeholder="Telephone">
+                <input type="tel" name="telephone" value="<?=$tribesmen['telephone']?>" placeholder="Telephone">
 
                 <select name="gender">
                     <option value="" disabled <?= $gender == '' ? 'selected' : '' ?>>Gender</option>
@@ -87,7 +87,7 @@ if (isset($_GET['id'])) {
                     <option value="Prefer not to say" <?= $gender == 'Prefer not to say' ? 'selected' : '' ?>>Prefer not to say</option>
                 </select>
 
-                <input type="email" name="email" value="<?= htmlspecialchars($tribesmen['email'], ENT_QUOTES, 'UTF-8') ?>" placeholder="Email">
+                <input type="email" name="email" value="<?= $tribesmen['email'] ?>" placeholder="Email">
 
                 <textarea name="about" placeholder="About me."><?= $about ?></textarea>
                 

@@ -73,23 +73,10 @@ if ($current_user_id === false) {
 
                             <div class="user_name">
                                 <h4>
-                                    <?= htmlspecialchars($tribesmen['username']) ?>
+                                    <?= $tribesmen['username'] ?>
                                 </h4>
                             </div>
 
-                            <?php 
-                            $followers_count = filter_var($tribesmen['followers'], FILTER_VALIDATE_INT);
-                            if ($followers_count !== false && $followers_count > 20): 
-                            ?>
-                                <div class="verified">
-                                    <div class="verified_icon">
-                                        <i class="fa-solid fa-check"></i>
-                                    </div>
-                                    <div class="verified_desc">
-                                        <p>Verified</p>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
                         </a>
 
                         <div class="user_details_post_time">
@@ -110,7 +97,7 @@ if ($current_user_id === false) {
                         <p>
                             <a href="post_preview.php?id=<?= urlencode($scroll_id) ?>">
                                 <?php
-                                $text = nl2br(htmlspecialchars($scroll['user_post']));
+                                $text = nl2br($scroll['user_post']);
                                 $maxLength = 500;
                                 if (strlen($text) > $maxLength) {
                                     echo substr($text, 0, $maxLength) . '<p>Read More...</p>';
