@@ -1,52 +1,74 @@
 <?php
 require 'config/database.php';
 
+
+// Validate GET parameter first
 if (isset($_GET['id'])) {
-    $scroll_id = $_GET['id'];
-    $tribesmen_id = $_SESSION['user_id'];
+    // Validate and sanitize scroll_id
+    $scroll_id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
+    if (!$scroll_id || $scroll_id <= 0) {
+        $_SESSION['comment'] = 'Invalid Post ID';
+        header("Location: " . ROOT_URL . "admin/");
+        exit;
+    }
+
+
+    $tribesmen_id = filter_var($_SESSION['user_id'], FILTER_VALIDATE_INT);
+    if (!$tribesmen_id || $tribesmen_id <= 0) {
+        $_SESSION['comment'] = 'Invalid User ID';
+        header("Location: " . ROOT_URL . "signin.php");
+        exit;
+    }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $user_comment = $_POST['user_comment'];
-        $confirm_human = $_POST['confirm_human'];
+     
+        // Validate and sanitize inputs
+        $user_comment = trim($_POST['user_comment'] ?? '');
+        $confirm_human = trim($_POST['confirm_human'] ?? '');
 
-        // Basic sanitization (still vulnerable, just an example)
-        $scroll_id = mysqli_real_escape_string($connection, $scroll_id);
-        $tribesmen_id = mysqli_real_escape_string($connection, $tribesmen_id);
-        $user_comment = mysqli_real_escape_string($connection, $user_comment);
-        $confirm_human = filter_var($confirm_human, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        if (!$scroll_id) {
-            $_SESSION['comment'] = 'No Post ID';
-            header("Location: " . ROOT_URL . "admin/post_preview.php?id=" . $scroll_id);
-            exit;
-        } elseif (!$tribesmen_id) {
-            $_SESSION['comment'] = 'No Post Post ID';
-            header("Location: " . ROOT_URL . "admin/post_preview.php?id=" . $scroll_id);
-            exit;
-        } elseif (!$user_comment) {
+        // Validate comment content
+        if (empty($user_comment)) {
             $_SESSION['comment'] = 'Cannot Post Empty Comment!';
             header("Location: " . ROOT_URL . "admin/post_preview.php?id=" . $scroll_id);
             exit;
-        } elseif (!empty($confirm_human)) {
+        }
+
+        // Check for honeypot field
+        if (!empty($confirm_human)) {
             $_SESSION['comment'] = 'Somethings Are For Humans Only!';
             header("Location: " . ROOT_URL . "admin/post_preview.php?id=" . $scroll_id);
             exit;
-        } else {
-            $query = "INSERT INTO comments (scroll_id, tribesmen_id, user_comment) 
-                      VALUES ('$scroll_id', '$tribesmen_id', '$user_comment')";
+        }
 
-            $result = mysqli_query($connection, $query);
+        // Additional content validation
+        if (strlen($user_comment) > 1000) {
+            $_SESSION['comment'] = 'Comment is too long (max 1000 characters)';
+            header("Location: " . ROOT_URL . "admin/post_preview.php?id=" . $scroll_id);
+            exit;
+        }
+
+        // Prepare statement to prevent SQL injection
+        $query = "INSERT INTO comments (scroll_id, tribesmen_id, user_comment) VALUES (?, ?, ?)";
+        $stmt = mysqli_prepare($connection, $query);
+        
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "iis", $scroll_id, $tribesmen_id, $user_comment);
+            $result = mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
 
             if ($result) {
                 $_SESSION["comment_success"] = "You commented.";
-                header("Location: " . ROOT_URL . "admin/post_preview.php?id=" . $scroll_id);
-                exit;
             } else {
                 $_SESSION["comment"] = "Unable To Comment!";
-                header("Location: " . ROOT_URL . "admin/post_preview.php?id=" . $scroll_id);
-                exit;
+                error_log("Comment failed: " . mysqli_error($connection));
             }
+        } else {
+            $_SESSION["comment"] = "Database error";
+            error_log("Prepare failed: " . mysqli_error($connection));
         }
+
+        header("Location: " . ROOT_URL . "admin/post_preview.php?id=" . $scroll_id);
+        exit;
     }
 } else {
     header('Location: ' . ROOT_URL . 'admin/');
