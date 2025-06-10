@@ -1,36 +1,50 @@
 <?php
-require 'config/database.php'; // Adjust this to your actual database config path
+require 'config/database.php';
 
 if (isset($_GET['id'])) {
-    // Step 1: Sanitize comment ID
-    $comment_id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+    // Step 1: Validate comment ID
+    $comment_id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
 
-    // Step 2: Fetch scroll_id from the comments table
-    $query = "SELECT scroll_id FROM comments WHERE id = $comment_id LIMIT 1";
-    $result = mysqli_query($connection, $query);
+    if (!$comment_id) {
+        $_SESSION["delete_comment"] = "Invalid comment ID.";
+        header('Location: ' . ROOT_URL . 'admin/');
+        exit;
+    }
 
-    if ($result && mysqli_num_rows($result) === 1) {
-        $comment = mysqli_fetch_assoc($result);
-        $scroll_id = $comment['scroll_id']; // This is the post ID we want
+    // Step 2: Fetch scroll_id from the comments table using prepared statement
+    $stmt = $connection->prepare("SELECT scroll_id FROM comments WHERE id = ? LIMIT 1");
+    $stmt->bind_param("i", $comment_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-       // Delete the comment
-        $delete_query = "DELETE FROM comments WHERE id = $comment_id LIMIT 1";
-        $delete_result = mysqli_query($connection, $delete_query);
+    if ($result && $result->num_rows === 1) {
+        $comment = $result->fetch_assoc();
+        $scroll_id = $comment['scroll_id'];
+        $stmt->close();
 
-        // Handle result and redirect
-        if (!mysqli_errno($connection)) {
+        // Step 3: Delete the comment securely
+        $del_stmt = $connection->prepare("DELETE FROM comments WHERE id = ? LIMIT 1");
+        $del_stmt->bind_param("i", $comment_id);
+        $del_stmt->execute();
+
+        if ($del_stmt->affected_rows > 0) {
             $_SESSION["delete_comment_success"] = "Comment Deleted Successfully.";
         } else {
             $_SESSION["delete_comment"] = "Unable to delete comment.";
         }
 
-        // Redirect to the post preview page using the scroll_id
+        $del_stmt->close();
+
+        // Redirect to the post preview page
         header('Location: ' . ROOT_URL . 'admin/post_preview.php?id=' . $scroll_id);
         exit;
     } else {
-        // Comment not found or error
         $_SESSION["delete_comment"] = "Comment not found.";
-        header('Location: ' . ROOT_URL . 'admin/manage_comments.php'); // fallback
+        header('Location: ' . ROOT_URL . 'admin/');
         exit;
     }
+} else {
+    $_SESSION["delete_comment"] = "No comment ID provided.";
+    header('Location: ' . ROOT_URL . 'admin/');
+    exit;
 }
