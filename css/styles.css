@@ -1121,8 +1121,17 @@ input[type="submit"]:hover {
   display: grid;
   gap: 0.2rem;
   max-height: 50rem;
-  overflow: scroll;
+  overflow: auto; /* Better than 'scroll' for dynamic content */
   scroll-behavior: smooth;
+  
+  /* Hide scrollbar for Chrome, Safari, and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge, and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .followings .user_details a {
