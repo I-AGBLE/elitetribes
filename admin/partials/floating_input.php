@@ -1,48 +1,73 @@
 <?php
 
-// get input from failed post 
-$user_post = $_SESSION['add_post_data']['user_post'] ?? null;
-$confirm_human = $_SESSION['add_post_data']['confirm_human'] ?? null;;
 
 
-// if all is fine
+// Safely extract and sanitize session input
+$user_post = isset($_SESSION['add_post_data']['user_post'])
+  ? htmlspecialchars($_SESSION['add_post_data']['user_post'], ENT_QUOTES, 'UTF-8')
+  : null;
+
+$confirm_human = isset($_SESSION['add_post_data']['confirm_human'])
+  ? htmlspecialchars($_SESSION['add_post_data']['confirm_human'], ENT_QUOTES, 'UTF-8')
+  : null;
+
+// Unset session data to avoid reuse or leaking
 unset($_SESSION['add_post_data']);
 
-
-
+// CSRF Protection: generate token if not present
+if (!isset($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+$csrf_token = $_SESSION['csrf_token'];
 ?>
 
-
-
 <form action="<?= ROOT_URL ?>admin/add_post_logic.php" enctype="multipart/form-data" method="POST">
-
-
-
   <div class="floating_input">
     <div class="floating_post_input" style="display: none;">
       <div class="post_field">
-        <textarea name="user_post" placeholder="Share your thoughts here!"><?= htmlspecialchars($user_post) ?></textarea>
+
+        <!-- Escape any special characters in user input -->
+        <textarea name="user_post" placeholder="Share your thoughts here!"><?= $user_post ?></textarea>
 
         <div class="post_actions">
 
+          <!-- Accessible image upload -->
           <label for="image-upload" style="cursor: pointer;">
             <i class="fa-solid fa-image" style="font-size: 24px;"></i>
           </label>
 
-          <input type="file" id="image-upload" name="images[]" accept="image/*" multiple style="display: none;" />
+          <input
+            type="file"
+            id="image-upload"
+            name="images[]"
+            accept="image/png, image/jpeg, image/jpg, image/webp"
+            multiple
+            style="display: none;" />
 
-          <!-- Where the selected file names will be shown -->
+          <!-- Area to show file names (handled via JS) -->
           <div id="file-names-floating-input"></div>
 
+          <!-- Honeypot field (spam prevention) -->
+          <input
+            type="text"
+            name="confirm_human"
+            class="confirm_human"
+            value="<?= $confirm_human ?>"
+            placeholder="confirm_human"
+            autocomplete="off">
 
+          <!-- CSRF token (hidden) -->
+          <input
+            type="hidden"
+            name="csrf_token"
+            value="<?= htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8') ?>" />
 
+          <input
+            type="submit"
+            name="submit"
+            value="Post">
 
-          <input type="text" name="confirm_human" class="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human">
-
-          <input type="submit" name="submit" value="Post">
-
-
-
+          <!-- Inline style for hover effect -->
           <style>
             label i {
               font-size: 1.5rem;
@@ -59,7 +84,7 @@ unset($_SESSION['add_post_data']);
     </div>
 </form>
 
-
+<!-- Floating button icons (unchanged) -->
 <div class="floating_icons">
   <div class="open_floating_input">
     <i class="fa-solid fa-plus"></i>
