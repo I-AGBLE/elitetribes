@@ -91,7 +91,7 @@ if (!isset($_SESSION['csrf_token'])) {
                         </div>
                     </div>
 
-                    <div class="post_text" data-href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
+                    <div class="post_text">
                         <p>
                             <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
                                 <?php
