@@ -1,27 +1,28 @@
 <?php
 
-// get input from failed post 
-$user_post = $_SESSION['add_post_data']['user_post'] ?? null;
-$confirm_human = $_SESSION['add_post_data']['confirm_human'] ?? null;;
 
+
+// CSRF protection: generate token if not set
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+// get input from failed post, sanitize for output
+$user_post = isset($_SESSION['add_post_data']['user_post']) ? htmlspecialchars($_SESSION['add_post_data']['user_post'], ENT_QUOTES, 'UTF-8') : null;
+$confirm_human = isset($_SESSION['add_post_data']['confirm_human']) ? htmlspecialchars($_SESSION['add_post_data']['confirm_human'], ENT_QUOTES, 'UTF-8') : null;
 
 // if all is fine
 unset($_SESSION['add_post_data']);
-
-
-
 ?>
 
-
-
 <form action="<?= ROOT_URL ?>admin/add_post_logic.php" enctype="multipart/form-data" method="POST">
-
-
+  <!-- CSRF token for security -->
+  <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
   <div class="floating_input">
     <div class="floating_post_input" style="display: none;">
       <div class="post_field">
-        <textarea name="user_post" placeholder="Share your thoughts here!" autofocus><?= htmlspecialchars($user_post) ?></textarea>
+        <textarea name="user_post" placeholder="Share your thoughts here!" autofocus><?= $user_post ?></textarea>
 
         <div class="post_actions">
 
@@ -34,14 +35,9 @@ unset($_SESSION['add_post_data']);
           <!-- Where the selected file names will be shown -->
           <div id="file-names-floating-input"></div>
 
-
-
-
           <input type="text" name="confirm_human" class="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human">
 
           <input type="submit" name="submit" value="Post">
-
-
 
           <style>
             label i {
@@ -58,7 +54,6 @@ unset($_SESSION['add_post_data']);
       </div>
     </div>
 </form>
-
 
 <div class="floating_icons">
   <div class="open_floating_input">
