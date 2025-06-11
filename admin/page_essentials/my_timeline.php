@@ -15,7 +15,7 @@ if (!isset($_SESSION['csrf_token'])) {
 
 <div class="search_box">
   <center>
-    <input type="text" placeholder="Search Timeline" id="my_feed_search_box" 
+    <input type="text" placeholder="Search Timeline" id="search_box" 
            oninput="sanitizeSearchInput(this)">
   </center>
 </div>
@@ -39,7 +39,12 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 ?>
 
+
+
+
+
 <div class="my_posts">
+
   <?php while ($feed = mysqli_fetch_assoc($result)) : 
     // Validate feed data
     $feed_id = filter_var($feed['id'], FILTER_VALIDATE_INT);

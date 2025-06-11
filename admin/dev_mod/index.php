@@ -71,7 +71,8 @@ $stmt->close();
 
         <div class="search_box">
             <center>
-                <input type="text" placeholder="Search Scrolls" id="search_box_for_open_scrolls">
+                <input type="text" placeholder="Search Scrolls"  id="search_box">
+                
             </center>
         </div>
 

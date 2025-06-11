@@ -58,6 +58,7 @@ if (isset($_SESSION['user_id'])) {
   <script src="../js/index.js" defer></script>
   <script src="../js/image_grab_n_scroll.js" defer></script>
   <script src="../js/header_menu.js" defer></script>
+  <script src="../js/search_box.js" defer></script>
 
 </head>
 

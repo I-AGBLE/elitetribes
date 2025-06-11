@@ -21,7 +21,7 @@ $current_user_id = $_SESSION['user_id'];
 
         <div class="search_box">
             <center>
-                <input type="text" placeholder="Search Posts" id="my_post_search_box" onkeyup="sanitizeInput(this)">
+                <input type="text" placeholder="Search Posts" id="search_box" onkeyup="sanitizeInput(this)">
             </center>
         </div>
 

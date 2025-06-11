@@ -24,18 +24,20 @@ if (!isset($_SESSION['csrf_token'])) {
 
         <div class="search_box">
             <center>
-                <input type="text" placeholder="Search Scrolls" id="search_box_for_open_scrolls" 
-                       oninput="sanitizeSearchInput(this)">
+                <input type="text" placeholder="Search Scrolls" id="search_box"
+                    oninput="sanitizeSearchInput(this)">
             </center>
         </div>
 
+
+
         <div class="my_posts">
 
-            <?php while ($scroll = mysqli_fetch_assoc($open_scrolls)): 
+            <?php while ($scroll = mysqli_fetch_assoc($open_scrolls)):
                 // Validate scroll data
                 $scroll_id = filter_var($scroll['id'], FILTER_VALIDATE_INT);
                 if ($scroll_id === false) continue;
-                
+
                 $tribesmen_id = filter_var($scroll['created_by'], FILTER_VALIDATE_INT);
                 if ($tribesmen_id === false) continue;
             ?>
@@ -51,10 +53,10 @@ if (!isset($_SESSION['csrf_token'])) {
                         $tribesmen_result = mysqli_stmt_get_result($stmt);
                         $tribesmen = mysqli_fetch_assoc($tribesmen_result);
                         mysqli_stmt_close($stmt);
-                        
+
                         if (!$tribesmen) continue; // Skip if user not found
                         ?>
-                        
+
                         <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/profiles.php?id=<?= urlencode($tribesmen['id']) ?>">
                             <div class="user_profile_pic">
                                 <img
@@ -115,8 +117,8 @@ if (!isset($_SESSION['csrf_token'])) {
                             <div class="post_images">
                                 <?php foreach ($images as $image) : ?>
                                     <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
-                                        <img src="../images/<?= $image ?>" alt="Post's image." 
-                                             onerror="this.style.display='none'">
+                                        <img src="../images/<?= $image ?>" alt="Post's image."
+                                            onerror="this.style.display='none'">
                                     </a>
                                 <?php endforeach; ?>
                             </div>
@@ -166,14 +168,14 @@ if (!isset($_SESSION['csrf_token'])) {
 </div>
 
 <script>
-// Client-side input sanitization
-function sanitizeSearchInput(input) {
-    // Remove potentially harmful characters
-    input.value = input.value.replace(/[<>"'`\\]/g, '');
-    
-    // Limit length if needed
-    if (input.value.length > 100) {
-        input.value = input.value.substring(0, 100);
+    // Client-side input sanitization
+    function sanitizeSearchInput(input) {
+        // Remove potentially harmful characters
+        input.value = input.value.replace(/[<>"'`\\]/g, '');
+
+        // Limit length if needed
+        if (input.value.length > 100) {
+            input.value = input.value.substring(0, 100);
+        }
     }
-}
 </script>

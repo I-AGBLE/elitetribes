@@ -30,7 +30,7 @@ if ($current_user_id === false) {
 
         <div class="search_box">
             <center>
-                <input type="text" placeholder="Search Posts" id="my_post_search_box" 
+                <input type="text" placeholder="Search Posts" id="search_box" 
                        oninput="sanitizeSearchInput(this)">
             </center>
         </div>
