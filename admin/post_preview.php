@@ -298,7 +298,7 @@ if (!$tribesmen) {
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
             <div class="comment_input">
               <div class="comment_field">
-                <textarea name="user_comment" placeholder="Share your thoughts on this!" required></textarea>
+                <textarea name="user_comment" placeholder="Share your thoughts on this!" ></textarea>
                 <input type="text" name="confirm_human" placeholder="confirm_human" class="confirm_human" style="display: none;">
                 <input type="submit" name="Comment" value="Comment">
               </div>
@@ -337,25 +337,7 @@ if (!$tribesmen) {
                     <h4><?=$comment['author_name'] ?></h4>
                 </div>
 
-                <?php
-                // Check if user is verified (same logic as original)
-                $query_verified = "SELECT COUNT(*) AS followers_count FROM followers WHERE followed = ?";
-                $stmt_verified = mysqli_prepare($connection, $query_verified);
-                mysqli_stmt_bind_param($stmt_verified, "i", $comment['author_id']);
-                mysqli_stmt_execute($stmt_verified);
-                $result_verified = mysqli_stmt_get_result($stmt_verified);
-                $verified = mysqli_fetch_assoc($result_verified);
-                
-                if ($verified['followers_count'] >= 20) : ?>
-                    <div class="verified">
-                        <div class="verified_icon">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
-                        <div class="verified_desc">
-                            <p>Verified</p>
-                        </div>
-                    </div>
-                <?php endif; ?>
+       
             </a>
 
             <div class="user_details_post_time">

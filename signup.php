@@ -1,49 +1,36 @@
 <?php
 include 'partials/header.php';
 
+// CSRF protection: generate token if not set
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
-// get inputs from failed registration
-$username = $_SESSION['signup_data']['username'] ?? null;
-$telephone = $_SESSION['signup_data']['telephone'] ?? null;;
-$gender = $_SESSION['signup_data']['gender'] ?? null;;
-$about = $_SESSION['signup_data']['about'] ?? null;;
-$email = $_SESSION['signup_data']['email'] ?? null;;
-$password = $_SESSION['signup_data']['password'] ?? null;;
-$confirm_password = $_SESSION['signup_data']['confirm_password'] ?? null;;
-$confirm_human = $_SESSION['signup_data']['confirm_human'] ?? null;;
-
+// get inputs from failed registration, sanitize for output
+$username = isset($_SESSION['signup_data']['username']) ? htmlspecialchars($_SESSION['signup_data']['username'], ENT_QUOTES, 'UTF-8') : null;
+$telephone = isset($_SESSION['signup_data']['telephone']) ? htmlspecialchars($_SESSION['signup_data']['telephone'], ENT_QUOTES, 'UTF-8') : null;
+$gender = isset($_SESSION['signup_data']['gender']) ? htmlspecialchars($_SESSION['signup_data']['gender'], ENT_QUOTES, 'UTF-8') : null;
+$about = isset($_SESSION['signup_data']['about']) ? htmlspecialchars($_SESSION['signup_data']['about'], ENT_QUOTES, 'UTF-8') : null;
+$email = isset($_SESSION['signup_data']['email']) ? htmlspecialchars($_SESSION['signup_data']['email'], ENT_QUOTES, 'UTF-8') : null;
+$password = isset($_SESSION['signup_data']['password']) ? htmlspecialchars($_SESSION['signup_data']['password'], ENT_QUOTES, 'UTF-8') : null;
+$confirm_password = isset($_SESSION['signup_data']['confirm_password']) ? htmlspecialchars($_SESSION['signup_data']['confirm_password'], ENT_QUOTES, 'UTF-8') : null;
+$confirm_human = isset($_SESSION['signup_data']['confirm_human']) ? htmlspecialchars($_SESSION['signup_data']['confirm_human'], ENT_QUOTES, 'UTF-8') : null;
 
 // if all is fine
 unset($_SESSION['signup_data']);
-
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <main  id="public_main">
 
   <?php if (isset($_SESSION['signup'])) : ?>
     <div class="alert_message error" id="alert_message">
       <p>
-        <?= $_SESSION['signup'];
+        <?= htmlspecialchars($_SESSION['signup'], ENT_QUOTES, 'UTF-8');
         unset($_SESSION['signup']);
         ?>
       </p>
     </div>
   <?php endif ?>
-
 
   <div class="main_log">
     <div class="hero_section">
@@ -58,16 +45,16 @@ unset($_SESSION['signup_data']);
       </div>
     </div>
 
+    <form action="<?= ROOT_URL ?>signup_logic.php" enctype="multipart/form-data" method="POST" autocomplete="off">
+      <!-- CSRF token for security -->
+      <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
 
-
-
-    <form action="<?= ROOT_URL ?>signup_logic.php" enctype="multipart/form-data" method="POST">
       <div class="standard_login">
 
-        <input type="text" name="username" value="<?= $username ?>" placeholder="Username" autofocus>
-        <input type="tel" name="telephone" value="<?= $telephone ?>" placeholder="Telephone">
+        <input type="text" name="username" value="<?= $username ?>" placeholder="Username" maxlength="50" pattern="[A-Za-z0-9_ ]{3,50}"  autofocus>
+        <input type="tel" name="telephone" value="<?= $telephone ?>" placeholder="Telephone" maxlength="20" pattern="[0-9+\-\s]{7,20}" >
 
-        <select name="gender">
+        <select name="gender" >
           <option value="" disabled <?= $gender == '' ? 'selected' : '' ?>>Gender</option>
           <option value="Male" <?= $gender == 'Male' ? 'selected' : '' ?>>Male</option>
           <option value="Female" <?= $gender == 'Female' ? 'selected' : '' ?>>Female</option>
@@ -75,15 +62,16 @@ unset($_SESSION['signup_data']);
           <option value="Prefer not to say" <?= $gender == 'Prefer not to say' ? 'selected' : '' ?>>Prefer not to say</option>
         </select>
 
-        <textarea name="about" placeholder="Tell us about yourself."><?= htmlspecialchars($about) ?></textarea>
+        <textarea name="about" placeholder="Tell us about yourself." maxlength="500"><?= $about ?></textarea>
 
-        <input type="email" name="email" value="<?= $email ?>" placeholder="Email">
-        <input type="password" name="password" value="<?= $password ?>" placeholder="Password">
-        <input type="password" name="confirm_password" value="<?= $confirm_password ?>" placeholder="Confirm Password">
+        <input type="email" name="email" value="<?= $email ?>" placeholder="Email" maxlength="100" >
+        <input type="password" name="password" value="<?= $password ?>" placeholder="Password" minlength="8" maxlength="100"  autocomplete="new-password">
+        <input type="password" name="confirm_password" value="<?= $confirm_password ?>" placeholder="Confirm Password" minlength="8" maxlength="100"  autocomplete="new-password">
 
         <label for="avatar">
-          <i class="fa-solid fa-image"></i> </label>
-        <input type="file" id="avatar" name="avatar" accept="image/*" multiple style="display: none;" />
+          <i class="fa-solid fa-image"></i>
+        </label>
+        <input type="file" id="avatar" name="avatar" accept="image/*" style="display: none;" />
 
         <style>
           label i {
@@ -96,15 +84,11 @@ unset($_SESSION['signup_data']);
           }
         </style>
 
-        <input type="text" name="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human">
+        <input type="text" name="confirm_human" class="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human" maxlength="100" >
        
         <input type="submit" name="submit" value="Register">
       </div>
     </form>
-
-
-
-
 
     <div class="log_session">
       <div class="log_container">
@@ -127,11 +111,7 @@ unset($_SESSION['signup_data']);
           <a href="index.php">Login Now!</a>
         </div>
       </div>
-
-
     </div>
-
-
 
     <div class="extras">
       <p>
@@ -140,11 +120,6 @@ unset($_SESSION['signup_data']);
     </div>
   </div>
 </main>
-
-
-
-
-
 
 <?php
 include 'partials/footer.php';

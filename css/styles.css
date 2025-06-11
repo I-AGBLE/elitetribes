@@ -963,8 +963,8 @@ input[type="submit"][value="Post"] {
   resize: none;
   color: var(--text_color);
   background-color: var(--default_bg);
-  font-size: 0.9rem;
-  padding: 0.2rem;
+  font-size: 1rem;
+  padding: 0 .2rem;
   border-radius: var(--border_radius);
   -webkit-border-radius: var(--border_radius);
   -moz-border-radius: var(--border_radius);
@@ -1233,10 +1233,13 @@ input[type="submit"]:hover {
   font-size: 2.7rem;
 }
 
+
+
 .standard_login {
   display: grid;
   gap: 0.5rem;
   margin: 1rem;
+
 }
 
 .standard_login textarea {
@@ -1247,6 +1250,7 @@ input[type="submit"]:hover {
   padding: 0.5rem;
   width: 100%;
   resize: none;
+  font-size: 1rem;
 }
 
 .standard_login input,
@@ -1257,6 +1261,7 @@ select {
   background-color: var(--light_bg);
   padding: 0.5rem;
   width: 100%;
+  font-size: 1rem;
 }
 
 .standard_login input:focus,
@@ -1385,10 +1390,12 @@ input[type="submit"][value="Register"]:hover {
 
 .loginorout p {
   opacity: 0.5;
+  font-size: .8rem;
 }
 
 .loginorout a {
   color: var(--color_warning);
+  font-size: 1rem;
 }
 
 .loginorout a:hover {
@@ -1557,23 +1564,23 @@ footer a:hover {
   }
 
   h1 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 
   h2 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 
   h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   h4 {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   p, a {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
   }
 
 
@@ -1748,6 +1755,10 @@ footer a:hover {
     margin-left: 3rem;
   }
 
+  .comment {
+    opacity: 1;
+  }
+
   .post_input,
   .floating_post_input {
     border-bottom: 1px solid var(--text_color);
@@ -1762,7 +1773,7 @@ footer a:hover {
   .post_field textarea {
     min-height: 10rem;
     max-height: 20rem;
-    font-size: .95rem;
+    font-size: 1rem;
   }
 
   .post_actions i {
@@ -1922,15 +1933,15 @@ footer a:hover {
   }
 
   h3 {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
   }
 
   h4 {
-    font-size: 1rem;
+    font-size: 1.12rem;
   }
 
   p, a {
-    font-size: .9rem;
+    font-size: 1rem;
   }
 
   /* Nav Styles */
@@ -2043,7 +2054,7 @@ footer a:hover {
   }
 
   .post_images_container {
-    padding-right: 7rem !important;
+    padding-right: 10rem !important;
     padding-left: 7rem !important;
   }
 
@@ -2087,6 +2098,11 @@ footer a:hover {
     max-height: 70rem;
   }
 
+  
+  .comment {
+    opacity: 1;
+  }
+
   .comment_text {
     margin-left: 0;
     margin-top: 0.5rem;
@@ -2102,7 +2118,7 @@ footer a:hover {
   .post_field textarea {
     min-height: 10rem;
     max-height: 30rem;
-    font-size: .9rem;
+    font-size: 1rem;
   }
 
   .followings {
