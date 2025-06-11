@@ -60,7 +60,7 @@ $stmt->close();
 
         <div class="search_box">
             <center>
-                <input type="text" placeholder="Search A Tribesman" id="my_following_box">
+                <input type="text" placeholder="Search A Tribesman" id="search_following">
             </center>
         </div>
 

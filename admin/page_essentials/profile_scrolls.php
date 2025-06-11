@@ -21,9 +21,11 @@ $current_user_id = $_SESSION['user_id'];
 
         <div class="search_box">
             <center>
-                <input type="text" placeholder="Search Posts" id="search_box" onkeyup="sanitizeInput(this)">
+                <input type="text" id="search_box" placeholder="Search Posts" oninput="sanitizeSearchInput(this)">
             </center>
         </div>
+
+
 
         <div class="my_posts">
 
@@ -61,7 +63,7 @@ $current_user_id = $_SESSION['user_id'];
 
                             <div class="user_name">
                                 <h4>
-                                    <?=$tribesmen['username'] ?>
+                                    <?= $tribesmen['username'] ?>
                                 </h4>
                             </div>
 
@@ -81,7 +83,7 @@ $current_user_id = $_SESSION['user_id'];
                             mysqli_stmt_close($stmt);
                             ?>
 
-                          
+
                         </a>
 
                         <div class="user_details_post_time">
@@ -164,20 +166,11 @@ $current_user_id = $_SESSION['user_id'];
                         </div>
                     </div>
                 </div>
-
             <?php endwhile ?>
 
         </div>
 
     <?php else : ?>
-        <h3>You got no post yet!</h3>
+        <h3>This user has no post!</h3>
     <?php endif ?>
 </div>
-
-<script>
-    // Client-side input sanitization function
-    function sanitizeInput(input) {
-        // Remove potentially harmful characters
-        input.value = input.value.replace(/[<>"'`]/g, '');
-    }
-</script>

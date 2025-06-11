@@ -179,7 +179,7 @@ if ($current_user_id === false) {
         </div>
 
     <?php else : ?>
-        <h3>You got no post yet!</h3>
+        <h3>Share your first post!</h3>
     <?php endif ?>
 </div>
 

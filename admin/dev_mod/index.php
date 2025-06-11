@@ -71,8 +71,7 @@ $stmt->close();
 
         <div class="search_box">
             <center>
-                <input type="text" placeholder="Search Scrolls"  id="search_box">
-                
+                <input type="text" id="search_box" placeholder="Search Posts" oninput="sanitizeSearchInput(this)">
             </center>
         </div>
 

@@ -1,6 +1,6 @@
 <div class="search_box">
     <center>
-        <input type="text" placeholder="Search Following" id="my_following_box">
+        <input type="text" placeholder="Search Following" id="search_following">
     </center>
 </div>
 
@@ -52,7 +52,7 @@ $result = mysqli_stmt_get_result($stmt);
 
     
 <?php else: ?>
-    <p>This user is not following anyone yet.</p>
+    <p>This user follows no one.</p>
 <?php endif; ?>
 
 </div>
