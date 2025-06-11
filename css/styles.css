@@ -904,6 +904,18 @@ input[type="submit"][value="Post"] {
   display: none;
 }
 
+
+a.hyperlink, .hyperlink {
+    color: rgb(89, 196, 242) !important;
+}
+
+a.hyperlink:hover, .hyperlink:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    transform: translateX(0.5rem);
+}
+
+
 .post_text {
   margin-top: 0.5rem;
 }
@@ -1959,6 +1971,8 @@ footer a:hover {
     -webkit-backdrop-filter: blur(20px);
     height: 2.5rem;
   }
+
+
 
   .nav_items {
     display: none;
