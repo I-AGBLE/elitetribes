@@ -1960,10 +1960,6 @@ footer a:hover {
     height: 2.5rem;
   }
 
-  .nav_items {
-    display: none;
-  }
-
   /* Link styling */
   .header_menu_items ul li a {
     padding: 0.6rem 3rem;
