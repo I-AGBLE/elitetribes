@@ -49,22 +49,37 @@ function setupInfiniteScroll(containerSelector, loaderSelector) {
         }
     }
 
-    // Disable infinite scroll when this section's search box has value
+    // Disable infinite scroll when this section's search box has any value (including hashtag click)
     if (searchBox) {
+        // Always disable infinite scroll on any input
         searchBox.addEventListener('input', function () {
             enabled = searchBox.value.trim() === '';
             if (enabled) showInitialPosts();
         });
+
+        // Also disable infinite scroll on focus (for hashtag click or programmatic input)
+        searchBox.addEventListener('focus', function () {
+            if (searchBox.value.trim() !== '') {
+                enabled = false;
+            }
+        });
+
+        // Optionally, disable on any change (for programmatic value set)
+        const observer = new MutationObserver(function () {
+            if (searchBox.value.trim() !== '') {
+                enabled = false;
+            }
+        });
+        observer.observe(searchBox, { attributes: true, attributeFilter: ['value'] });
     }
 
     showInitialPosts();
     window.addEventListener('scroll', onScroll);
 }
 
-// Initialize for both sections
+// Initialize for all sections
 document.addEventListener('DOMContentLoaded', function () {
     setupInfiniteScroll('#open_scrolls_contents', '#infinite-loader-open');
     setupInfiniteScroll('#my_timeline', '#infinite-loader-timeline');
     setupInfiniteScroll('#my_posts_contents', '#infinite-loader-timeline');
-
 });
