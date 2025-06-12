@@ -162,6 +162,13 @@ if (!isset($_SESSION['csrf_token'])) {
             <?php endwhile ?>
         </div>
 
+        <div id="infinite-loader-open" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
+            <span class="ripple-dot"></span>
+            <span class="ripple-dot"></span>
+            <span class="ripple-dot"></span>
+        </div>
+
+
     <?php else : ?>
         <h3>Be first to post a scroll on eliteTribe.</h3>
     <?php endif ?>

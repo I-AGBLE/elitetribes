@@ -51,7 +51,6 @@ if (isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
 
-
   <!-- js -->
   <script src="../js/main.js" defer></script>
   <script src="../js/user_profile.js" defer></script>
@@ -61,6 +60,7 @@ if (isset($_SESSION['user_id'])) {
   <script src="../js/search_box.js" defer></script>
   <script src="../js/search_following.js" defer></script>
   <script src="../js/post_links.js" defer></script>
+  <script src="../js/infinity_scroll.js" defer></script>
 
 </head>
 

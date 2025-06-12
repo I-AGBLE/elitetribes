@@ -183,6 +183,12 @@ if ($current_user_id === false) {
     <?php endif ?>
 </div>
 
+<div id="infinite-loader-timeline" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
+  <span class="ripple-dot"></span>
+  <span class="ripple-dot"></span>
+  <span class="ripple-dot"></span>
+</div>
+
 <script>
 // Client-side input sanitization
 function sanitizeSearchInput(input) {

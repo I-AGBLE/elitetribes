@@ -174,3 +174,9 @@ $current_user_id = $_SESSION['user_id'];
         <h3>This user has no post!</h3>
     <?php endif ?>
 </div>
+
+<div id="infinite-loader-timeline" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
+  <span class="ripple-dot"></span>
+  <span class="ripple-dot"></span>
+  <span class="ripple-dot"></span>
+</div>

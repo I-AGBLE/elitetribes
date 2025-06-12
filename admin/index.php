@@ -144,6 +144,9 @@ if (!isset($_SESSION['csrf_token'])) {
   </section>
 </section>
  
+
+
+
 <section class="main_right">
  <!--Update -->
 </section>

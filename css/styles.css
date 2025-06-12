@@ -50,6 +50,7 @@
   --nav_bg: #111111;
   --light_bg: #1e1d1d;
   --bg_variant: #1b1b1b;
+  --fav: rgb(89, 196, 242);
   --default_btn: #6c63ff;
   --danger_btn: #f75842;
   --danger_variant_btn: #f36a58;
@@ -65,6 +66,40 @@
 
   --border_radius: 0.5rem;
 }
+
+/* Loader Styles */
+.ripple-dot {
+  display: inline-block;
+  width: .5rem;
+  height: .5rem;
+  margin: .7rem 0.2rem;
+  border-radius: 50%;
+  background: var(--fav);
+  animation: ripple 1s infinite;
+}
+
+.ripple-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.ripple-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes ripple {
+  0%,
+  80%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
 
 /* General Font Styles */
 h1,
@@ -91,7 +126,8 @@ h4 {
   font-size: 1.1rem;
 }
 
-p, a {
+p,
+a {
   font-size: 1rem;
   font-weight: 400;
   text-align: justify;
@@ -177,21 +213,19 @@ nav {
   box-shadow: var(--box_shadow);
 }
 
-
 .user_meta {
   display: grid;
-  gap: .5rem;
-  margin: .7rem 0;
+  gap: 0.5rem;
+  margin: 0.7rem 0;
   transition: var(--transition);
 }
 
 .user_meta p:hover {
-  transform: translateX(.5rem);
+  transform: translateX(0.5rem);
 }
 .user_meta span:hover {
-cursor: pointer;
+  cursor: pointer;
   box-shadow: var(--box_shadow);
-
 }
 
 /* logo styling */
@@ -378,7 +412,7 @@ nav:hover {
 }
 
 .user_name h4 {
-  font-weight:500 ;
+  font-weight: 500;
 }
 
 .user_name:hover h4 {
@@ -772,7 +806,7 @@ input[type="submit"][value="Post"] {
   justify-content: space-between;
   justify-items: flex-start;
   background-color: #1c1b1b;
-  padding: .3rem 0;
+  padding: 0.3rem 0;
   border-top-right-radius: var(--border_radius);
   border-top-left-radius: var(--border_radius);
 }
@@ -904,17 +938,17 @@ input[type="submit"][value="Post"] {
   display: none;
 }
 
-
-a.hyperlink, .hyperlink {
-    color: rgb(89, 196, 242) !important;
+a.hyperlink,
+.hyperlink {
+  color: var(--fav) !important;
 }
 
-a.hyperlink:hover, .hyperlink:hover {
-    text-decoration: underline;
-    cursor: pointer;
-    transform: translateX(0.5rem);
+a.hyperlink:hover,
+.hyperlink:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  transform: translateX(0.5rem);
 }
-
 
 .post_text {
   margin-top: 0.5rem;
@@ -976,7 +1010,7 @@ a.hyperlink:hover, .hyperlink:hover {
   color: var(--text_color);
   background-color: var(--default_bg);
   font-size: 1rem;
-  padding: 0 .2rem;
+  padding: 0 0.2rem;
   border-radius: var(--border_radius);
   -webkit-border-radius: var(--border_radius);
   -moz-border-radius: var(--border_radius);
@@ -1135,15 +1169,15 @@ input[type="submit"]:hover {
   max-height: 50rem;
   overflow: auto; /* Better than 'scroll' for dynamic content */
   scroll-behavior: smooth;
-  
+
   /* Hide scrollbar for Chrome, Safari, and Opera */
   &::-webkit-scrollbar {
     display: none;
   }
-  
+
   /* Hide scrollbar for IE, Edge, and Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .followings .user_details a {
@@ -1245,13 +1279,10 @@ input[type="submit"]:hover {
   font-size: 2.7rem;
 }
 
-
-
 .standard_login {
   display: grid;
   gap: 0.5rem;
   margin: 1rem;
-
 }
 
 .standard_login textarea {
@@ -1402,7 +1433,7 @@ input[type="submit"][value="Register"]:hover {
 
 .loginorout p {
   opacity: 0.5;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .loginorout a {
@@ -1528,41 +1559,6 @@ footer a:hover {
   /* Red when liked */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ---------------------------------- TABLET -------------------------------------- */
 
 @media only screen and (min-width: 600px) and (max-width: 1024px) {
@@ -1591,10 +1587,10 @@ footer a:hover {
     font-size: 1.2rem;
   }
 
-  p, a {
+  p,
+  a {
     font-size: 1.1rem;
   }
-
 
   /* Button Styles */
   #default_btn {
@@ -1675,16 +1671,14 @@ footer a:hover {
     height: 17rem;
   }
 
+  .about p {
+    font-size: 1rem;
+  }
 
-.about p {
-  font-size: 1rem;
-}
-
-.followers_and_posts p {
-  color: var(--color_warning);
-  font-size: 0.8rem;
-}
-
+  .followers_and_posts p {
+    color: var(--color_warning);
+    font-size: 0.8rem;
+  }
 
   .my_posts_links {
     gap: 1.5rem;
@@ -1900,31 +1894,6 @@ footer a:hover {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ---------------------------------- MOBILE  -------------------------------------- */
 
 @media only screen and (max-width: 599px) {
@@ -1952,7 +1921,8 @@ footer a:hover {
     font-size: 1.12rem;
   }
 
-  p, a {
+  p,
+  a {
     font-size: 1rem;
   }
 
@@ -1971,8 +1941,6 @@ footer a:hover {
     -webkit-backdrop-filter: blur(20px);
     height: 2.5rem;
   }
-
-
 
   .nav_items {
     display: none;
@@ -2033,17 +2001,14 @@ footer a:hover {
     margin: 0 2.55rem;
   }
 
-  
-.about p {
-  font-size: 1rem;
-}
+  .about p {
+    font-size: 1rem;
+  }
 
-.followers_and_posts p {
-  color: var(--color_warning);
-  font-size: 0.8rem;
-}
-
-
+  .followers_and_posts p {
+    color: var(--color_warning);
+    font-size: 0.8rem;
+  }
 
   .my_posts_links {
     gap: 1rem;
@@ -2112,7 +2077,6 @@ footer a:hover {
     max-height: 70rem;
   }
 
-  
   .comment {
     opacity: 1;
   }
@@ -2192,7 +2156,7 @@ footer a:hover {
   }
 
   .extras {
-    margin-top: .9rem;
+    margin-top: 0.9rem;
   }
 
   .extras p {
