@@ -35,6 +35,15 @@ $confirm_human = $_SESSION['signin_data']['confirm_human'] ?? null;;
         ?>
       </p>
     </div>
+
+    <?php elseif (isset($_SESSION['delete_profile_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
+      <p>
+        <?= $_SESSION['delete_profile_success'];
+        unset($_SESSION['delete_profile_success']);
+        ?>
+      </p>
+    </div>
   <?php endif ?>
 
   <div class="main_log">

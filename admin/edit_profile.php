@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 if (isset($_GET['id'])) {
     // Validate and sanitize ID
     $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
-    
+
     if (!$id || $id <= 0) {
         header("Location: " . ROOT_URL . "admin/");
         die();
@@ -32,7 +32,7 @@ if (isset($_GET['id'])) {
     mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
-    
+
     if (mysqli_num_rows($result) == 0) {
         header("Location: " . ROOT_URL . "admin/");
         die();
@@ -77,7 +77,7 @@ if (isset($_GET['id'])) {
             <div class="post_field">
                 <input type="text" name="username" value="<?= $tribesmen['username'] ?>" placeholder="Username" autofocus>
 
-                <input type="tel" name="telephone" value="<?=$tribesmen['telephone']?>" placeholder="Telephone">
+                <input type="tel" name="telephone" value="<?= $tribesmen['telephone'] ?>" placeholder="Telephone">
 
                 <select name="gender">
                     <option value="" disabled <?= $gender == '' ? 'selected' : '' ?>>Gender</option>
@@ -90,9 +90,9 @@ if (isset($_GET['id'])) {
                 <input type="email" name="email" value="<?= $tribesmen['email'] ?>" placeholder="Email">
 
                 <textarea name="about" placeholder="About me."><?= $about ?></textarea>
-                
+
                 <label for="avatar">
-                    <i class="fa-solid fa-image"></i> 
+                    <i class="fa-solid fa-image"></i>
                 </label>
                 <input type="file" id="avatar" name="avatar" accept="image/jpeg,image/png,image/gif" style="display: none;" />
 
@@ -100,6 +100,14 @@ if (isset($_GET['id'])) {
             </div>
 
             <input type="submit" name="submit" value="Update">
+
+            <div class="delete_profile">
+                <p>
+                    Looking to leave the tribesmen? Click
+                    <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/delete_profile.php?id=<?= htmlspecialchars($tribesmen['id'], ENT_QUOTES, 'UTF-8') ?>" class="delete_btn">here</a>
+                    to delete your account.
+                </p>
+            </div>
         </form>
     </div>
 </main>

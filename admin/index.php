@@ -70,6 +70,15 @@ if (!isset($_SESSION['csrf_token'])) {
         ?>
       </p>
     </div>
+
+      <?php elseif (isset($_SESSION['delete_profile'])) : ?>
+    <div class="alert_message error" id="alert_message">
+      <p>
+        <?= htmlspecialchars($_SESSION['delete_profile'], ENT_QUOTES, 'UTF-8');
+        unset($_SESSION['delete_profile']);
+        ?>
+      </p>
+    </div>
   <?php endif ?>
 
 

@@ -1481,6 +1481,20 @@ input[type="submit"][value="Register"]:hover {
   margin-bottom: 3rem;
 }
 
+
+.delete_profile {
+  margin-top: 2rem;
+}
+.delete_profile p a {
+color: var(--danger_btn);
+}
+
+.delete_profile p a:hover {
+  color: var(--fav);
+  text-decoration: underline;
+}
+
+
 label i {
   font-size: 2rem;
   transition: var(--transition);
