@@ -33,6 +33,8 @@ require 'config/database.php';
 
     <!-- js -->
     <script src="js/main.js" defer></script>
+    <script src="js/username.js" defer></script>
+
 </head>
 
 

@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
         // find one matching record 
         if (mysqli_num_rows($fetch_tribesmen_result) == 1) {
             // convert record to assoc array 
-            $tribesmen_record = mysqli_fetch_assoc($fetch_tribesmen_result);
+            $tribesmen_record =  mysqli_fetch_assoc($fetch_tribesmen_result);
             $db_password = $tribesmen_record['password'];
 
             //verify password

@@ -51,7 +51,7 @@ unset($_SESSION['signup_data']);
 
       <div class="standard_login">
 
-        <input type="text" name="username" value="<?= $username ?>" placeholder="Username" maxlength="50" pattern="[A-Za-z0-9_ ]{3,50}"  autofocus>
+        <input type="text" id="username" name="username" value="<?= $username ?>" placeholder="Username" maxlength="50" pattern="[A-Za-z0-9_ ]{3,50}"  autofocus>
         <input type="tel" name="telephone" value="<?= $telephone ?>" placeholder="Telephone" maxlength="20" pattern="[0-9+\-\s]{7,20}" >
 
         <select name="gender" >

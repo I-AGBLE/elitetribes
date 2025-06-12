@@ -100,6 +100,10 @@
   }
 }
 
+#username {
+  text-transform: lowercase;
+}
+
 
 /* General Font Styles */
 h1,

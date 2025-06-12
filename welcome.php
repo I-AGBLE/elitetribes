@@ -64,7 +64,7 @@ $confirm_human = $_SESSION['signin_data']['confirm_human'] ?? null;;
     <form action="<?= ROOT_URL ?>index_logic.php" method="POST" >
 
     <div class="standard_login">
-      <input type="text" name="telephone_or_username"  value="<?= $telephone_or_username ?>"   placeholder="Telephone or Username" autofocus>
+      <input type="text" id="username"  name="telephone_or_username"  value="<?= $telephone_or_username ?>"   placeholder="Telephone or Username" autofocus>
       <input type="password" name="password"  value="<?= $password ?>"   placeholder="Password">
       <input type="text" name="confirm_human"  value="<?= $confirm_human ?>"  placeholder="confirm_human" class="confirm_human">
       <input type="submit" name="submit" value="Login">
