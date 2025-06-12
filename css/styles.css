@@ -283,7 +283,7 @@ nav {
   transform: translateY(-10px);
   pointer-events: none;
   direction: ltr;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .header_menus.visible {
@@ -307,25 +307,25 @@ nav {
   margin: 0.2rem 0;
   border: 0.2px solid var(--deep_bg);
   border-radius: 2px;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 /* Staggered delays */
 .header_menu_items ul li:nth-child(1) {
-  transition-delay: 0.1s;
+  transition-delay: 0s;
 }
 .header_menu_items ul li:nth-child(2) {
-  transition-delay: 0.2s;
+  transition-delay: 0.1s;
 }
 .header_menu_items ul li:nth-child(3) {
-  transition-delay: 0.3s;
+  transition-delay: 0.15s;
 }
 .header_menu_items ul li:nth-child(4) {
-  transition-delay: 0.4s;
+  transition-delay: 0.2s;
 }
 
 .header_menu_items ul li:nth-child(5) {
-  transition-delay: 0.5s;
+  transition-delay: 0.25s;
 }
 
 /* Link styling */

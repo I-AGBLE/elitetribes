@@ -25,29 +25,25 @@ if (isset($_GET['id'])) {
             $delete_profile_query = "DELETE FROM tribesmen WHERE id=$id LIMIT 1";
             $delete_profile_result = mysqli_query($connection, $delete_profile_query);
 
-if ($delete_profile_result) {
-    $_SESSION["delete_profile_success"] = "Account Deleted Successfully.";
-    header("location: " . ROOT_URL );
-    exit;
-} else {
-    $_SESSION["delete_profile"] = "Failed to delete user from database. Error: " . mysqli_error($connection);
-    header('location: ' . ROOT_URL . 'admin/');
-    exit;
-}
+            if ($delete_profile_result) {
+                $_SESSION["delete_profile_success"] = "Account Deleted Successfully.";
+                header("location: " . ROOT_URL);
+                exit;
+            } else {
+                $_SESSION["delete_profile"] = "Failed to delete user from database. Error: ";
+                header('location: ' . ROOT_URL . 'admin/');
+                exit;
+            }
         } else {
             $_SESSION["delete_profile"] = "User not found.";
             header('location: ' . ROOT_URL . 'admin/');
             exit;
         }
-    }
-    
-    else {
+    } else {
         $_SESSION["delete_profile"] = "Invalid User!.";
         header('location: ' . ROOT_URL . 'admin/');
         exit;
     }
-
-
 } else {
     $_SESSION["delete_profile"] = "Operation Failed!.";
     header('location: ' . ROOT_URL . 'admin/');

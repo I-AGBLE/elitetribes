@@ -6,7 +6,7 @@ function setupInfiniteScroll(containerSelector, loaderSelector) {
     const loader = document.querySelector(loaderSelector);
     // Find the search box inside this container (scoped search)
     const searchBox = container.querySelector('#search_box');
-    const batchSize = 5;
+    const batchSize = 15;
     let visibleCount = 0;
     let loading = false;
     let enabled = true;
