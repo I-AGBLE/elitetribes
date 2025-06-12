@@ -41,7 +41,6 @@ if (isset($_POST['submit'])) {
                 // log user in
                 header('location: ' . ROOT_URL . 'admin/');
              
-                // if all is fine 
                
                     // redirect to login page with success message
                     $_SESSION["signin_success"] = "Welcome To The Elite Tribes";

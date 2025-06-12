@@ -44,6 +44,15 @@ $confirm_human = $_SESSION['signin_data']['confirm_human'] ?? null;;
         ?>
       </p>
     </div>
+
+        <?php elseif (isset($_SESSION['signup_success'])) : ?>
+    <div class="alert_message success" id="alert_message">
+      <p>
+        <?= $_SESSION['signup_success'];
+        unset($_SESSION['signup_success']);
+        ?>
+      </p>
+    </div>
   <?php endif ?>
 
   <div class="main_log">
