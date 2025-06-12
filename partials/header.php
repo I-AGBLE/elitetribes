@@ -34,6 +34,7 @@ require 'config/database.php';
     <!-- js -->
     <script src="js/main.js" defer></script>
     <script src="js/username.js" defer></script>
+    <script src="partials/image_name.js" defer></script>
 
 </head>
 
@@ -58,7 +59,7 @@ require 'config/database.php';
         <div class="nav_items">
             <ul>
                 <li>
-                    <a href="<?= ROOT_URL ?>contact.php">Contact Us</a>
+                    <a href="<?= ROOT_URL ?>about.php">About Us</a>
                 </li>
             </ul>
         </div>

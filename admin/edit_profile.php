@@ -96,6 +96,10 @@ if (isset($_GET['id'])) {
                 </label>
                 <input type="file" id="avatar" name="avatar" accept="image/jpeg,image/png,image/gif" style="display: none;" />
 
+                <!-- Where the selected file names will be shown -->
+                <div id="file-names"></div>
+
+
                 <input class="confirm_human" type="text" name="confirm_human" placeholder="confirm_human">
             </div>
 

@@ -73,6 +73,10 @@ unset($_SESSION['signup_data']);
         </label>
         <input type="file" id="avatar" name="avatar" accept="image/*" style="display: none;" />
 
+        <!-- Where the selected file names will be shown -->
+          <div id="file-names"></div>
+
+
         <style>
           label i {
             font-size: 1.5rem;
