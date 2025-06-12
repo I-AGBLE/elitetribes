@@ -20,9 +20,10 @@ if (!isset($connection) || !($connection instanceof mysqli)) {
     die("Database connection error");
 }
 
-// Prepare statement for fetching scrolls
-$open_scrolls_query = "SELECT * FROM scrolls ORDER BY created_at DESC";
+// Prepare statement for fetching scrolls in random order
+$open_scrolls_query = "SELECT * FROM scrolls ORDER BY RAND()";
 $open_scrolls = mysqli_query($connection, $open_scrolls_query);
+
 
 // Verify query was successful
 if (!$open_scrolls) {
