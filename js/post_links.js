@@ -9,36 +9,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Regex for hashtags and URLs
     const hashtagRegex = /#(\w+)/g;
-    const urlRegex = /\b((https?:\/\/)?[\w-]+(\.[\w-]+)+([/?#][^\s]*)?)/gi;
+    const urlRegex = /\b((https?:\/\/)?[\w-]+(\.[\w-]+)+([/?#][^\s<]*)?)/gi;
 
-    // Linkify function for post text
     function linkifyText(text) {
-        // Linkify URLs first
+        // Highlight URLs (not clickable, just add class)
         text = text.replace(urlRegex, function (match) {
-            let url = match;
-            // Only treat as URL if it ends with a known TLD
-            if (!tldList.some(tld => url.toLowerCase().includes(tld))) return match;
-            if (!/^https?:\/\//i.test(url)) {
-                url = 'http://' + url;
-            }
-            return `<a href="${url}" class="hyperlink" target="_blank" rel="noopener noreferrer">${match}</a>`;
+            if (!tldList.some(tld => match.toLowerCase().includes(tld))) return match;
+            return `<code class="hyperlink">${match}</code>`;
         });
 
-        // Linkify hashtags (use <a> with class "hyperlink" instead of <span>)
+        // Highlight hashtags (inline)
         text = text.replace(hashtagRegex, function (match, tag) {
-            return `<a href="javascript:void(0);" class="hyperlink hashtag-link" data-hashtag="${tag}">${match}</a>`;
+            return `<code class="hyperlink hashtag-link" data-hashtag="${tag}">${match}</code>`;
         });
 
         return text;
     }
 
-    // Process all .post_text containers
     document.querySelectorAll('.post_text').forEach(function (container) {
-        let html = container.innerHTML;
-        // Only process if not already linkified
         if (!container.dataset.linkified) {
-            html = linkifyText(html);
-            container.innerHTML = html;
+            let text = container.textContent;
+            container.innerHTML = linkifyText(text);
             container.dataset.linkified = "true";
         }
     });
@@ -50,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const searchBox = document.getElementById('search_box');
             if (searchBox) {
                 searchBox.value = tag;
-                // Trigger your filter logic (sanitizeSearchInput or filterPosts)
                 if (typeof sanitizeSearchInput === 'function') {
                     sanitizeSearchInput(searchBox);
                 } else if (typeof filterPosts === 'function') {
