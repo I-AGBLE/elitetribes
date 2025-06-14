@@ -1,53 +1,18 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // List of common TLDs for URL detection
-    const tldList = [
-        '.com', '.net', '.org', '.io', '.co', '.gov', '.edu', '.info', '.biz', '.me', '.us', '.uk', '.ng', '.xyz',
-        '.site', '.online', '.store', '.tech', '.app', '.dev', '.ai', '.ca', '.in', '.au', '.za', '.fr', '.de', '.es',
-        '.it', '.ru', '.jp', '.cn', '.br', '.tv', '.cc', '.ly', '.fm', '.ws', '.mobi', '.pro', '.name', '.jobs',
-        '.museum', '.travel', '.int', '.mil', '.arpa'
-    ];
+// Add this script after your HTML or in a DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', function() {
+    const containers = document.querySelectorAll('.post_text p');
+    if (!containers.length) return;
 
-    // Regex for hashtags and URLs
-    const hashtagRegex = /#(\w+)/g;
-    const urlRegex = /\b((https?:\/\/)?[\w-]+(\.[\w-]+)+([/?#][^\s<]*)?)/gi;
+    // List of domain extensions to match
+    const domainExtensions = ['com', 'org', 'net', 'edu', 'gov', 'io', 'co', 'info', 'biz', 'me', 'us', 'uk', 'ca', 'au', 'in'];
+    const domainPattern = domainExtensions.join('|');
 
-    function linkifyText(text) {
-        // Highlight URLs (not clickable, just add class)
-        text = text.replace(urlRegex, function (match) {
-            if (!tldList.some(tld => match.toLowerCase().includes(tld))) return match;
-            return `<code class="hyperlink">${match}</code>`;
+    // Regex: match #word or word ending with .com, .org, etc.
+    const regex = new RegExp(`(#[\\w-]+)|(\\b[\\w.-]+\\.(${domainPattern})\\b)`, 'gi');
+
+    containers.forEach(function(container) {
+        container.innerHTML = container.innerHTML.replace(regex, function(match) {
+            return `<span class="hyperlink custom-hyperlink">${match}</span>`;
         });
-
-        // Highlight hashtags (inline)
-        text = text.replace(hashtagRegex, function (match, tag) {
-            return `<code class="hyperlink hashtag-link" data-hashtag="${tag}">${match}</code>`;
-        });
-
-        return text;
-    }
-
-    document.querySelectorAll('.post_text').forEach(function (container) {
-        if (!container.dataset.linkified) {
-            let text = container.textContent;
-            container.innerHTML = linkifyText(text);
-            container.dataset.linkified = "true";
-        }
-    });
-
-    // Hashtag click handler: filter posts in .my_posts
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('hashtag-link')) {
-            const tag = e.target.dataset.hashtag.toLowerCase();
-            const searchBox = document.getElementById('search_box');
-            if (searchBox) {
-                searchBox.value = tag;
-                if (typeof sanitizeSearchInput === 'function') {
-                    sanitizeSearchInput(searchBox);
-                } else if (typeof filterPosts === 'function') {
-                    filterPosts(tag);
-                }
-            }
-            e.preventDefault();
-        }
     });
 });

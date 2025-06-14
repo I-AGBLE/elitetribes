@@ -93,17 +93,21 @@ if (!isset($_SESSION['csrf_token'])) {
 
                     <div class="post_text">
                         <p>
-                            <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
-                                <?php
-                                $text = nl2br($scroll['user_post']);
-                                $maxLength = 500;
-                                if (strlen($text) > $maxLength) {
-                                    echo substr($text, 0, $maxLength) . '<p>Read More...</p>';
-                                } else {
-                                    echo $text;
-                                }
-                                ?>
-                            </a>
+                            <?php
+                            $text = nl2br($scroll['user_post']);
+                            $maxLength = 500;
+                            if (strlen($text) > $maxLength) {
+                                // Show truncated text
+                                echo '<a href="' . htmlspecialchars(ROOT_URL) . 'admin/post_preview.php?id=' . urlencode($scroll_id) . '">'
+                                    . substr($text, 0, $maxLength) . '</a>';
+                                // "Read More" in its own container
+                                echo '<div class="hyperlink" style="margin-top: -.5rem"><br>  Read More ...</div>';
+                            } else {
+                                // Show full text
+                                echo '<a href="' . htmlspecialchars(ROOT_URL) . 'admin/post_preview.php?id=' . urlencode($scroll_id) . '">'
+                                    . $text . '</a>';
+                            }
+                            ?>
                         </p>
                     </div>
 

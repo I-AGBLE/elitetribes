@@ -943,20 +943,24 @@ input[type="submit"][value="Post"] {
 }
 
 a.hyperlink,
-.hyperlink {
+.hyperlink,
+.custom-hyperlink {
   color: var(--fav) !important;
+  background: transparent !important;
 }
+
+
 
 a.hyperlink:hover,
 .hyperlink:hover {
   text-decoration: underline;
   cursor: pointer;
-  transform: translateX(0.5rem);
 }
 
 .post_text {
   margin-top: 0.5rem;
 }
+
 
 .post_reaction_icon:hover + .post_reaction_desc p {
   opacity: 1;
