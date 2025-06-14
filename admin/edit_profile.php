@@ -75,7 +75,7 @@ if (isset($_GET['id'])) {
             <input type="hidden" name="previous_avatar" value="<?= htmlspecialchars($tribesmen['avatar'], ENT_QUOTES, 'UTF-8') ?>">
 
             <div class="post_field">
-                <input type="text" name="username" value="<?= $tribesmen['username'] ?>" placeholder="Username" autofocus>
+                <input type="text" name="username"  id="username" value="<?= $tribesmen['username'] ?>" placeholder="Username" autofocus>
 
                 <input type="tel" name="telephone" value="<?= $tribesmen['telephone'] ?>" placeholder="Telephone">
 

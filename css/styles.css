@@ -413,6 +413,7 @@ nav:hover {
   -moz-transition: var(--transition);
   -ms-transition: var(--transition);
   -o-transition: var(--transition);
+  text-transform: lowercase;
 }
 
 .user_name h4 {
@@ -628,6 +629,7 @@ main .main_left,
   display: flex;
   gap: 0.2rem;
   align-items: flex-start;
+  text-transform: lowercase;
 }
 
 .name h3 {
@@ -947,6 +949,7 @@ a.hyperlink,
 .custom-hyperlink {
   color: var(--fav) !important;
   background: transparent !important;
+  text-transform: lowercase;
 }
 
 
