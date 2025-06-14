@@ -91,24 +91,22 @@ if (!isset($_SESSION['csrf_token'])) {
                         </div>
                     </div>
 
-<div class="post_text">
-    <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
-        <p>
-            <?php
-            $text = nl2br(htmlspecialchars($scroll['user_post']));
-            $maxLength = 500;
-            if (strlen(strip_tags($scroll['user_post'])) > $maxLength) {
-                echo substr($text, 0, $maxLength) . '...';
-            } else {
-                echo $text;
-            }
-            ?>
-        </p>
-    </a>
-    <?php if (strlen(strip_tags($scroll['user_post'])) > $maxLength): ?>
-        <div class="hyperlink" style="margin-top: -.5rem"><br>...Read More</div>
-    <?php endif; ?>
-</div>
+                    <div class="post_text">
+                        <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
+                            <p style="margin-bottom: 0;">
+                                <?php
+                                $text = nl2br($scroll['user_post']);
+                                $maxLength = 500;
+                                if (strlen(strip_tags($scroll['user_post'])) > $maxLength) {
+                                    echo substr($text, 0, $maxLength);
+                                    echo ' <span class="hyperlink" style="margin-top: -.5rem"><br>...Read More again</span>';
+                                } else {
+                                    echo $text;
+                                }
+                                ?>
+                            </p>
+                        </a>
+                    </div>
 
                     <?php
                     // Secure image handling
