@@ -118,18 +118,20 @@ $stmt->close();
                         </div>
 
                         <div class="post_text">
-                            <p>
-                                <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= $scroll_id ?>">
+                            <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
+                                <p style="margin-bottom: 0;">
                                     <?php
-                                    $text = $scroll['user_post'];
-                                    $text = nl2br($text);
+                                    $text = nl2br($scroll['user_post']);
                                     $maxLength = 500;
-                                    echo strlen($text) > $maxLength
-                                        ? substr($text, 0, $maxLength) . '<p>Read More...</p>'
-                                        : $text;
+                                    if (strlen(strip_tags($scroll['user_post'])) > $maxLength) {
+                                        echo substr($text, 0, $maxLength);
+                                        echo ' <span class="hyperlink" style="margin-top: -.5rem"><br>Read More...</span>';
+                                    } else {
+                                        echo $text;
+                                    }
                                     ?>
-                                </a>
-                            </p>
+                                </p>
+                            </a>
                         </div>
 
                         <?php

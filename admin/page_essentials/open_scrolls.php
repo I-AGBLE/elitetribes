@@ -99,7 +99,7 @@ if (!isset($_SESSION['csrf_token'])) {
                                 $maxLength = 500;
                                 if (strlen(strip_tags($scroll['user_post'])) > $maxLength) {
                                     echo substr($text, 0, $maxLength);
-                                    echo ' <span class="hyperlink" style="margin-top: -.5rem"><br>...Read More again</span>';
+                                    echo ' <span class="hyperlink" style="margin-top: -.5rem"><br>Read More...</span>';
                                 } else {
                                     echo $text;
                                 }

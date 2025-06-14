@@ -4,19 +4,19 @@
 // Validate and sanitize user ID
 $user_id = filter_var($_SESSION['user_id'], FILTER_VALIDATE_INT);
 if ($user_id === false) {
-    die("Invalid user ID");
+  die("Invalid user ID");
 }
 
 // CSRF token generation (for any future forms)
 if (!isset($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 ?>
 
 <div class="search_box">
   <center>
-    <input type="text" placeholder="Search Timeline" id="search_box" 
-           oninput="sanitizeSearchInput(this)">
+    <input type="text" placeholder="Search Timeline" id="search_box"
+      oninput="sanitizeSearchInput(this)">
   </center>
 </div>
 
@@ -45,11 +45,11 @@ $result = mysqli_stmt_get_result($stmt);
 
 <div class="my_posts">
 
-  <?php while ($feed = mysqli_fetch_assoc($result)) : 
+  <?php while ($feed = mysqli_fetch_assoc($result)) :
     // Validate feed data
     $feed_id = filter_var($feed['id'], FILTER_VALIDATE_INT);
     if ($feed_id === false) continue;
-    
+
     $creator_id = filter_var($feed['created_by'], FILTER_VALIDATE_INT);
     if ($creator_id === false) continue;
   ?>
@@ -57,9 +57,9 @@ $result = mysqli_stmt_get_result($stmt);
       <div class="user_details">
         <a href="profiles.php?id=<?= urlencode($creator_id) ?>">
           <div class="user_profile_pic">
-            <img src="../images/<?= htmlspecialchars(basename($feed['avatar'])) ?>" 
-                 alt="User's profile picture."
-                 onerror="this.src='../images/default_avatar.png'" />
+            <img src="../images/<?= htmlspecialchars(basename($feed['avatar'])) ?>"
+              alt="User's profile picture."
+              onerror="this.src='../images/default_avatar.png'" />
           </div>
 
           <div class="user_name">
@@ -79,15 +79,18 @@ $result = mysqli_stmt_get_result($stmt);
 
       <div class="post_text">
         <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">
-          <?php
-          $text = nl2br($feed['user_post']);
-          $maxLength = 500;
-          if (strlen($text) > $maxLength) {
-            echo substr($text, 0, $maxLength) . '<p>Read More...</p>';
-          } else {
-            echo $text;
-          }
-          ?>
+          <p>
+            <?php
+            $text = nl2br($feed['user_post']);
+            $maxLength = 500;
+            if (strlen(strip_tags($feed['user_post'])) > $maxLength) {
+              echo substr($text, 0, $maxLength);
+              echo ' <span class="hyperlink" style="margin-top: -.5rem"><br>Read More...</span>';
+            } else {
+              echo $text;
+            }
+            ?>
+          </p>
         </a>
       </div>
 
@@ -101,8 +104,8 @@ $result = mysqli_stmt_get_result($stmt);
           <div class="post_images">
             <?php foreach ($images as $image) : ?>
               <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">
-                <img src="../images/<?= $image ?>" alt="Post's image." 
-                     onerror="this.style.display='none'">
+                <img src="../images/<?= $image ?>" alt="Post's image."
+                  onerror="this.style.display='none'">
               </a>
             <?php endforeach; ?>
           </div>
@@ -114,21 +117,21 @@ $result = mysqli_stmt_get_result($stmt);
         // Secure like check with prepared statement
         $liked = false;
         $like_count = 0;
-        
+
         if (isset($_SESSION['user_id'])) {
-            $tribesmen_id = filter_var($_SESSION['user_id'], FILTER_VALIDATE_INT);
-            if ($tribesmen_id !== false) {
-                $query_check = "SELECT * FROM likes WHERE scroll_id = ? AND tribesmen_id = ?";
-                $stmt_check = mysqli_prepare($connection, $query_check);
-                mysqli_stmt_bind_param($stmt_check, "ii", $feed_id, $tribesmen_id);
-                mysqli_stmt_execute($stmt_check);
-                $like_result = mysqli_stmt_get_result($stmt_check);
-                
-                if (mysqli_num_rows($like_result) > 0) {
-                    $liked = true;
-                }
-                mysqli_stmt_close($stmt_check);
+          $tribesmen_id = filter_var($_SESSION['user_id'], FILTER_VALIDATE_INT);
+          if ($tribesmen_id !== false) {
+            $query_check = "SELECT * FROM likes WHERE scroll_id = ? AND tribesmen_id = ?";
+            $stmt_check = mysqli_prepare($connection, $query_check);
+            mysqli_stmt_bind_param($stmt_check, "ii", $feed_id, $tribesmen_id);
+            mysqli_stmt_execute($stmt_check);
+            $like_result = mysqli_stmt_get_result($stmt_check);
+
+            if (mysqli_num_rows($like_result) > 0) {
+              $liked = true;
             }
+            mysqli_stmt_close($stmt_check);
+          }
         }
 
         // Secure like count with prepared statement
@@ -137,9 +140,9 @@ $result = mysqli_stmt_get_result($stmt);
         mysqli_stmt_bind_param($stmt_count, "i", $feed_id);
         mysqli_stmt_execute($stmt_count);
         $result_count = mysqli_stmt_get_result($stmt_count);
-        
+
         if ($row = mysqli_fetch_assoc($result_count)) {
-            $like_count = (int)$row['total_likes'];
+          $like_count = (int)$row['total_likes'];
         }
         mysqli_stmt_close($stmt_count);
         ?>
@@ -164,15 +167,15 @@ $result = mysqli_stmt_get_result($stmt);
           <?php
           // Secure comment count with prepared statement
           $comment_count = 0;
-          
+
           $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = ?";
           $stmt_comment = mysqli_prepare($connection, $count_query);
           mysqli_stmt_bind_param($stmt_comment, "i", $feed_id);
           mysqli_stmt_execute($stmt_comment);
           $count_result = mysqli_stmt_get_result($stmt_comment);
-          
+
           if ($count_row = mysqli_fetch_assoc($count_result)) {
-              $comment_count = (int)$count_row['comment_count'];
+            $comment_count = (int)$count_row['comment_count'];
           }
           mysqli_stmt_close($stmt_comment);
           ?>
@@ -189,7 +192,7 @@ $result = mysqli_stmt_get_result($stmt);
       </div>
     </div>
   <?php endwhile; ?>
-  
+
   <?php mysqli_stmt_close($stmt); ?>
 </div>
 
@@ -200,16 +203,14 @@ $result = mysqli_stmt_get_result($stmt);
 </div>
 
 <script>
-// Client-side input sanitization
-function sanitizeSearchInput(input) {
+  // Client-side input sanitization
+  function sanitizeSearchInput(input) {
     // Remove potentially harmful characters
     input.value = input.value.replace(/[<>"'`\\]/g, '');
-    
+
     // Limit length if needed
     if (input.value.length > 100) {
-        input.value = input.value.substring(0, 100);
+      input.value = input.value.substring(0, 100);
     }
-}
-
-
+  }
 </script>

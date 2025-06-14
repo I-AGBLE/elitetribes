@@ -100,20 +100,21 @@ $current_user_id = $_SESSION['user_id'];
                         </div>
                     </div>
 
-                    <div class="post_text">
-                        <p>
-                            <a href="post_preview.php?id=<?= urlencode($scroll_id) ?>">
+                       <div class="post_text">
+                        <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
+                            <p style="margin-bottom: 0;">
                                 <?php
                                 $text = nl2br($scroll['user_post']);
                                 $maxLength = 500;
-                                if (strlen($text) > $maxLength) {
-                                    echo substr($text, 0, $maxLength) . '<p>Read More...</p>';
+                                if (strlen(strip_tags($scroll['user_post'])) > $maxLength) {
+                                    echo substr($text, 0, $maxLength);
+                                    echo ' <span class="hyperlink" style="margin-top: -.5rem"><br>Read More...</span>';
                                 } else {
                                     echo $text;
                                 }
                                 ?>
-                            </a>
-                        </p>
+                            </p>
+                        </a>
                     </div>
 
                     <?php
