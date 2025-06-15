@@ -1,6 +1,4 @@
 <?php
-
-
 // CSRF token generation (for any future forms)
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -20,7 +18,7 @@ if (!isset($_SESSION['csrf_token'])) {
         </div>
     </div>
 
-    <?php if (mysqli_num_rows($open_scrolls) > 0) : ?>
+    <?php if (isset($open_scrolls) && mysqli_num_rows($open_scrolls) > 0) : ?>
 
         <div class="search_box">
             <center>
@@ -28,8 +26,6 @@ if (!isset($_SESSION['csrf_token'])) {
                     oninput="sanitizeSearchInput(this)">
             </center>
         </div>
-
-
 
         <div class="my_posts">
 
@@ -57,17 +53,17 @@ if (!isset($_SESSION['csrf_token'])) {
                         if (!$tribesmen) continue; // Skip if user not found
                         ?>
 
-                        <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/profiles.php?id=<?= urlencode($tribesmen['id']) ?>">
+                        <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/profiles.php?id=<?= urlencode($tribesmen['id']) ?>">
                             <div class="user_profile_pic">
                                 <img
-                                    src="../images/<?= htmlspecialchars(basename($tribesmen['avatar'])) ?>"
+                                    src="../images/<?= htmlspecialchars(basename($tribesmen['avatar']), ENT_QUOTES, 'UTF-8') ?>"
                                     alt="User's profile picture."
                                     onerror="this.src='../images/default_avatar.png'" />
                             </div>
 
                             <div class="user_name">
                                 <h4>
-                                    <?= $tribesmen['username'] ?>
+                                    <?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?>
                                 </h4>
                             </div>
 
@@ -80,25 +76,25 @@ if (!isset($_SESSION['csrf_token'])) {
                         <div class="user_details_post_time">
                             <div class="post_date">
                                 <p>
-                                    <?= htmlspecialchars(date("M d, Y", strtotime($scroll['created_at']))) ?>
+                                    <?= htmlspecialchars(date("M d, Y", strtotime($scroll['created_at'])), ENT_QUOTES, 'UTF-8') ?>
                                 </p>
                             </div>
                             <div class="post_time">
                                 <p>
-                                    <?= htmlspecialchars(date("H:i", strtotime($scroll['created_at']))) ?>
+                                    <?= htmlspecialchars(date("H:i", strtotime($scroll['created_at'])), ENT_QUOTES, 'UTF-8') ?>
                                 </p>
                             </div>
                         </div>
                     </div>
 
                     <div class="post_text">
-                        <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
+                        <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
                             <p style="margin-bottom: 0;">
                                 <?php
-                                $text = nl2br($scroll['user_post']);
+                                $text = nl2br(htmlspecialchars($scroll['user_post'], ENT_QUOTES, 'UTF-8'));
                                 $maxLength = 500;
-                                if (strlen(strip_tags($scroll['user_post'])) > $maxLength) {
-                                    echo substr($text, 0, $maxLength);
+                                if (mb_strlen(strip_tags($scroll['user_post'])) > $maxLength) {
+                                    echo mb_substr($text, 0, $maxLength);
                                     echo ' <span class="hyperlink" style="margin-top: -.5rem"><br>Read More...</span>';
                                 } else {
                                     echo $text;
@@ -111,13 +107,15 @@ if (!isset($_SESSION['csrf_token'])) {
                     <?php
                     // Secure image handling
                     $images = array_filter(array_map('trim', explode(',', $scroll['images'])));
-                    $images = array_map('htmlspecialchars', array_map('basename', $images));
+                    $images = array_map(function($img) {
+                        return htmlspecialchars(basename($img), ENT_QUOTES, 'UTF-8');
+                    }, $images);
                     if (!empty($images)) :
                     ?>
                         <div class="post_images_container ">
                             <div class="post_images">
                                 <?php foreach ($images as $image) : ?>
-                                    <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
+                                    <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
                                         <img src="../images/<?= $image ?>" alt="Post's image."
                                             onerror="this.style.display='none'">
                                     </a>
@@ -149,10 +147,10 @@ if (!isset($_SESSION['csrf_token'])) {
                             mysqli_stmt_close($stmt);
                             ?>
                             <div class="post_reaction_icon" id="comment_icon">
-                                <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
+                                <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
                                     <i class="fa-regular fa-comment" id="comment_icon"></i>
                                 </a>
-                                <p id="comment_count"><?= $comment_count ?></p>
+                                <p id="comment_count"><?= htmlspecialchars($comment_count, ENT_QUOTES, 'UTF-8') ?></p>
                             </div>
                             <div class="post_reaction_desc">
                                 <p>Comment</p>
@@ -168,7 +166,6 @@ if (!isset($_SESSION['csrf_token'])) {
             <span class="ripple-dot"></span>
             <span class="ripple-dot"></span>
         </div>
-
 
     <?php else : ?>
         <h3>Be first to post a scroll on eliteTribe.</h3>

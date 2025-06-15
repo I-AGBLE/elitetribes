@@ -1,13 +1,12 @@
 <?php
-
 // CSRF token generation (for delete action)
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
 // Validate current user ID
-$current_user_id = filter_var($_SESSION['user_id'], FILTER_VALIDATE_INT);
-if ($current_user_id === false) {
+$current_user_id = filter_var($_SESSION['user_id'] ?? null, FILTER_VALIDATE_INT);
+if ($current_user_id === false || $current_user_id === null) {
     die("Invalid user ID");
 }
 ?>
@@ -26,25 +25,25 @@ if ($current_user_id === false) {
         </div>
     </div>
 
-    <?php if (mysqli_num_rows($scrolls) > 0) : ?>
+    <?php if (isset($scrolls) && mysqli_num_rows($scrolls) > 0) : ?>
 
         <div class="search_box">
             <center>
-                <input type="text" placeholder="Search Posts" id="search_box" 
+                <input type="text" placeholder="Search Posts" id="search_box"
                        oninput="sanitizeSearchInput(this)">
             </center>
         </div>
 
         <div class="my_posts">
 
-            <?php while ($scroll = mysqli_fetch_assoc($scrolls)) : 
+            <?php while ($scroll = mysqli_fetch_assoc($scrolls)) :
                 // Validate scroll data
                 $scroll_id = filter_var($scroll['id'], FILTER_VALIDATE_INT);
                 if ($scroll_id === false) continue;
-                
+
                 $tribesmen_id = filter_var($scroll['created_by'], FILTER_VALIDATE_INT);
                 if ($tribesmen_id === false) continue;
-                
+
                 // Verify post belongs to current user (for delete action)
                 $is_owner = ($tribesmen_id === $current_user_id);
             ?>
@@ -60,47 +59,46 @@ if ($current_user_id === false) {
                         $tribesmen_result = mysqli_stmt_get_result($stmt);
                         $tribesmen = mysqli_fetch_assoc($tribesmen_result);
                         mysqli_stmt_close($stmt);
-                        
+
                         if (!$tribesmen) continue;
                         ?>
 
                         <a href="user_profile.php?id=<?= urlencode($tribesmen['id']) ?>">
                             <div class="user_profile_pic">
-                                <img src="../images/<?= htmlspecialchars(basename($tribesmen['avatar'])) ?>" 
+                                <img src="../images/<?= htmlspecialchars(basename($tribesmen['avatar']), ENT_QUOTES, 'UTF-8') ?>"
                                      alt="User's profile picture."
                                      onerror="this.src='../images/default_avatar.png'" />
                             </div>
 
                             <div class="user_name">
                                 <h4>
-                                    <?= $tribesmen['username'] ?>
+                                    <?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?>
                                 </h4>
                             </div>
-
                         </a>
 
                         <div class="user_details_post_time">
                             <div class="post_date">
                                 <p>
-                                    <?= htmlspecialchars(date("M d, Y", strtotime($scroll['created_at']))) ?>
+                                    <?= htmlspecialchars(date("M d, Y", strtotime($scroll['created_at'])), ENT_QUOTES, 'UTF-8') ?>
                                 </p>
                             </div>
                             <div class="post_time">
                                 <p>
-                                    <?= htmlspecialchars(date("H:i", strtotime($scroll['created_at']))) ?>
+                                    <?= htmlspecialchars(date("H:i", strtotime($scroll['created_at'])), ENT_QUOTES, 'UTF-8') ?>
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                <div class="post_text">
-                        <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
+                    <div class="post_text">
+                        <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
                             <p style="margin-bottom: 0;">
                                 <?php
-                                $text = nl2br($scroll['user_post']);
+                                $text = nl2br(htmlspecialchars($scroll['user_post'], ENT_QUOTES, 'UTF-8'));
                                 $maxLength = 500;
-                                if (strlen(strip_tags($scroll['user_post'])) > $maxLength) {
-                                    echo substr($text, 0, $maxLength);
+                                if (mb_strlen(strip_tags($scroll['user_post'])) > $maxLength) {
+                                    echo mb_substr($text, 0, $maxLength);
                                     echo ' <span class="hyperlink" style="margin-top: -.5rem"><br>Read More...</span>';
                                 } else {
                                     echo $text;
@@ -113,14 +111,16 @@ if ($current_user_id === false) {
                     <?php
                     // Secure image handling
                     $images = array_filter(array_map('trim', explode(',', $scroll['images'])));
-                    $images = array_map('htmlspecialchars', array_map('basename', $images));
+                    $images = array_map(function($img) {
+                        return htmlspecialchars(basename($img), ENT_QUOTES, 'UTF-8');
+                    }, $images);
                     if (!empty($images)) :
                     ?>
                         <div class="post_images_container">
                             <div class="post_images">
                                 <?php foreach ($images as $image) : ?>
                                     <a href="post_preview.php?id=<?= urlencode($scroll_id) ?>">
-                                        <img src="../images/<?= $image ?>" alt="Post's image." 
+                                        <img src="../images/<?= $image ?>" alt="Post's image."
                                              onerror="this.style.display='none'">
                                     </a>
                                 <?php endforeach; ?>
@@ -153,7 +153,7 @@ if ($current_user_id === false) {
                                 <a href="post_preview.php?id=<?= urlencode($scroll_id) ?>">
                                     <i class="fa-regular fa-comment" id="comment_icon"></i>
                                 </a>
-                                <p id="comment_count"><?= $comment_count ?></p>
+                                <p id="comment_count"><?= htmlspecialchars($comment_count, ENT_QUOTES, 'UTF-8') ?></p>
                             </div>
                             <div class="post_reaction_desc">
                                 <p>Comment</p>
@@ -163,7 +163,7 @@ if ($current_user_id === false) {
                         <?php if ($is_owner) : ?>
                         <div class="post_reaction">
                             <div class="post_reaction_icon">
-                                <a href="delete_post_logic.php?id=<?= urlencode($scroll_id) ?>&csrf=<?= $_SESSION['csrf_token'] ?>">
+                                <a href="delete_post_logic.php?id=<?= urlencode($scroll_id) ?>&csrf=<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
                                     <i class="fa-solid fa-trash" id="delete_icon"></i>
                                 </a>
                             </div>
@@ -180,7 +180,7 @@ if ($current_user_id === false) {
         </div>
 
     <?php else : ?>
-        <h3>Share your first post!</h3>
+        <h3>Share a story, an idea, or just a thought...</h3>
     <?php endif ?>
 </div>
 
@@ -191,15 +191,10 @@ if ($current_user_id === false) {
 </div>
 
 <script>
-// Client-side input sanitization
 function sanitizeSearchInput(input) {
-    // Remove potentially harmful characters
     input.value = input.value.replace(/[<>"'`\\]/g, '');
-    
-    // Limit length if needed
     if (input.value.length > 100) {
         input.value = input.value.substring(0, 100);
     }
 }
-
 </script>

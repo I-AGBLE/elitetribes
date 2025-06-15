@@ -14,7 +14,7 @@ $stmt = $connection->prepare("SELECT is_admin FROM tribesmen WHERE id = ? LIMIT 
 if (!$stmt) {
     // Log error and redirect
     error_log("Database error: " . $connection->error);
-    header('Location: ' . ROOT_URL . 'error.php');
+    header('Location: ' . ROOT_URL . 'admin/');
     exit;
 }
 

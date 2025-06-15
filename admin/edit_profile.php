@@ -1,49 +1,58 @@
 <?php
 
+require_once 'partials/header.php';
 
-include 'partials/header.php';
-
-// Verify user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: " . ROOT_URL . "signin.php");
-    die();
+// Verify user is logged in and session user_id is valid
+if (empty($_SESSION['user_id']) || !is_numeric($_SESSION['user_id'])) {
+    header("Location: " . ROOT_URL);
+    exit();
 }
 
-// Fetch user details securely
+// Fetch user details 
 if (isset($_GET['id'])) {
     // Validate and sanitize ID
     $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
 
-    if (!$id || $id <= 0) {
+    if ($id === false || $id <= 0) {
         header("Location: " . ROOT_URL . "admin/");
-        die();
+        exit();
     }
 
     // Verify the user can only edit their own profile
-    if ($_SESSION['user_id'] != $id) {
+    if ((int)$_SESSION['user_id'] !== $id) {
         $_SESSION['edit_profile'] = "You can only edit your own profile!";
-        header("Location: " . ROOT_URL . "admin/profiles.php?id=" . $_SESSION['user_id']);
-        die();
+        header("Location: " . ROOT_URL . "admin/profiles.php?id=" . (int)$_SESSION['user_id']);
+        exit();
     }
 
-    // Use prepared statement to fetch user data
+    // Fetch user data
     $query = "SELECT * FROM tribesmen WHERE id=?";
     $stmt = mysqli_prepare($connection, $query);
+    if (!$stmt) {
+        header("Location: " . ROOT_URL . "admin/");
+        exit();
+    }
     mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
-    if (mysqli_num_rows($result) == 0) {
+    if (!$result || mysqli_num_rows($result) == 0) {
         header("Location: " . ROOT_URL . "admin/");
-        die();
+        exit();
     }
 
     $tribesmen = mysqli_fetch_assoc($result);
-    $about = htmlspecialchars($tribesmen['about'], ENT_QUOTES, 'UTF-8');
-    $gender = htmlspecialchars($tribesmen['gender'], ENT_QUOTES, 'UTF-8');
+    $about = htmlspecialchars($tribesmen['about'] ?? '', ENT_QUOTES, 'UTF-8');
+    $gender = htmlspecialchars($tribesmen['gender'] ?? '', ENT_QUOTES, 'UTF-8');
+    mysqli_stmt_close($stmt);
 } else {
     header("Location: " . ROOT_URL . "admin/");
-    die();
+    exit();
+}
+
+// CSRF token generation
+if (empty($_SESSION['csrf_token']) || !is_string($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 ?>
 
@@ -58,26 +67,28 @@ if (isset($_GET['id'])) {
         </div>
     <?php endif ?>
 
+
+
     <div class="main_log">
         <div class="editing_profile">
             <div class="editing_title">
-                <h2>Editing Profile For Good.</h2>
+                <h2>Editing Profile.</h2>
             </div>
             <div class="editing_sub">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore magni consectetur tempora vel aspernatur illum!</p>
             </div>
         </div>
 
-        <form action="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/edit_profile_logic.php" enctype="multipart/form-data" method="post">
-            <!-- CSRF Protection -->
-            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
+        <form action="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/edit_profile_logic.php" enctype="multipart/form-data" method="post" autocomplete="off">
+
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
             <input type="hidden" name="id" value="<?= htmlspecialchars($tribesmen['id'], ENT_QUOTES, 'UTF-8') ?>">
             <input type="hidden" name="previous_avatar" value="<?= htmlspecialchars($tribesmen['avatar'], ENT_QUOTES, 'UTF-8') ?>">
 
             <div class="post_field">
-                <input type="text" name="username"  id="username" value="<?= $tribesmen['username'] ?>" placeholder="Username" autofocus>
+                <input type="text" name="username" id="username" value="<?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?>" placeholder="Username" autofocus>
 
-                <input type="tel" name="telephone" value="<?= $tribesmen['telephone'] ?>" placeholder="Telephone">
+                <input type="tel" name="telephone" value="<?= htmlspecialchars($tribesmen['telephone'], ENT_QUOTES, 'UTF-8') ?>" placeholder="Telephone">
 
                 <select name="gender">
                     <option value="" disabled <?= $gender == '' ? 'selected' : '' ?>>Gender</option>
@@ -87,18 +98,16 @@ if (isset($_GET['id'])) {
                     <option value="Prefer not to say" <?= $gender == 'Prefer not to say' ? 'selected' : '' ?>>Prefer not to say</option>
                 </select>
 
-                <input type="email" name="email" value="<?= $tribesmen['email'] ?>" placeholder="Email">
+                <input type="email" name="email" value="<?= htmlspecialchars($tribesmen['email'], ENT_QUOTES, 'UTF-8') ?>" placeholder="Email">
 
-                <textarea name="about" placeholder="About me."><?= $about ?></textarea>
+                <textarea name="about" placeholder="This is where each story begins. Write few lines about who you are, what you do, and what the Tribesmen should know about you. Keep it real, keep it you.."><?= $about ?></textarea>
 
                 <label for="avatar">
                     <i class="fa-solid fa-image"></i>
                 </label>
-                <input type="file" id="avatar" name="avatar" accept="image/jpeg,image/png,image/gif" style="display: none;" />
+                <input type="file" id="avatar" name="avatar" accept="image/jpeg,image/png,image/gif,image/jpg, image/webp, image/svg" style="display: none;" />
 
-                <!-- Where the selected file names will be shown -->
                 <div id="file-names"></div>
-
 
                 <input class="confirm_human" type="text" name="confirm_human" placeholder="confirm_human">
             </div>
@@ -117,5 +126,5 @@ if (isset($_GET['id'])) {
 </main>
 
 <?php
-include '../partials/footer.php';
+require_once '../partials/footer.php';
 ?>

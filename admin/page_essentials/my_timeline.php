@@ -1,9 +1,7 @@
 <?php
-
-
 // Validate and sanitize user ID
-$user_id = filter_var($_SESSION['user_id'], FILTER_VALIDATE_INT);
-if ($user_id === false) {
+$user_id = filter_var($_SESSION['user_id'] ?? null, FILTER_VALIDATE_INT);
+if ($user_id === false || $user_id === null) {
   die("Invalid user ID");
 }
 
@@ -39,10 +37,6 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 ?>
 
-
-
-
-
 <div class="my_posts">
 
   <?php while ($feed = mysqli_fetch_assoc($result)) :
@@ -57,34 +51,34 @@ $result = mysqli_stmt_get_result($stmt);
       <div class="user_details">
         <a href="profiles.php?id=<?= urlencode($creator_id) ?>">
           <div class="user_profile_pic">
-            <img src="../images/<?= htmlspecialchars(basename($feed['avatar'])) ?>"
+            <img src="../images/<?= htmlspecialchars(basename($feed['avatar']), ENT_QUOTES, 'UTF-8') ?>"
               alt="User's profile picture."
               onerror="this.src='../images/default_avatar.png'" />
           </div>
 
           <div class="user_name">
-            <h4><?= $feed['username'] ?></h4>
+            <h4><?= htmlspecialchars($feed['username'], ENT_QUOTES, 'UTF-8') ?></h4>
           </div>
         </a>
 
         <div class="user_details_post_time">
           <div class="post_date">
-            <p><?= htmlspecialchars(date("M d, Y", strtotime($feed['created_at']))) ?></p>
+            <p><?= htmlspecialchars(date("M d, Y", strtotime($feed['created_at'])), ENT_QUOTES, 'UTF-8') ?></p>
           </div>
           <div class="post_time">
-            <p><?= htmlspecialchars(date("H:i", strtotime($feed['created_at']))) ?></p>
+            <p><?= htmlspecialchars(date("H:i", strtotime($feed['created_at'])), ENT_QUOTES, 'UTF-8') ?></p>
           </div>
         </div>
       </div>
 
       <div class="post_text">
-        <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">
+        <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">
           <p>
             <?php
-            $text = nl2br($feed['user_post']);
+            $text = nl2br(htmlspecialchars($feed['user_post'], ENT_QUOTES, 'UTF-8'));
             $maxLength = 500;
-            if (strlen(strip_tags($feed['user_post'])) > $maxLength) {
-              echo substr($text, 0, $maxLength);
+            if (mb_strlen(strip_tags($feed['user_post'])) > $maxLength) {
+              echo mb_substr($text, 0, $maxLength);
               echo ' <span class="hyperlink" style="margin-top: -.5rem"><br>Read More...</span>';
             } else {
               echo $text;
@@ -97,13 +91,15 @@ $result = mysqli_stmt_get_result($stmt);
       <?php
       // Secure image handling
       $images = array_filter(array_map('trim', explode(',', $feed['images'])));
-      $images = array_map('htmlspecialchars', array_map('basename', $images));
+      $images = array_map(function($img) {
+        return htmlspecialchars(basename($img), ENT_QUOTES, 'UTF-8');
+      }, $images);
       if (!empty($images)) :
       ?>
         <div class="post_images_container">
           <div class="post_images">
             <?php foreach ($images as $image) : ?>
-              <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">
+              <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">
                 <img src="../images/<?= $image ?>" alt="Post's image."
                   onerror="this.style.display='none'">
               </a>
@@ -121,13 +117,13 @@ $result = mysqli_stmt_get_result($stmt);
         if (isset($_SESSION['user_id'])) {
           $tribesmen_id = filter_var($_SESSION['user_id'], FILTER_VALIDATE_INT);
           if ($tribesmen_id !== false) {
-            $query_check = "SELECT * FROM likes WHERE scroll_id = ? AND tribesmen_id = ?";
+            $query_check = "SELECT 1 FROM likes WHERE scroll_id = ? AND tribesmen_id = ?";
             $stmt_check = mysqli_prepare($connection, $query_check);
             mysqli_stmt_bind_param($stmt_check, "ii", $feed_id, $tribesmen_id);
             mysqli_stmt_execute($stmt_check);
             $like_result = mysqli_stmt_get_result($stmt_check);
 
-            if (mysqli_num_rows($like_result) > 0) {
+            if ($like_result && mysqli_num_rows($like_result) > 0) {
               $liked = true;
             }
             mysqli_stmt_close($stmt_check);
@@ -151,12 +147,12 @@ $result = mysqli_stmt_get_result($stmt);
           <div class="post_reaction_icon">
             <div class="like_icons">
               <div class="like_icon">
-                <a href="like_logic.php?id=<?= urlencode($feed_id) ?>&csrf=<?= $_SESSION['csrf_token'] ?>">
+                <a href="like_logic.php?id=<?= urlencode($feed_id) ?>&csrf=<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
                   <i class="fa-regular fa-heart <?= $liked ? 'liked' : 'default' ?>" id="like_icon"></i>
                 </a>
               </div>
             </div>
-            <p id="like_count"><?= $like_count ?></p>
+            <p id="like_count"><?= htmlspecialchars($like_count, ENT_QUOTES, 'UTF-8') ?></p>
           </div>
           <div class="post_reaction_desc">
             <p>Like</p>
@@ -180,10 +176,10 @@ $result = mysqli_stmt_get_result($stmt);
           mysqli_stmt_close($stmt_comment);
           ?>
           <div class="post_reaction_icon" id="comment_icon">
-            <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">
+            <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">
               <i class="fa-regular fa-comment" id="comment_icon"></i>
             </a>
-            <p id="comment_count"><?= $comment_count ?></p>
+            <p id="comment_count"><?= htmlspecialchars($comment_count, ENT_QUOTES, 'UTF-8') ?></p>
           </div>
           <div class="post_reaction_desc">
             <p>Comment</p>

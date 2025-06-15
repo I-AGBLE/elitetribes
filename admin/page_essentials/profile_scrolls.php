@@ -1,7 +1,10 @@
 <?php
-
-// Validate the current user 
-$current_user_id = $_SESSION['user_id'];
+// Validate the current user
+if (!isset($_SESSION['user_id']) || !is_numeric($_SESSION['user_id'])) {
+    header('Location: ' . htmlspecialchars(ROOT_URL . 'signin.php', ENT_QUOTES, 'UTF-8'));
+    exit;
+}
+$current_user_id = (int)$_SESSION['user_id'];
 ?>
 
 <div class="my_posts_contents" id="my_posts_contents" style="display: block;">
@@ -17,15 +20,13 @@ $current_user_id = $_SESSION['user_id'];
         </div>
     </div>
 
-    <?php if (mysqli_num_rows($scrolls) > 0) : ?>
+    <?php if (isset($scrolls) && mysqli_num_rows($scrolls) > 0) : ?>
 
         <div class="search_box">
             <center>
                 <input type="text" id="search_box" placeholder="Search Posts" oninput="sanitizeSearchInput(this)">
             </center>
         </div>
-
-
 
         <div class="my_posts">
 
@@ -53,17 +54,17 @@ $current_user_id = $_SESSION['user_id'];
                         if (!$tribesmen) continue; // Skip if user not found
                         ?>
 
-                        <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/profiles.php?id=<?= urlencode($tribesmen['id']) ?>">
+                        <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/profiles.php?id=<?= urlencode($tribesmen['id']) ?>">
                             <div class="user_profile_pic">
                                 <img
-                                    src="../images/<?= htmlspecialchars(basename($tribesmen['avatar'])) ?>"
+                                    src="../images/<?= htmlspecialchars(basename($tribesmen['avatar']), ENT_QUOTES, 'UTF-8') ?>"
                                     alt="User's profile picture."
                                     onerror="this.src='../images/default_avatar.png'" />
                             </div>
 
                             <div class="user_name">
                                 <h4>
-                                    <?= $tribesmen['username'] ?>
+                                    <?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?>
                                 </h4>
                             </div>
 
@@ -82,32 +83,30 @@ $current_user_id = $_SESSION['user_id'];
                             }
                             mysqli_stmt_close($stmt);
                             ?>
-
-
                         </a>
 
                         <div class="user_details_post_time">
                             <div class="post_date">
                                 <p>
-                                    <?= htmlspecialchars(date("M d, Y", strtotime($scroll['created_at']))) ?>
+                                    <?= htmlspecialchars(date("M d, Y", strtotime($scroll['created_at'])), ENT_QUOTES, 'UTF-8') ?>
                                 </p>
                             </div>
                             <div class="post_time">
                                 <p>
-                                    <?= htmlspecialchars(date("H:i", strtotime($scroll['created_at']))) ?>
+                                    <?= htmlspecialchars(date("H:i", strtotime($scroll['created_at'])), ENT_QUOTES, 'UTF-8') ?>
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                       <div class="post_text">
-                        <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
+                    <div class="post_text">
+                        <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
                             <p style="margin-bottom: 0;">
                                 <?php
-                                $text = nl2br($scroll['user_post']);
+                                $text = nl2br(htmlspecialchars($scroll['user_post'], ENT_QUOTES, 'UTF-8'));
                                 $maxLength = 500;
-                                if (strlen(strip_tags($scroll['user_post'])) > $maxLength) {
-                                    echo substr($text, 0, $maxLength);
+                                if (mb_strlen(strip_tags($scroll['user_post'])) > $maxLength) {
+                                    echo mb_substr($text, 0, $maxLength);
                                     echo ' <span class="hyperlink" style="margin-top: -.5rem"><br>Read More...</span>';
                                 } else {
                                     echo $text;
@@ -119,7 +118,9 @@ $current_user_id = $_SESSION['user_id'];
 
                     <?php
                     $images = array_filter(array_map('trim', explode(',', $scroll['images'])));
-                    $images = array_map('htmlspecialchars', array_map('basename', $images));
+                    $images = array_map(function($img) {
+                        return htmlspecialchars(basename($img), ENT_QUOTES, 'UTF-8');
+                    }, $images);
                     if (!empty($images)) :
                     ?>
                         <div class="post_images_container">
@@ -159,7 +160,7 @@ $current_user_id = $_SESSION['user_id'];
                                 <a href="post_preview.php?id=<?= urlencode($scroll_id) ?>">
                                     <i class="fa-regular fa-comment" id="comment_icon"></i>
                                 </a>
-                                <p id="comment_count"><?= $comment_count ?></p>
+                                <p id="comment_count"><?= htmlspecialchars($comment_count, ENT_QUOTES, 'UTF-8') ?></p>
                             </div>
                             <div class="post_reaction_desc">
                                 <p>Comment</p>
@@ -172,7 +173,7 @@ $current_user_id = $_SESSION['user_id'];
         </div>
 
     <?php else : ?>
-        <h3>This user has no post!</h3>
+        <h3>Looks like this user hasn’t posted yet!</h3>
     <?php endif ?>
 </div>
 

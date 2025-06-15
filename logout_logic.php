@@ -17,8 +17,6 @@ if (ini_get("session.use_cookies")) {
 session_unset();
 session_destroy();
 
-// Regenerate session ID for extra security
-session_regenerate_id(true);
 
 header('Location: ' . ROOT_URL);
 exit;

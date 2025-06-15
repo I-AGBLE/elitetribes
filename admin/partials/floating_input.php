@@ -1,15 +1,12 @@
 <?php
-
-
-
 // Safely extract and sanitize session input
 $user_post = isset($_SESSION['add_post_data']['user_post'])
   ? htmlspecialchars($_SESSION['add_post_data']['user_post'], ENT_QUOTES, 'UTF-8')
-  : null;
+  : '';
 
 $confirm_human = isset($_SESSION['add_post_data']['confirm_human'])
   ? htmlspecialchars($_SESSION['add_post_data']['confirm_human'], ENT_QUOTES, 'UTF-8')
-  : null;
+  : '';
 
 // Unset session data to avoid reuse or leaking
 unset($_SESSION['add_post_data']);
@@ -21,13 +18,13 @@ if (!isset($_SESSION['csrf_token'])) {
 $csrf_token = $_SESSION['csrf_token'];
 ?>
 
-<form action="<?= ROOT_URL ?>admin/add_post_logic.php" enctype="multipart/form-data" method="POST">
+<form action="<?= htmlspecialchars(ROOT_URL . 'admin/add_post_logic.php', ENT_QUOTES, 'UTF-8') ?>" enctype="multipart/form-data" method="POST" autocomplete="off">
   <div class="floating_input">
     <div class="floating_post_input" style="display: none;">
       <div class="post_field">
 
         <!-- Escape any special characters in user input -->
-        <textarea name="user_post" placeholder="Share your thoughts here!" autofocus><?= $user_post ?></textarea>
+        <textarea name="user_post" placeholder="What's on your mind?" autofocus><?= $user_post ?></textarea>
 
         <div class="post_actions">
 
@@ -40,21 +37,22 @@ $csrf_token = $_SESSION['csrf_token'];
             type="file"
             id="image-upload"
             name="images[]"
-            accept="image/png, image/jpeg, image/jpg, image/webp"
+            accept="image/png, image/jpeg, image/jpg,, image/webp, image/webp"
             multiple
             style="display: none;" />
 
           <!-- Area to show file names (handled via JS) -->
           <div id="file-names-floating-input"></div>
 
-          <!-- Honeypot field (spam prevention) -->
+         
           <input
             type="text"
             name="confirm_human"
             class="confirm_human"
             value="<?= $confirm_human ?>"
             placeholder="confirm_human"
-            autocomplete="off">
+            autocomplete="off"
+            style="display:none;">
 
           <!-- CSRF token (hidden) -->
           <input
@@ -67,13 +65,11 @@ $csrf_token = $_SESSION['csrf_token'];
             name="submit"
             value="Post">
 
-          <!-- Inline style for hover effect -->
           <style>
             label i {
               font-size: 1.5rem;
               cursor: pointer;
             }
-
             label i:hover {
               color: var(--color_warning);
             }
@@ -83,6 +79,7 @@ $csrf_token = $_SESSION['csrf_token'];
       </div>
     </div>
 </form>
+
 
 <!-- Floating button icons (unchanged) -->
 <div class="floating_icons">

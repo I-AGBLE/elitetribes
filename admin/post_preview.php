@@ -1,29 +1,26 @@
 <?php
 
-
 // Generate CSRF token if not exists
 if (empty($_SESSION['csrf_token'])) {
   $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
-include 'partials/header.php';
+require_once 'partials/header.php';
 
 // Verify user is logged in (if required)
-if (!isset($_SESSION['user_id'])) {
+if (empty($_SESSION['user_id']) || !is_numeric($_SESSION['user_id'])) {
   $_SESSION['comment'] = "You must be logged in to view this page";
-  header('location: ' . ROOT_URL . 'signin.php');
-  die();
+  header('Location: ' . htmlspecialchars(ROOT_URL . 'signin.php', ENT_QUOTES, 'UTF-8'));
+  exit;
 }
 
 // fetch scroll if id is inclusive in link
 if (isset($_GET['id'])) {
   // sanitize id
-  $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
-
-  // validate id
+  $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
   if (!$id || $id <= 0) {
-    header('location: ' . ROOT_URL . 'admin/');
-    die();
+    header('Location: ' . htmlspecialchars(ROOT_URL . 'admin/', ENT_QUOTES, 'UTF-8'));
+    exit;
   }
 
   // fetch scroll
@@ -36,16 +33,16 @@ if (isset($_GET['id'])) {
 
   // verify scroll exists
   if (!$scroll) {
-    header('location: ' . ROOT_URL . 'admin/');
-    die();
+    header('Location: ' . htmlspecialchars(ROOT_URL . 'admin/', ENT_QUOTES, 'UTF-8'));
+    exit;
   }
 } else {
-  header('location: ' . ROOT_URL . 'admin/');
-  die();
+  header('Location: ' . htmlspecialchars(ROOT_URL . 'admin/', ENT_QUOTES, 'UTF-8'));
+  exit;
 }
 
 // fetch user details using prepared statement
-$tribesmen_id = $scroll['created_by'];
+$tribesmen_id = (int)$scroll['created_by'];
 $tribesmen_query = "SELECT * FROM tribesmen WHERE id=?";
 $stmt = mysqli_prepare($connection, $tribesmen_query);
 mysqli_stmt_bind_param($stmt, "i", $tribesmen_id);
@@ -55,8 +52,8 @@ $tribesmen = mysqli_fetch_assoc($tribesmen_result);
 
 // verify tribesmen exists
 if (!$tribesmen) {
-  header('location: ' . ROOT_URL . 'admin/');
-  die();
+  header('Location: ' . htmlspecialchars(ROOT_URL . 'admin/', ENT_QUOTES, 'UTF-8'));
+  exit;
 }
 ?>
 
@@ -157,9 +154,6 @@ if (!$tribesmen) {
       </div>
     <?php endif ?>
 
-
-
-
     <section class="dashboard">
       <div class="my_posts_contents">
         <div class="my_posts">
@@ -178,9 +172,7 @@ if (!$tribesmen) {
                 </div>
 
                 <div class="user_name">
-                  <h4>
-                    <?= $tribesmen['username'] ?>
-                  </h4>
+                  <h4><?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?></h4>
                 </div>
 
                 <?php
@@ -298,7 +290,7 @@ if (!$tribesmen) {
               <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
               <div class="comment_input">
                 <div class="comment_field">
-                  <textarea name="user_comment" placeholder="Share your thoughts on this!"></textarea>
+                  <textarea name="user_comment" placeholder="Join the conversation..."></textarea>
                   <input type="text" name="confirm_human" placeholder="confirm_human" class="confirm_human" style="display: none;">
                   <input type="submit" name="Comment" value="Comment">
                 </div>
@@ -328,16 +320,14 @@ if (!$tribesmen) {
                   <div class="comment_section">
                     <div class="comment">
                       <div class="user_details">
-                        <a href="<?= ROOT_URL ?>admin/profiles.php?id=<?= htmlspecialchars($comment['author_id'], ENT_QUOTES, 'UTF-8') ?>">
+                        <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/profiles.php?id=<?= htmlspecialchars($comment['author_id'], ENT_QUOTES, 'UTF-8') ?>">
                           <div class="user_profile_pic">
-                            <img src="<?= ROOT_URL ?>images/<?= htmlspecialchars($comment['author_avatar'], ENT_QUOTES, 'UTF-8') ?>" alt="User's profile picture." />
+                            <img src="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>images/<?= htmlspecialchars($comment['author_avatar'], ENT_QUOTES, 'UTF-8') ?>" alt="User's profile picture." />
                           </div>
 
                           <div class="user_name">
-                            <h4><?= $comment['author_name'] ?></h4>
+                            <h4><?= htmlspecialchars($comment['author_name'], ENT_QUOTES, 'UTF-8') ?></h4>
                           </div>
-
-
                         </a>
 
                         <div class="user_details_post_time">
@@ -351,7 +341,7 @@ if (!$tribesmen) {
                       </div>
 
                       <div class="comment_text">
-                        <p><?= nl2br($comment['user_comment']) ?></p>
+                        <p><?= nl2br(htmlspecialchars($comment['user_comment'], ENT_QUOTES, 'UTF-8')) ?></p>
 
                         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $comment['tribesmen_id']): ?>
                           <div class="post_reaction">
@@ -384,15 +374,12 @@ if (!$tribesmen) {
     </section>
   </section>
 
-
-
-
   <section class="main_right">
     <!--Update -->
   </section>
 </main>
 
 <?php
-include 'partials/floating_input.php';
-include '../partials/footer.php';
+require_once 'partials/floating_input.php';
+require_once '../partials/footer.php';
 ?>
