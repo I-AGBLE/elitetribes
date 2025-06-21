@@ -43,8 +43,8 @@ if (isset($_POST['submit'])) {
 
     // Basic content validation
     $user_post = filter_var($user_post, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    if (mb_strlen($user_post) > 5000) {
-        $_SESSION['add_post'] = 'Post content is too long (max 5000 characters)';
+    if (mb_strlen($user_post) > 10000) {
+        $_SESSION['add_post'] = 'Post content is too long (max 10000 characters)';
         header("Location: " . ROOT_URL . "admin/");
         exit;
     }

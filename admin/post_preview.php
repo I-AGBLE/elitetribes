@@ -154,6 +154,10 @@ if (!$tribesmen) {
       </div>
     <?php endif ?>
 
+
+
+
+
     <section class="dashboard">
       <div class="my_posts_contents">
         <div class="my_posts">
@@ -174,25 +178,6 @@ if (!$tribesmen) {
                 <div class="user_name">
                   <h4><?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?></h4>
                 </div>
-
-                <?php
-                // Get the list of users this user is following along with their follower count
-                $query = "SELECT t.id, t.username, t.avatar, t.id,
-                       (SELECT COUNT(*) FROM followers WHERE followed = t.id) AS followers_count
-                FROM followers f
-                JOIN tribesmen t ON f.followed = t.id
-                WHERE f.follower = ?";
-
-                $stmt = mysqli_prepare($connection, $query);
-                mysqli_stmt_bind_param($stmt, "i", $id);
-                mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt);
-
-                $followers_count = 0;
-                while ($row = mysqli_fetch_assoc($result)) {
-                  $followers_count = $row["followers_count"];
-                }
-                ?>
               </a>
 
               <div class="user_details_post_time">
@@ -227,11 +212,14 @@ if (!$tribesmen) {
               </div>
             <?php endif; ?>
 
-            <div class="post_text">
+
+            <div class="post_text" id="post_text_link">
               <p>
                 <?= nl2br($scroll['user_post']) ?>
               </p>
             </div>
+
+            
 
             <div class="post_reactions">
               <div class="post_reaction">

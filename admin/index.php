@@ -73,13 +73,16 @@ if (empty($_SESSION['csrf_token']) || !is_string($_SESSION['csrf_token'])) {
 
     <form action="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/add_post_logic.php" enctype="multipart/form-data" method="POST" autocomplete="off">
       <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
+      
       <div class="post_input">
         <div class="post_field">
-          <textarea name="user_post" placeholder="What's on your mind?"><?= $user_post ?></textarea>
+          <textarea name="user_post" placeholder="What's on your mind?"  maxlength="10000"><?= $user_post ?></textarea>
           <div class="post_actions">
-            <label for="image-upload" style="cursor: pointer;">
+           
+          <label for="image-upload" style="cursor: pointer;">
               <i class="fa-solid fa-image" style="font-size: 24px;"></i>
             </label>
+           
             <input type="file" id="image-upload" name="images[]" accept="image/jpeg,image/png,image/gif,image/svg,image/jpg" multiple style="display: none;" />
             <div id="file-names"></div>
             <input type="text" name="confirm_human" class="confirm_human" value="<?= $confirm_human ?>" placeholder="confirm_human" maxlength="100">

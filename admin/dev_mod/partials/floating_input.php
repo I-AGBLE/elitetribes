@@ -22,7 +22,7 @@ unset($_SESSION['add_post_data']);
   <div class="floating_input">
     <div class="floating_post_input" style="display: none;">
       <div class="post_field">
-        <textarea name="user_post" placeholder="Share your thoughts here!" autofocus><?= $user_post ?></textarea>
+        <textarea name="user_post" placeholder="Share your thoughts here!" maxlength="10000"><?= $user_post ?></textarea>
 
         <div class="post_actions">
 
