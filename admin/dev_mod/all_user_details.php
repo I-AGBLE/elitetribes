@@ -104,17 +104,17 @@ mysqli_stmt_close($stmt);
             <div class="user_information">
                 <div class="user_picture">
                     <?php if (!empty($user_detail['avatar'])): ?>
-                        <img src="<?= htmlspecialchars(ROOT_URL . 'images/' . $user_detail['avatar']) ?>" 
-                             alt="<?= htmlspecialchars($user_detail['username']) ?>'s profile picture" />
+                        <img src="<?= htmlspecialchars(ROOT_URL . 'images/' . $user_detail['avatar']) ?>"
+                            alt="<?= htmlspecialchars($user_detail['username']) ?>'s profile picture" />
                     <?php else: ?>
-                        <img src="<?= htmlspecialchars(ROOT_URL . 'images/default-avatar.png') ?>" 
-                             alt="Default profile picture" />
+                        <img src="<?= htmlspecialchars(ROOT_URL . 'images/default-avatar.png') ?>"
+                            alt="Default profile picture" />
                     <?php endif; ?>
                 </div>
 
                 <div class="user_info">
                     <div class="name">
-                        <h3><?= $user_detail['username']?></h3>
+                        <h3><?= $user_detail['username'] ?></h3>
                         <?php if ($user_detail['is_admin']): ?>
                             <span class="admin-badge">Admin</span>
                         <?php endif; ?>
@@ -158,7 +158,7 @@ mysqli_stmt_close($stmt);
                             </span>
                         </p>
 
-                        
+
                         <p>Followers: <span><?= htmlspecialchars($followersCount) ?></span></p>
                         <p>Following: <span><?= htmlspecialchars($followingCount) ?></span></p>
                         <p>Posts: <span><?= mysqli_num_rows($scrolls) ?></span></p>
@@ -169,17 +169,17 @@ mysqli_stmt_close($stmt);
                         <?php if ($loggedInUserId != $profileUserId): ?>
                             <div class="follow">
                                 <?php if ($isFollowing): ?>
-                                    <a href="../follow_logic.php?id=<?= urlencode($profileUserId) ?>" 
-                                       id="warning_btn" 
-                                       class="follow-btn"
-                                       data-user-id="<?= htmlspecialchars($profileUserId) ?>">
+                                    <a href="../follow_logic.php?id=<?= urlencode($profileUserId) ?>"
+                                        id="warning_btn"
+                                        class="follow-btn"
+                                        data-user-id="<?= htmlspecialchars($profileUserId) ?>">
                                         Following
                                     </a>
                                 <?php else: ?>
-                                    <a href="../follow_logic.php?id=<?= urlencode($profileUserId) ?>" 
-                                       id="default_btn" 
-                                       class="follow-btn"
-                                       data-user-id="<?= htmlspecialchars($profileUserId) ?>">
+                                    <a href="../follow_logic.php?id=<?= urlencode($profileUserId) ?>"
+                                        id="default_btn"
+                                        class="follow-btn"
+                                        data-user-id="<?= htmlspecialchars($profileUserId) ?>">
                                         Follow
                                     </a>
                                 <?php endif; ?>
@@ -189,27 +189,52 @@ mysqli_stmt_close($stmt);
                         <?php endif; ?>
 
 
-                          <div class="follow">
-                                <?php if ($isBlocked): ?>
-                                    <a href="block_logic.php?id=<?= urlencode($profileUserId) ?>" 
-                                       id="danger_btn" 
-                                       class="follow-btn"
-                                       data-user-id="<?= htmlspecialchars($profileUserId) ?>">
-                                        Blocked
-                                    </a>
-                                <?php else: ?>
-                                    <a href="block_logic.php?id=<?= urlencode($profileUserId) ?>" 
-                                       id="default_btn" 
-                                       class="follow-btn"
-                                       data-user-id="<?= htmlspecialchars($profileUserId) ?>">
-                                        Block
-                                    </a>
-                                <?php endif; ?>
-                            </div>
+                        <div class="follow">
+                            <?php
+                            // check if the user is an admin
+                            $profileUserId = $user_detail['id'];
+                            $isAdmin = isset($user_detail['is_admin']) && $user_detail['is_admin'] == 1;
+                            ?>
+
+                            <?php if ($isAdmin): ?>
+                                <a href="admin_logic.php?id=<?= urlencode($profileUserId) ?>"
+                                    id="danger_btn"
+                                    class="follow-btn"
+                                    data-user-id="<?= htmlspecialchars($profileUserId) ?>">
+                                    Strip Admin
+                                </a>
+                            <?php else: ?>
+                                <a href="admin_logic.php?id=<?= urlencode($profileUserId) ?>"
+                                    id="default_btn"
+                                    class="follow-btn"
+                                    data-user-id="<?= htmlspecialchars($profileUserId) ?>">
+                                    Set Admin
+                                </a>
+                            <?php endif; ?>
+                        </div>
+
+
+                        <div class="follow">
+                            <?php if ($isBlocked): ?>
+                                <a href="block_logic.php?id=<?= urlencode($profileUserId) ?>"
+                                    id="danger_btn"
+                                    class="follow-btn"
+                                    data-user-id="<?= htmlspecialchars($profileUserId) ?>">
+                                    Blocked
+                                </a>
+                            <?php else: ?>
+                                <a href="block_logic.php?id=<?= urlencode($profileUserId) ?>"
+                                    id="default_btn"
+                                    class="follow-btn"
+                                    data-user-id="<?= htmlspecialchars($profileUserId) ?>">
+                                    Block
+                                </a>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
 
         </div>
     </section>
