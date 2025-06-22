@@ -91,7 +91,7 @@ $result = mysqli_stmt_get_result($stmt);
       <?php
       // Secure image handling
       $images = array_filter(array_map('trim', explode(',', $feed['images'])));
-      $images = array_map(function($img) {
+      $images = array_map(function ($img) {
         return htmlspecialchars(basename($img), ENT_QUOTES, 'UTF-8');
       }, $images);
       if (!empty($images)) :
@@ -185,6 +185,26 @@ $result = mysqli_stmt_get_result($stmt);
             <p>Comment</p>
           </div>
         </div>
+
+
+        <?php if (isset($feed['flagged']) && $feed['flagged'] == 1): ?>
+          <div class="post_reaction">
+            <div class="post_reaction_icon" id="comment_icon">
+              <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
+                <video autoplay muted loop playsinline>
+                  <source src="../images/flag.webm" type="video/webm">
+                </video>
+              </a>
+            </div>
+
+            <div class="post_reaction_desc" id="flagged_post_desc">
+              <p>Flagged Post</p>
+            </div>
+          </div>
+        <?php endif; ?>
+
+
+
       </div>
     </div>
   <?php endwhile; ?>

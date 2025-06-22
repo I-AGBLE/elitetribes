@@ -174,30 +174,34 @@ if (!isset($_SESSION['csrf_token'])) {
                             </div>
                         <?php endif; ?>
 
+
+
                     </div>
-                <?php endwhile ?>
-                </div>
 
-                <div id="infinite-loader-open" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
-                    <span class="ripple-dot"></span>
-                    <span class="ripple-dot"></span>
-                    <span class="ripple-dot"></span>
                 </div>
-
-            <?php else : ?>
-                <h3>Be first to post a scroll on eliteTribe.</h3>
-            <?php endif ?>
+            <?php endwhile ?>
         </div>
 
-        <script>
-            // Client-side input sanitization
-            function sanitizeSearchInput(input) {
-                // Remove potentially harmful characters
-                input.value = input.value.replace(/[<>"'`\\]/g, '');
+        <div id="infinite-loader-open" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
+            <span class="ripple-dot"></span>
+            <span class="ripple-dot"></span>
+            <span class="ripple-dot"></span>
+        </div>
 
-                // Limit length if needed
-                if (input.value.length > 100) {
-                    input.value = input.value.substring(0, 100);
-                }
-            }
-        </script>
+    <?php else : ?>
+        <h3>Be first to post a scroll on eliteTribe.</h3>
+    <?php endif ?>
+</div>
+
+<script>
+    // Client-side input sanitization
+    function sanitizeSearchInput(input) {
+        // Remove potentially harmful characters
+        input.value = input.value.replace(/[<>"'`\\]/g, '');
+
+        // Limit length if needed
+        if (input.value.length > 100) {
+            input.value = input.value.substring(0, 100);
+        }
+    }
+</script>
