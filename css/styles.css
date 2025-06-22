@@ -108,7 +108,6 @@
   text-transform: lowercase;
 }
 
-
 /* General Font Styles */
 h1,
 h2,
@@ -973,6 +972,13 @@ input[type="submit"][value="Post"] {
 .post_images_container::-webkit-scrollbar {
   display: none;
 }
+
+
+.post_reaction video {
+  width: 2rem;
+  height: 2rem;
+}
+
 
 a.hyperlink,
 .hyperlink,

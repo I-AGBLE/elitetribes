@@ -107,7 +107,7 @@ if (!isset($_SESSION['csrf_token'])) {
                     <?php
                     // Secure image handling
                     $images = array_filter(array_map('trim', explode(',', $scroll['images'])));
-                    $images = array_map(function($img) {
+                    $images = array_map(function ($img) {
                         return htmlspecialchars(basename($img), ENT_QUOTES, 'UTF-8');
                     }, $images);
                     if (!empty($images)) :
@@ -154,6 +154,21 @@ if (!isset($_SESSION['csrf_token'])) {
                             </div>
                             <div class="post_reaction_desc">
                                 <p>Comment</p>
+                            </div>
+                        </div>
+
+
+                        <div class="post_reaction">
+                            <div class="post_reaction_icon" id="comment_icon">
+                                <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
+                                    <video autoplay muted loop playsinline>
+                                        <source src="../images/flag.webm" type="video/webm">
+                                    </video>
+                                </a>
+                            </div>
+
+                            <div class="post_reaction_desc" id="flagged_post_desc">
+                                <p>Flagged Post</p>
                             </div>
                         </div>
                     </div>
