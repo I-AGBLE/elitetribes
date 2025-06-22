@@ -981,6 +981,14 @@ input[type="submit"][value="Post"] {
 
 
 
+.admin_flag video {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+
+
+
 #flagged_btn {
   margin-top: -1.5rem;
 }

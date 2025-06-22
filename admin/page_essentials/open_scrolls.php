@@ -67,10 +67,15 @@ if (!isset($_SESSION['csrf_token'])) {
                                 </h4>
                             </div>
 
-                            <?php
-                            // Securely include followers count
-                            include 'followers_count.php';
-                            ?>
+                            <?php if (isset($tribesmen['is_admin']) && $tribesmen['is_admin'] == 1): ?>
+                                <div class="admin_flag">
+                                    <video autoplay muted loop playsinline>
+                                        <source src="../images/admin_flag.webm" type="video/webm">
+                                    </video>
+                                </div>
+                            <?php endif; ?>
+
+
                         </a>
 
                         <div class="user_details_post_time">
