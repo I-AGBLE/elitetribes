@@ -1,5 +1,6 @@
 <?php
-require_once 'partials/header.php';
+require 'config/database.php';
+
 
 if (!isset($_SESSION['user_id']) || !isset($_GET['id']) || !is_numeric($_GET['id'])) {
     header("Location: " . ROOT_URL . "index.php");

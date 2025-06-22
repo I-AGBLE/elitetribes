@@ -50,6 +50,7 @@ if ($result && $result->num_rows > 0) {
     }
 }
 $stmt->close();
+
 ?>
 
 <main>
@@ -134,22 +135,22 @@ $stmt->close();
                             </a>
                         </div>
 
-                    <?php
-                    // Secure image handling
-                    $images = array_filter(array_map('trim', explode(',', $scroll['images'])));
-                    $images = array_map(function($img) {
-                        return htmlspecialchars(basename($img), ENT_QUOTES, 'UTF-8');
-                    }, $images);
-                    if (!empty($images)) :
-                    ?>
-                        <div class="post_images_container ">
-                            <div class="post_images">
-                                <?php foreach ($images as $image) : ?>
-                                    <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
-                                        <img src="../../images/<?= $image ?>" alt="Post's image."
-                                            onerror="this.style.display='none'">
-                                    </a>
-                                <?php endforeach; ?>
+                        <?php
+                        // Secure image handling
+                        $images = array_filter(array_map('trim', explode(',', $scroll['images'])));
+                        $images = array_map(function ($img) {
+                            return htmlspecialchars(basename($img), ENT_QUOTES, 'UTF-8');
+                        }, $images);
+                        if (!empty($images)) :
+                        ?>
+                            <div class="post_images_container ">
+                                <div class="post_images">
+                                    <?php foreach ($images as $image) : ?>
+                                        <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
+                                            <img src="../../images/<?= $image ?>" alt="Post's image."
+                                                onerror="this.style.display='none'">
+                                        </a>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -179,6 +180,31 @@ $stmt->close();
                                 <div class="post_reaction_desc">
                                     <p>Comment</p>
                                 </div>
+                            </div>
+
+
+                            <div class="follow" id="flagged_btn">
+                                <?php
+                                // After fetching $user_details, check if the user is flagged
+                                $scroll_id = (int)$scroll['id'];
+                                $isFlagged = isset($scroll['flagged']) && $scroll['flagged'] == 1;
+                                ?>
+
+                                <?php if ($isFlagged): ?>
+                                    <a href="flagged_logic.php?id=<?= urlencode($scroll_id) ?>"
+                                        id="danger_btn"
+                                        class="follow-btn"
+                                        data-user-id="<?= htmlspecialchars($scroll_id) ?>">
+                                        Flagged
+                                    </a>
+                                <?php else: ?>
+                                    <a href="flagged_logic.php?id=<?= urlencode($scroll_id) ?>"
+                                        id="default_btn"
+                                        class="follow-btn"
+                                        data-user-id="<?= htmlspecialchars($scroll_id) ?>">
+                                        Flag
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

@@ -158,44 +158,46 @@ if (!isset($_SESSION['csrf_token'])) {
                         </div>
 
 
-                        <div class="post_reaction">
-                            <div class="post_reaction_icon" id="comment_icon">
-                                <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
-                                    <video autoplay muted loop playsinline>
-                                        <source src="../images/flag.webm" type="video/webm">
-                                    </video>
-                                </a>
-                            </div>
+                        <?php if (isset($scroll['flagged']) && $scroll['flagged'] == 1): ?>
+                            <div class="post_reaction">
+                                <div class="post_reaction_icon" id="comment_icon">
+                                    <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
+                                        <video autoplay muted loop playsinline>
+                                            <source src="../images/flag.webm" type="video/webm">
+                                        </video>
+                                    </a>
+                                </div>
 
-                            <div class="post_reaction_desc" id="flagged_post_desc">
-                                <p>Flagged Post</p>
+                                <div class="post_reaction_desc" id="flagged_post_desc">
+                                    <p>Flagged Post</p>
+                                </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
+
                     </div>
+                <?php endwhile ?>
                 </div>
-            <?php endwhile ?>
+
+                <div id="infinite-loader-open" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
+                    <span class="ripple-dot"></span>
+                    <span class="ripple-dot"></span>
+                    <span class="ripple-dot"></span>
+                </div>
+
+            <?php else : ?>
+                <h3>Be first to post a scroll on eliteTribe.</h3>
+            <?php endif ?>
         </div>
 
-        <div id="infinite-loader-open" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
-            <span class="ripple-dot"></span>
-            <span class="ripple-dot"></span>
-            <span class="ripple-dot"></span>
-        </div>
+        <script>
+            // Client-side input sanitization
+            function sanitizeSearchInput(input) {
+                // Remove potentially harmful characters
+                input.value = input.value.replace(/[<>"'`\\]/g, '');
 
-    <?php else : ?>
-        <h3>Be first to post a scroll on eliteTribe.</h3>
-    <?php endif ?>
-</div>
-
-<script>
-    // Client-side input sanitization
-    function sanitizeSearchInput(input) {
-        // Remove potentially harmful characters
-        input.value = input.value.replace(/[<>"'`\\]/g, '');
-
-        // Limit length if needed
-        if (input.value.length > 100) {
-            input.value = input.value.substring(0, 100);
-        }
-    }
-</script>
+                // Limit length if needed
+                if (input.value.length > 100) {
+                    input.value = input.value.substring(0, 100);
+                }
+            }
+        </script>

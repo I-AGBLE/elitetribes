@@ -980,6 +980,12 @@ input[type="submit"][value="Post"] {
 }
 
 
+
+#flagged_btn {
+  margin-top: -1.5rem;
+}
+
+
 a.hyperlink,
 .hyperlink,
 .custom-hyperlink {
