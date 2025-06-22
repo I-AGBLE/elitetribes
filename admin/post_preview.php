@@ -178,6 +178,14 @@ if (!$tribesmen) {
                 <div class="user_name">
                   <h4><?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?></h4>
                 </div>
+
+                <?php if (isset($tribesmen['is_admin']) && $tribesmen['is_admin'] == 1): ?>
+                  <div class="admin_flag">
+                    <video autoplay muted loop playsinline>
+                      <source src="../images/admin_flag.webm" type="video/webm">
+                    </video>
+                  </div>
+                <?php endif; ?>
               </a>
 
               <div class="user_details_post_time">
@@ -290,7 +298,7 @@ if (!$tribesmen) {
                 </div>
               <?php endif; ?>
 
-              
+
             </div>
 
             <form action="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/comment_logic.php?id=<?= htmlspecialchars($id, ENT_QUOTES, 'UTF-8') ?>" method="post">

@@ -68,21 +68,14 @@ $current_user_id = (int)$_SESSION['user_id'];
                                 </h4>
                             </div>
 
-                            <?php
-                            // Securely count followers using prepared statement
-                            $query = "SELECT COUNT(*) AS followers_count FROM followers WHERE followed = ?";
-                            $stmt = mysqli_prepare($connection, $query);
-                            mysqli_stmt_bind_param($stmt, "i", $tribesmen_id);
-                            mysqli_stmt_execute($stmt);
-                            $result = mysqli_stmt_get_result($stmt);
-                            $followers_count = 0;
-
-                            if ($result && mysqli_num_rows($result) > 0) {
-                                $row = mysqli_fetch_assoc($result);
-                                $followers_count = (int)$row['followers_count'];
-                            }
-                            mysqli_stmt_close($stmt);
-                            ?>
+                                <?php if (isset($tribesmen['is_admin']) && $tribesmen['is_admin'] == 1): ?>
+                                <div class="admin_flag">
+                                    <video autoplay muted loop playsinline>
+                                        <source src="../images/admin_flag.webm" type="video/webm">
+                                    </video>
+                                </div>
+                            <?php endif; ?>
+                         
                         </a>
 
                         <div class="user_details_post_time">

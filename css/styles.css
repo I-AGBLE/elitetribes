@@ -38,7 +38,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color_warning);
+  background: var(--fav);
   border-radius: 50%;
 }
 
@@ -534,6 +534,7 @@ main {
   -ms-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
   align-items: flex-start;
+  overflow-x: hidden;
 }
 
 .main_content {

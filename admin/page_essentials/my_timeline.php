@@ -21,7 +21,7 @@ if (!isset($_SESSION['csrf_token'])) {
 <?php
 // Secure database query with prepared statement
 $feed_query = "
-    SELECT s.*, t.username, t.avatar,
+    SELECT s.*, t.username, t.avatar, t.is_admin,
            (SELECT COUNT(*) FROM followers WHERE followed = s.created_by) AS author_followers_count
     FROM scrolls AS s
     INNER JOIN tribesmen AS t ON t.id = s.created_by
@@ -59,6 +59,15 @@ $result = mysqli_stmt_get_result($stmt);
           <div class="user_name">
             <h4><?= htmlspecialchars($feed['username'], ENT_QUOTES, 'UTF-8') ?></h4>
           </div>
+
+
+            <?php if (isset($feed['is_admin']) && $feed['is_admin'] == 1): ?>
+            <div class="admin_flag">
+              <video autoplay muted loop playsinline>
+                <source src="../images/admin_flag.webm" type="video/webm">
+              </video>
+            </div>
+          <?php endif; ?>
         </a>
 
         <div class="user_details_post_time">
@@ -70,6 +79,13 @@ $result = mysqli_stmt_get_result($stmt);
           </div>
         </div>
       </div>
+
+
+
+
+
+
+
 
       <div class="post_text">
         <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($feed_id) ?>">

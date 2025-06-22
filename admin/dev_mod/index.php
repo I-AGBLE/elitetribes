@@ -87,7 +87,7 @@ $stmt->close();
                         <div class="user_details">
                             <?php
                             // Securely fetch user details
-                            $tribesmen_stmt = $connection->prepare("SELECT id, username, avatar FROM tribesmen WHERE id = ? LIMIT 1");
+                            $tribesmen_stmt = $connection->prepare("SELECT id, username, avatar, is_admin FROM tribesmen WHERE id = ? LIMIT 1");
                             $tribesmen_stmt->bind_param("i", $created_by);
                             $tribesmen_stmt->execute();
                             $tribesmen_result = $tribesmen_stmt->get_result();
@@ -106,6 +106,15 @@ $stmt->close();
                                 <div class="user_name">
                                     <h4><?= $tribesmen['username'] ?></h4>
                                 </div>
+
+
+                                <?php if (isset($tribesmen['is_admin']) && $tribesmen['is_admin'] == 1): ?>
+                                    <div class="admin_flag">
+                                        <video autoplay muted loop playsinline>
+                                            <source src="../../images/admin_flag.webm" type="video/webm">
+                                        </video>
+                                    </div>
+                                <?php endif; ?>
                             </a>
 
                             <div class="user_details_post_time">

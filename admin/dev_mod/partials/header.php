@@ -86,10 +86,13 @@ if (isset($_SESSION['user_id'])) {
         </div>
 
 
-        <?php
-        include '../page_essentials/followers_count.php';
-        ?>
-
+        <?php if (isset($user_detail['is_admin']) && $user_detail['is_admin'] == 1): ?>
+          <div class="admin_flag">
+            <video autoplay muted loop playsinline>
+              <source src="../../images/admin_flag.webm" type="video/webm">
+            </video>
+          </div>
+        <?php endif; ?>
 
 
       </a>
@@ -114,9 +117,9 @@ if (isset($_SESSION['user_id'])) {
               <li><a href="../user_profile.php#my_posts">My Profile</a></li>
               <li><a href="<?= ROOT_URL ?>admin/about.php">About Us</a></li>
 
-              
+
               <?php if (isset($user_detail['is_admin']) && $user_detail['is_admin'] == 1): ?>
-                <li><a href="<?= ROOT_URL ?>admin/dev_mod/"  id="dev_mod">Dev Mod</a></li>
+                <li><a href="<?= ROOT_URL ?>admin/dev_mod/" id="dev_mod">Dev Mod</a></li>
               <?php endif; ?>
 
 

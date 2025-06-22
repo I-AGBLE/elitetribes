@@ -27,7 +27,7 @@ if ((int)$user['is_admin'] !== 1) {
 $stmt->close();
 
 // Fetch all users from tribesmen table
-$stmt = $connection->prepare("SELECT id, username, avatar, created_at FROM tribesmen ORDER BY id DESC");
+$stmt = $connection->prepare("SELECT id, username, avatar, is_admin,  created_at FROM tribesmen ORDER BY id DESC");
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -71,12 +71,20 @@ $stmt->close();
                         <div class="user_details" id="all_tribesmen_list">
                             <a href="all_user_details.php?id=<?= (int)$user['id'] ?>">
                                 <div class="user_profile_pic">
-                                    <img src="<?= ROOT_URL ?>images/<?= htmlspecialchars($user['avatar'], ENT_QUOTES, 'UTF-8') ?>" 
-                                         alt="<?= htmlspecialchars($user['username'], ENT_QUOTES, 'UTF-8') ?>'s profile picture." />
+                                    <img src="<?= ROOT_URL ?>images/<?= htmlspecialchars($user['avatar'], ENT_QUOTES, 'UTF-8') ?>"
+                                        alt="<?= htmlspecialchars($user['username'], ENT_QUOTES, 'UTF-8') ?>'s profile picture." />
                                 </div>
                                 <div class="username">
-                                    <h4><?=$user['username']?></h4>
+                                    <h4><?= $user['username'] ?></h4>
                                 </div>
+
+                                <?php if (isset($user['is_admin']) && $user['is_admin'] == 1): ?>
+                                    <div class="admin_flag">
+                                        <video autoplay muted loop playsinline>
+                                            <source src="../../images/admin_flag.webm" type="video/webm">
+                                        </video>
+                                    </div>
+                                <?php endif; ?>
                             </a>
 
                             <div class="user_details_post_time">

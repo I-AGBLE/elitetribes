@@ -30,7 +30,7 @@ if ($current_user_id === false || $current_user_id === null) {
         <div class="search_box">
             <center>
                 <input type="text" placeholder="Search Posts" id="search_box"
-                       oninput="sanitizeSearchInput(this)">
+                    oninput="sanitizeSearchInput(this)">
             </center>
         </div>
 
@@ -66,8 +66,8 @@ if ($current_user_id === false || $current_user_id === null) {
                         <a href="user_profile.php?id=<?= urlencode($tribesmen['id']) ?>">
                             <div class="user_profile_pic">
                                 <img src="../images/<?= htmlspecialchars(basename($tribesmen['avatar']), ENT_QUOTES, 'UTF-8') ?>"
-                                     alt="User's profile picture."
-                                     onerror="this.src='../images/default_avatar.png'" />
+                                    alt="User's profile picture."
+                                    onerror="this.src='../images/default_avatar.png'" />
                             </div>
 
                             <div class="user_name">
@@ -75,6 +75,15 @@ if ($current_user_id === false || $current_user_id === null) {
                                     <?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?>
                                 </h4>
                             </div>
+
+
+                            <?php if (isset($tribesmen['is_admin']) && $tribesmen['is_admin'] == 1): ?>
+                                <div class="admin_flag">
+                                    <video autoplay muted loop playsinline>
+                                        <source src="../images/admin_flag.webm" type="video/webm">
+                                    </video>
+                                </div>
+                            <?php endif; ?>
                         </a>
 
                         <div class="user_details_post_time">
@@ -111,7 +120,7 @@ if ($current_user_id === false || $current_user_id === null) {
                     <?php
                     // Secure image handling
                     $images = array_filter(array_map('trim', explode(',', $scroll['images'])));
-                    $images = array_map(function($img) {
+                    $images = array_map(function ($img) {
                         return htmlspecialchars(basename($img), ENT_QUOTES, 'UTF-8');
                     }, $images);
                     if (!empty($images)) :
@@ -121,7 +130,7 @@ if ($current_user_id === false || $current_user_id === null) {
                                 <?php foreach ($images as $image) : ?>
                                     <a href="post_preview.php?id=<?= urlencode($scroll_id) ?>">
                                         <img src="../images/<?= $image ?>" alt="Post's image."
-                                             onerror="this.style.display='none'">
+                                            onerror="this.style.display='none'">
                                     </a>
                                 <?php endforeach; ?>
                             </div>
@@ -165,23 +174,23 @@ if ($current_user_id === false || $current_user_id === null) {
 
 
                         <?php if ($is_owner) : ?>
-                        <div class="post_reaction">
-                            <div class="post_reaction_icon">
-                                <a href="delete_post_logic.php?id=<?= urlencode($scroll_id) ?>&csrf=<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
-                                    <i class="fa-solid fa-trash" id="delete_icon"></i>
-                                </a>
+                            <div class="post_reaction">
+                                <div class="post_reaction_icon">
+                                    <a href="delete_post_logic.php?id=<?= urlencode($scroll_id) ?>&csrf=<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
+                                        <i class="fa-solid fa-trash" id="delete_icon"></i>
+                                    </a>
+                                </div>
+                                <div class="post_reaction_desc">
+                                    <p>Delete</p>
+                                </div>
                             </div>
-                            <div class="post_reaction_desc">
-                                <p>Delete</p>
-                            </div>
-                        </div>
                         <?php endif; ?>
 
 
 
-                        
 
-                         <?php if (isset($scroll['flagged']) && $scroll['flagged'] == 1): ?>
+
+                        <?php if (isset($scroll['flagged']) && $scroll['flagged'] == 1): ?>
                             <div class="post_reaction">
                                 <div class="post_reaction_icon" id="comment_icon">
                                     <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
@@ -209,16 +218,16 @@ if ($current_user_id === false || $current_user_id === null) {
 </div>
 
 <div id="infinite-loader-timeline" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
-  <span class="ripple-dot"></span>
-  <span class="ripple-dot"></span>
-  <span class="ripple-dot"></span>
+    <span class="ripple-dot"></span>
+    <span class="ripple-dot"></span>
+    <span class="ripple-dot"></span>
 </div>
 
 <script>
-function sanitizeSearchInput(input) {
-    input.value = input.value.replace(/[<>"'`\\]/g, '');
-    if (input.value.length > 100) {
-        input.value = input.value.substring(0, 100);
+    function sanitizeSearchInput(input) {
+        input.value = input.value.replace(/[<>"'`\\]/g, '');
+        if (input.value.length > 100) {
+            input.value = input.value.substring(0, 100);
+        }
     }
-}
 </script>
