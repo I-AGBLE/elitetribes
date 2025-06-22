@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_id'])) {
 // fetch user details 
 if (isset($_SESSION['user_id'])) {
   $id = filter_var($_SESSION['user_id'], FILTER_SANITIZE_NUMBER_INT);
-  $query = "SELECT username, avatar, followers, is_admin FROM tribesmen WHERE id = $id";
+  $query = "SELECT username, avatar, blocked, is_admin FROM tribesmen WHERE id = $id";
   $result = mysqli_query($connection, $query);
   $user_detail = mysqli_fetch_assoc($result);
 }
