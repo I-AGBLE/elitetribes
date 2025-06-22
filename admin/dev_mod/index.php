@@ -134,29 +134,22 @@ $stmt->close();
                             </a>
                         </div>
 
-                        <?php
-                        // Secure image handling
-                        $images = array_filter(array_map('trim', explode(',', $scroll['images'])));
-                        $valid_images = [];
-
-                        foreach ($images as $image) {
-                            $clean_image = basename($image);
-                            if (preg_match('/^[a-zA-Z0-9_\-]+\.(jpg|jpeg|png|gif|webp)$/i', $clean_image)) {
-                                $valid_images[] = $clean_image;
-                            }
-                        }
-
-                        if (!empty($valid_images)) :
-                        ?>
-                            <div class="post_images_container">
-                                <div class="post_images">
-                                    <?php foreach ($valid_images as $image): ?>
-                                        <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= $scroll_id ?>">
-                                            <img src="../../images/<?= htmlspecialchars($image) ?>"
-                                                alt="Post image"
-                                                onerror="this.style.display='none'">
-                                        </a>
-                                    <?php endforeach; ?>
+                    <?php
+                    // Secure image handling
+                    $images = array_filter(array_map('trim', explode(',', $scroll['images'])));
+                    $images = array_map(function($img) {
+                        return htmlspecialchars(basename($img), ENT_QUOTES, 'UTF-8');
+                    }, $images);
+                    if (!empty($images)) :
+                    ?>
+                        <div class="post_images_container ">
+                            <div class="post_images">
+                                <?php foreach ($images as $image) : ?>
+                                    <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
+                                        <img src="../../images/<?= $image ?>" alt="Post's image."
+                                            onerror="this.style.display='none'">
+                                    </a>
+                                <?php endforeach; ?>
                                 </div>
                             </div>
                         <?php endif; ?>
