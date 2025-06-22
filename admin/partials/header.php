@@ -11,6 +11,19 @@ if (!isset($_SESSION['user_id'])) {
   die();
 }
 
+// Check if user is blocked
+$id = filter_var($_SESSION['user_id'], FILTER_SANITIZE_NUMBER_INT);
+$query = "SELECT blocked FROM tribesmen WHERE id = $id";
+$result = mysqli_query($connection, $query);
+$user = mysqli_fetch_assoc($result);
+
+if (isset($user['blocked']) && $user['blocked'] == 1) {
+  // Optionally, you can destroy the session here
+  session_destroy();
+  header('location: ' . ROOT_URL);
+  die();
+}
+
 
 // fetch user details 
 if (isset($_SESSION['user_id'])) {

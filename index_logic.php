@@ -1,7 +1,6 @@
 <?php
 require 'config/database.php';
 
-
 // if submit is clicked 
 if (isset($_POST['submit'])) {
     // sanitize user input
@@ -28,6 +27,12 @@ if (isset($_POST['submit'])) {
             $tribesmen_record =  mysqli_fetch_assoc($fetch_tribesmen_result);
             $db_password = $tribesmen_record['password'];
 
+            // Check if user is blocked
+            if (isset($tribesmen_record['blocked']) && $tribesmen_record['blocked'] == 1) {
+                header('location: ' . ROOT_URL . 'unauthorized.php');
+                die();
+            }
+
             //verify password
             if (password_verify($password, $db_password)) {
                 // use tribesmen id to set session for access control
@@ -39,14 +44,10 @@ if (isset($_POST['submit'])) {
                 }
 
                 // log user in
-                header('location: ' . ROOT_URL . 'admin/');
-             
-               
-                    // redirect to login page with success message
-                    $_SESSION["signin_success"] = "Welcome To The Elite Tribes";
-                    header("location: " . ROOT_URL . "admin/");
-                    die();
-                
+                $_SESSION["signin_success"] = "Welcome To The Elite Tribes";
+                header("location: " . ROOT_URL . "admin/");
+                die();
+
             } else {
                 $_SESSION["signin"] = "Invalid Credentials!";
             }
