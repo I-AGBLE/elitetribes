@@ -81,6 +81,7 @@ $csrf_token = $_SESSION['csrf_token'];
 </form>
 
 
+
 <!-- Floating button icons (unchanged) -->
 <div class="floating_icons">
   <div class="open_floating_input">

@@ -7,7 +7,6 @@
   padding: 0;
   border: 0;
   outline: 0;
-  outline: 0;
   line-height: 1.1;
   text-decoration: none;
   list-style: none;
@@ -20,6 +19,10 @@
   align-items: center;
   scroll-behavior: smooth;
   scroll-padding-top: 2rem;
+
+   user-select: none;
+  -webkit-user-select: none; /* For Safari */
+  -ms-user-select: none;     /* For IE/Edge */
 
   /* Font Style */
   font-family: "Josefin Slab", serif;
@@ -261,6 +264,7 @@ nav {
   animation: zoomPulse 3.5s infinite ease-in-out;
 }
 
+
 .menu_icon i:hover {
   color: var(--color_warning);
 }
@@ -275,6 +279,8 @@ nav {
     color: var(--color_warning);
   }
 }
+
+
 
 /* Hide menu by default */
 .header_menus {
@@ -1549,7 +1555,7 @@ footer {
   -o-transition: var(--transition);
 }
 
-footer:hover {
+.footer_link:hover {
   transform: translateX(0.5rem);
   -webkit-transform: translateX(0.5rem);
   -moz-transform: translateX(0.5rem);
@@ -1572,6 +1578,22 @@ footer a:hover {
   -webkit-filter: saturate(0.7);
 }
 
+
+
+
+.home_button i {
+  font-size: 1rem;
+  margin-bottom: .5rem;
+  transition: var(--transition);
+  animation: zoomPulse 3.5s infinite ease-in-out;
+}
+
+.home_button i:hover {
+  color: var(--fav);
+}
+
+
+
 /* Default icon color */
 .fa-heart.default {
   color: #ccc;
@@ -1583,6 +1605,8 @@ footer a:hover {
   color: red;
   /* Red when liked */
 }
+
+
 
 /* ---------------------------------- TABLET -------------------------------------- */
 
