@@ -49,6 +49,9 @@ mysqli_stmt_close($stmt);
 $loggedInUserId = $_SESSION['user_id'];
 $profileUserId = $id;
 
+// After fetching $user_detail
+$isBlocked = isset($user_detail['blocked']) && $user_detail['blocked'] == 1;
+
 // Prepared statement for follow check
 $checkFollowQuery = "SELECT * FROM followers WHERE follower = ? AND followed = ?";
 $stmt = mysqli_prepare($connection, $checkFollowQuery);
@@ -167,7 +170,7 @@ mysqli_stmt_close($stmt);
                             <div class="follow">
                                 <?php if ($isFollowing): ?>
                                     <a href="../follow_logic.php?id=<?= urlencode($profileUserId) ?>" 
-                                       id="danger_btn" 
+                                       id="warning_btn" 
                                        class="follow-btn"
                                        data-user-id="<?= htmlspecialchars($profileUserId) ?>">
                                         Following
@@ -184,6 +187,25 @@ mysqli_stmt_close($stmt);
                         <?php else: ?>
                             <a href="edit_profile.php" id="default_btn">Edit Profile</a>
                         <?php endif; ?>
+
+
+                          <div class="follow">
+                                <?php if ($isBlocked): ?>
+                                    <a href="block_logic.php?id=<?= urlencode($profileUserId) ?>" 
+                                       id="danger_btn" 
+                                       class="follow-btn"
+                                       data-user-id="<?= htmlspecialchars($profileUserId) ?>">
+                                        Blocked
+                                    </a>
+                                <?php else: ?>
+                                    <a href="block_logic.php?id=<?= urlencode($profileUserId) ?>" 
+                                       id="default_btn" 
+                                       class="follow-btn"
+                                       data-user-id="<?= htmlspecialchars($profileUserId) ?>">
+                                        Block
+                                    </a>
+                                <?php endif; ?>
+                            </div>
                     </div>
                 </div>
             </div>

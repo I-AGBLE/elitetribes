@@ -129,7 +129,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
           <div class="user_action_buttons">
             <div class="follow">
               <?php if ($isFollowing): ?>
-                <a href="follow_logic.php?id=<?= (int) $id ?>" id="danger_btn">Following</a>
+                <a href="follow_logic.php?id=<?= (int) $id ?>" id="warning_btn">Following</a>
               <?php else: ?>
                 <a href="follow_logic.php?id=<?= (int) $id ?>" id="default_btn">Follow</a>
               <?php endif; ?>

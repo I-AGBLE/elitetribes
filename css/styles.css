@@ -20,6 +20,7 @@
   scroll-behavior: smooth;
   scroll-padding-top: 2rem;
 
+  /* Prevent text selection and cursor blinking  */
    user-select: none;
   -webkit-user-select: none; /* For Safari */
   -ms-user-select: none;     /* For IE/Edge */
@@ -146,7 +147,7 @@ textarea:focus {
 
 /* Button Styles */
 #default_btn {
-  background-color: var(--color_success);
+  background-color: var(--fav);
   padding: 0.3rem;
   border-radius: var(--border_radius);
   -webkit-border-radius: var(--border_radius);
@@ -163,7 +164,7 @@ textarea:focus {
 }
 
 #default_btn:hover {
-  background-color: var(--text_color);
+  background-color: var(--color_warning);
   color: var(--default_bg);
   cursor: pointer;
 }
@@ -188,6 +189,29 @@ textarea:focus {
   background-color: var(--danger_variant_btn);
   cursor: pointer;
 }
+
+
+#warning_btn {
+  background-color: var(--color_warning);
+  padding: 0.3rem;
+  border-radius: var(--border_radius);
+  -webkit-border-radius: var(--border_radius);
+  -moz-border-radius: var(--border_radius);
+  -ms-border-radius: var(--border_radius);
+  -o-border-radius: var(--border_radius);
+  transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+  font-weight: 800;
+  color: var(--deep_bg);
+}
+
+#warning_btn:hover {
+  background-color: var(--fav);
+}
+
 
 /* Nav Styles */
 nav {
