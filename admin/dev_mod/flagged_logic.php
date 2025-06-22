@@ -24,5 +24,5 @@ if ($post) {
     $update->close();
 }
 
-header('Location: index.php');
+header('Location: ' . ROOT_URL . 'admin/post_preview.php?id=' . urlencode($scroll_id));
 exit;
