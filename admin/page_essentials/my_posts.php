@@ -11,8 +11,11 @@ if ($current_user_id === false || $current_user_id === null) {
 }
 ?>
 
-<div class="my_posts_contents" id="my_posts_contents" style="display: block;">
 
+
+
+
+<div class="my_posts_contents" id="my_posts_contents" style="display: block;">
     <div class="my_dashboard">
         <div class="my_dashboard_title">
             <div class="dashboard_small_titles">
@@ -25,8 +28,12 @@ if ($current_user_id === false || $current_user_id === null) {
         </div>
     </div>
 
-    <?php if (isset($scrolls) && mysqli_num_rows($scrolls) > 0) : ?>
 
+
+
+
+
+    <?php if (isset($scrolls) && mysqli_num_rows($scrolls) > 0) : ?>
         <div class="search_box">
             <center>
                 <input type="text" placeholder="Search Posts" id="search_box"
@@ -34,8 +41,12 @@ if ($current_user_id === false || $current_user_id === null) {
             </center>
         </div>
 
-        <div class="my_posts">
 
+
+
+
+
+        <div class="my_posts">
             <?php while ($scroll = mysqli_fetch_assoc($scrolls)) :
                 // Validate scroll data
                 $scroll_id = filter_var($scroll['id'], FILTER_VALIDATE_INT);
@@ -47,6 +58,9 @@ if ($current_user_id === false || $current_user_id === null) {
                 // Verify post belongs to current user (for delete action)
                 $is_owner = ($tribesmen_id === $current_user_id);
             ?>
+
+
+
 
                 <div class="post">
                     <div class="user_details">
@@ -72,10 +86,9 @@ if ($current_user_id === false || $current_user_id === null) {
 
                             <div class="user_name">
                                 <h4>
-                                    <?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?>
+                                    <?= $tribesmen['username']  ?>
                                 </h4>
                             </div>
-
 
                             <?php if (isset($tribesmen['is_admin']) && $tribesmen['is_admin'] == 1): ?>
                                 <div class="admin_flag">
@@ -83,6 +96,8 @@ if ($current_user_id === false || $current_user_id === null) {
                                 </div>
                             <?php endif; ?>
                         </a>
+
+
 
                         <div class="user_details_post_time">
                             <div class="post_date">
@@ -98,11 +113,15 @@ if ($current_user_id === false || $current_user_id === null) {
                         </div>
                     </div>
 
+
+
+
+
                     <div class="post_text">
                         <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
                             <p style="margin-bottom: 0;">
                                 <?php
-                                $text = nl2br(htmlspecialchars($scroll['user_post'], ENT_QUOTES, 'UTF-8'));
+                                $text = nl2br($scroll['user_post']);
                                 $maxLength = 500;
                                 if (mb_strlen(strip_tags($scroll['user_post'])) > $maxLength) {
                                     echo mb_substr($text, 0, $maxLength);
@@ -114,6 +133,8 @@ if ($current_user_id === false || $current_user_id === null) {
                             </p>
                         </a>
                     </div>
+
+
 
                     <?php
                     // Secure image handling
@@ -135,15 +156,19 @@ if ($current_user_id === false || $current_user_id === null) {
                         </div>
                     <?php endif; ?>
 
+
+
+
                     <div class="post_reactions">
                         <?php
-                        // Securely include like functionality
+                        //  like functionality
                         include 'page_essentials/like_n_like_count.php';
                         ?>
 
+
                         <div class="post_reaction">
                             <?php
-                            // Secure comment count query
+                            // comment count
                             $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = ?";
                             $stmt = mysqli_prepare($connection, $count_query);
                             mysqli_stmt_bind_param($stmt, "i", $scroll_id);
@@ -156,12 +181,15 @@ if ($current_user_id === false || $current_user_id === null) {
                             }
                             mysqli_stmt_close($stmt);
                             ?>
+
+
                             <div class="post_reaction_icon" id="comment_icon">
                                 <a href="post_preview.php?id=<?= urlencode($scroll_id) ?>">
                                     <i class="fa-regular fa-comment" id="comment_icon"></i>
                                 </a>
                                 <p id="comment_count"><?= htmlspecialchars($comment_count, ENT_QUOTES, 'UTF-8') ?></p>
                             </div>
+
                             <div class="post_reaction_desc">
                                 <p>Comment</p>
                             </div>
@@ -178,6 +206,7 @@ if ($current_user_id === false || $current_user_id === null) {
                                         <i class="fa-solid fa-trash" id="delete_icon"></i>
                                     </a>
                                 </div>
+
                                 <div class="post_reaction_desc">
                                     <p>Delete</p>
                                 </div>
@@ -203,21 +232,33 @@ if ($current_user_id === false || $current_user_id === null) {
                         <?php endif; ?>
                     </div>
                 </div>
-
             <?php endwhile ?>
-
         </div>
 
+
+
+
     <?php else : ?>
-        <h3>Share a story, an idea, or just a thought...</h3>
+        <h3>Share a story, an idea, or just a thought. The tribesmen would be pleased to hear from you</h3>
     <?php endif ?>
 </div>
+
+
+
+
+
 
 <div id="infinite-loader-timeline" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
     <span class="ripple-dot"></span>
     <span class="ripple-dot"></span>
     <span class="ripple-dot"></span>
 </div>
+
+
+
+
+
+
 
 <script>
     function sanitizeSearchInput(input) {
