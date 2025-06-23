@@ -79,9 +79,7 @@ if ($current_user_id === false || $current_user_id === null) {
 
                             <?php if (isset($tribesmen['is_admin']) && $tribesmen['is_admin'] == 1): ?>
                                 <div class="admin_flag">
-                                    <video autoplay muted loop playsinline>
-                                        <source src="../images/admin_flag.webm" type="video/webm">
-                                    </video>
+                                    <img src="../images/admin_flag.gif" alt="Admin Flag" />
                                 </div>
                             <?php endif; ?>
                         </a>

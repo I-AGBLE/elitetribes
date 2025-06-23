@@ -181,9 +181,7 @@ if (!$tribesmen) {
 
                 <?php if (isset($tribesmen['is_admin']) && $tribesmen['is_admin'] == 1): ?>
                   <div class="admin_flag">
-                    <video autoplay muted loop playsinline>
-                      <source src="../images/admin_flag.webm" type="video/webm">
-                    </video>
+                    <img src="../images/admin_flag.gif" alt="Admin Flag" />
                   </div>
                 <?php endif; ?>
               </a>
@@ -314,7 +312,7 @@ if (!$tribesmen) {
 
             <?php
             if (isset($scroll_id)) {
-              $query = "SELECT c.*, t.id AS author_id, t.username AS author_name, t.avatar AS author_avatar
+              $query = "SELECT c.*, t.id AS author_id, t.username AS author_name, t.avatar AS author_avatar, t.is_admin AS is_admin
                       FROM comments c
                       JOIN tribesmen t ON c.tribesmen_id = t.id
                       WHERE c.scroll_id = ?
@@ -343,6 +341,12 @@ if (!$tribesmen) {
                           <div class="user_name">
                             <h4><?= htmlspecialchars($comment['author_name'], ENT_QUOTES, 'UTF-8') ?></h4>
                           </div>
+
+                          <?php if (isset($comment['is_admin']) && $comment['is_admin'] == 1): ?>
+                            <div class="admin_flag">
+                              <img src="../images/admin_flag.gif" alt="Admin Flag" />
+                            </div>
+                          <?php endif; ?>
                         </a>
 
                         <div class="user_details_post_time">

@@ -61,11 +61,9 @@ $result = mysqli_stmt_get_result($stmt);
           </div>
 
 
-            <?php if (isset($feed['is_admin']) && $feed['is_admin'] == 1): ?>
-            <div class="admin_flag">
-              <video autoplay muted loop playsinline>
-                <source src="../images/admin_flag.webm" type="video/webm">
-              </video>
+          <?php if (isset($feed['is_admin']) && $feed['is_admin'] == 1): ?>
+              <div class="admin_flag">
+                <img src="../images/admin_flag.gif" alt="Admin Flag" />
             </div>
           <?php endif; ?>
         </a>

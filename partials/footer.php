@@ -3,10 +3,6 @@
            <div class="home_button">
                <a href="<?= htmlspecialchars(ROOT_URL . 'admin/', ENT_QUOTES, 'UTF-8') ?>"><i class="fa-solid fa-house"></i></a>
            </div>
-
-           <div class="footer_link">
-               <a href="#">elite<span>Tribes</span>&trade; v1.0 Copyright &copy2025</a>
-           </div>
        </center>
    </footer>
 

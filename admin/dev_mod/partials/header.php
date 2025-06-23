@@ -88,9 +88,7 @@ if (isset($_SESSION['user_id'])) {
 
         <?php if (isset($user_detail['is_admin']) && $user_detail['is_admin'] == 1): ?>
           <div class="admin_flag">
-            <video autoplay muted loop playsinline>
-              <source src="../../images/admin_flag.webm" type="video/webm">
-            </video>
+            <img src="../../images/admin_flag.gif" alt="Admin Flag" />
           </div>
         <?php endif; ?>
 

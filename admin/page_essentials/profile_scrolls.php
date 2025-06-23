@@ -68,14 +68,12 @@ $current_user_id = (int)$_SESSION['user_id'];
                                 </h4>
                             </div>
 
-                                <?php if (isset($tribesmen['is_admin']) && $tribesmen['is_admin'] == 1): ?>
-                                <div class="admin_flag">
-                                    <video autoplay muted loop playsinline>
-                                        <source src="../images/admin_flag.webm" type="video/webm">
-                                    </video>
-                                </div>
+                            <?php if (isset($tribesmen['is_admin']) && $tribesmen['is_admin'] == 1): ?>
+                                    <div class="admin_flag">
+                                        <img src="../images/admin_flag.gif" alt="Admin Flag" />
+                                    </div>
                             <?php endif; ?>
-                         
+
                         </a>
 
                         <div class="user_details_post_time">
@@ -111,7 +109,7 @@ $current_user_id = (int)$_SESSION['user_id'];
 
                     <?php
                     $images = array_filter(array_map('trim', explode(',', $scroll['images'])));
-                    $images = array_map(function($img) {
+                    $images = array_map(function ($img) {
                         return htmlspecialchars(basename($img), ENT_QUOTES, 'UTF-8');
                     }, $images);
                     if (!empty($images)) :
@@ -161,9 +159,9 @@ $current_user_id = (int)$_SESSION['user_id'];
                         </div>
 
 
-                        
 
-                         <?php if (isset($scroll['flagged']) && $scroll['flagged'] == 1): ?>
+
+                        <?php if (isset($scroll['flagged']) && $scroll['flagged'] == 1): ?>
                             <div class="post_reaction">
                                 <div class="post_reaction_icon" id="comment_icon">
                                     <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
@@ -190,7 +188,7 @@ $current_user_id = (int)$_SESSION['user_id'];
 </div>
 
 <div id="infinite-loader-timeline" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
-  <span class="ripple-dot"></span>
-  <span class="ripple-dot"></span>
-  <span class="ripple-dot"></span>
+    <span class="ripple-dot"></span>
+    <span class="ripple-dot"></span>
+    <span class="ripple-dot"></span>
 </div>
