@@ -2085,6 +2085,10 @@ footer a:hover {
     gap: 0.5rem;
   }
 
+  .user_info {
+   width: 99.5%;
+  }
+
   .user_picture {
     width: 14.5rem !important;
     height: 15rem;
@@ -2092,7 +2096,7 @@ footer a:hover {
   }
 
   .about p {
-    font-size: 1rem;
+    font-size: .9rem;
   }
 
   .followers_and_posts p {

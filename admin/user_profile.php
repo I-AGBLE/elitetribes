@@ -47,7 +47,7 @@ $stmt->close();
           unset($_SESSION['delete_scroll_success']); ?></p>
     </div>
 
-      <?php elseif (!empty($_SESSION['delete_scroll_error'])): ?>
+  <?php elseif (!empty($_SESSION['delete_scroll_error'])): ?>
     <div class="alert_message error" id="alert_message">
       <p><?= htmlspecialchars($_SESSION['delete_scroll_error']);
           unset($_SESSION['delete_scroll_error']); ?></p>
