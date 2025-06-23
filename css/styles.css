@@ -627,9 +627,9 @@ main .main_left,
 }
 
 .user_picture {
-  width: 17rem !important;
-  height: 16.5rem;
-  border-radius: 1rem;
+  width: 25rem !important;
+  height: 20rem;
+  border-radius: var(--border_radius);
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
   -ms-border-radius: 1rem;
@@ -637,6 +637,17 @@ main .main_left,
   overflow: hidden;
   border: 0.1px solid var(--deep_bg);
   cursor: pointer;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--fav);
+
+    transition: var(--transition);
+  -webkit-transition: var(--transition);
+  -moz-transition: var(--transition);
+  -ms-transition: var(--transition);
+  -o-transition: var(--transition);
+
 }
 
 .user_picture:hover {
@@ -647,6 +658,17 @@ main .main_left,
 .user_picture img {
   width: 100%;
   height: 100%;
+    object-fit: contain; /* Show the whole image, keep aspect ratio */
+  display: block;
+}
+
+.user_picture img:hover {
+  transform: scale(1.02);
+  -webkit-transform: scale(1.02);
+  -moz-transform: scale(1.02);
+  -ms-transform: scale(1.02);
+  -o-transform: scale(1.02);
+
 }
 
 .user_info {
@@ -1761,8 +1783,8 @@ footer a:hover {
   }
 
   .user_picture {
-    width: 16.5rem !important;
-    height: 17rem;
+    width: 20rem !important;
+    height: 18rem;
   }
 
   .about p {
@@ -2090,9 +2112,10 @@ footer a:hover {
   }
 
   .user_picture {
-    width: 14.5rem !important;
-    height: 15rem;
-    margin: 0 2.55rem;
+    width: 99% !important;
+    height: 22rem;
+    border: .5px solid var(--fav);
+   
   }
 
   .about p {
