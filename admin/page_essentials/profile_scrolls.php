@@ -1,14 +1,16 @@
 <?php
 // Validate the current user
 if (!isset($_SESSION['user_id']) || !is_numeric($_SESSION['user_id'])) {
-    header('Location: ' . htmlspecialchars(ROOT_URL . 'signin.php', ENT_QUOTES, 'UTF-8'));
+    header('Location: ' . ROOT_URL);
     exit;
 }
 $current_user_id = (int)$_SESSION['user_id'];
 ?>
 
-<div class="my_posts_contents" id="my_posts_contents" style="display: block;">
 
+
+
+<div class="my_posts_contents" id="my_posts_contents" style="display: block;">
     <div class="my_dashboard">
         <div class="my_dashboard_title">
             <div class="dashboard_small_titles">
@@ -20,16 +22,20 @@ $current_user_id = (int)$_SESSION['user_id'];
         </div>
     </div>
 
-    <?php if (isset($scrolls) && mysqli_num_rows($scrolls) > 0) : ?>
 
+
+
+
+    <?php if (isset($scrolls) && mysqli_num_rows($scrolls) > 0) : ?>
         <div class="search_box">
             <center>
                 <input type="text" id="search_box" placeholder="Search Posts" oninput="sanitizeSearchInput(this)">
             </center>
         </div>
 
-        <div class="my_posts">
 
+
+        <div class="my_posts">
             <?php while ($scroll = mysqli_fetch_assoc($scrolls)) :
                 // Validate scroll data before use
                 $scroll_id = filter_var($scroll['id'], FILTER_VALIDATE_INT);
@@ -39,10 +45,11 @@ $current_user_id = (int)$_SESSION['user_id'];
                 if ($tribesmen_id === false) continue;
             ?>
 
+
                 <div class="post">
                     <div class="user_details">
                         <?php
-                        // Securely fetch user details using prepared statements
+                        // fetch user
                         $tribesmen_query = "SELECT * FROM tribesmen WHERE id=?";
                         $stmt = mysqli_prepare($connection, $tribesmen_query);
                         mysqli_stmt_bind_param($stmt, "i", $tribesmen_id);
@@ -51,8 +58,9 @@ $current_user_id = (int)$_SESSION['user_id'];
                         $tribesmen = mysqli_fetch_assoc($tribesmen_result);
                         mysqli_stmt_close($stmt);
 
-                        if (!$tribesmen) continue; // Skip if user not found
+                        if (!$tribesmen) continue;
                         ?>
+
 
                         <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/profiles.php?id=<?= urlencode($tribesmen['id']) ?>">
                             <div class="user_profile_pic">
@@ -64,17 +72,17 @@ $current_user_id = (int)$_SESSION['user_id'];
 
                             <div class="user_name">
                                 <h4>
-                                    <?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?>
+                                    <?= $tribesmen['username'] ?>
                                 </h4>
                             </div>
 
                             <?php if (isset($tribesmen['is_admin']) && $tribesmen['is_admin'] == 1): ?>
-                                    <div class="admin_flag">
-                                        <img src="../images/admin_flag.gif" alt="Admin Flag" />
-                                    </div>
+                                <div class="admin_flag">
+                                    <img src="../images/admin_flag.gif" alt="Admin Flag" />
+                                </div>
                             <?php endif; ?>
-
                         </a>
+
 
                         <div class="user_details_post_time">
                             <div class="post_date">
@@ -82,6 +90,7 @@ $current_user_id = (int)$_SESSION['user_id'];
                                     <?= htmlspecialchars(date("M d, Y", strtotime($scroll['created_at'])), ENT_QUOTES, 'UTF-8') ?>
                                 </p>
                             </div>
+
                             <div class="post_time">
                                 <p>
                                     <?= htmlspecialchars(date("H:i", strtotime($scroll['created_at'])), ENT_QUOTES, 'UTF-8') ?>
@@ -90,11 +99,16 @@ $current_user_id = (int)$_SESSION['user_id'];
                         </div>
                     </div>
 
+
+
+
+
+
                     <div class="post_text">
                         <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
                             <p style="margin-bottom: 0;">
                                 <?php
-                                $text = nl2br(htmlspecialchars($scroll['user_post'], ENT_QUOTES, 'UTF-8'));
+                                $text = nl2br($scroll['user_post']);
                                 $maxLength = 500;
                                 if (mb_strlen(strip_tags($scroll['user_post'])) > $maxLength) {
                                     echo mb_substr($text, 0, $maxLength);
@@ -107,6 +121,8 @@ $current_user_id = (int)$_SESSION['user_id'];
                         </a>
                     </div>
 
+
+
                     <?php
                     $images = array_filter(array_map('trim', explode(',', $scroll['images'])));
                     $images = array_map(function ($img) {
@@ -114,6 +130,8 @@ $current_user_id = (int)$_SESSION['user_id'];
                     }, $images);
                     if (!empty($images)) :
                     ?>
+
+
                         <div class="post_images_container">
                             <div class="post_images">
                                 <?php foreach ($images as $image) : ?>
@@ -126,6 +144,12 @@ $current_user_id = (int)$_SESSION['user_id'];
                         </div>
                     <?php endif; ?>
 
+
+
+
+
+
+
                     <div class="post_reactions">
                         <?php
                         include 'page_essentials/like_n_like_count.php';
@@ -133,7 +157,7 @@ $current_user_id = (int)$_SESSION['user_id'];
 
                         <div class="post_reaction">
                             <?php
-                            // Securely count comments using prepared statement
+                            // comment count
                             $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = ?";
                             $stmt = mysqli_prepare($connection, $count_query);
                             mysqli_stmt_bind_param($stmt, "i", $scroll_id);
@@ -147,6 +171,8 @@ $current_user_id = (int)$_SESSION['user_id'];
                             }
                             mysqli_stmt_close($stmt);
                             ?>
+
+
                             <div class="post_reaction_icon" id="comment_icon">
                                 <a href="post_preview.php?id=<?= urlencode($scroll_id) ?>">
                                     <i class="fa-regular fa-comment" id="comment_icon"></i>
@@ -165,7 +191,7 @@ $current_user_id = (int)$_SESSION['user_id'];
                             <div class="post_reaction">
                                 <div class="post_reaction_icon" id="comment_icon">
                                     <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
-                                      <img src="../images/flagged.gif" alt="Flagged Post" />
+                                        <img src="../images/flagged.gif" alt="Flagged Post" />
                                     </a>
                                 </div>
 
@@ -177,13 +203,18 @@ $current_user_id = (int)$_SESSION['user_id'];
                     </div>
                 </div>
             <?php endwhile ?>
-
         </div>
+
+
+
+
 
     <?php else : ?>
         <h3>Looks like this user hasn’t posted yet!</h3>
     <?php endif ?>
 </div>
+
+
 
 <div id="infinite-loader-timeline" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
     <span class="ripple-dot"></span>
