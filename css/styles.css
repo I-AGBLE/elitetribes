@@ -975,9 +975,9 @@ input[type="submit"][value="Post"] {
 }
 
 
-.post_reaction video {
-  width: 2rem;
-  height: 2rem;
+.post_reaction img {
+  width: 2.2rem;
+  height: 1.8rem;
 }
 
 

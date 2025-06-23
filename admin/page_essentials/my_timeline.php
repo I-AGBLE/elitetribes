@@ -205,9 +205,7 @@ $result = mysqli_stmt_get_result($stmt);
           <div class="post_reaction">
             <div class="post_reaction_icon" id="comment_icon">
               <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
-                <video autoplay muted loop playsinline>
-                  <source src="../images/flag.webm" type="video/webm">
-                </video>
+                 <img src="../images/flagged.gif" alt="Flagged Post" />
               </a>
             </div>
 
