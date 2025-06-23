@@ -100,7 +100,7 @@ if (empty($_SESSION['csrf_token']) || !is_string($_SESSION['csrf_token'])) {
 
                 <input type="email" name="email" value="<?= htmlspecialchars($tribesmen['email'], ENT_QUOTES, 'UTF-8') ?>" placeholder="Email">
 
-                <textarea name="about" placeholder="This is where each story begins. Write few lines about who you are, what you do, and what the Tribesmen should know about you. Keep it real, keep it you.."><?= $about ?></textarea>
+                <textarea name="about" maxlength="500"  placeholder="This is where each story begins. Write few lines about who you are, what you do, and what the Tribesmen should know about you. Keep it real, keep it you.."><?= $about ?></textarea>
 
                 <label for="avatar">
                     <i class="fa-solid fa-image"></i>
