@@ -5,8 +5,10 @@ if (!isset($_SESSION['csrf_token'])) {
 }
 ?>
 
-<div class="open_scrolls_contents" id="open_scrolls_contents" style="display: block;">
 
+
+
+<div class="open_scrolls_contents" id="open_scrolls_contents" style="display: block;">
     <div class="my_dashboard">
         <div class="my_dashboard_title">
             <div class="dashboard_small_titles">
@@ -18,8 +20,9 @@ if (!isset($_SESSION['csrf_token'])) {
         </div>
     </div>
 
-    <?php if (isset($open_scrolls) && mysqli_num_rows($open_scrolls) > 0) : ?>
 
+
+    <?php if (isset($open_scrolls) && mysqli_num_rows($open_scrolls) > 0) : ?>
         <div class="search_box">
             <center>
                 <input type="text" placeholder="Search Scrolls" id="search_box"
@@ -27,8 +30,8 @@ if (!isset($_SESSION['csrf_token'])) {
             </center>
         </div>
 
-        <div class="my_posts">
 
+        <div class="my_posts">
             <?php while ($scroll = mysqli_fetch_assoc($open_scrolls)):
                 // Validate scroll data
                 $scroll_id = filter_var($scroll['id'], FILTER_VALIDATE_INT);
@@ -63,7 +66,7 @@ if (!isset($_SESSION['csrf_token'])) {
 
                             <div class="user_name">
                                 <h4>
-                                    <?= htmlspecialchars($tribesmen['username'], ENT_QUOTES, 'UTF-8') ?>
+                                    <?= $tribesmen['username'] ?>
                                 </h4>
                             </div>
 
@@ -72,9 +75,8 @@ if (!isset($_SESSION['csrf_token'])) {
                                     <img src="../images/admin_flag.gif" alt="Admin Flag" />
                                 </div>
                             <?php endif; ?>
-
-
                         </a>
+
 
                         <div class="user_details_post_time">
                             <div class="post_date">
@@ -90,11 +92,16 @@ if (!isset($_SESSION['csrf_token'])) {
                         </div>
                     </div>
 
+
+
+
+
+
                     <div class="post_text">
                         <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
                             <p style="margin-bottom: 0;">
                                 <?php
-                                $text = nl2br(htmlspecialchars($scroll['user_post'], ENT_QUOTES, 'UTF-8'));
+                                $text = nl2br($scroll['user_post']);
                                 $maxLength = 500;
                                 if (mb_strlen(strip_tags($scroll['user_post'])) > $maxLength) {
                                     echo mb_substr($text, 0, $maxLength);
@@ -107,14 +114,19 @@ if (!isset($_SESSION['csrf_token'])) {
                         </a>
                     </div>
 
+
+
+
+
                     <?php
-                    // Secure image handling
+                    //  post image handling
                     $images = array_filter(array_map('trim', explode(',', $scroll['images'])));
                     $images = array_map(function ($img) {
                         return htmlspecialchars(basename($img), ENT_QUOTES, 'UTF-8');
                     }, $images);
                     if (!empty($images)) :
                     ?>
+
                         <div class="post_images_container ">
                             <div class="post_images">
                                 <?php foreach ($images as $image) : ?>
@@ -127,15 +139,20 @@ if (!isset($_SESSION['csrf_token'])) {
                         </div>
                     <?php endif; ?>
 
+
+
+
+
+
                     <div class="post_reactions">
                         <?php
-                        // Securely include like functionality
                         include 'page_essentials/like_n_like_count.php';
                         ?>
 
+
                         <div class="post_reaction">
                             <?php
-                            // Secure comment count query
+                            // comment count query
                             $count_query = "SELECT COUNT(*) AS comment_count FROM comments WHERE scroll_id = ?";
                             $stmt = mysqli_prepare($connection, $count_query);
                             mysqli_stmt_bind_param($stmt, "i", $scroll_id);
@@ -149,6 +166,9 @@ if (!isset($_SESSION['csrf_token'])) {
                             }
                             mysqli_stmt_close($stmt);
                             ?>
+
+
+
                             <div class="post_reaction_icon" id="comment_icon">
                                 <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
                                     <i class="fa-regular fa-comment" id="comment_icon"></i>
@@ -161,11 +181,13 @@ if (!isset($_SESSION['csrf_token'])) {
                         </div>
 
 
+
+
                         <?php if (isset($scroll['flagged']) && $scroll['flagged'] == 1): ?>
                             <div class="post_reaction">
                                 <div class="post_reaction_icon" id="comment_icon">
                                     <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
-                                       <img src="../images/flagged.gif" alt="Flagged Post" />
+                                        <img src="../images/flagged.gif" alt="Flagged Post" />
                                     </a>
                                 </div>
 
@@ -174,23 +196,23 @@ if (!isset($_SESSION['csrf_token'])) {
                                 </div>
                             </div>
                         <?php endif; ?>
-
-
-
                     </div>
-
                 </div>
             <?php endwhile ?>
         </div>
 
+
+        
         <div id="infinite-loader-open" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
             <span class="ripple-dot"></span>
             <span class="ripple-dot"></span>
             <span class="ripple-dot"></span>
         </div>
 
+
+
     <?php else : ?>
-        <h3>Be first to post a scroll on eliteTribe.</h3>
+        <h3>Be the first to share a post for the elite<span>Tribes</span></h3>
     <?php endif ?>
 </div>
 

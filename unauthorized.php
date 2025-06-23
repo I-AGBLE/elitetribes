@@ -1,15 +1,6 @@
 <?php
 include 'partials/header.php';
-
 ?>
-
-
-
-
-
-
-
-
 
 
 
@@ -19,10 +10,6 @@ include 'partials/header.php';
       <li><a href="logout_logic.php" id="logout">Logout</a></li>
   </center>
 </main>
-
-
-
-
 
 
 <?php
