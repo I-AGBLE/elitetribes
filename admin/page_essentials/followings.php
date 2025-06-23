@@ -4,8 +4,10 @@
     </center>
 </div>
 
-<div class='followings'>
 
+
+
+<div class='followings'>
     <?php
     // Secure session start if needed
     if (session_status() === PHP_SESSION_NONE) {
@@ -15,7 +17,7 @@
     // Sanitize and validate $id
     $id = isset($id) ? (int)$id : 0;
 
-    // Prepare and execute the query securely
+    // Prepare and execute the query 
     $stmt = mysqli_prepare($connection, "
     SELECT t.id, t.username, t.avatar, t.is_admin,
            (SELECT COUNT(*) FROM followers WHERE followed = t.id) AS followers_count
@@ -23,6 +25,8 @@
     JOIN tribesmen t ON f.followed = t.id
     WHERE f.follower = ?
 ");
+
+
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "i", $id);
         mysqli_stmt_execute($stmt);
@@ -31,6 +35,9 @@
         $result = false;
     }
     ?>
+
+
+
 
     <?php if ($result && mysqli_num_rows($result) > 0): ?>
         <div class="followings">
@@ -61,6 +68,10 @@
                 </div>
             <?php endwhile; ?>
         </div>
+
+
+
+        
     <?php else: ?>
         <p>This user follows no one.</p>
     <?php endif; ?>

@@ -301,7 +301,7 @@ if (!$tribesmen) {
               <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
               <div class="comment_input">
                 <div class="comment_field">
-                  <textarea name="user_comment" placeholder="Join the conversation..."></textarea>
+                  <textarea name="user_comment" placeholder="Share your comment on this post..."></textarea>
                   <input type="text" name="confirm_human" placeholder="confirm_human" class="confirm_human" style="display: none;">
                   <input type="submit" name="Comment" value="Comment">
                 </div>
@@ -337,7 +337,7 @@ if (!$tribesmen) {
                           </div>
 
                           <div class="user_name">
-                            <h4><?= htmlspecialchars($comment['author_name'], ENT_QUOTES, 'UTF-8') ?></h4>
+                            <h4><?=  $comment['author_name']  ?></h4>
                           </div>
 
                           <?php if (isset($comment['is_admin']) && $comment['is_admin'] == 1): ?>
@@ -358,7 +358,7 @@ if (!$tribesmen) {
                       </div>
 
                       <div class="comment_text">
-                        <p><?= nl2br(htmlspecialchars($comment['user_comment'], ENT_QUOTES, 'UTF-8')) ?></p>
+                        <p><?= nl2br( $comment['user_comment'] ) ?></p>
 
                         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $comment['tribesmen_id']): ?>
                           <div class="post_reaction">

@@ -82,6 +82,8 @@
     </div>
     <p id="like_count_<?= $scroll_id ?>"><?= htmlspecialchars($like_count, ENT_QUOTES, 'UTF-8') ?></p>
   </div>
+
+  
   <div class="post_reaction_desc">
     <p>Like</p>
   </div>

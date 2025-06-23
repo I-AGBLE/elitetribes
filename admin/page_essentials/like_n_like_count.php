@@ -2,10 +2,12 @@
     <div class="post_reaction_icon">
         <div class="like_icons">
             <?php
-            // Start session securely if not already started
+            // Start session  if not already started
             if (session_status() === PHP_SESSION_NONE) {
                 session_start();
             }
+
+
 
             // Initialize variables
             $liked = false;
@@ -47,6 +49,8 @@
             }
             ?>
 
+
+
             <div class="like_icon">
                 <?php if ($scroll_id > 0 && isset($_SESSION['user_id'])): ?>
                     <a href="like_logic.php?id=<?= htmlspecialchars($scroll_id, ENT_QUOTES, 'UTF-8') ?>&csrf_token=<?= htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8') ?>" onclick="saveScroll()">
@@ -59,6 +63,7 @@
         </div>
         <p id="like_count"><?= htmlspecialchars($like_count, ENT_QUOTES, 'UTF-8') ?></p>
     </div>
+    
     <div class="post_reaction_desc">
         <p>Like</p>
     </div>

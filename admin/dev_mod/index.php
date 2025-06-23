@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id']) || !ctype_digit($_SESSION['user_id'])) {
 
 $id = (int)$_SESSION['user_id'];
 
-// Check admin status with prepared statement
+// Check admin status  
 $stmt = $connection->prepare("SELECT is_admin FROM tribesmen WHERE id = ? LIMIT 1");
 if (!$stmt) {
     // Log error and redirect
@@ -33,7 +33,7 @@ if ($result && $user = $result->fetch_assoc()) {
 }
 $stmt->close();
 
-// Fetch scrolls with prepared statement
+// Fetch scrolls 
 $stmt = $connection->prepare("SELECT * FROM scrolls ORDER BY id DESC");
 if (!$stmt) {
     error_log("Database error: " . $connection->error);
@@ -58,8 +58,12 @@ $stmt->close();
         <!--Update -->
     </section>
 
-    <section class="main_content">
 
+
+
+
+
+    <section class="main_content">
         <div class="my_posts_contents" id="my_posts_contents" style="display: block;">
             <div class="my_dashboard" id="dashboard">
                 <div class="my_dashboard_title">
@@ -72,11 +76,18 @@ $stmt->close();
                 </div>
             </div>
 
+
+
+
             <div class="search_box">
                 <center>
                     <input type="text" id="search_box" placeholder="Search Posts" oninput="sanitizeSearchInput(this)">
                 </center>
             </div>
+
+
+
+
 
             <div class="my_posts">
                 <?php foreach ($scrolls as $scroll):
@@ -125,6 +136,12 @@ $stmt->close();
                             </div>
                         </div>
 
+
+
+
+
+
+                        
                         <div class="post_text">
                             <a href="<?= htmlspecialchars(ROOT_URL) ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>" style="text-decoration: none; color: inherit;">
                                 <p style="margin-bottom: 0;">

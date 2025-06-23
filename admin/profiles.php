@@ -119,7 +119,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
           </div>
 
           <div class="about">
-            <p><?= nl2br(htmlspecialchars($user_detail['about'])) ?></p>
+            <p><?= nl2br($user_detail['about'])   ?></p>
           </div>
 
           <div class="followers_and_posts">

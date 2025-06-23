@@ -1,22 +1,21 @@
 <?php
-// Start session and include configuration
 require_once 'partials/header.php';
 
 // Validate user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: " . ROOT_URL . "auth/login.php");
+    header("Location: " . ROOT_URL );
     exit();
 }
 
 // Check if a user ID is passed in the URL
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: " . ROOT_URL . "index.php");
+    header("Location: " . ROOT_URL . "admin/");
     exit();
 }
 
 $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
 if ($id === false) {
-    header("Location: " . ROOT_URL . "index.php");
+    header("Location: " . ROOT_URL . "admin/");
     exit();
 }
 
@@ -28,11 +27,11 @@ mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
 if (mysqli_num_rows($result) === 0) {
-    header("Location: " . ROOT_URL . "index.php");
+    header("Location: " . ROOT_URL . "admin/");
     exit();
 }
 
-$user_detail = mysqli_fetch_assoc($result); // ✅ FIXED HERE
+$user_detail = mysqli_fetch_assoc($result); 
 mysqli_stmt_close($stmt);
 
 
@@ -61,7 +60,7 @@ mysqli_stmt_store_result($stmt);
 $isFollowing = mysqli_stmt_num_rows($stmt) > 0;
 mysqli_stmt_close($stmt);
 
-// Count followers with prepared statement
+// Count followers 
 $countFollowersQuery = "SELECT COUNT(*) AS total_followers FROM followers WHERE followed = ?";
 $stmt = mysqli_prepare($connection, $countFollowersQuery);
 mysqli_stmt_bind_param($stmt, "i", $profileUserId);
@@ -71,7 +70,7 @@ $followersData = mysqli_fetch_assoc($countFollowersResult);
 $followersCount = $followersData['total_followers'];
 mysqli_stmt_close($stmt);
 
-// Get following count with prepared statement
+// Get following count 
 $followingQuery = "SELECT COUNT(*) AS total_following FROM followers WHERE follower = ?";
 $stmt = mysqli_prepare($connection, $followingQuery);
 mysqli_stmt_bind_param($stmt, "i", $profileUserId);
@@ -129,7 +128,7 @@ mysqli_stmt_close($stmt);
                             <p>
                                 E-mail:
                                 <span>
-                                    <a href="mailto:<?= htmlspecialchars($user_detail['email']) ?>">
+                                    <a href="mailto:<?= $user_detail['email'] ?>">
                                         <?= $user_detail['email'] ?>
                                     </a>
                                 </span>
