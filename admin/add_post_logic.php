@@ -43,8 +43,8 @@ if (isset($_POST['submit'])) {
 
     // Basic content validation
     $user_post = filter_var($user_post, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    if (mb_strlen($user_post) > 10000) {
-        $_SESSION['add_post'] = 'Post content is too long (max 10000 characters)';
+    if (mb_strlen($user_post) > 20000) {
+        $_SESSION['add_post'] = 'Post content is too long (max 20000 characters)';
         header("Location: " . ROOT_URL . "admin/");
         exit;
     }
@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
 
                 // Extension check
                 if (!in_array($extension, $allowed_extensions)) {
-                    $_SESSION['add_post'] = 'Image must be in jpg, png, webp, svg, or jpeg format!';
+                    $_SESSION['add_post'] = 'Image must be in jpg, png, gif,  webp, svg, or jpeg format!';
                     break;
                 }
 

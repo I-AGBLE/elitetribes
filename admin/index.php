@@ -76,7 +76,7 @@ if (empty($_SESSION['csrf_token']) || !is_string($_SESSION['csrf_token'])) {
       
       <div class="post_input">
         <div class="post_field">
-          <textarea name="user_post" placeholder="What's on your mind?"  maxlength="10000"><?= $user_post ?></textarea>
+          <textarea name="user_post" placeholder="What's on your mind?"  maxlength="20000"><?= $user_post ?></textarea>
           <div class="post_actions">
            
           <label for="image-upload" style="cursor: pointer;">

@@ -24,7 +24,7 @@ $csrf_token = $_SESSION['csrf_token'];
       <div class="post_field">
 
         <!-- Escape any special characters in user input -->
-        <textarea name="user_post" placeholder="What's on your mind?"  maxlength="10000"><?= $user_post ?></textarea>
+        <textarea name="user_post" placeholder="What's on your mind?"  maxlength="20000"><?= $user_post ?></textarea>
 
         <div class="post_actions">
 
@@ -37,7 +37,7 @@ $csrf_token = $_SESSION['csrf_token'];
             type="file"
             id="image-upload"
             name="images[]"
-            accept="image/png, image/jpeg, image/jpg,, image/webp, image/webp"
+            accept="image/png, image/jpeg, image/jpg, image/webp, image/webp, image/gif"
             multiple
             style="display: none;" />
 
