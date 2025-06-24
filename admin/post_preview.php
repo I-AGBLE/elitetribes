@@ -61,28 +61,25 @@ if (!$tribesmen) {
 
 
 $scroll_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-
 if ($scroll_id > 0) {
-    // Use a session array to track viewed posts
-    if (!isset($_SESSION['viewed_scrolls'])) {
-        $_SESSION['viewed_scrolls'] = [];
-    }
+    // Use a cookie to track views per post (expires in 12 hours)
+    $cookie_name = 'viewed_scroll_' . $scroll_id;
+    $view_expiry = 12 * 60 * 60; // 12 hours in seconds
 
-    // Only increment if not viewed in this session
-    if (!in_array($scroll_id, $_SESSION['viewed_scrolls'])) {
+    if (!isset($_COOKIE[$cookie_name])) {
         $update_views = "UPDATE scrolls SET views = views + 1 WHERE id = ?";
         $stmt = mysqli_prepare($connection, $update_views);
         mysqli_stmt_bind_param($stmt, "i", $scroll_id);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
 
-        // Mark as viewed in this session
-        $_SESSION['viewed_scrolls'][] = $scroll_id;
+        // Set the cookie so this user can't increment again for 12 hours
+        setcookie($cookie_name, '1', time() + $view_expiry, "/");
     }
 }
-
-
 ?>
+
+
 
 <main>
   <section class="main_left">
@@ -307,11 +304,25 @@ if ($scroll_id > 0) {
               ?>
 
 
+
+              <div class="post_reaction">
+                <div class="post_reaction_icon" id="comment_icon">
+                  <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
+                    <i class="fa-regular fa-eye" id="view_icon"></i>
+                  </a>
+                  <p id="view_count"><?= htmlspecialchars($scroll['views'], ENT_QUOTES, 'UTF-8') ?></p>
+                </div>
+                <div class="post_reaction_desc">
+                  <p>Views</p>
+                </div>
+              </div>
+
+
               <?php if (isset($scroll['flagged']) && $scroll['flagged'] == 1): ?>
                 <div class="post_reaction">
                   <div class="post_reaction_icon" id="comment_icon">
                     <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
-                        <img src="../images/flagged.gif" alt="Flagged Post" />
+                      <img src="../images/flagged.gif" alt="Flagged Post" />
                     </a>
                   </div>
 
@@ -364,7 +375,7 @@ if ($scroll_id > 0) {
                           </div>
 
                           <div class="user_name">
-                            <h4><?=  $comment['author_name']  ?></h4>
+                            <h4><?= $comment['author_name']  ?></h4>
                           </div>
 
                           <?php if (isset($comment['is_admin']) && $comment['is_admin'] == 1): ?>
@@ -385,7 +396,7 @@ if ($scroll_id > 0) {
                       </div>
 
                       <div class="comment_text">
-                        <p><?= nl2br( $comment['user_comment'] ) ?></p>
+                        <p><?= nl2br($comment['user_comment']) ?></p>
 
                         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $comment['tribesmen_id']): ?>
                           <div class="post_reaction">

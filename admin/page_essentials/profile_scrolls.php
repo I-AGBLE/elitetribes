@@ -187,6 +187,21 @@ $current_user_id = (int)$_SESSION['user_id'];
 
 
 
+                            <div class="post_reaction">
+                            <div class="post_reaction_icon" id="comment_icon">
+                                <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
+                                    <i class="fa-regular fa-eye" id="view_icon"></i>
+                                </a>
+                                <p id="view_count"><?= htmlspecialchars($scroll['views'], ENT_QUOTES, 'UTF-8') ?></p>
+                            </div>
+                            <div class="post_reaction_desc">
+                                <p>Views</p>
+                            </div>
+                        </div>
+
+
+
+
                         <?php if (isset($scroll['flagged']) && $scroll['flagged'] == 1): ?>
                             <div class="post_reaction">
                                 <div class="post_reaction_icon" id="comment_icon">
