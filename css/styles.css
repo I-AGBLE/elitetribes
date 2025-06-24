@@ -925,6 +925,8 @@ input[type="submit"][value="Post"] {
   opacity: 0.4;
 }
 
+
+
 .post_reactions {
   display: flex;
   gap: 2rem;
@@ -1097,6 +1099,11 @@ a.hyperlink:hover,
 
 #delete_icon:hover {
   color: var(--text_color);
+}
+
+
+#view_icon:hover {
+  color: var(--fav);
 }
 
 .like_icons {
