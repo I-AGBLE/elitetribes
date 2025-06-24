@@ -21,9 +21,9 @@
   scroll-padding-top: 2rem;
 
   /* Prevent text selection and cursor blinking  */
-   user-select: none;
+  user-select: none;
   -webkit-user-select: none; /* For Safari */
-  -ms-user-select: none;     /* For IE/Edge */
+  -ms-user-select: none; /* For IE/Edge */
 
   /* Font Style */
   font-family: "Josefin Slab", serif;
@@ -74,9 +74,9 @@
 /* Loader Styles */
 .ripple-dot {
   display: inline-block;
-  width: .5rem;
-  height: .5rem;
-  margin: .7rem 0.2rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: 0.7rem 0.2rem;
   border-radius: 50%;
   background: var(--fav);
   animation: ripple 1s infinite;
@@ -189,7 +189,6 @@ textarea:focus {
   cursor: pointer;
 }
 
-
 #warning_btn {
   background-color: var(--color_warning);
   padding: 0.3rem;
@@ -210,7 +209,6 @@ textarea:focus {
 #warning_btn:hover {
   background-color: var(--fav);
 }
-
 
 /* Nav Styles */
 nav {
@@ -287,7 +285,6 @@ nav {
   animation: zoomPulse 3.5s infinite ease-in-out;
 }
 
-
 .menu_icon i:hover {
   color: var(--color_warning);
 }
@@ -302,8 +299,6 @@ nav {
     color: var(--color_warning);
   }
 }
-
-
 
 /* Hide menu by default */
 .header_menus {
@@ -627,38 +622,55 @@ main .main_left,
 }
 
 .user_picture {
+  position: relative;
   width: 25rem !important;
   height: 20rem;
   border-radius: var(--border_radius);
-  -webkit-border-radius: 1rem;
-  -moz-border-radius: 1rem;
-  -ms-border-radius: 1rem;
-  -o-border-radius: 1rem;
   overflow: hidden;
-  border: 0.1px solid var(--deep_bg);
   cursor: pointer;
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--fav);
-
-    transition: var(--transition);
-  -webkit-transition: var(--transition);
-  -moz-transition: var(--transition);
-  -ms-transition: var(--transition);
-  -o-transition: var(--transition);
+  z-index: 1;
 
 }
 
-.user_picture:hover {
-  border: 1px solid var(--color_warning);
-  box-shadow: var(--box_shadow);
+.user_picture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--border_radius);
+  padding: .2rem; /* Border thickness */
+  background: linear-gradient(270deg, var(--fav), var(--color_warning), var(--fav));
+  background-size: 400% 400%;
+  z-index: 2;
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  mask:
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: borderGradientMove 4s linear infinite;
 }
+
+@keyframes borderGradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
 
 .user_picture img {
   width: 100%;
   height: 100%;
-    object-fit: contain; /* Show the whole image, keep aspect ratio */
+  object-fit: contain; /* Show the whole image, keep aspect ratio */
   display: block;
 }
 
@@ -668,7 +680,6 @@ main .main_left,
   -moz-transform: scale(1.02);
   -ms-transform: scale(1.02);
   -o-transform: scale(1.02);
-
 }
 
 .user_info {
@@ -996,26 +1007,19 @@ input[type="submit"][value="Post"] {
   display: none;
 }
 
-
 .post_reaction img {
   width: 2.2rem;
   height: 1.8rem;
 }
-
-
 
 .admin_flag img {
   width: 1.2rem;
   height: 1.2rem;
 }
 
-
-
-
 #flagged_btn {
   margin-top: -1.5rem;
 }
-
 
 a.hyperlink,
 .hyperlink,
@@ -1024,8 +1028,6 @@ a.hyperlink,
   background: transparent !important;
   text-transform: lowercase;
 }
-
-
 
 a.hyperlink:hover,
 .hyperlink:hover {
@@ -1036,7 +1038,6 @@ a.hyperlink:hover,
 .post_text {
   margin-top: 0.5rem;
 }
-
 
 .post_reaction_icon:hover + .post_reaction_desc p {
   opacity: 1;
@@ -1565,19 +1566,17 @@ input[type="submit"][value="Register"]:hover {
   margin-bottom: 3rem;
 }
 
-
 .delete_profile {
   margin-top: 2rem;
 }
 .delete_profile p a {
-color: var(--danger_btn);
+  color: var(--danger_btn);
 }
 
 .delete_profile p a:hover {
   color: var(--fav);
   text-decoration: underline;
 }
-
 
 label i {
   font-size: 2rem;
@@ -1645,12 +1644,9 @@ footer a:hover {
   -webkit-filter: saturate(0.7);
 }
 
-
-
-
 .home_button i {
   font-size: 1.2rem;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   transition: var(--transition);
   animation: zoomPulse 3.5s infinite ease-in-out;
 }
@@ -1658,8 +1654,6 @@ footer a:hover {
 .home_button i:hover {
   color: var(--fav);
 }
-
-
 
 /* Default icon color */
 .fa-heart.default {
@@ -1672,8 +1666,6 @@ footer a:hover {
   color: red;
   /* Red when liked */
 }
-
-
 
 /* ---------------------------------- TABLET -------------------------------------- */
 
@@ -1788,7 +1780,7 @@ footer a:hover {
   }
 
   .about p {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .followers_and_posts p {
@@ -2108,18 +2100,16 @@ footer a:hover {
   }
 
   .user_info {
-   width: 99.5%;
+    width: 99.5%;
   }
 
   .user_picture {
     width: 99% !important;
     height: 22rem;
-    border: .5px solid var(--fav);
-   
   }
 
   .about p {
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 
   .followers_and_posts p {
