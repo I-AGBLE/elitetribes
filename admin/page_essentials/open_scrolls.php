@@ -150,6 +150,8 @@ if (!isset($_SESSION['csrf_token'])) {
                         ?>
 
 
+
+
                         <div class="post_reaction">
                             <?php
                             // comment count query
@@ -183,6 +185,22 @@ if (!isset($_SESSION['csrf_token'])) {
 
 
 
+
+                        <div class="post_reaction">
+                            <div class="post_reaction_icon" id="comment_icon">
+                                <a href="<?= htmlspecialchars(ROOT_URL, ENT_QUOTES, 'UTF-8') ?>admin/post_preview.php?id=<?= urlencode($scroll_id) ?>">
+                                    <i class="fa-regular fa-eye" id="view_icon"></i>
+                                </a>
+                                <p id="view_count"><?= htmlspecialchars($scroll['views'], ENT_QUOTES, 'UTF-8') ?></p>
+                            </div>
+                            <div class="post_reaction_desc">
+                                <p>Views</p>
+                            </div>
+                        </div>
+
+
+
+
                         <?php if (isset($scroll['flagged']) && $scroll['flagged'] == 1): ?>
                             <div class="post_reaction">
                                 <div class="post_reaction_icon" id="comment_icon">
@@ -202,7 +220,7 @@ if (!isset($_SESSION['csrf_token'])) {
         </div>
 
 
-        
+
         <div id="infinite-loader-open" class="infinite-loader" style="display:none;text-align:center;margin:1rem 0;">
             <span class="ripple-dot"></span>
             <span class="ripple-dot"></span>

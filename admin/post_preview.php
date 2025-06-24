@@ -55,6 +55,33 @@ if (!$tribesmen) {
   header('Location: ' . htmlspecialchars(ROOT_URL . 'admin/', ENT_QUOTES, 'UTF-8'));
   exit;
 }
+
+
+
+
+
+$scroll_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+if ($scroll_id > 0) {
+    // Use a session array to track viewed posts
+    if (!isset($_SESSION['viewed_scrolls'])) {
+        $_SESSION['viewed_scrolls'] = [];
+    }
+
+    // Only increment if not viewed in this session
+    if (!in_array($scroll_id, $_SESSION['viewed_scrolls'])) {
+        $update_views = "UPDATE scrolls SET views = views + 1 WHERE id = ?";
+        $stmt = mysqli_prepare($connection, $update_views);
+        mysqli_stmt_bind_param($stmt, "i", $scroll_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+
+        // Mark as viewed in this session
+        $_SESSION['viewed_scrolls'][] = $scroll_id;
+    }
+}
+
+
 ?>
 
 <main>
