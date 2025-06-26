@@ -26,6 +26,10 @@ $scrolls = $stmt->get_result();
 $stmt->close();
 ?>
 
+
+
+
+
 <main>
 
   <!-- notifications  -->
@@ -65,9 +69,10 @@ $stmt->close();
 
 
 
+
   <section class="main_content">
     <?php
-    //  fetch follower count
+    //  follower count
     $stmt = $connection->prepare("SELECT COUNT(*) AS follower_count FROM followers WHERE followed = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -76,6 +81,7 @@ $stmt->close();
     $follower_count = $row['follower_count'] ?? 0;
     $stmt->close();
     ?>
+
 
 
 
@@ -115,7 +121,10 @@ $stmt->close();
       </div>
     </div>
 
+
+
     <section class="dashboard">
+
       <?php include 'page_essentials/my_posts.php'; ?>
 
       <div class="feed" id="feed" style="display: none;">
@@ -133,6 +142,8 @@ $stmt->close();
         <?php include 'page_essentials/my_timeline.php'; ?>
       </div>
 
+
+      
       <div class="following" id="following" style="display: none;">
         <div class="my_dashboard">
           <div class="my_dashboard_title">
