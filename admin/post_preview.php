@@ -59,24 +59,26 @@ if (!$tribesmen) {
 
 
 
-
 $scroll_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($scroll_id > 0) {
-    // Use a cookie to track views per post (expires in 12 hours)
     $cookie_name = 'viewed_scroll_' . $scroll_id;
-    $view_expiry = 12 * 60 * 60; // 12 hours in seconds
+    $view_expiry = 12 * 60 * 60; // 12 hours
 
-    if (!isset($_COOKIE[$cookie_name])) {
+    if (
+        (!isset($_COOKIE[$cookie_name])) &&
+        (!isset($_SESSION['viewed_scrolls']) || !in_array($scroll_id, $_SESSION['viewed_scrolls']))
+    ) {
         $update_views = "UPDATE scrolls SET views = views + 1 WHERE id = ?";
         $stmt = mysqli_prepare($connection, $update_views);
         mysqli_stmt_bind_param($stmt, "i", $scroll_id);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
 
-        // Set the cookie so this user can't increment again for 12 hours
-        setcookie($cookie_name, '1', time() + $view_expiry, "/");
+        $_SESSION['viewed_scrolls'][] = $scroll_id;
     }
 }
+
+
 ?>
 
 
